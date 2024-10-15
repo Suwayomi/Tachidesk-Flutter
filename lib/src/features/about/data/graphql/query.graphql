@@ -1,0 +1,14 @@
+# import '/src/features/about/domain/about/graphql/fragment.graphql'
+# import '/src/features/about/domain/server_update/graphql/fragment.graphql'
+
+query About {
+  aboutServer {
+    ...AboutFragment
+  }
+}
+
+query ServerUpdate {
+  checkForServerUpdates {
+    ...ServerUpdateFragment
+  }
+}

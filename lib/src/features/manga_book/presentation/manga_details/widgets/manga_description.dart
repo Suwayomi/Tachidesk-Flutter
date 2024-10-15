@@ -10,7 +10,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../constants/app_sizes.dart';
-
 import '../../../../../routes/router_config.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/launch_url_in_web.dart';
@@ -59,7 +58,7 @@ class MangaDescription extends HookConsumerWidget {
                     await refresh();
                   });
                   if (context.mounted) {
-                    val.showToastOnError(ref.read(toastProvider(context)));
+                    val.showToastOnError(ref.read(toastProvider));
                   }
                 },
                 isPrimary: manga.inLibrary.ifNull(),
@@ -67,8 +66,8 @@ class MangaDescription extends HookConsumerWidget {
                 secondaryIcon: const Icon(Icons.favorite_border_outlined),
                 secondaryStyle:
                     TextButton.styleFrom(foregroundColor: Colors.grey),
-                primaryLabel: Text(context.l10n!.inLibrary),
-                secondaryLabel: Text(context.l10n!.addToLibrary),
+                primaryLabel: Text(context.l10n.inLibrary),
+                secondaryLabel: Text(context.l10n.addToLibrary),
               ),
               if (manga.realUrl.isNotBlank)
                 TextButton.icon(
@@ -76,12 +75,12 @@ class MangaDescription extends HookConsumerWidget {
                     launchUrlInWeb(
                       context,
                       (manga.realUrl ?? ""),
-                      ref.read(toastProvider(context)),
+                      ref.read(toastProvider),
                     );
                   },
-                  icon: const Icon(Icons.public),
+                  icon: const Icon(Icons.public_rounded),
                   style: TextButton.styleFrom(foregroundColor: Colors.grey),
-                  label: Text(context.l10n!.webView),
+                  label: Text(context.l10n.webView),
                 ),
             ],
           ),
@@ -137,7 +136,7 @@ class MangaDescription extends HookConsumerWidget {
               runSpacing: 8,
               // alignment: WrapAlignment.spaceBetween,
               children: [
-                ...?manga.genre?.map<Widget>(
+                ...manga.genre.map<Widget>(
                   (e) => Chip(label: Text(e)),
                 )
               ],
@@ -150,7 +149,7 @@ class MangaDescription extends HookConsumerWidget {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  ...?manga.genre?.map<Widget>(
+                  ...manga.genre.map<Widget>(
                     (e) => Padding(
                       padding: KEdgeInsets.h4.size,
                       child: Chip(label: Text(e)),

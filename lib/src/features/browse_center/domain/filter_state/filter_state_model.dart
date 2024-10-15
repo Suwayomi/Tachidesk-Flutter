@@ -9,7 +9,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../filter/filter_model.dart';
 
 part 'filter_state_model.freezed.dart';
-part 'filter_state_model.g.dart';
+// part 'filter_state_model.g.dart';
 
 @Freezed(
   unionKey: 'type',
@@ -72,3 +72,5 @@ class SelectValues with _$SelectValues {
   factory SelectValues.fromJson(Map<String, dynamic> json) =>
       _$SelectValuesFromJson(json);
 }
+
+// typedef Filter = GFilters;

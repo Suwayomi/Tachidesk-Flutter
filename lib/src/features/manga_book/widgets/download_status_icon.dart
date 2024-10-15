@@ -6,7 +6,6 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -44,21 +43,20 @@ class DownloadStatusIcon extends HookConsumerWidget {
   }
 
   Future toggleChapterToQueue(
-    Toast toast,
+    Toast? toast,
     WidgetRef ref, {
     bool isAdd = false,
     bool isRemove = false,
     bool isError = false,
   }) async {
     try {
-      if (chapter.index == null) return;
       (await AsyncValue.guard(() async {
         final repo = ref.read(downloadsRepositoryProvider);
         if (isRemove || isError) {
-          await repo.removeChapterFromDownloadQueue(mangaId, chapter.index!);
+          await repo.removeChapterFromDownloadQueue(mangaId, chapter.index);
         }
         if (isAdd || isError) {
-          await repo.addChapterToDownloadQueue(mangaId, chapter.index!);
+          await repo.addChapterToDownloadQueue(mangaId, chapter.index);
         }
       }))
           .showToastOnError(toast);
@@ -71,8 +69,8 @@ class DownloadStatusIcon extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isLoading = useState(false);
 
-    final toast = ref.watch(toastProvider(context));
-    final download = ref.watch(downloadsFromIdProvider(chapter.id ?? -1));
+    final toast = ref.watch(toastProvider);
+    final download = ref.watch(downloadsFromIdProvider(chapter.id));
     useEffect(() {
       if (download?.state == "Finished") {
         Future.microtask(
@@ -110,7 +108,7 @@ class DownloadStatusIcon extends HookConsumerWidget {
               (await AsyncValue.guard(
                 () => ref.read(mangaBookRepositoryProvider).modifyBulkChapters(
                       batch: ChapterBatch(
-                        chapterIds: [chapter.id!],
+                        chapterIds: [chapter.id],
                         change: ChapterChange(delete: true),
                       ),
                     ),

@@ -9,63 +9,69 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../constants/endpoints.dart';
-import '../../../../constants/enum.dart';
-import '../../../../global_providers/global_providers.dart';
-
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/launch_url_in_web.dart';
 import '../../../../utils/misc/toast/toast.dart';
-import '../../widgets/server_port_tile/server_port_tile.dart';
-import '../../widgets/server_url_tile/server_url_tile.dart';
-import 'widget/auth_type_tile.dart';
-import 'widget/credential_popup/credentials_popup.dart';
+import '../../controller/server_controller.dart';
+import 'widget/authentication/authentication_section.dart';
+import 'widget/client/client_section.dart';
+import 'widget/client/server_port_tile/server_port_tile.dart';
+import 'widget/client/server_url_tile/server_url_tile.dart';
+import 'widget/cloud_flare/cloud_flare_section.dart';
+import 'widget/misc_settings/misc_settings_section.dart';
+import 'widget/server_binding/server_binding_section.dart';
+import 'widget/socks_proxy/socks_proxy_section.dart';
 
 class ServerScreen extends ConsumerWidget {
   const ServerScreen({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final authType = ref.watch(authTypeKeyProvider);
+    final serverSettings = ref.watch(settingsProvider);
+    onRefresh() => ref.refresh(settingsProvider.future);
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.l10n!.server),
+        title: Text(context.l10n.server),
       ),
-      body: ListView(
-        children: [
-          const ServerUrlTile(),
-          const ServerPortTile(),
-          const AuthTypeTile(),
-          if (authType != null && authType != AuthType.none)
-            ListTile(
-              leading: const Icon(Icons.password_rounded),
-              title: Text(context.l10n!.credentials),
-              onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (context) => const CredentialsPopup(),
-                );
-              },
-            ),
-          if (!kIsWeb)
-            ListTile(
-              leading: const Icon(Icons.web_rounded),
-              title: Text(context.l10n!.webUI),
-              onTap: () {
-                final url = Endpoints.baseApi(
-                  baseUrl: ref.read(serverUrlProvider),
-                  port: ref.read(serverPortProvider),
-                  addPort: ref.watch(serverPortToggleProvider).ifNull(),
-                  appendApiToUrl: false,
-                );
-                if (url.isNotBlank) {
-                  launchUrlInWeb(
-                    context,
-                    url,
-                    ref.read(toastProvider(context)),
-                  );
-                }
-              },
-            )
-        ],
+      body: RefreshIndicator(
+        onRefresh: onRefresh,
+        child: ListTileTheme(
+          data: const ListTileThemeData(
+            subtitleTextStyle: TextStyle(color: Colors.grey),
+          ),
+          child: ListView(
+            children: [
+              const ClientSection(),
+              const AuthenticationSection(),
+              if (!kIsWeb)
+                ListTile(
+                  leading: const Icon(Icons.web_rounded),
+                  title: Text(context.l10n.webUI),
+                  onTap: () {
+                    final url = Endpoints.baseApi(
+                      baseUrl: ref.read(serverUrlProvider),
+                      port: ref.read(serverPortProvider),
+                      addPort: ref.watch(serverPortToggleProvider).ifNull(),
+                      appendApiToUrl: false,
+                    );
+                    if (url.isNotBlank) {
+                      launchUrlInWeb(
+                        context,
+                        url,
+                        ref.read(toastProvider),
+                      );
+                    }
+                  },
+                ),
+              if (serverSettings.valueOrNull != null) ...[
+                ServerBindingSection(serverBindingDto: serverSettings.value!),
+                SocksProxySection(socksProxyDto: serverSettings.value!),
+                CloudFlareSection(cloudFlareDto: serverSettings.value!),
+                MiscSettingsSection(miscSettingsDto: serverSettings.value!),
+              ]
+            ],
+          ),
+        ),
       ),
     );
   }

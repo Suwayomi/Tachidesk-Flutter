@@ -32,7 +32,7 @@ class ReaderVolumeTapInvertTile extends HookConsumerWidget {
         angle: -math.pi / 2,
         child: const Icon(Icons.switch_left_rounded),
       ),
-      title: Text(context.l10n!.readerVolumeTapInvert),
+      title: Text(context.l10n.readerVolumeTapInvert),
       onChanged: ref.read(volumeTapInvertProvider.notifier).update,
       value: ref.watch(volumeTapInvertProvider).ifNull(),
     );

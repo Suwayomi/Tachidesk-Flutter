@@ -7,7 +7,7 @@ part of 'quick_search_controller.dart';
 // **************************************************************************
 
 String _$processesQuickSearchHash() =>
-    r'93fc20d8122c2e7cb96f566d756f68d9436cc08c';
+    r'20e162df4445824891c7e6340d97215dd99e09a5';
 
 /// Copied from Dart SDK
 class _SystemHash {

@@ -1,0 +1,25 @@
+# import '/src/features/settings/domain/settings/graphql/fragment.graphql'
+
+mutation UpdateSourceInParallel($maxSourcesInParallel: Int = 6) {
+  setSettings(input: {settings: {maxSourcesInParallel: $maxSourcesInParallel}}) {
+    settings {
+      ...SettingsFragment
+    }
+  }
+}
+
+mutation UpdateExtensionRepos($extensionRepos: [String!] = "") {
+  setSettings(input: {settings: {extensionRepos: $extensionRepos}}) {
+    settings {
+      ...SettingsFragment
+    }
+  }
+}
+
+mutation UpdateLocalSourcePath($localSourcePath: String = "") {
+  setSettings(input: {settings: {localSourcePath: $localSourcePath}}) {
+    settings {
+      ...SettingsFragment
+    }
+  }
+}

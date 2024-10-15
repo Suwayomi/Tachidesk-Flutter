@@ -35,7 +35,7 @@ class ReaderPaddingSlider extends ConsumerWidget {
         ref.watch(readerPaddingKeyProvider) ?? DBKeys.readerPadding.initial;
     return SliderSettingTile(
       icon: Icons.width_wide_rounded,
-      title: context.l10n!.readerPadding,
+      title: context.l10n.readerPadding,
       value: readerPadding,
       getSliderLabel: (val) => (val * 2.5).toStringAsFixed(2),
       onChanged: ref.read(readerPaddingKeyProvider.notifier).update,
@@ -77,7 +77,7 @@ class AsyncReaderPaddingSlider extends HookConsumerWidget {
     );
     return SliderSettingTile(
       icon: Icons.width_wide_rounded,
-      title: context.l10n!.readerPadding,
+      title: context.l10n.readerPadding,
       value: readerPadding.value,
       getSliderLabel: (val) => (val * 2.5).toStringAsFixed(2),
       onChanged: onDebounceChanged,

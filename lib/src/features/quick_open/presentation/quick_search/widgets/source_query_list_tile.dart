@@ -9,7 +9,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../constants/app_sizes.dart';
 import '../../../../../constants/enum.dart';
-
 import '../../../../../routes/router_config.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/server_image.dart';
@@ -31,19 +30,18 @@ class SourceQueryListTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return ListTile(
       onTap: (() async {
-        if (source.id == null) return;
-        ref.read(sourceLastUsedProvider.notifier).update(source.id);
-        SourceMangaRoute(
-          sourceId: source.id!,
+        ref.read(sourceLastUsedProvider.notifier).update(source.id.value);
+        SourceTypeRoute(
+          sourceId: source.id.value,
           sourceType: query.isBlank ? SourceType.popular : SourceType.filter,
           query: query,
-        ).push(context);
+        ).go(context);
         afterClick?.call();
       }),
       leading: ClipRRect(
         borderRadius: KBorderRadius.r8.radius,
         child: ServerImage(
-          imageUrl: source.iconUrl ?? "",
+          imageUrl: source.iconUrl,
           size: const Size.square(48),
         ),
       ),
@@ -52,7 +50,7 @@ class SourceQueryListTile extends ConsumerWidget {
               text: TextSpan(
                 children: [
                   TextSpan(
-                    text: "${source.displayName ?? source.name ?? ""}/ ",
+                    text: "${source.displayName}/ ",
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           letterSpacing: .1,
                           wordSpacing: .1,
@@ -66,10 +64,10 @@ class SourceQueryListTile extends ConsumerWidget {
                 ],
               ),
             )
-          : Text(source.displayName ?? source.name ?? ""),
-      subtitle: (source.lang?.displayName).isNotBlank
+          : Text(source.displayName),
+      subtitle: (source.language?.displayName).isNotBlank
           ? Text(
-              source.lang?.displayName ?? "",
+              source.language?.displayName ?? "",
               style: TextStyle(color: context.theme.hintColor),
             )
           : null,

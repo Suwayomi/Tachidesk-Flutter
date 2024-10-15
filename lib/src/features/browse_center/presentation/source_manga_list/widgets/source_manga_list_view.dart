@@ -49,7 +49,7 @@ class SourceMangaListView extends ConsumerWidget {
             Padding(
               padding: KEdgeInsets.h8.size,
               child: Shimmer.fromColors(
-                baseColor: context.colorScheme.background,
+                baseColor: context.colorScheme.surface,
                 highlightColor: context.theme.indicatorColor,
                 child: Container(
                   width: context.width * .3,
@@ -65,34 +65,33 @@ class SourceMangaListView extends ConsumerWidget {
           ],
         ),
         firstPageErrorIndicatorBuilder: (context) => Emoticons(
-          text: controller.error.toString(),
+          title: controller.error.toString(),
           button: TextButton(
             onPressed: () => controller.refresh(),
-            child: Text(context.l10n!.retry),
+            child: Text(context.l10n.retry),
           ),
         ),
         noItemsFoundIndicatorBuilder: (context) => Emoticons(
-          text: context.l10n!.noMangaFound,
+          title: context.l10n.noMangaFound,
           button: TextButton(
             onPressed: () => controller.refresh(),
-            child: Text(context.l10n!.refresh),
+            child: Text(context.l10n.refresh),
           ),
         ),
         itemBuilder: (context, item, index) => MangaCoverListTile(
-          manga: item.copyWith(source: source),
+          manga: item,
           onLongPress: () async {
             final value = await toggleFavorite(item);
             if (value == null) return;
             if (value is! AsyncError) {
               final items = [...?controller.itemList];
-              items[index] = item.copyWith(inLibrary: !item.inLibrary.ifNull());
+              //TODO: Implement copyWith
+              // items[index] = item.copyWith(inLibrary: !item.inLibrary.ifNull());
               controller.itemList = items;
             }
           },
           onPressed: () {
-            if (item.id != null) {
-              MangaRoute(mangaId: item.id!).push(context);
-            }
+            MangaRoute(mangaId: item.id).push(context);
           },
         ),
       ),

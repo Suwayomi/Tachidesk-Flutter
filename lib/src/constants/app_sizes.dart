@@ -12,7 +12,7 @@ import 'app_constants.dart';
 import 'db_keys.dart';
 
 const kTabSize = Size.fromHeight(kAppBarBottomHeight);
-const kAppBarBottomHeight = 64.0;
+const kAppBarBottomHeight = 46.0;
 const kDrawerWidth = 384.0;
 
 Size kCalculateAppBarBottomSize(List<bool> checks) {

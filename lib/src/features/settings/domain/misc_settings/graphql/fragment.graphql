@@ -1,0 +1,6 @@
+
+fragment MiscSettingsFragment on SettingsType {
+  debugLogsEnabled
+  systemTrayEnabled
+  gqlDebugLogsEnabled
+}

@@ -157,7 +157,7 @@ class _MangaScanlatorListProviderElement
 }
 
 String _$mangaChapterListWithFilterHash() =>
-    r'd8e95ee63920e7ee5acf15deda7b9d795ca452c9';
+    r'9fa136b43d918d2508ffa36214bdca4313e39098';
 
 /// See also [mangaChapterListWithFilter].
 @ProviderFor(mangaChapterListWithFilter)
@@ -292,7 +292,7 @@ class _MangaChapterListWithFilterProviderElement
 }
 
 String _$firstUnreadInFilteredChapterListHash() =>
-    r'ed13a5108da7bb4f9224899075348531da8a118e';
+    r'5c59f446d8aec6520c2baabab74002bc97147984';
 
 /// See also [firstUnreadInFilteredChapterList].
 @ProviderFor(firstUnreadInFilteredChapterList)
@@ -884,7 +884,7 @@ class _MangaChapterListProviderElement
 }
 
 String _$mangaChapterFilterScanlatorHash() =>
-    r'4d6da76af3cbbf033f1ca5fb04ea6eb7798c5820';
+    r'1e9cc2f48459bce949610737e71ad921f2d9aece';
 
 abstract class _$MangaChapterFilterScanlator
     extends BuildlessAutoDisposeNotifier<String> {
@@ -1114,7 +1114,7 @@ final mangaChapterFilterBookmarkedProvider =
 );
 
 typedef _$MangaChapterFilterBookmarked = AutoDisposeNotifier<bool?>;
-String _$mangaCategoryListHash() => r'3fec3a544adc138ec7fbc98ad216e1b7399d0983';
+String _$mangaCategoryListHash() => r'05985e2dadc47610c47a1e095477346d94d696fb';
 
 abstract class _$MangaCategoryList
     extends BuildlessAutoDisposeAsyncNotifier<Map<String, Category>?> {

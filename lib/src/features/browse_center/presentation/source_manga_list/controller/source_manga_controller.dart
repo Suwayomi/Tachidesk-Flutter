@@ -4,8 +4,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:dio/dio.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../constants/db_keys.dart';
@@ -19,29 +17,15 @@ import '../../../domain/source/source_model.dart';
 part 'source_manga_controller.g.dart';
 
 @riverpod
-FutureOr<Source?> source(SourceRef ref, String sourceId) async {
-  final token = CancelToken();
-  ref.onDispose(token.cancel);
-  final result = await ref
-      .watch(sourceRepositoryProvider)
-      .getSource(sourceId: sourceId, cancelToken: token);
-  ref.keepAlive();
-  return result;
-}
+Stream<FullSource?> source(SourceRef ref, String sourceId) =>
+    ref.watch(sourceRepositoryProvider).getSource(sourceId);
 
 @riverpod
 Future<List<Filter>?> baseSourceMangaFilterList(
   BaseSourceMangaFilterListRef ref,
   String sourceId,
-) async {
-  final token = CancelToken();
-  ref.onDispose(token.cancel);
-  final result = await ref
-      .watch(sourceRepositoryProvider)
-      .getFilterList(sourceId: sourceId);
-  ref.keepAlive();
-  return result;
-}
+) async =>
+    ref.watch(sourceProvider(sourceId)).valueOrNull?.filters.asList();
 
 @riverpod
 class SourceMangaFilterList extends _$SourceMangaFilterList {
@@ -59,16 +43,16 @@ class SourceMangaFilterList extends _$SourceMangaFilterList {
       ref.invalidate(baseSourceMangaFilterListProvider(sourceId));
 
   List<Map<String, dynamic>> get getAppliedFilter {
-    final baseFilters = Filter.filtersToJson(
-      ref.read(baseSourceMangaFilterListProvider(sourceId)).valueOrNull ?? [],
-    );
-    final currentFilters = Filter.filtersToJson(state.valueOrNull ?? []);
-    if (baseFilters.length != currentFilters.length) return currentFilters;
-    const equality = DeepCollectionEquality();
+    // final baseFilters = Filter.filtersToJson(
+    //   ref.read(baseSourceMangaFilterListProvider(sourceId)).valueOrNull ?? [],
+    // );
+    // final currentFilters = Filter.filtersToJson(state.valueOrNull ?? []);
+    // if (baseFilters.length != currentFilters.length) return currentFilters;
+    // const equality = DeepCollectionEquality();
     return [
-      for (int i = 0; i < baseFilters.length; i++)
-        if (!equality.equals(currentFilters[i], baseFilters[i]))
-          currentFilters[i],
+      // for (int i = 0; i < baseFilters.length; i++)
+      //   if (!equality.equals(currentFilters[i], baseFilters[i]))
+      //     currentFilters[i],
     ];
   }
 }

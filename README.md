@@ -1,8 +1,8 @@
 <p align="center">
- <img width=200px height=200px src="assets/icons/launcher/sorayomi_icon.png" alt="Tachidesk Sorayomi logo"/>
+ <img width=200px height=200px src="assets/icons/launcher/sorayomi_icon.png" alt="Sorayomi logo"/>
 </p>
 
-<h1 align="center"> Tachidesk Sorayomi </h1>
+<h1 align="center"> Sorayomi </h1>
 
 <div align="center">
 

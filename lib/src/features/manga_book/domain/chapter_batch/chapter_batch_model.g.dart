@@ -8,8 +8,9 @@ part of 'chapter_batch_model.dart';
 
 _$ChapterBatchImpl _$$ChapterBatchImplFromJson(Map<String, dynamic> json) =>
     _$ChapterBatchImpl(
-      chapterIds:
-          (json['chapterIds'] as List<dynamic>?)?.map((e) => e as int).toList(),
+      chapterIds: (json['chapterIds'] as List<dynamic>?)
+          ?.map((e) => (e as num).toInt())
+          .toList(),
       change: json['change'] == null
           ? null
           : ChapterChange.fromJson(json['change'] as Map<String, dynamic>),
@@ -25,7 +26,7 @@ _$ChapterChangeImpl _$$ChapterChangeImplFromJson(Map<String, dynamic> json) =>
     _$ChapterChangeImpl(
       isRead: json['isRead'] as bool?,
       isBookmarked: json['isBookmarked'] as bool?,
-      lastPageRead: json['lastPageRead'] as int?,
+      lastPageRead: (json['lastPageRead'] as num?)?.toInt(),
       delete: json['delete'] as bool?,
     );
 

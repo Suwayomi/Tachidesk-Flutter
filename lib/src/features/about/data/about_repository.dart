@@ -4,56 +4,54 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
+import 'package:ferry/ferry.dart';
+import 'package:http/http.dart' as http;
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:pub_semver/pub_semver.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../constants/endpoints.dart';
 import '../../../constants/urls.dart';
 import '../../../global_providers/global_providers.dart';
 import '../../../utils/extensions/custom_extensions.dart';
-import '../../../utils/storage/dio/dio_client.dart';
-import '../domain/about/about_model.dart';
-import '../domain/server_update/server_update_model.dart';
+import '../domain/about/about_dto.dart';
+import '../domain/server_update/graphql/fragment.dart';
+import '../domain/server_update/server_update.dart';
 import '../presentation/about/controllers/about_controller.dart';
+import 'graphql/__generated__/query.data.gql.dart';
+import 'graphql/query.dart';
 
 part 'about_repository.g.dart';
 
 class AboutRepository {
-  final DioClient dioClient;
+  final Client ferryClient;
   final PackageInfo packageInfo;
   AboutRepository({
-    required this.dioClient,
+    required this.ferryClient,
     required this.packageInfo,
   });
 
-  Future<About?> getAbout({CancelToken? cancelToken}) async {
-    return (await dioClient.get<About, About?>(
-      SettingsUrl.about,
-      decoder: (e) => e is Map<String, dynamic> ? About.fromJson(e) : null,
-      cancelToken: cancelToken,
-    ))
-        .data;
-  }
+  Stream<AboutDto?> getAbout() => ferryClient.fetch(
+        AboutQuery.getAboutQuery,
+        (GAboutData data) => data.aboutServer,
+      );
 
-  Future<List<ServerUpdate>?> checkServerUpdate() async {
-    return (await dioClient.get<List<ServerUpdate>, ServerUpdate>(
-      SettingsUrl.checkServerUpdate,
-      decoder: (e) =>
-          e is Map<String, dynamic> ? ServerUpdate.fromJson(e) : ServerUpdate(),
-    ))
-        .data;
-  }
+  Future<List<ServerUpdate>?> checkServerUpdate() => ferryClient
+      .fetch(
+        AboutQuery.serverUpdateQuery,
+        (data) =>
+            data.checkForServerUpdates.map((update) => update.toDto).toList(),
+      )
+      .first;
 
   Future<AsyncValue<Version?>> checkUpdate({CancelToken? cancelToken}) async {
     final gitResponse = await AsyncValue.guard<Map<String, dynamic>?>(
-      () async => (await dioClient.get(
-        AppUrls.sorayomiLatestReleaseApiUrl.url,
-        cancelToken: cancelToken,
-      ))
-          .data,
-    );
+        () async => json.decode((await http.get(
+              Uri.parse(AppUrls.sorayomiLatestReleaseApiUrl.url),
+            ))
+                .body));
     return gitResponse.copyWithData<Version?>(
       (data) {
         String? tag = data?["tag_name"];
@@ -74,6 +72,6 @@ class AboutRepository {
 
 @riverpod
 AboutRepository aboutRepository(ref) => AboutRepository(
-      dioClient: ref.watch(dioClientKeyProvider),
+      ferryClient: ref.watch(ferryClientProvider),
       packageInfo: ref.watch(packageInfoProvider),
     );

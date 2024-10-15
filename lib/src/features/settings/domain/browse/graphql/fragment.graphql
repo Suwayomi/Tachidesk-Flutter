@@ -1,0 +1,6 @@
+
+fragment BrowserSettingsFragment on SettingsType {
+  extensionRepos
+  maxSourcesInParallel
+  localSourcePath
+}

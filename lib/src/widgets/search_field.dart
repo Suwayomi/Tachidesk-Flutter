@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../constants/app_sizes.dart';
-
 import '../utils/extensions/custom_extensions.dart';
 
 class SearchField extends HookWidget {
@@ -46,7 +45,7 @@ class SearchField extends HookWidget {
     return SizedBox(
       width: context.isLargeTablet ? context.widthScale(scale: .3) : null,
       child: Padding(
-        padding: KEdgeInsets.h16v8.size,
+        padding: KEdgeInsets.h16v4.size,
         child: TextField(
           onChanged: onChanged,
           autofocus: autofocus,
@@ -55,7 +54,7 @@ class SearchField extends HookWidget {
           decoration: InputDecoration(
             isDense: true,
             border: const OutlineInputBorder(),
-            labelText: hintText ?? context.l10n!.search,
+            labelText: hintText ?? context.l10n.search,
             suffixIcon: closeIcon,
           ),
         ),

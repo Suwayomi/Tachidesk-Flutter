@@ -4,20 +4,24 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'graphql/__generated__/fragment.data.gql.dart';
 
-part 'category_model.freezed.dart';
-part 'category_model.g.dart';
+typedef Category = GCategoryFragment;
 
-@freezed
-class Category with _$Category {
-  factory Category({
-    int? id,
-    String? name,
-    int? order,
-    @JsonKey(name: "default") bool? defaultCategory,
-  }) = _Category;
-
-  factory Category.fromJson(Map<String, dynamic> json) =>
-      _$CategoryFromJson(json);
+extension CategoryConverter on GCategoryFragment {
+  bool get defaultCategory => Gdefault;
 }
+// @freezed
+// class Category with _$Category {
+//   factory Category({
+//     @JsonKey(name: "default") bool? defaultCategory,
+//     int? id,
+//     IncludeOrExclude? includeInDownload,
+//     IncludeOrExclude? includeInUpdate,
+//     String? name,
+//     int? order,
+//   }) = _Category;
+
+//   factory Category.fromJson(Map<String, dynamic> json) =>
+//       _$CategoryFromJson(json);
+// }

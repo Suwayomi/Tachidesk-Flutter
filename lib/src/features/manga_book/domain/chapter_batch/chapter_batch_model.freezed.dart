@@ -12,7 +12,7 @@ part of 'chapter_batch_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 ChapterBatch _$ChapterBatchFromJson(Map<String, dynamic> json) {
   return _ChapterBatch.fromJson(json);
@@ -23,8 +23,12 @@ mixin _$ChapterBatch {
   List<int>? get chapterIds => throw _privateConstructorUsedError;
   ChapterChange? get change => throw _privateConstructorUsedError;
 
+  /// Serializes this ChapterBatch to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ChapterBatch
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ChapterBatchCopyWith<ChapterBatch> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -50,6 +54,8 @@ class _$ChapterBatchCopyWithImpl<$Res, $Val extends ChapterBatch>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ChapterBatch
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -68,6 +74,8 @@ class _$ChapterBatchCopyWithImpl<$Res, $Val extends ChapterBatch>
     ) as $Val);
   }
 
+  /// Create a copy of ChapterBatch
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ChapterChangeCopyWith<$Res>? get change {
@@ -103,6 +111,8 @@ class __$$ChapterBatchImplCopyWithImpl<$Res>
       _$ChapterBatchImpl _value, $Res Function(_$ChapterBatchImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ChapterBatch
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -159,12 +169,14 @@ class _$ChapterBatchImpl implements _ChapterBatch {
             (identical(other.change, change) || other.change == change));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_chapterIds), change);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ChapterBatch
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ChapterBatchImplCopyWith<_$ChapterBatchImpl> get copyWith =>
@@ -190,8 +202,11 @@ abstract class _ChapterBatch implements ChapterBatch {
   List<int>? get chapterIds;
   @override
   ChapterChange? get change;
+
+  /// Create a copy of ChapterBatch
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChapterBatchImplCopyWith<_$ChapterBatchImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -207,8 +222,12 @@ mixin _$ChapterChange {
   int? get lastPageRead => throw _privateConstructorUsedError;
   bool? get delete => throw _privateConstructorUsedError;
 
+  /// Serializes this ChapterChange to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ChapterChange
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ChapterChangeCopyWith<ChapterChange> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -233,6 +252,8 @@ class _$ChapterChangeCopyWithImpl<$Res, $Val extends ChapterChange>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ChapterChange
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -282,6 +303,8 @@ class __$$ChapterChangeImplCopyWithImpl<$Res>
       _$ChapterChangeImpl _value, $Res Function(_$ChapterChangeImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ChapterChange
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -347,12 +370,14 @@ class _$ChapterChangeImpl implements _ChapterChange {
             (identical(other.delete, delete) || other.delete == delete));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, isRead, isBookmarked, lastPageRead, delete);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ChapterChange
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ChapterChangeImplCopyWith<_$ChapterChangeImpl> get copyWith =>
@@ -384,8 +409,11 @@ abstract class _ChapterChange implements ChapterChange {
   int? get lastPageRead;
   @override
   bool? get delete;
+
+  /// Create a copy of ChapterChange
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChapterChangeImplCopyWith<_$ChapterChangeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

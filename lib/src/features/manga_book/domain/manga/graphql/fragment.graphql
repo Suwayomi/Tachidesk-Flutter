@@ -1,0 +1,45 @@
+# import '/src/features/manga_book/domain/chapter/graphql/fragment.graphql'
+# import '/src/features/browse_center/domain/source/graphql/fragment.graphql'
+fragment MangaFragment on MangaType {
+  age
+  artist
+  author
+  chaptersAge
+  chaptersLastFetchedAt
+  description
+  downloadCount
+  genre
+  id
+  inLibrary
+  inLibraryAt
+  initialized
+  lastFetchedAt
+  lastReadChapter {
+    ...ChapterFragment
+  }
+  latestFetchedChapter {
+    ...ChapterFragment
+  }
+  latestReadChapter {
+    ...ChapterFragment
+  }
+  latestUploadedChapter {
+    ...ChapterFragment
+  }
+  meta {
+    key
+    value
+  }
+  realUrl
+  source {
+    ...SourceFragment
+  }
+  sourceId
+  status
+  thumbnailUrl
+  thumbnailUrlLastFetched
+  title
+  unreadCount
+  updateStrategy
+  url
+}

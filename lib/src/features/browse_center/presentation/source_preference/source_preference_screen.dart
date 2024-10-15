@@ -38,7 +38,7 @@ class SourcePreferenceScreen extends HookConsumerWidget {
             if (sourcePreference == null) return const SizedBox.shrink();
             return SourcePreferenceToWidget(
               key: ValueKey(
-                "Source-preference-${sourcePreference.sourcePreferenceProp?.key}",
+                "Source-preference-${sourcePreference.key}",
               ),
               sourcePreference: sourcePreference,
               onChanged: (value) {

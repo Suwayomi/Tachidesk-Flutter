@@ -9,9 +9,14 @@ import 'package:flutter/material.dart';
 import '../../constants/navigation_bar_data.dart';
 
 class SmallScreenNavigationBar extends StatelessWidget {
-  const SmallScreenNavigationBar({super.key, required this.selectedScreen});
+  const SmallScreenNavigationBar({
+    super.key,
+    required this.selectedIndex,
+    required this.onDestinationSelected,
+  });
 
-  final String selectedScreen;
+  final int selectedIndex;
+  final void Function(int) onDestinationSelected;
 
   NavigationDestination getNavigationDestination(
       BuildContext context, NavigationBarData data) {
@@ -27,14 +32,13 @@ class SmallScreenNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return NavigationBarTheme(
       data: NavigationBarThemeData(
-        labelTextStyle: MaterialStateProperty.all(
+        labelTextStyle: WidgetStateProperty.all(
           const TextStyle(overflow: TextOverflow.ellipsis),
         ),
       ),
       child: NavigationBar(
-        selectedIndex: NavigationBarData.indexWherePathOrZero(selectedScreen),
-        onDestinationSelected: (value) =>
-            NavigationBarData.navList[value].go(context),
+        selectedIndex: selectedIndex,
+        onDestinationSelected: onDestinationSelected,
         destinations: NavigationBarData.navList
             .map<NavigationDestination>(
               (e) => getNavigationDestination(context, e),

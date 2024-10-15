@@ -115,7 +115,7 @@ class MangaChapterFilterScanlator extends _$MangaChapterFilterScanlator {
   @override
   String build({required int mangaId}) {
     final manga = ref.watch(mangaWithIdProvider(mangaId: mangaId));
-    return manga.valueOrNull?.meta?.scanlator ?? MangaMetaKeys.scanlator.key;
+    return manga.valueOrNull?.metaData.scanlator ?? MangaMetaKeys.scanlator.key;
   }
 
   void update(String? scanlator) async {
@@ -151,17 +151,17 @@ AsyncValue<List<Chapter>?> mangaChapterListWithFilter(
 
   bool applyChapterFilter(Chapter chapter) {
     if (chapterFilterUnread != null &&
-        (chapterFilterUnread ^ !(chapter.read.ifNull()))) {
+        (chapterFilterUnread ^ !(chapter.isRead.ifNull()))) {
       return false;
     }
 
     if (chapterFilterDownloaded != null &&
-        (chapterFilterDownloaded ^ (chapter.downloaded.ifNull()))) {
+        (chapterFilterDownloaded ^ (chapter.isDownloaded.ifNull()))) {
       return false;
     }
 
     if (chapterFilterBookmark != null &&
-        (chapterFilterBookmark ^ (chapter.bookmarked.ifNull()))) {
+        (chapterFilterBookmark ^ (chapter.isBookmarked.ifNull()))) {
       return false;
     }
 
@@ -175,11 +175,11 @@ AsyncValue<List<Chapter>?> mangaChapterListWithFilter(
   int applyChapterSort(Chapter m1, Chapter m2) {
     final sortDirToggle = (sortedDirection ? 1 : -1);
     return (switch (sortedBy) {
-          ChapterSort.fetchedDate =>
-            (m1.fetchedAt ?? 0).compareTo(m2.fetchedAt ?? 0),
-          ChapterSort.source => (m1.index ?? 0).compareTo(m2.index ?? 0),
-          ChapterSort.uploadDate =>
-            (m1.uploadDate ?? 0).compareTo(m2.uploadDate ?? 0),
+          ChapterSort.fetchedDate => (int.tryParse(m1.fetchedAt.value) ?? 0)
+              .compareTo(int.tryParse(m2.fetchedAt.value) ?? 0),
+          ChapterSort.source => (m1.index).compareTo(m2.index),
+          ChapterSort.uploadDate => (int.tryParse(m1.uploadDate.value) ?? 0)
+              .compareTo(int.tryParse(m2.uploadDate.value) ?? 0),
         }) *
         sortDirToggle;
   }
@@ -204,10 +204,10 @@ Chapter? firstUnreadInFilteredChapterList(
   } else {
     if (isAscSorted) {
       return filteredList
-          .firstWhereOrNull((element) => !element.read.ifNull(true));
+          .firstWhereOrNull((element) => !element.isRead.ifNull(true));
     } else {
       return filteredList
-          .lastWhereOrNull((element) => !element.read.ifNull(true));
+          .lastWhereOrNull((element) => !element.isRead.ifNull(true));
     }
   }
 }
@@ -287,7 +287,7 @@ class MangaCategoryList extends _$MangaCategoryList {
         .watch(mangaBookRepositoryProvider)
         .getMangaCategoryList(mangaId: mangaId);
     return {
-      for (Category i in (result ?? <Category>[])) "${i.id ?? ''}": i,
+      for (Category i in (result ?? <Category>[])) "${i.id}": i,
     };
   }
 
@@ -296,7 +296,7 @@ class MangaCategoryList extends _$MangaCategoryList {
         .watch(mangaBookRepositoryProvider)
         .getMangaCategoryList(mangaId: mangaId));
     state = result.copyWithData((data) => {
-          for (Category i in (data ?? <Category>[])) "${i.id ?? ''}": i,
+          for (Category i in (data ?? <Category>[])) "${i.id}": i,
         });
   }
 }

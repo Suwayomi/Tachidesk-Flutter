@@ -16,7 +16,7 @@ class DownloadsFab extends ConsumerWidget {
   final String status;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final toast = ref.watch(toastProvider(context));
+    final toast = ref.watch(toastProvider);
     if (status == "Stopped" || status == "Error") {
       return FloatingActionButton.extended(
         onPressed: () async {
@@ -24,9 +24,9 @@ class DownloadsFab extends ConsumerWidget {
                   ref.read(downloadsRepositoryProvider).startDownloads))
               .showToastOnError(toast);
         },
-        label: Text(context.l10n!.resume),
+        label: Text(context.l10n.resume),
         isExtended: context.isTablet,
-        icon: const Icon(Icons.play_arrow),
+        icon: const Icon(Icons.play_arrow_rounded),
       );
     } else {
       return FloatingActionButton.extended(
@@ -35,7 +35,7 @@ class DownloadsFab extends ConsumerWidget {
                   ref.read(downloadsRepositoryProvider).stopDownloads))
               .showToastOnError(toast);
         },
-        label: Text(context.l10n!.pause),
+        label: Text(context.l10n.pause),
         isExtended: context.isTablet,
         icon: const Icon(Icons.pause_rounded),
       );

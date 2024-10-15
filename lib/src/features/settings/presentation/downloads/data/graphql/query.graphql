@@ -1,0 +1,42 @@
+# import '/src/features/settings/domain/settings/graphql/fragment.graphql'
+
+mutation UpdateDownloadsLocation($downloadsPath: String = "") {
+  setSettings(input: {settings: {downloadsPath: $downloadsPath}}) {
+    settings {
+      ...SettingsFragment
+    }
+  }
+}
+
+mutation UpdateDownloadAsCbz($downloadAsCbz: Boolean = false) {
+  setSettings(input: {settings: {downloadAsCbz: $downloadAsCbz}}) {
+    settings {
+      ...SettingsFragment
+    }
+  }
+}
+
+mutation ToggleAutoDownloadNewChapters($autoDownloadNewChapters: Boolean = false) {
+  setSettings(input: {settings: {autoDownloadNewChapters: $autoDownloadNewChapters}}) {
+    settings {
+      ...SettingsFragment
+    }
+  }
+}
+
+
+mutation ToggleExcludeEntryWithUnreadChapters($excludeEntryWithUnreadChapters: Boolean = false) {
+  setSettings(input: {settings: {excludeEntryWithUnreadChapters: $excludeEntryWithUnreadChapters}}) {
+    settings {
+      ...SettingsFragment
+    }
+  }
+}
+
+mutation UpdateAutoDownloadNewChaptersLimit($autoDownloadNewChaptersLimit: Int = 3) {
+  setSettings(input: {settings: {autoDownloadNewChaptersLimit: $autoDownloadNewChaptersLimit}}) {
+    settings {
+      ...SettingsFragment
+    }
+  }
+}

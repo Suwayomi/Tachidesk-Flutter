@@ -6,7 +6,7 @@ part of 'source_manga_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$sourceHash() => r'02ebbe306c0a96174aa221c8e90e9f2c96f398ee';
+String _$sourceHash() => r'0de983f1508831df7135c1db7305dc7bb1e9385f';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -34,7 +34,7 @@ class _SystemHash {
 const sourceProvider = SourceFamily();
 
 /// See also [source].
-class SourceFamily extends Family<AsyncValue<Source?>> {
+class SourceFamily extends Family<AsyncValue<FullSource?>> {
   /// See also [source].
   const SourceFamily();
 
@@ -72,7 +72,7 @@ class SourceFamily extends Family<AsyncValue<Source?>> {
 }
 
 /// See also [source].
-class SourceProvider extends AutoDisposeFutureProvider<Source?> {
+class SourceProvider extends AutoDisposeStreamProvider<FullSource?> {
   /// See also [source].
   SourceProvider(
     String sourceId,
@@ -106,7 +106,7 @@ class SourceProvider extends AutoDisposeFutureProvider<Source?> {
 
   @override
   Override overrideWith(
-    FutureOr<Source?> Function(SourceRef provider) create,
+    Stream<FullSource?> Function(SourceRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
@@ -123,7 +123,7 @@ class SourceProvider extends AutoDisposeFutureProvider<Source?> {
   }
 
   @override
-  AutoDisposeFutureProviderElement<Source?> createElement() {
+  AutoDisposeStreamProviderElement<FullSource?> createElement() {
     return _SourceProviderElement(this);
   }
 
@@ -141,13 +141,13 @@ class SourceProvider extends AutoDisposeFutureProvider<Source?> {
   }
 }
 
-mixin SourceRef on AutoDisposeFutureProviderRef<Source?> {
+mixin SourceRef on AutoDisposeStreamProviderRef<FullSource?> {
   /// The parameter `sourceId` of this provider.
   String get sourceId;
 }
 
-class _SourceProviderElement extends AutoDisposeFutureProviderElement<Source?>
-    with SourceRef {
+class _SourceProviderElement
+    extends AutoDisposeStreamProviderElement<FullSource?> with SourceRef {
   _SourceProviderElement(super.provider);
 
   @override
@@ -155,7 +155,7 @@ class _SourceProviderElement extends AutoDisposeFutureProviderElement<Source?>
 }
 
 String _$baseSourceMangaFilterListHash() =>
-    r'21b6028eb4e3ea54f9708d2faf1c73f21129721e';
+    r'664b8bea898a2c893f18c13d9c655f3ba9fbfb9b';
 
 /// See also [baseSourceMangaFilterList].
 @ProviderFor(baseSourceMangaFilterList)
@@ -290,16 +290,16 @@ class _BaseSourceMangaFilterListProviderElement
 }
 
 String _$sourceMangaFilterListHash() =>
-    r'8a73132c795c270e84df2fe1f325301b4e955c45';
+    r'0471fb2c85d4a1081b9da64769a5b9b36532e242';
 
 abstract class _$SourceMangaFilterList
     extends BuildlessAutoDisposeNotifier<AsyncValue<List<Filter>?>> {
   late final String sourceId;
-  late final List<Filter>? filter;
+  late final List<InvalidType>? filter;
 
   AsyncValue<List<Filter>?> build(
     String sourceId, {
-    List<Filter>? filter,
+    List<InvalidType>? filter,
   });
 }
 
@@ -315,7 +315,7 @@ class SourceMangaFilterListFamily extends Family<AsyncValue<List<Filter>?>> {
   /// See also [SourceMangaFilterList].
   SourceMangaFilterListProvider call(
     String sourceId, {
-    List<Filter>? filter,
+    List<InvalidType>? filter,
   }) {
     return SourceMangaFilterListProvider(
       sourceId,
@@ -354,7 +354,7 @@ class SourceMangaFilterListProvider extends AutoDisposeNotifierProviderImpl<
   /// See also [SourceMangaFilterList].
   SourceMangaFilterListProvider(
     String sourceId, {
-    List<Filter>? filter,
+    List<InvalidType>? filter,
   }) : this._internal(
           () => SourceMangaFilterList()
             ..sourceId = sourceId
@@ -384,7 +384,7 @@ class SourceMangaFilterListProvider extends AutoDisposeNotifierProviderImpl<
   }) : super.internal();
 
   final String sourceId;
-  final List<Filter>? filter;
+  final List<InvalidType>? filter;
 
   @override
   AsyncValue<List<Filter>?> runNotifierBuild(
@@ -444,7 +444,7 @@ mixin SourceMangaFilterListRef
   String get sourceId;
 
   /// The parameter `filter` of this provider.
-  List<Filter>? get filter;
+  List<InvalidType>? get filter;
 }
 
 class _SourceMangaFilterListProviderElement
@@ -455,7 +455,8 @@ class _SourceMangaFilterListProviderElement
   @override
   String get sourceId => (origin as SourceMangaFilterListProvider).sourceId;
   @override
-  List<Filter>? get filter => (origin as SourceMangaFilterListProvider).filter;
+  List<InvalidType>? get filter =>
+      (origin as SourceMangaFilterListProvider).filter;
 }
 
 String _$sourceDisplayModeHash() => r'f386ba15fdc6025e0471b7ffc8066162d83ea083';

@@ -164,7 +164,7 @@ class _BaseSourcePreferenceListProviderElement
 }
 
 String _$sourcePreferenceListHash() =>
-    r'30c8dca8328a16872db111dcc9052178c9f3e60c';
+    r'4faf82a6950290ca15c3985e161116fcfc283bac';
 
 abstract class _$SourcePreferenceList
     extends BuildlessAutoDisposeNotifier<AsyncValue<List<SourcePreference>?>> {

@@ -41,7 +41,7 @@ class CategoryCreateFab extends HookConsumerWidget {
               );
             },
       isExtended: context.isTablet && !isLoading.value,
-      label: Text(context.l10n!.addCategory),
+      label: Text(context.l10n.addCategory),
       icon: isLoading.value
           ? MiniCircularProgressIndicator(color: context.iconColor)
           : const Icon(Icons.add_rounded),

@@ -4,30 +4,14 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:freezed_annotation/freezed_annotation.dart';
-
 import '../../../../utils/freezed_converters/language_json_converter.dart';
 import '../language/language_model.dart';
+import 'graphql/__generated__/fragment.data.gql.dart';
 
-part 'source_model.freezed.dart';
-part 'source_model.g.dart';
+typedef Source = GSourceFragment;
 
-@freezed
-class Source with _$Source {
-  factory Source({
-    String? displayName,
-    String? iconUrl,
-    String? id,
-    bool? isConfigurable,
-    bool? isNsfw,
-    @JsonKey(
-      fromJson: LanguageJsonConverter.fromJson,
-      toJson: LanguageJsonConverter.toJson,
-    )
-    Language? lang,
-    String? name,
-    bool? supportsLatest,
-  }) = _Source;
+typedef FullSource = GFullSourceFragment;
 
-  factory Source.fromJson(Map<String, dynamic> json) => _$SourceFromJson(json);
+extension SourceExtensions on GSourceFragment {
+  Language? get language => LanguageJsonConverter.fromJson(lang);
 }

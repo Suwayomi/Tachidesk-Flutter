@@ -4,10 +4,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
-
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
@@ -63,7 +60,8 @@ class DownloadsRepository {
     return (
       stream: channel.stream.asyncMap<Downloads>(
         (event) => compute<String, Downloads>(
-          (s) => Downloads.fromJson(json.decode(s)),
+          (s) =>
+              Downloads(), //.fromJson(json.decode(s)),//TODO: Implement decoder
           event,
         ),
       ),

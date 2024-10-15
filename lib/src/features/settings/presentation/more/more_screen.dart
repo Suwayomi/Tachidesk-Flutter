@@ -14,7 +14,7 @@ import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/launch_url_in_web.dart';
 import '../../../../utils/misc/toast/toast.dart';
 import '../../widgets/app_theme_mode_tile/app_theme_mode_tile.dart';
-import '../../widgets/server_url_tile/server_url_tile.dart';
+import '../server/widget/client/server_url_tile/server_url_tile.dart';
 
 class MoreScreen extends ConsumerWidget {
   const MoreScreen({super.key});
@@ -23,7 +23,7 @@ class MoreScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.l10n!.more),
+        title: Text(context.l10n.more),
       ),
       body: ListView(
         children: [
@@ -34,34 +34,34 @@ class MoreScreen extends ConsumerWidget {
           const Divider(),
           const ServerUrlTile(),
           ListTile(
-            title: Text(context.l10n!.categories),
+            title: Text(context.l10n.categories),
             leading: const Icon(Icons.label_rounded),
             onTap: () => const EditCategoriesRoute().push(context),
           ),
           const AppThemeModeTile(),
           ListTile(
-            title: Text(context.l10n!.backup),
+            title: Text(context.l10n.backup),
             leading: const Icon(Icons.settings_backup_restore_rounded),
             onTap: () => const BackupRoute().push(context),
           ),
           const Divider(),
           ListTile(
-            title: Text(context.l10n!.settings),
+            title: Text(context.l10n.settings),
             leading: const Icon(Icons.settings_rounded),
-            onTap: () => const SettingsRoute().push(context),
+            onTap: () => const SettingsRoute().go(context),
           ),
           ListTile(
-            title: Text(context.l10n!.about),
+            title: Text(context.l10n.about),
             leading: const Icon(Icons.info_rounded),
-            onTap: () => const AboutRoute().push(context),
+            onTap: () => const AboutRoute().go(context),
           ),
           ListTile(
-            title: Text(context.l10n!.help),
+            title: Text(context.l10n.help),
             leading: const Icon(Icons.help_rounded),
             onTap: () => launchUrlInWeb(
               context,
               AppUrls.tachideskHelp.url,
-              ref.read(toastProvider(context)),
+              ref.read(toastProvider),
             ),
           ),
         ],

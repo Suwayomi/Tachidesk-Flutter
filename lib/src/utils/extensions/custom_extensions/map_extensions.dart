@@ -29,4 +29,16 @@ extension NullableMapExtensions<K, V> on Map<K, V>? {
   bool get isBlank => isNull || this!.isEmpty;
 
   bool get isNotBlank => !isBlank;
+
+  String get toToastString {
+    String result = "";
+    this?.forEach((key, value) {
+      if (value == null) return;
+      if (result.isNotBlank) {
+        result += "\n";
+      }
+      result += value.toString();
+    });
+    return result;
+  }
 }

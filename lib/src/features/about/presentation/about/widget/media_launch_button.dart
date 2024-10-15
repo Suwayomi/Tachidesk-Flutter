@@ -19,7 +19,7 @@ class MediaLaunchButton extends StatelessWidget {
     required this.url,
   });
 
-  final Toast toast;
+  final Toast? toast;
   final String title;
   final IconData iconData;
   final String url;

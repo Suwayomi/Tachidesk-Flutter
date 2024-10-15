@@ -19,6 +19,8 @@ extension IntExtensions on int? {
 
   bool? get toBool => (this == null || this == 0) ? null : this == 1;
 
+  int ifNull([int value = 0]) => isNull ? value : this!;
+  int ifNullOrZero([int value = 1]) => isNull || isZero ? value : this!;
   String get toDateString {
     if (isNull) return "";
     return DateFormat.yMMMd().format(
@@ -26,7 +28,7 @@ extension IntExtensions on int? {
     );
   }
 
-  String? padLeft([int width = 2, String padding = '0']) {
+  String? padLeft({int width = 2, String padding = '0'}) {
     if (isNull) return null;
     return toString().padLeft(width, padding);
   }
@@ -51,5 +53,31 @@ extension IntExtensions on int? {
     if (isNull || anotherDate.isNull) return false;
     return DateTime.fromMillisecondsSinceEpoch(this! * 1000)
         .isSameDay(DateTime.fromMillisecondsSinceEpoch(anotherDate! * 1000));
+  }
+
+  String? compact({
+    int width = 2,
+    String padding = '0',
+    bool addPrefixAndSuffix = false,
+    String prefix = " (",
+    String suffix = ")",
+    bool returnNullOnZero = false,
+    int shortenAfter = 1000,
+  }) {
+    String? result;
+    if (this == null) {
+      result = null;
+    } else if (this == 0) {
+      result = returnNullOnZero ? null : toString();
+    } else if (this! > shortenAfter) {
+      result = NumberFormat.compact(locale: const Locale('en', 'IN').toString())
+          .format(this);
+    } else {
+      result = padLeft(width: width, padding: padding);
+    }
+    if (addPrefixAndSuffix) {
+      result = result?.wrap(prefix: prefix, suffix: suffix);
+    }
+    return result;
   }
 }

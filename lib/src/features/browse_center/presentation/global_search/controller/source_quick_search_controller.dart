@@ -51,9 +51,9 @@ AsyncValue<List<QuickSearchResults>> quickSearchResults(
   );
   final List<QuickSearchResults> sourceMangaListPairList = [];
   for (Source source in sourceList) {
-    if (source.id.isNotBlank) {
+    if (source.id.value.isNotBlank) {
       final mangaList = ref.watch(
-        sourceQuickSearchMangaListProvider(source.id!, query: query),
+        sourceQuickSearchMangaListProvider(source.id.value, query: query),
       );
       sourceMangaListPairList.add((mangaList: mangaList, source: source));
     }

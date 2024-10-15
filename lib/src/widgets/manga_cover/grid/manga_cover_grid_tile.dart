@@ -76,7 +76,7 @@ class MangaCoverGridTile extends StatelessWidget {
                   contentPadding: const EdgeInsets.symmetric(horizontal: 8),
                   dense: true,
                   title: Text(
-                    (manga.title ?? manga.author ?? ""),
+                    manga.title,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
                   ),

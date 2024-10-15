@@ -10,7 +10,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../constants/app_sizes.dart';
 import '../../../../constants/enum.dart';
-
 import '../../../../routes/router_config.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../widgets/emoticons.dart';
@@ -18,7 +17,7 @@ import '../../../../widgets/manga_cover/grid/manga_cover_grid_tile.dart';
 import '../../../../widgets/manga_cover/list/manga_cover_descriptive_list_tile.dart';
 import '../../../../widgets/manga_cover/list/manga_cover_list_tile.dart';
 import '../../../manga_book/presentation/manga_details/widgets/edit_manga_category_dialog.dart';
-import '../../../settings/presentation/appearance/widgets/grid_cover_min_width.dart';
+import '../../../settings/presentation/appearance/widgets/grid_cover_width_slider/grid_cover_width_slider.dart';
 import 'controller/library_controller.dart';
 
 class CategoryMangaList extends HookConsumerWidget {
@@ -40,10 +39,10 @@ class CategoryMangaList extends HookConsumerWidget {
       (data) {
         if (data.isBlank) {
           return Emoticons(
-            text: context.l10n!.noCategoryMangaFound,
+            title: context.l10n.noCategoryMangaFound,
             button: TextButton(
               onPressed: refresh,
-              child: Text(context.l10n!.refresh),
+              child: Text(context.l10n.refresh),
             ),
           );
         }
@@ -54,24 +53,20 @@ class CategoryMangaList extends HookConsumerWidget {
               itemBuilder: (context, index) => MangaCoverListTile(
                 manga: data![index],
                 onPressed: () {
-                  if (data[index].id != null) {
-                    MangaRoute(
-                      mangaId: data[index].id!,
-                      categoryId: categoryId,
-                    ).push(context);
-                  }
+                  MangaRoute(
+                    mangaId: data[index].id,
+                    categoryId: categoryId,
+                  ).push(context);
                 },
                 onLongPress: () async {
-                  if (data[index].id != null) {
-                    await showDialog(
-                      context: context,
-                      builder: (context) => EditMangaCategoryDialog(
-                        mangaId: data[index].id!,
-                        title: data[index].title,
-                      ),
-                    );
-                    refresh();
-                  }
+                  await showDialog(
+                    context: context,
+                    builder: (context) => EditMangaCategoryDialog(
+                      mangaId: data[index].id,
+                      title: data[index].title,
+                    ),
+                  );
+                  refresh();
                 },
                 showCountBadges: true,
               ),
@@ -82,25 +77,21 @@ class CategoryMangaList extends HookConsumerWidget {
               itemCount: (data?.length).getValueOnNullOrNegative(),
               itemBuilder: (context, index) => MangaCoverGridTile(
                 onLongPress: () async {
-                  if (data[index].id != null) {
-                    await showDialog(
-                      context: context,
-                      builder: (context) => EditMangaCategoryDialog(
-                        mangaId: data[index].id!,
-                        title: data[index].title,
-                      ),
-                    );
-                    refresh();
-                  }
+                  await showDialog(
+                    context: context,
+                    builder: (context) => EditMangaCategoryDialog(
+                      mangaId: data[index].id,
+                      title: data[index].title,
+                    ),
+                  );
+                  refresh();
                 },
                 manga: data![index],
                 onPressed: () {
-                  if (data[index].id != null) {
-                    MangaRoute(
-                      mangaId: data[index].id!,
-                      categoryId: categoryId,
-                    ).push(context);
-                  }
+                  MangaRoute(
+                    mangaId: data[index].id,
+                    categoryId: categoryId,
+                  ).push(context);
                 },
                 showCountBadges: true,
                 showDarkOverlay: false,
@@ -112,24 +103,20 @@ class CategoryMangaList extends HookConsumerWidget {
               itemBuilder: (context, index) => MangaCoverDescriptiveListTile(
                 manga: data![index],
                 onPressed: () {
-                  if (data[index].id != null) {
-                    MangaRoute(
-                      mangaId: data[index].id!,
-                      categoryId: categoryId,
-                    ).push(context);
-                  }
+                  MangaRoute(
+                    mangaId: data[index].id,
+                    categoryId: categoryId,
+                  ).push(context);
                 },
                 onLongPress: () async {
-                  if (data[index].id != null) {
-                    await showDialog(
-                      context: context,
-                      builder: (context) => EditMangaCategoryDialog(
-                        mangaId: data[index].id!,
-                        title: data[index].title,
-                      ),
-                    );
-                    refresh();
-                  }
+                  await showDialog(
+                    context: context,
+                    builder: (context) => EditMangaCategoryDialog(
+                      mangaId: data[index].id,
+                      title: data[index].title,
+                    ),
+                  );
+                  refresh();
                 },
                 showBadges: true,
               ),

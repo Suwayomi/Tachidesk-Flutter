@@ -1,0 +1,16 @@
+
+fragment CategoryFragment on CategoryType {
+  default
+  id
+  includeInDownload
+  includeInUpdate
+  name
+  order
+  mangas {
+    totalCount
+  }
+  meta {
+    key
+    value
+  }
+}

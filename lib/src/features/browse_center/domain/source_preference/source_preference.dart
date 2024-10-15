@@ -6,42 +6,70 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../source_preference_prop/source_preference_prop.dart';
-
 part 'source_preference.freezed.dart';
 part 'source_preference.g.dart';
 
-@freezed
-class SourcePreference with _$SourcePreference {
-  factory SourcePreference({
-    String? type,
-    @JsonKey(readValue: SourcePreference.propsFromJson, name: 'props')
-    SourcePreferenceProp? sourcePreferenceProp,
-  }) = _SourcePreference;
+@Freezed(
+  unionKey: 'type',
+  unionValueCase: FreezedUnionCase.pascal,
+  fallbackUnion: 'fallback',
+)
+sealed class SourcePreference with _$SourcePreference {
+  const factory SourcePreference.fallback({
+    String? key,
+    dynamic currentValue,
+  }) = Fallback;
+
+  const factory SourcePreference.checkBoxPreference({
+    String? key,
+    String? title,
+    String? summary,
+    bool? defaultValue,
+    bool? currentValue,
+    String? defaultValueType,
+  }) = CheckBoxPreference;
+
+  const factory SourcePreference.switchPreferenceCompat({
+    String? key,
+    String? title,
+    String? summary,
+    bool? defaultValue,
+    bool? currentValue,
+    String? defaultValueType,
+  }) = SwitchPreferenceCompat;
+
+  const factory SourcePreference.listPreference({
+    String? key,
+    String? title,
+    String? summary,
+    String? defaultValue,
+    String? currentValue,
+    String? defaultValueType,
+    Map<String, String>? entries,
+  }) = ListPreference;
+
+  const factory SourcePreference.multiSelectListPreference({
+    String? key,
+    String? title,
+    String? summary,
+    List<String>? defaultValue,
+    List<String>? currentValue,
+    String? defaultValueType,
+    Map<String, String>? entries,
+  }) = MultiSelectListPreference;
+
+  const factory SourcePreference.editTextPreference({
+    String? key,
+    String? title,
+    String? summary,
+    String? defaultValue,
+    String? currentValue,
+    String? defaultValueType,
+    String? dialogTitle,
+    String? dialogMessage,
+    String? text,
+  }) = EditTextPreference;
 
   factory SourcePreference.fromJson(Map<String, dynamic> json) =>
       _$SourcePreferenceFromJson(json);
-
-  static Map<String, dynamic> propsFromJson(
-      Map<dynamic, dynamic> json, String str) {
-    final props = json['props'];
-    final type = json['type'];
-    if (type == 'MultiSelectListPreference' || type == 'ListPreference') {
-      final entries = props['entries'];
-      final entryValues = props['entryValues'];
-      if (entries != null &&
-          entries is List &&
-          entryValues != null &&
-          entryValues is List) {
-        props['entries'] = Map<String, String>.fromIterables(
-          entryValues.map((e) => e.toString()),
-          entries.map((e) => e.toString()),
-        );
-      }
-    }
-    return {
-      'type': json['type'],
-      if (props is Map<String, dynamic>) ...props,
-    };
-  }
 }

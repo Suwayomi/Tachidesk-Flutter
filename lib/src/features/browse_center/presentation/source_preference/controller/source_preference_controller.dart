@@ -10,6 +10,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../data/source_repository/source_repository.dart';
 import '../../../domain/source_preference/source_preference.dart';
+
 part 'source_preference_controller.g.dart';
 
 @riverpod
@@ -28,7 +29,7 @@ class SourcePreferenceList extends _$SourcePreferenceList {
   void reset() => ref.invalidate(baseSourcePreferenceListProvider(sourceId));
 
   void updatePreference(int index, SourcePreference preference) async {
-    final value = preference.sourcePreferenceProp?.currentValue;
+    final value = preference.currentValue;
     await ref.read(sourceRepositoryProvider).updatePreferenceList(
       sourceId: sourceId,
       preference: {

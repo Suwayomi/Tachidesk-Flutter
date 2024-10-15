@@ -1,0 +1,129 @@
+
+fragment SourceFragment on SourceType {
+  displayName
+  iconUrl
+  id
+  isConfigurable
+  isNsfw
+  lang
+  name
+  supportsLatest
+  extension {
+        pkgName
+        repo
+    }
+}
+
+fragment FullSourceFragment on SourceType {
+    ...SourceFragment
+    preferences {
+        ...PreferenceFragment
+    }
+    filters {
+        ...FilterFragment
+    }
+}
+
+fragment PreferenceFragment on Preference  {
+    ... on CheckBoxPreference {
+        type: __typename
+        CheckBoxCheckBoxCurrentValue: currentValue
+        summary
+        CheckBoxDefault: default
+        key
+        CheckBoxTitle: title
+    }
+    ... on EditTextPreference {
+        type: __typename
+        EditTextPreferenceCurrentValue: currentValue
+        EditTextPreferenceDefault: default
+        EditTextPreferenceTitle: title
+        text
+        summary
+        key
+        dialogTitle
+        dialogMessage
+    }
+    ... on SwitchPreference {
+        type: __typename
+        SwitchPreferenceCurrentValue: currentValue
+        summary
+        key
+        SwitchPreferenceDefault: default
+        SwitchPreferenceTitle: title
+    }
+    ... on MultiSelectListPreference {
+        type: __typename
+        dialogMessage
+        dialogTitle
+        MultiSelectListPreferenceTitle: title
+        summary
+        key
+        entryValues
+        entries
+        MultiSelectListPreferenceDefault: default
+        MultiSelectListPreferenceCurrentValue: currentValue
+    }
+    ... on ListPreference {
+        type: __typename
+        ListPreferenceCurrentValue: currentValue
+        ListPreferenceDefault: default
+        ListPreferenceTitle: title
+        summary
+        key
+        entryValues
+        entries
+    }
+}
+
+fragment PrimitiveFilterFragment on Filter {
+    ... on CheckBoxFilter {
+        type: __typename
+        CheckBoxFilterDefault: default
+        name
+    }
+    ... on HeaderFilter {
+        type: __typename
+        name
+    }
+    ... on SelectFilter {
+        type: __typename
+        SelectFilterDefault: default
+        name
+        values
+    }
+    ... on TriStateFilter {
+        type: __typename
+        TriStateFilterDefault: default
+        name
+    }
+    ... on TextFilter {
+        type: __typename
+        TextFilterDefault: default
+        name
+    }
+    ... on SortFilter {
+        type: __typename
+        SortFilterDefault: default {
+            ascending
+            index
+        }
+        name
+        values
+    }
+    ... on SeparatorFilter {
+        type: __typename
+        name
+    }
+}
+
+fragment FilterFragment on Filter {
+    ...PrimitiveFilterFragment
+    ... on GroupFilter {
+        type: __typename
+        name
+        filters {
+            ...PrimitiveFilterFragment
+        }
+    }
+}

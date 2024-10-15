@@ -9,7 +9,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../../manga_book/domain/manga/manga_model.dart';
 
 part 'manga_page.freezed.dart';
-part 'manga_page.g.dart';
 
 @freezed
 class MangaPage with _$MangaPage {
@@ -17,7 +16,4 @@ class MangaPage with _$MangaPage {
     List<Manga>? mangaList,
     bool? hasNextPage,
   }) = _MangaPage;
-
-  factory MangaPage.fromJson(Map<String, dynamic> json) =>
-      _$MangaPageFromJson(json);
 }

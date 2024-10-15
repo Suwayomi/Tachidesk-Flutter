@@ -1,10 +1,5 @@
-// Copyright (c) 2022 Contributors to the Suwayomi project
-//
-// This Source Code Form is subject to the terms of the Mozilla Public
-// License, v. 2.0. If a copy of the MPL was not distributed with this
-// file, You can obtain one at http://mozilla.org/MPL/2.0/.
-
 import 'package:flex_color_scheme/flex_color_scheme.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
@@ -14,7 +9,9 @@ import '../constants/enum.dart';
 import '../features/about/presentation/about/about_screen.dart';
 import '../features/browse_center/domain/filter/filter_model.dart';
 import '../features/browse_center/presentation/browse/browse_screen.dart';
+import '../features/browse_center/presentation/extension/extension_screen.dart';
 import '../features/browse_center/presentation/global_search/global_search_screen.dart';
+import '../features/browse_center/presentation/source/source_screen.dart';
 import '../features/browse_center/presentation/source_manga_list/source_manga_list_screen.dart';
 import '../features/browse_center/presentation/source_preference/source_preference_screen.dart';
 import '../features/library/presentation/category/edit_category_screen.dart';
@@ -28,6 +25,8 @@ import '../features/quick_open/presentation/search_stack/search_stack_screen.dar
 import '../features/settings/presentation/appearance/appearance_screen.dart';
 import '../features/settings/presentation/backup/backup_screen.dart';
 import '../features/settings/presentation/browse/browse_settings_screen.dart';
+import '../features/settings/presentation/browse/widgets/extension_repository/extension_repository_screen.dart';
+import '../features/settings/presentation/downloads/downloads_settings_screen.dart';
 import '../features/settings/presentation/general/general_screen.dart';
 import '../features/settings/presentation/library/library_settings_screen.dart';
 import '../features/settings/presentation/more/more_screen.dart';
@@ -35,44 +34,57 @@ import '../features/settings/presentation/reader/reader_settings_screen.dart';
 import '../features/settings/presentation/server/server_screen.dart';
 import '../features/settings/presentation/settings/settings_screen.dart';
 import '../utils/extensions/custom_extensions.dart';
-import '../widgets/shell/shell_screen.dart';
+import '../widgets/shell/navigation_shell_screen.dart';
 
 part 'router_config.g.dart';
+part 'sub_routes/browser_routes.dart';
+part 'sub_routes/common_routes.dart';
+part 'sub_routes/downloads_routes.dart';
+part 'sub_routes/library_routes.dart';
+part 'sub_routes/more_routes.dart';
+part 'sub_routes/updates_routes.dart';
 
-final GlobalKey<NavigatorState> _rootNavigatorKey =
-    GlobalKey<NavigatorState>(debugLabel: 'root');
+final rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 
-final GlobalKey<NavigatorState> _quickOpenNavigatorKey =
+final _quickOpenNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'Quick Open');
 
-final GlobalKey<NavigatorState> _shellNavigatorKey =
-    GlobalKey<NavigatorState>(debugLabel: 'shell');
+final _shellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'shell');
+final _browseNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'browse');
 
 abstract class Routes {
-  static const home = '/';
-  static const library = '/library';
-  static const librarySettings = 'library';
+  static const library = '/library/:categoryId';
+
   static const updates = '/updates';
-  static const browse = '/browse';
+
   static const downloads = '/downloads';
+
+  static const extensionRoute = '/extension';
+  static const source = '/source';
+  static const sourceManga = ':sourceId';
+  static const sourceMangaType = '$sourceManga/:sourceType';
+  static const sourcePreference = '$sourceManga/preference';
+
+  // More
   static const more = '/more';
-  static const about = '/about';
+  static const settings = 'settings';
+  static const librarySettings = 'library';
+  static const editCategories = 'edit-categories';
+  static const browseSettings = 'browse';
+  static const extensionRepositorySettings = 'repo';
+  static const readerSettings = 'reader';
   static const appearanceSettings = 'appearance';
   static const generalSettings = 'general';
   static const backup = 'backup';
-  static const settings = '/settings';
-  static const browseSettings = 'browse';
-  static const readerSettings = 'reader';
-  static const reader = '/manga/:mangaId/chapter/:chapterIndex';
   static const serverSettings = 'server';
-  static const editCategories = 'edit-categories';
-  static const extensions = '/extensions';
-  static const manga = '$mangaRoute:mangaId';
-  static const mangaRoute = '/manga/';
-  static const sourceManga = '/source/:sourceId/:sourceType';
-  static const sourcePreference = '/source/:sourceId/preference';
-  static const globalSearch = '/global-search';
+  static const downloadsSettings = 'downloads';
+
+  // Commons
+  static const mangaRoute = '/manga/:mangaId';
+  static const reader = 'chapter/:chapterIndex';
   static const updateStatus = "/update-status";
+  static const about = 'about';
+  static const globalSearch = '/global-search';
 }
 
 @riverpod
@@ -80,46 +92,110 @@ GoRouter routerConfig(ref) {
   return GoRouter(
     routes: $appRoutes,
     debugLogDiagnostics: true,
-    initialLocation: Routes.library,
-    navigatorKey: _rootNavigatorKey,
+    initialLocation: const BrowseSourceRoute().location,
+    navigatorKey: rootNavigatorKey,
   );
 }
 
 @TypedShellRoute<QuickSearchRoute>(
   routes: [
-    TypedShellRoute<ShellRoute>(
-      routes: [
-        TypedGoRoute<HomeRoute>(path: Routes.home),
-        TypedGoRoute<LibraryRoute>(path: Routes.library),
-        TypedGoRoute<UpdatesRoute>(path: Routes.updates),
-        TypedGoRoute<BrowseRoute>(path: Routes.browse),
-        TypedGoRoute<DownloadsRoute>(path: Routes.downloads),
-        TypedGoRoute<MoreRoute>(path: Routes.more),
+    TypedStatefulShellRoute<NavigationShellRoute>(
+      branches: [
+        TypedStatefulShellBranch<LibraryBranch>(
+          routes: [
+            TypedGoRoute<LibraryRoute>(
+              path: Routes.library,
+              routes: [],
+            ),
+          ],
+        ),
+        TypedStatefulShellBranch<UpdatesBranch>(
+          routes: [TypedGoRoute<UpdatesRoute>(path: Routes.updates)],
+        ),
+        TypedStatefulShellBranch<BrowserBranch>(
+          routes: [
+            TypedStatefulShellRoute<BrowseShellRoute>(
+              branches: [
+                TypedStatefulShellBranch<BrowseSourceBranch>(
+                  routes: [
+                    TypedGoRoute<BrowseSourceRoute>(
+                      path: Routes.source,
+                      routes: [
+                        TypedGoRoute<SourceTypeRoute>(
+                          path: Routes.sourceMangaType,
+                        ),
+                        TypedGoRoute<SourcePreferenceRoute>(
+                          path: Routes.sourcePreference,
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+                TypedStatefulShellBranch<BrowseExtensionBranch>(
+                  routes: [
+                    TypedGoRoute<BrowseExtensionRoute>(
+                      path: Routes.extensionRoute,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
+        TypedStatefulShellBranch<DownloadsBranch>(
+          routes: [TypedGoRoute<DownloadsRoute>(path: Routes.downloads)],
+        ),
+        TypedStatefulShellBranch<MoreBranch>(
+          routes: [
+            TypedGoRoute<MoreRoute>(
+              path: Routes.more,
+              routes: [
+                TypedGoRoute<AboutRoute>(path: Routes.about),
+                TypedGoRoute<SettingsRoute>(
+                  path: Routes.settings,
+                  routes: [
+                    TypedGoRoute<LibrarySettingsRoute>(
+                      path: Routes.librarySettings,
+                      routes: [
+                        TypedGoRoute<EditCategoriesRoute>(
+                            path: Routes.editCategories)
+                      ],
+                    ),
+                    TypedGoRoute<ServerSettingsRoute>(
+                        path: Routes.serverSettings),
+                    TypedGoRoute<ReaderSettingsRoute>(
+                        path: Routes.readerSettings),
+                    TypedGoRoute<AppearanceSettingsRoute>(
+                        path: Routes.appearanceSettings),
+                    TypedGoRoute<GeneralSettingsRoute>(
+                        path: Routes.generalSettings),
+                    TypedGoRoute<BrowseSettingsRoute>(
+                      path: Routes.browseSettings,
+                      routes: [
+                        TypedGoRoute<ExtensionRepositoryRoute>(
+                            path: Routes.extensionRepositorySettings)
+                      ],
+                    ),
+                    TypedGoRoute<BackupRoute>(path: Routes.backup),
+                    TypedGoRoute<DownloadsSettingsRoute>(
+                        path: Routes.downloadsSettings),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
       ],
     ),
-    TypedGoRoute<MangaRoute>(path: Routes.manga),
+    TypedGoRoute<MangaRoute>(
+      path: Routes.mangaRoute,
+      routes: [TypedGoRoute<ReaderRoute>(path: Routes.reader)],
+    ),
     TypedGoRoute<UpdateStatusRoute>(path: Routes.updateStatus),
     TypedGoRoute<GlobalSearchRoute>(path: Routes.globalSearch),
-    TypedGoRoute<SourcePreferenceRoute>(path: Routes.sourcePreference),
-    TypedGoRoute<SourceMangaRoute>(path: Routes.sourceManga),
-    TypedGoRoute<AboutRoute>(path: Routes.about),
-    TypedGoRoute<ReaderRoute>(path: Routes.reader),
-    TypedGoRoute<SettingsRoute>(path: Routes.settings, routes: [
-      TypedGoRoute<LibrarySettingsRoute>(
-        path: Routes.librarySettings,
-        routes: [
-          TypedGoRoute<EditCategoriesRoute>(path: Routes.editCategories)
-        ],
-      ),
-      TypedGoRoute<ServerSettingsRoute>(path: Routes.serverSettings),
-      TypedGoRoute<ReaderSettingsRoute>(path: Routes.readerSettings),
-      TypedGoRoute<AppearanceSettingsRoute>(path: Routes.appearanceSettings),
-      TypedGoRoute<GeneralSettingsRoute>(path: Routes.generalSettings),
-      TypedGoRoute<BrowseSettingsRoute>(path: Routes.browseSettings),
-      TypedGoRoute<BackupRoute>(path: Routes.backup),
-    ])
   ],
 )
+@immutable
 class QuickSearchRoute extends ShellRouteData {
   const QuickSearchRoute();
 
@@ -139,273 +215,12 @@ class QuickSearchRoute extends ShellRouteData {
 }
 
 // Shell Routes
-class ShellRoute extends ShellRouteData {
-  const ShellRoute();
+class NavigationShellRoute extends StatefulShellRouteData {
+  const NavigationShellRoute();
 
   static final $navigatorKey = _shellNavigatorKey;
 
   @override
-  Widget builder(context, state, navigator) => ShellScreen(child: navigator);
-}
-
-class HomeRoute extends GoRouteData {
-  const HomeRoute();
-  @override
-  FutureOr<String?> redirect(context, state) => Routes.library;
-}
-
-class LibraryRoute extends GoRouteData {
-  const LibraryRoute({this.initialCategoryOrder});
-  final int? initialCategoryOrder;
-  @override
-  Page<void> buildPage(BuildContext context, GoRouterState state) =>
-      NoTransitionPage(
-        child: LibraryScreen(initialCategoryOrder: initialCategoryOrder),
-      );
-}
-
-class UpdatesRoute extends GoRouteData {
-  const UpdatesRoute();
-  @override
-  Page<void> buildPage(BuildContext context, GoRouterState state) =>
-      const NoTransitionPage(child: UpdatesScreen());
-}
-
-class BrowseRoute extends GoRouteData {
-  const BrowseRoute();
-  @override
-  Page<void> buildPage(BuildContext context, GoRouterState state) =>
-      const NoTransitionPage(child: BrowseScreen());
-}
-
-class DownloadsRoute extends GoRouteData {
-  const DownloadsRoute();
-  @override
-  Page<void> buildPage(BuildContext context, GoRouterState state) =>
-      const NoTransitionPage(child: DownloadsScreen());
-}
-
-class MoreRoute extends GoRouteData {
-  const MoreRoute();
-  @override
-  Page<void> buildPage(BuildContext context, GoRouterState state) =>
-      const NoTransitionPage(child: MoreScreen());
-}
-
-//
-class MangaRoute extends GoRouteData {
-  const MangaRoute({required this.mangaId, this.categoryId});
-  final int mangaId;
-  final int? categoryId;
-
-  static final $parentNavigatorKey = _quickOpenNavigatorKey;
-
-  @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      MangaDetailsScreen(mangaId: mangaId, categoryId: categoryId);
-}
-
-class UpdateStatusRoute extends GoRouteData {
-  const UpdateStatusRoute();
-
-  static final $parentNavigatorKey = _quickOpenNavigatorKey;
-
-  @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      const UpdateStatusSummaryDialog();
-}
-
-class GlobalSearchRoute extends GoRouteData {
-  const GlobalSearchRoute({this.query});
-  final String? query;
-
-  static final $parentNavigatorKey = _quickOpenNavigatorKey;
-
-  @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      GlobalSearchScreen(key: ValueKey(query), initialQuery: query);
-}
-
-class SourceMangaRoute extends GoRouteData {
-  const SourceMangaRoute({
-    required this.sourceId,
-    required this.sourceType,
-    this.query,
-    this.$extra,
-  });
-  final String sourceId;
-  final SourceType sourceType;
-  final String? query;
-  final List<Filter>? $extra;
-
-  static final $parentNavigatorKey = _quickOpenNavigatorKey;
-
-  @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      SourceMangaListScreen(
-        key: ValueKey(sourceId),
-        sourceId: sourceId,
-        sourceType: sourceType,
-        initialQuery: query,
-        initialFilter: $extra,
-      );
-}
-
-class SourcePreferenceRoute extends GoRouteData {
-  final String sourceId;
-  const SourcePreferenceRoute({required this.sourceId});
-
-  static final $parentNavigatorKey = _quickOpenNavigatorKey;
-
-  @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return SourcePreferenceScreen(sourceId: sourceId);
-  }
-}
-
-class AboutRoute extends GoRouteData {
-  const AboutRoute();
-
-  static final $parentNavigatorKey = _quickOpenNavigatorKey;
-
-  @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      const AboutScreen();
-}
-
-class ReaderRoute extends GoRouteData {
-  const ReaderRoute({
-    required this.mangaId,
-    required this.chapterIndex,
-    this.transVertical,
-    this.toPrev,
-    this.showReaderLayoutAnimation = false,
-  });
-  final int mangaId;
-  final int chapterIndex;
-  final bool? transVertical;
-  final bool? toPrev;
-  final bool showReaderLayoutAnimation;
-
-  static final $parentNavigatorKey = _quickOpenNavigatorKey;
-
-  @override
-  Page<void> buildPage(BuildContext context, GoRouterState state) {
-    return CustomTransitionPage(
-      key: state.pageKey,
-      child: ReaderScreen(
-        mangaId: mangaId,
-        chapterIndex: chapterIndex,
-        showReaderLayoutAnimation: showReaderLayoutAnimation,
-      ),
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        Offset offset = Offset.zero;
-        offset += Offset(
-          transVertical.ifNull() ? 0 : 1,
-          transVertical.ifNull() ? 1 : 0,
-        );
-        if (toPrev.ifNull()) {
-          offset *= -1;
-        }
-
-        return SlideTransition(
-          position: Tween<Offset>(
-            begin: offset,
-            end: Offset.zero,
-          ).animate(animation),
-          child: child,
-        );
-      },
-    );
-  }
-}
-
-class SettingsRoute extends GoRouteData {
-  const SettingsRoute();
-
-  static final $parentNavigatorKey = _quickOpenNavigatorKey;
-
-  @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      const SettingsScreen();
-}
-
-class LibrarySettingsRoute extends GoRouteData {
-  const LibrarySettingsRoute();
-
-  static final $parentNavigatorKey = _quickOpenNavigatorKey;
-
-  @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      const LibrarySettingsScreen();
-}
-
-class EditCategoriesRoute extends GoRouteData {
-  const EditCategoriesRoute();
-
-  static final $parentNavigatorKey = _quickOpenNavigatorKey;
-
-  @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      const EditCategoryScreen();
-}
-
-class ServerSettingsRoute extends GoRouteData {
-  const ServerSettingsRoute();
-
-  static final $parentNavigatorKey = _quickOpenNavigatorKey;
-
-  @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      const ServerScreen();
-}
-
-class ReaderSettingsRoute extends GoRouteData {
-  const ReaderSettingsRoute();
-
-  static final $parentNavigatorKey = _quickOpenNavigatorKey;
-
-  @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      const ReaderSettingsScreen();
-}
-
-class AppearanceSettingsRoute extends GoRouteData {
-  const AppearanceSettingsRoute();
-
-  static final $parentNavigatorKey = _quickOpenNavigatorKey;
-
-  @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      const AppearanceScreen();
-}
-
-class GeneralSettingsRoute extends GoRouteData {
-  const GeneralSettingsRoute();
-
-  static final $parentNavigatorKey = _quickOpenNavigatorKey;
-
-  @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      const GeneralScreen();
-}
-
-class BrowseSettingsRoute extends GoRouteData {
-  const BrowseSettingsRoute();
-
-  static final $parentNavigatorKey = _quickOpenNavigatorKey;
-
-  @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      const BrowseSettingsScreen();
-}
-
-class BackupRoute extends GoRouteData {
-  const BackupRoute();
-
-  static final $parentNavigatorKey = _quickOpenNavigatorKey;
-
-  @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      const BackupScreen();
+  Widget builder(context, state, navigationShell) =>
+      NavigationShellScreen(child: navigationShell);
 }

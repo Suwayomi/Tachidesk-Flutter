@@ -104,11 +104,11 @@ extension DateTimeExtensions on DateTime {
     Duration diff = DateTime.now().difference(this);
 
     if (diff.inDays < 1) {
-      return context.l10n!.today;
+      return context.l10n.today;
     } else if (diff.inDays < 2) {
-      return context.l10n!.yesterday;
+      return context.l10n.yesterday;
     } else if (diff.inDays < 10) {
-      return context.l10n!.daysAgo(diff.inDays);
+      return context.l10n.daysAgo(diff.inDays);
     } else {
       return DateFormat.yMMMd(context.currentLocale.toLanguageTag())
           .format(this);

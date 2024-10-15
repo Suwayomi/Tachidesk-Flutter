@@ -6,6 +6,20 @@ part of 'global_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+String _$ferryClientHash() => r'15d9a64bdd3335f267ef28373a11ba2797a12cb6';
+
+/// See also [ferryClient].
+@ProviderFor(ferryClient)
+final ferryClientProvider = AutoDisposeProvider<Client>.internal(
+  ferryClient,
+  name: r'ferryClientProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$ferryClientHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef FerryClientRef = AutoDisposeProviderRef<Client>;
 String _$dioClientKeyHash() => r'3c0bdf6561be103898cbba24855ca355c5dfba6b';
 
 /// See also [dioClientKey].
@@ -65,6 +79,20 @@ final hiveCacheStoreProvider = AutoDisposeProvider<HiveCacheStore>.internal(
 );
 
 typedef HiveCacheStoreRef = AutoDisposeProviderRef<HiveCacheStore>;
+String _$hiveStoreHash() => r'8e3e2d81f8637373355ffb847cd35454af86a595';
+
+/// See also [hiveStore].
+@ProviderFor(hiveStore)
+final hiveStoreProvider = AutoDisposeProvider<HiveStore>.internal(
+  hiveStore,
+  name: r'hiveStoreProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$hiveStoreHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef HiveStoreRef = AutoDisposeProviderRef<HiveStore>;
 String _$rateLimitQueueHash() => r'160a82b2737ac46d9dabad1f6ae8f59bfdcb24ca';
 
 /// Copied from Dart SDK

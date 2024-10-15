@@ -8,46 +8,14 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../constants/enum.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
-import '../../../browse_center/domain/source/source_model.dart';
-import '../chapter/chapter_model.dart';
+import 'graphql/__generated__/fragment.data.gql.dart';
 
 part 'manga_model.freezed.dart';
 part 'manga_model.g.dart';
 
-@freezed
-class Manga with _$Manga {
-  Manga._();
-  factory Manga({
-    String? artist,
-    String? author,
-    String? description,
-    int? downloadCount,
-    int? chapterCount,
-    int? lastReadAt,
-    Chapter? lastChapterRead,
-    bool? freshData,
-    List<String>? genre,
-    bool? inLibrary,
-    int? id,
-    int? inLibraryAt,
-    bool? initialized,
-    String? realUrl,
-    Source? source,
-    String? sourceId,
-    @JsonKey(fromJson: MangaStatus.fromJson, toJson: MangaStatus.toJson)
-    MangaStatus? status,
-    String? thumbnailUrl,
-    int? thumbnailUrlLastFetched,
-    String? title,
-    int? unreadCount,
-    int? lastFetchedAt,
-    int? chaptersLastFetchedAt,
-    String? url,
-    MangaMeta? meta,
-  }) = _Manga;
+typedef Manga = GMangaFragment;
 
-  factory Manga.fromJson(Map<String, dynamic> json) => _$MangaFromJson(json);
-
+extension MangaExtensions on GMangaFragment {
   bool genreMatches(
       List<String>? mangaGenreList, List<String>? queryGenreList) {
     Set<String>? mangaSet = mangaGenreList?.map((e) => e.toLowerCase()).toSet();
@@ -59,9 +27,61 @@ class Manga with _$Manga {
   bool query([String? query]) {
     return title.query(query) ||
         author.query(query) ||
-        genreMatches(genre, query?.split(','));
+        genreMatches(genre.toList(), query?.split(','));
   }
+
+  MangaMeta get metaData => MangaMeta.fromJson(
+      {for (final metaItem in meta) metaItem.key: metaItem.value});
 }
+// @freezed
+// class Manga with _$Manga {
+//   Manga._();
+//   factory Manga({
+//     String? artist,
+//     String? author,
+//     String? description,
+//     int? downloadCount,
+//     int? chapterCount,
+//     int? lastReadAt,
+//     Chapter? lastChapterRead,
+//     Chapter? latestFetchedChapter,
+//     Chapter? latestReadChapter,
+//     Chapter? latestUploadedChapter,
+//     bool? freshData,
+//     List<String>? genre,
+//     bool? inLibrary,
+//     int? id,
+//     int? inLibraryAt,
+//     bool? initialized,
+//     String? realUrl,
+//     Source? source,
+//     String? sourceId,
+//     @JsonKey(fromJson: MangaStatus.fromJson, toJson: MangaStatus.toJson)
+//     MangaStatus? status,
+//     String? thumbnailUrl,
+//     int? thumbnailUrlLastFetched,
+//     String? title,
+//     int? unreadCount,
+//     int? lastFetchedAt,
+//     int? chaptersLastFetchedAt,
+//     String? url,
+//     MangaMeta? meta,
+//   }) = _Manga;
+
+//   bool genreMatches(
+//       List<String>? mangaGenreList, List<String>? queryGenreList) {
+//     Set<String>? mangaSet = mangaGenreList?.map((e) => e.toLowerCase()).toSet();
+//     Set<String>? querySet =
+//         queryGenreList?.map((e) => e.toLowerCase().trim()).toSet();
+//     return (mangaSet?.containsAll(querySet ?? <String>{})).ifNull(true);
+//   }
+
+//   bool query([String? query]) {
+//     return title.query(query) ||
+//         author.query(query) ||
+//         genreMatches(genre, query?.split(','));
+//   }
+// }
 
 @freezed
 class MangaMeta with _$MangaMeta {

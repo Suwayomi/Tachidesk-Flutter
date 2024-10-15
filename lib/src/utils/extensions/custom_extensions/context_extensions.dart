@@ -16,7 +16,7 @@ extension ContextExtensions on BuildContext {
     final RouteMatchList matchList = lastMatch is ImperativeRouteMatch
         ? lastMatch.matches
         : router.routerDelegate.currentConfiguration;
-    return matchList.uri.toString();
+    return matchList.uri.path;
   }
 
   ///
@@ -190,7 +190,9 @@ extension ContextExtensions on BuildContext {
   /// True if the width is greater than 1200p
   bool get isDesktop => isDesktopOrWider;
 
-  AppLocalizations? get l10n => AppLocalizations.of(this);
+  AppLocalizations get l10n => AppLocalizations.of(this)!;
+
+  navPop<T>([T? result]) => Navigator.pop<T>(this, result);
 
   Locale get currentLocale => Localizations.localeOf(this);
 
@@ -226,5 +228,35 @@ extension ContextExtensions on BuildContext {
       desktop,
     ].whereType<T>();
     return strictValues.firstOrNull ?? looseValues.first;
+  }
+
+  Future<T?> pushBottomSheet<T>(Widget sheet) async {
+    return showModalBottomSheet<T>(
+      context: this,
+      useSafeArea: true,
+      isScrollControlled: true,
+      enableDrag: false,
+      isDismissible: false,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+      ),
+      builder: (context) => Padding(
+        padding:
+            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+        child: sheet,
+      ),
+    );
+  }
+
+  Future<T?> showFullScreenDialog<T>(Widget dialog) async {
+    return showDialog<T>(
+      context: this,
+      useSafeArea: true,
+      useRootNavigator: false,
+      barrierDismissible: true,
+      builder: (context) => Dialog.fullscreen(
+        child: dialog,
+      ),
+    );
   }
 }

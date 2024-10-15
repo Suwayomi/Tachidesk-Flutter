@@ -13,7 +13,7 @@ import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/mixin/shared_preferences_client_mixin.dart';
 import '../../../../../utils/mixin/state_provider_mixin.dart';
 import '../../../../manga_book/domain/manga/manga_model.dart';
-import '../../../data/category/category_repository.dart';
+import '../../../data/category_repository.dart';
 import '../../../domain/category/category_model.dart';
 
 part 'library_controller.g.dart';
@@ -65,7 +65,7 @@ class CategoryMangaListWithQueryAndFilter
       }
 
       if (mangaFilterCompleted != null &&
-          (mangaFilterCompleted ^ (manga.status?.title == "COMPLETED"))) {
+          (mangaFilterCompleted ^ (manga.status.name == "COMPLETED"))) {
         return false;
       }
 
@@ -79,14 +79,12 @@ class CategoryMangaListWithQueryAndFilter
     int applyMangaSort(Manga m1, Manga m2) {
       final sortDirToggle = (sortedDirection ? 1 : -1);
       return (switch (sortedBy) {
-            MangaSort.alphabetical =>
-              (m1.title ?? "").compareTo(m2.title ?? ""),
+            MangaSort.alphabetical => (m1.title).compareTo(m2.title),
             MangaSort.unread => (m1.unreadCount.getValueOnNullOrNegative())
                 .compareTo(m2.unreadCount.getValueOnNullOrNegative()),
-            MangaSort.dateAdded => (m1.inLibraryAt.getValueOnNullOrNegative())
-                .compareTo(m2.inLibraryAt.getValueOnNullOrNegative()),
-            MangaSort.lastRead => (m2.lastReadAt.getValueOnNullOrNegative())
-                .compareTo(m1.lastReadAt.getValueOnNullOrNegative())
+            MangaSort.dateAdded =>
+              (m1.inLibraryAt.value.getValueOnNullOrNegative())
+                  .compareTo(m2.inLibraryAt.value.getValueOnNullOrNegative()),
           }) *
           sortDirToggle;
     }

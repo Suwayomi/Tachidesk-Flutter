@@ -47,7 +47,7 @@ class MangaCoverListTile extends StatelessWidget {
             child: Padding(
               padding: KEdgeInsets.h8.size,
               child: Text(
-                (manga.title ?? manga.author ?? ""),
+                manga.title,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 3,
               ),

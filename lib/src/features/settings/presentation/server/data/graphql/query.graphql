@@ -1,0 +1,129 @@
+# import '/src/features/settings/domain/settings/graphql/fragment.graphql'
+mutation UpdateServerIp($ip: String) {
+  setSettings(input: {settings: {ip: $ip}}) {
+    settings {
+      ...SettingsFragment
+    }
+  }
+}
+
+mutation UpdatePort($port: Int = 4567) {
+  setSettings(input: {settings: {port: $port}}) {
+    settings {
+      ...SettingsFragment
+    }
+  }
+}
+
+
+mutation ToggleSocksProxy($socksProxyEnabled: Boolean = false) {
+  setSettings(input: {settings: {socksProxyEnabled: $socksProxyEnabled}}) {
+    settings {
+      ...SettingsFragment
+    }
+  }
+}
+
+mutation UpdateSocksVersion($socksProxyVersion: Int = 10) {
+  setSettings(input: {settings: {socksProxyVersion: $socksProxyVersion}}){
+    settings {
+      ...SettingsFragment
+    }
+  }
+}
+
+mutation UpdateSocksHost($socksProxyHost: String = "") {
+  setSettings(input: {settings: {socksProxyHost: $socksProxyHost}}) {
+    settings {
+      ...SettingsFragment
+    }
+  }
+}
+
+mutation UpdateSocksUserName($socksProxyUsername: String = "") {
+  setSettings(input: {settings: {socksProxyUsername: $socksProxyUsername}}){
+    settings {
+      ...SettingsFragment
+    }
+  }
+}
+
+mutation UpdateSocksPassword($socksProxyPassword: String = "") {
+  setSettings(input: {settings: {socksProxyPassword: $socksProxyPassword}}){
+    settings {
+      ...SettingsFragment
+    }
+  }
+}
+
+mutation UpdateSocksPort($socksProxyPort: String = "") {
+  setSettings(input: {settings: {socksProxyPort: $socksProxyPort}}){
+    settings {
+      ...SettingsFragment
+    }
+  }
+}
+
+mutation ToggleFlareSolverr($flareSolverrEnabled: Boolean = false) {
+  setSettings(input: {settings: {flareSolverrEnabled: $flareSolverrEnabled}}) {
+    settings {
+      ...SettingsFragment
+    }
+  }
+}
+
+mutation UpdateFlareSolverrSessionName($flareSolverrSessionName: String = "") {
+  setSettings(input: {settings: {flareSolverrSessionName: $flareSolverrSessionName}}) {
+    settings {
+      ...SettingsFragment
+    }
+  }
+}
+
+mutation UpdateFlareSolverrSessionTtl($flareSolverrSessionTtl: Int = 10) {
+  setSettings(input: {settings: {flareSolverrSessionTtl: $flareSolverrSessionTtl}}) {
+    settings {
+      ...SettingsFragment
+    }
+  }
+}
+
+mutation UpdateFlareSolverrTimeout($flareSolverrTimeout: Int = 10) {
+  setSettings(input: {settings: {flareSolverrTimeout: $flareSolverrTimeout}}) {
+    settings {
+      ...SettingsFragment
+    }
+  }
+}
+
+mutation UpdateFlareSolverrUrl($flareSolverrUrl: String = "") {
+  setSettings(input: {settings: {flareSolverrUrl: $flareSolverrUrl}}) {
+    settings {
+      ...SettingsFragment
+    }
+  }
+}
+
+mutation ToggleDebugLogs($debugLogsEnabled: Boolean = false) {
+  setSettings(input: {settings: {debugLogsEnabled: $debugLogsEnabled}}) {
+    settings {
+      ...SettingsFragment
+    }
+  }
+}
+
+mutation ToggleGqlDebugLogs($gqlDebugLogsEnabled: Boolean = false) {
+  setSettings(input: {settings: {gqlDebugLogsEnabled: $gqlDebugLogsEnabled}}) {
+    settings {
+      ...SettingsFragment
+    }
+  }
+}
+
+mutation ToggleSystemTrayEnabled($systemTrayEnabled: Boolean = false) {
+  setSettings(input: {settings: {systemTrayEnabled: $systemTrayEnabled}}) {
+    settings {
+      ...SettingsFragment
+    }
+  }
+}

@@ -16,6 +16,7 @@
         "reddy",
         "Scanlator",
         "scanlators",
+        "Solverr",
         "sublist",
         "suwayomi",
         "tachidesk",
@@ -27,5 +28,15 @@
     ],
     "licenser.license": "MPLv2",
     "licenser.projectName": "Tachidesk-Sorayomi",
-    "licenser.author": "Contributors to the Suwayomi project"
+    "licenser.author": "Contributors to the Suwayomi project",
+    "files.exclude": {
+        "**/__generated__": true,
+        "**/*.ast.gql.dart": true,
+        "**/*.data.gql.dart": true,
+        "**/*.freezed.dart": true,
+        "**/*.g.dart": true,
+        "**/*.gql.g.dart": true,
+        "**/*.req.gql.dart": true,
+        "**/*.var.gql.dart": true
+    }
 }

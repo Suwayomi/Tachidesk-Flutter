@@ -25,9 +25,9 @@ class LibraryMangaOrganizer extends StatelessWidget {
       child: Scaffold(
         appBar: TabBar(
           tabs: [
-            Tab(text: context.l10n!.filter),
-            Tab(text: context.l10n!.sort),
-            Tab(text: context.l10n!.display),
+            Tab(text: context.l10n.filter),
+            Tab(text: context.l10n.sort),
+            Tab(text: context.l10n.display),
           ],
         ),
         body: TabBarView(

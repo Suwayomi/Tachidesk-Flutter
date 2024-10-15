@@ -7,6 +7,8 @@
 import 'dart:io';
 
 import 'package:dio_cache_interceptor_hive_store/dio_cache_interceptor_hive_store.dart';
+import 'package:ferry/ferry.dart';
+import 'package:ferry_hive_store/ferry_hive_store.dart';
 import 'package:flutter/material.dart';
 import 'package:queue/queue.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -14,16 +16,29 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constants/db_keys.dart';
 import '../constants/enum.dart';
+import '../features/settings/presentation/server/widget/client/server_port_tile/server_port_tile.dart';
+import '../features/settings/presentation/server/widget/client/server_url_tile/server_url_tile.dart';
 import '../features/settings/presentation/server/widget/credential_popup/credentials_popup.dart';
-import '../features/settings/widgets/server_port_tile/server_port_tile.dart';
-import '../features/settings/widgets/server_url_tile/server_url_tile.dart';
 import '../utils/extensions/custom_extensions.dart';
 import '../utils/mixin/shared_preferences_client_mixin.dart';
 import '../utils/storage/dio/dio_client.dart';
 import '../utils/storage/dio/network_module.dart';
+import '../utils/storage/ferry/network_module.dart';
 
 part 'global_providers.g.dart';
 
+@riverpod
+Client ferryClient(FerryClientRef ref) =>
+    ref.watch(ferryNetworkModuleProvider).provideFerry(
+          baseUrl: ref.watch(serverUrlProvider) ?? DBKeys.serverUrl.initial,
+          port: ref.watch(serverPortProvider),
+          addPort: ref.watch(serverPortToggleProvider).ifNull(),
+          authType: ref.watch(authTypeKeyProvider) ?? DBKeys.authType.initial,
+          credentials: ref.watch(credentialsProvider),
+          hiveStore: ref.watch(hiveStoreProvider),
+        );
+
+//TODO remove
 @riverpod
 DioClient dioClientKey(DioClientKeyRef ref) => DioClient(
       dio: ref.watch(networkModuleProvider).provideDio(
@@ -72,12 +87,17 @@ class L10n extends _$L10n with SharedPreferenceClientMixin<Locale> {
 @riverpod
 SharedPreferences sharedPreferences(ref) => throw UnimplementedError();
 
+//TODO remove
 @riverpod
 Directory? appDirectory(ref) => throw UnimplementedError();
 
+//TODO remove
 @riverpod
 HiveCacheStore hiveCacheStore(HiveCacheStoreRef ref) =>
     HiveCacheStore(ref.watch(appDirectoryProvider)?.path);
+
+@riverpod
+HiveStore hiveStore(HiveStoreRef ref) => throw UnimplementedError();
 
 @riverpod
 Queue rateLimitQueue(RateLimitQueueRef ref, [String? query]) {

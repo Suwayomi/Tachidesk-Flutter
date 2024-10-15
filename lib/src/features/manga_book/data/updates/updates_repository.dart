@@ -4,8 +4,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -37,8 +35,7 @@ class UpdatesRepository {
   }) async =>
       (await dioClient.get<ChapterPage, ChapterPage?>(
         UpdateUrl.recentChapters(pageNo),
-        decoder: (e) =>
-            e is Map<String, dynamic> ? ChapterPage.fromJson(e) : null,
+        decoder: (e) => ChapterPage(), //TODO: Implement decoder
         cancelToken: cancelToken,
       ))
           .data;
@@ -66,9 +63,7 @@ class UpdatesRepository {
       (await dioClient.get<UpdateStatus, UpdateStatus?>(
         UpdateUrl.summary,
         cancelToken: cancelToken,
-        decoder: (e) => e is Map<String, dynamic>
-            ? UpdateStatus.fromJson(e["statusMap"])
-            : null,
+        decoder: (e) => e is Map<String, dynamic> ? UpdateStatus() : null,
       ))
           .data;
 
@@ -85,9 +80,7 @@ class UpdatesRepository {
           );
     return (
       stream: channel.stream.asyncMap<UpdateStatus>((event) =>
-          compute<String, UpdateStatus>(
-              (s) => UpdateStatus.fromJson({...?json.decode(s)["statusMap"]}),
-              event)),
+          compute<String, UpdateStatus>((s) => UpdateStatus(), event)),
       closeStream: channel.sink.close,
     );
   }

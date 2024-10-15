@@ -4,7 +4,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../constants/db_keys.dart';
@@ -16,15 +15,8 @@ import '../../../domain/source/source_model.dart';
 part 'source_controller.g.dart';
 
 @riverpod
-Future<List<Source>?> sourceList(SourceListRef ref) async {
-  final token = CancelToken();
-  ref.onDispose(token.cancel);
-  final result = await ref
-      .watch(sourceRepositoryProvider)
-      .getSourceList(cancelToken: token);
-  ref.keepAlive();
-  return result;
-}
+Stream<List<Source>?> sourceList(SourceListRef ref) =>
+    ref.watch(sourceRepositoryProvider).getSourceList();
 
 @riverpod
 AsyncValue<Map<String, List<Source>>> sourceMap(SourceMapRef ref) {
@@ -33,11 +25,11 @@ AsyncValue<Map<String, List<Source>>> sourceMap(SourceMapRef ref) {
   final sourceLastUsed = ref.watch(sourceLastUsedProvider);
   for (final e in [...?sourceListData.valueOrNull]) {
     sourceMap.update(
-      e.lang?.code ?? "other",
+      e.language?.code ?? "other",
       (value) => [...value, e],
       ifAbsent: () => [e],
     );
-    if (e.id == sourceLastUsed) sourceMap["lastUsed"] = [e];
+    if (e.id.value == sourceLastUsed) sourceMap["lastUsed"] = [e];
   }
   return sourceListData.copyWithData((e) => sourceMap);
 }

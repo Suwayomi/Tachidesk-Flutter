@@ -29,7 +29,7 @@ class MangaThumbnailViewer extends StatelessWidget {
           filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
           child: Container(
             decoration: BoxDecoration(
-              color: context.colorScheme.background.withOpacity(0.1),
+              color: context.colorScheme.surface.withOpacity(0.1),
             ),
             child: InteractiveViewer(
               maxScale: 4,

@@ -8,9 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../../../../constants/app_sizes.dart';
-
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../domain/filter/filter_model.dart';
+import '../../../domain/source/graphql/__generated__/fragment.data.gql.dart';
 import 'filter_to_widget.dart';
 
 class SourceMangaFilter extends HookWidget {
@@ -40,12 +40,12 @@ class SourceMangaFilter extends HookWidget {
                   onReset();
                   filters.value = (initialFilters);
                 },
-                child: Text(context.l10n!.reset),
+                child: Text(context.l10n.reset),
               ),
               const Spacer(),
               FilledButton(
                 onPressed: () => onSubmitted(filters.value),
-                child: Text(context.l10n!.filter),
+                child: Text(context.l10n.filter),
               ),
             ],
           ),
@@ -55,9 +55,9 @@ class SourceMangaFilter extends HookWidget {
         behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
         child: ListView.builder(
           itemBuilder: (context, index) {
-            final filter = filters.value[index];
+            final GFullSourceFragment_filters filter = filters.value[index];
             return FilterToWidget(
-              key: ValueKey("Filter-${filter.filterState?.name}"),
+              key: ValueKey("Filter-${filter.G__typename}"),
               filter: filter,
               onChanged: (value) {
                 filters.value = ([...initialFilters]..replaceRange(

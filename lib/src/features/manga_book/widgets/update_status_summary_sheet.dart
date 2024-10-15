@@ -28,7 +28,7 @@ class UpdateStatusSummaryDialog extends ConsumerWidget {
             : statusUpdate;
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.l10n!.updatesSummary),
+        title: Text(context.l10n.updatesSummary),
         actions: const [UpdateStatusPopupMenu(showSummaryButton: false)],
       ),
       body: finalStatus.showUiWhenData(
@@ -40,23 +40,23 @@ class UpdateStatusSummaryDialog extends ConsumerWidget {
               if ((data?.running).isNotBlank)
                 UpdateStatusExpansionTile(
                   mangas: data!.running!,
-                  title: context.l10n!.running,
+                  title: context.l10n.running,
                   initiallyExpanded: true,
                 ),
               if ((data?.pending).isNotBlank)
                 UpdateStatusExpansionTile(
                   mangas: data!.pending!,
-                  title: context.l10n!.pending,
+                  title: context.l10n.pending,
                 ),
               if ((data?.completed).isNotBlank)
                 UpdateStatusExpansionTile(
                   mangas: data!.completed!,
-                  title: context.l10n!.completed,
+                  title: context.l10n.completed,
                 ),
               if ((data?.failed).isNotBlank)
                 UpdateStatusExpansionTile(
                   mangas: data!.failed!,
-                  title: context.l10n!.failed,
+                  title: context.l10n.failed,
                   initiallyExpanded: true,
                 ),
             ],
@@ -90,7 +90,7 @@ class UpdateStatusExpansionTile extends StatelessWidget {
           .map((e) => MangaCoverListTile(
                 manga: e,
                 showCountBadges: true,
-                onPressed: () => MangaRoute(mangaId: e.id!).push(context),
+                onPressed: () => MangaRoute(mangaId: e.id).push(context),
               ))
           .toList(),
     );

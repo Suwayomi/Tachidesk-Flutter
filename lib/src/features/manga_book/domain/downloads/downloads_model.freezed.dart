@@ -12,19 +12,16 @@ part of 'downloads_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-Downloads _$DownloadsFromJson(Map<String, dynamic> json) {
-  return _Downloads.fromJson(json);
-}
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$Downloads {
   List<DownloadsQueue>? get queue => throw _privateConstructorUsedError;
   String? get status => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+  /// Create a copy of Downloads
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DownloadsCopyWith<Downloads> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -47,6 +44,8 @@ class _$DownloadsCopyWithImpl<$Res, $Val extends Downloads>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Downloads
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -85,6 +84,8 @@ class __$$DownloadsImplCopyWithImpl<$Res>
       _$DownloadsImpl _value, $Res Function(_$DownloadsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Downloads
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -105,13 +106,10 @@ class __$$DownloadsImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$DownloadsImpl implements _Downloads {
   _$DownloadsImpl({final List<DownloadsQueue>? queue, this.status})
       : _queue = queue;
-
-  factory _$DownloadsImpl.fromJson(Map<String, dynamic> json) =>
-      _$$DownloadsImplFromJson(json);
 
   final List<DownloadsQueue>? _queue;
   @override
@@ -140,23 +138,17 @@ class _$DownloadsImpl implements _Downloads {
             (identical(other.status, status) || other.status == status));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_queue), status);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Downloads
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DownloadsImplCopyWith<_$DownloadsImpl> get copyWith =>
       __$$DownloadsImplCopyWithImpl<_$DownloadsImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$DownloadsImplToJson(
-      this,
-    );
-  }
 }
 
 abstract class _Downloads implements Downloads {
@@ -164,15 +156,15 @@ abstract class _Downloads implements Downloads {
       {final List<DownloadsQueue>? queue,
       final String? status}) = _$DownloadsImpl;
 
-  factory _Downloads.fromJson(Map<String, dynamic> json) =
-      _$DownloadsImpl.fromJson;
-
   @override
   List<DownloadsQueue>? get queue;
   @override
   String? get status;
+
+  /// Create a copy of Downloads
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DownloadsImplCopyWith<_$DownloadsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

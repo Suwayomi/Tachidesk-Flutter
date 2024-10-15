@@ -65,7 +65,7 @@ class BigScreenMangaDetails extends ConsumerWidget {
                   return Column(
                     children: [
                       ListTile(
-                        title: Text(context.l10n!.noOfChapters(
+                        title: Text(context.l10n.noOfChapters(
                           filteredChapterList?.length ?? 0,
                         )),
                       ),
@@ -90,7 +90,7 @@ class BigScreenMangaDetails extends ConsumerWidget {
                               toggleSelect: (Chapter val) {
                                 if ((val.id).isNull) return;
                                 selectedChapters.value = selectedChapters.value
-                                    .toggleKey(val.id!, val);
+                                    .toggleKey(val.id, val);
                               },
                             );
                           },
@@ -101,10 +101,10 @@ class BigScreenMangaDetails extends ConsumerWidget {
                   );
                 } else {
                   return Emoticons(
-                    text: context.l10n!.noChaptersFound,
+                    title: context.l10n.noChaptersFound,
                     button: TextButton(
                       onPressed: () => onListRefresh(true),
-                      child: Text(context.l10n!.refresh),
+                      child: Text(context.l10n.refresh),
                     ),
                   );
                 }

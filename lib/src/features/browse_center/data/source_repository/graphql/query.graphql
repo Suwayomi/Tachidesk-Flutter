@@ -1,0 +1,21 @@
+# import '/src/features/browse_center/domain/source/graphql/fragment.graphql'
+
+query SourceList {
+  sources {
+    nodes {
+      ...SourceFragment
+    }
+  }
+}
+
+query SourceById($id: LongString = "") {
+  source(id: $id) {
+    ...SourceFragment
+  }
+}
+
+query FullSourceById($id: LongString = "") {
+  source(id: $id) {
+    ...FullSourceFragment
+  }
+}

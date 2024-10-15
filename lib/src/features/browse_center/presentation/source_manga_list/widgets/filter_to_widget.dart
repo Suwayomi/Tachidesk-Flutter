@@ -27,11 +27,10 @@ class FilterToWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    FilterState? filterState = filter.filterState;
-    return switch (filterState) {
+    return switch (filter) {
       FilterHeader(name: String? name) => name.isNotBlank
           ? ListTile(
-              title: Text(name!),
+              title: Text(name),
               dense: true,
             )
           : const SizedBox.shrink(),
@@ -82,13 +81,13 @@ class FilterToWidget extends StatelessWidget {
           ),
           children: [
             for (int i = 0;
-                i < (values?.length).getValueOnNullOrNegative();
+                i < (values.length).getValueOnNullOrNegative();
                 i++)
               SortListTile(
                 key: ValueKey("$name-$i"),
-                ascending: (state?.ascending).ifNull(true),
+                ascending: (state.ascending).ifNull(true),
                 title: Text(values != null ? values[i] : ""),
-                selected: i == state?.index,
+                selected: i == state.index,
                 onChanged: (value) {
                   if (filterState.copyWith.state == null) return;
                   onChangedFilterCopyWith(
@@ -125,18 +124,18 @@ class FilterToWidget extends StatelessWidget {
                 child: Padding(
                   padding: KEdgeInsets.h16.size,
                   child: DropdownButton(
-                    icon: const Icon(Icons.keyboard_arrow_down),
+                    icon: const Icon(Icons.keyboard_arrow_down_rounded),
                     isExpanded: true,
                     value: state,
                     hint: Text(name ?? ""),
                     items: List.generate(
-                      (displayValues?.length).getValueOnNullOrNegative(),
+                      (displayValues.length).getValueOnNullOrNegative(),
                       (index) => index,
                     )
                         .map((e) => DropdownMenuItem(
                               value: e,
                               child: Text(
-                                displayValues![e],
+                                displayValues[e],
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                                 style: context.textTheme.bodySmall,
@@ -161,10 +160,10 @@ class FilterToWidget extends StatelessWidget {
             style: context.textTheme.labelLarge,
           ),
           children: [
-            for (int i = 0; i < (state?.length).getValueOnNullOrNegative(); i++)
+            for (int i = 0; i < (state.length).getValueOnNullOrNegative(); i++)
               FilterToWidget(
                 key: ValueKey("$name-$i"),
-                filter: state![i],
+                filter: state[i],
                 onChanged: (groupFilter) => onChangedFilterCopyWith(
                   filterState.copyWith(
                     state: [...state]..replaceRange(i, i + 1, [groupFilter]),
@@ -173,7 +172,7 @@ class FilterToWidget extends StatelessWidget {
               ),
           ],
         ),
-      null => const SizedBox.shrink(),
+      Filter() => throw UnimplementedError(),
     };
   }
 }

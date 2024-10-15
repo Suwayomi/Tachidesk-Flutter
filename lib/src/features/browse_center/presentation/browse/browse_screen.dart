@@ -13,24 +13,45 @@ import '../../../../routes/router_config.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../widgets/search_field.dart';
 import '../extension/controller/extension_controller.dart';
-import '../extension/extension_screen.dart';
 import '../extension/widgets/extension_language_filter_dialog.dart';
 import '../extension/widgets/install_extension_file.dart';
-import '../source/source_screen.dart';
 import '../source/widgets/source_language_filter.dart';
 
 class BrowseScreen extends HookConsumerWidget {
-  const BrowseScreen({super.key});
+  const BrowseScreen({
+    super.key,
+    required this.currentIndex,
+    required this.onDestinationSelected,
+    required this.children,
+  });
+  final int currentIndex;
+  final ValueChanged<int> onDestinationSelected;
+  final List<Widget> children;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final tabController = useTabController(initialLength: 2);
+    final tabController =
+        useTabController(initialLength: 2, initialIndex: currentIndex);
+
+    useEffect(() {
+      if (currentIndex != tabController.index) {
+        tabController.animateTo(currentIndex);
+      }
+      return null;
+    }, [currentIndex]);
+
+    useEffect(() {
+      if (currentIndex != tabController.index) {
+        Future.microtask(() => onDestinationSelected(tabController.index));
+      }
+      return null;
+    }, [tabController.index]);
     useListenable(tabController);
-    final key = useMemoized(() => GlobalKey());
+
     final showSearch = useState(false);
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.l10n!.browse),
+        title: Text(context.l10n.browse),
         centerTitle: true,
         actions: [
           IconButton(
@@ -63,8 +84,8 @@ class BrowseScreen extends HookConsumerWidget {
                 isScrollable: context.isTablet,
                 controller: tabController,
                 tabs: [
-                  Tab(text: context.l10n!.sources),
-                  Tab(text: context.l10n!.extensions),
+                  Tab(text: context.l10n.sources),
+                  Tab(text: context.l10n.extensions),
                 ],
               ),
               if (showSearch.value)
@@ -93,14 +114,7 @@ class BrowseScreen extends HookConsumerWidget {
           ),
         ),
       ),
-      body: TabBarView(
-        key: key,
-        controller: tabController,
-        children: const [
-          SourceScreen(),
-          ExtensionScreen(),
-        ],
-      ),
+      body: TabBarView(controller: tabController, children: children),
     );
   }
 }

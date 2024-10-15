@@ -12,7 +12,7 @@ part of 'filter_state_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 FilterState _$FilterStateFromJson(Map<String, dynamic> json) {
   switch (json['type']) {
@@ -122,8 +122,13 @@ mixin _$FilterState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Serializes this FilterState to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of FilterState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $FilterStateCopyWith<FilterState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -147,6 +152,8 @@ class _$FilterStateCopyWithImpl<$Res, $Val extends FilterState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of FilterState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -180,6 +187,8 @@ class __$$FilterHeaderImplCopyWithImpl<$Res>
       _$FilterHeaderImpl _value, $Res Function(_$FilterHeaderImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FilterState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -230,11 +239,13 @@ class _$FilterHeaderImpl implements FilterHeader {
             (identical(other.name, name) || other.name == name));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, state, name);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FilterState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FilterHeaderImplCopyWith<_$FilterHeaderImpl> get copyWith =>
@@ -365,8 +376,11 @@ abstract class FilterHeader implements FilterState {
   int? get state;
   @override
   String? get name;
+
+  /// Create a copy of FilterState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FilterHeaderImplCopyWith<_$FilterHeaderImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -390,6 +404,8 @@ class __$$FilterSeparatorImplCopyWithImpl<$Res>
       _$FilterSeparatorImpl _value, $Res Function(_$FilterSeparatorImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FilterState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -440,11 +456,13 @@ class _$FilterSeparatorImpl implements FilterSeparator {
             (identical(other.name, name) || other.name == name));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, state, name);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FilterState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FilterSeparatorImplCopyWith<_$FilterSeparatorImpl> get copyWith =>
@@ -576,8 +594,11 @@ abstract class FilterSeparator implements FilterState {
   int? get state;
   @override
   String? get name;
+
+  /// Create a copy of FilterState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FilterSeparatorImplCopyWith<_$FilterSeparatorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -601,6 +622,8 @@ class __$$FilterTextImplCopyWithImpl<$Res>
       _$FilterTextImpl _value, $Res Function(_$FilterTextImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FilterState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -651,11 +674,13 @@ class _$FilterTextImpl implements FilterText {
             (identical(other.name, name) || other.name == name));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, state, name);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FilterState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FilterTextImplCopyWith<_$FilterTextImpl> get copyWith =>
@@ -786,8 +811,11 @@ abstract class FilterText implements FilterState {
   String? get state;
   @override
   String? get name;
+
+  /// Create a copy of FilterState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FilterTextImplCopyWith<_$FilterTextImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -811,6 +839,8 @@ class __$$FilterCheckBoxImplCopyWithImpl<$Res>
       _$FilterCheckBoxImpl _value, $Res Function(_$FilterCheckBoxImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FilterState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -861,11 +891,13 @@ class _$FilterCheckBoxImpl implements FilterCheckBox {
             (identical(other.name, name) || other.name == name));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, state, name);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FilterState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FilterCheckBoxImplCopyWith<_$FilterCheckBoxImpl> get copyWith =>
@@ -997,8 +1029,11 @@ abstract class FilterCheckBox implements FilterState {
   bool? get state;
   @override
   String? get name;
+
+  /// Create a copy of FilterState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FilterCheckBoxImplCopyWith<_$FilterCheckBoxImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1022,6 +1057,8 @@ class __$$FilterTriStateImplCopyWithImpl<$Res>
       _$FilterTriStateImpl _value, $Res Function(_$FilterTriStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FilterState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1072,11 +1109,13 @@ class _$FilterTriStateImpl implements FilterTriState {
             (identical(other.name, name) || other.name == name));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, state, name);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FilterState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FilterTriStateImplCopyWith<_$FilterTriStateImpl> get copyWith =>
@@ -1208,8 +1247,11 @@ abstract class FilterTriState implements FilterState {
   int? get state;
   @override
   String? get name;
+
+  /// Create a copy of FilterState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FilterTriStateImplCopyWith<_$FilterTriStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1235,6 +1277,8 @@ class __$$FilterSortImplCopyWithImpl<$Res>
       _$FilterSortImpl _value, $Res Function(_$FilterSortImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FilterState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1258,6 +1302,8 @@ class __$$FilterSortImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of FilterState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SortStateCopyWith<$Res>? get state {
@@ -1314,12 +1360,14 @@ class _$FilterSortImpl implements FilterSort {
             const DeepCollectionEquality().equals(other._values, _values));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, state, name, const DeepCollectionEquality().hash(_values));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FilterState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FilterSortImplCopyWith<_$FilterSortImpl> get copyWith =>
@@ -1453,8 +1501,11 @@ abstract class FilterSort implements FilterState {
   @override
   String? get name;
   List<String>? get values;
+
+  /// Create a copy of FilterState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FilterSortImplCopyWith<_$FilterSortImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1478,6 +1529,8 @@ class __$$FilterSelectImplCopyWithImpl<$Res>
       _$FilterSelectImpl _value, $Res Function(_$FilterSelectImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FilterState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1549,12 +1602,14 @@ class _$FilterSelectImpl implements FilterSelect {
                 .equals(other._displayValues, _displayValues));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, state, name,
       const DeepCollectionEquality().hash(_displayValues));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FilterState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FilterSelectImplCopyWith<_$FilterSelectImpl> get copyWith =>
@@ -1688,8 +1743,11 @@ abstract class FilterSelect implements FilterState {
   @override
   String? get name;
   List<String>? get displayValues;
+
+  /// Create a copy of FilterState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FilterSelectImplCopyWith<_$FilterSelectImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1713,6 +1771,8 @@ class __$$FilterGroupImplCopyWithImpl<$Res>
       _$FilterGroupImpl _value, $Res Function(_$FilterGroupImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FilterState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1773,12 +1833,14 @@ class _$FilterGroupImpl implements FilterGroup {
             (identical(other.name, name) || other.name == name));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_state), name);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FilterState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FilterGroupImplCopyWith<_$FilterGroupImpl> get copyWith =>
@@ -1909,8 +1971,11 @@ abstract class FilterGroup implements FilterState {
   List<Filter>? get state;
   @override
   String? get name;
+
+  /// Create a copy of FilterState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FilterGroupImplCopyWith<_$FilterGroupImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1924,8 +1989,12 @@ mixin _$SortState {
   int? get index => throw _privateConstructorUsedError;
   bool? get ascending => throw _privateConstructorUsedError;
 
+  /// Serializes this SortState to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SortState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SortStateCopyWith<SortState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1948,6 +2017,8 @@ class _$SortStateCopyWithImpl<$Res, $Val extends SortState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SortState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1986,6 +2057,8 @@ class __$$SortStateImplCopyWithImpl<$Res>
       _$SortStateImpl _value, $Res Function(_$SortStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SortState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2033,11 +2106,13 @@ class _$SortStateImpl implements _SortState {
                 other.ascending == ascending));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, index, ascending);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SortState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SortStateImplCopyWith<_$SortStateImpl> get copyWith =>
@@ -2062,8 +2137,11 @@ abstract class _SortState implements SortState {
   int? get index;
   @override
   bool? get ascending;
+
+  /// Create a copy of SortState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SortStateImplCopyWith<_$SortStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2077,8 +2155,12 @@ mixin _$SelectValues {
   String? get first => throw _privateConstructorUsedError;
   String? get second => throw _privateConstructorUsedError;
 
+  /// Serializes this SelectValues to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SelectValues
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SelectValuesCopyWith<SelectValues> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2102,6 +2184,8 @@ class _$SelectValuesCopyWithImpl<$Res, $Val extends SelectValues>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SelectValues
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2140,6 +2224,8 @@ class __$$SelectValuesImplCopyWithImpl<$Res>
       _$SelectValuesImpl _value, $Res Function(_$SelectValuesImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SelectValues
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2186,11 +2272,13 @@ class _$SelectValuesImpl implements _SelectValues {
             (identical(other.second, second) || other.second == second));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, first, second);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SelectValues
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SelectValuesImplCopyWith<_$SelectValuesImpl> get copyWith =>
@@ -2215,8 +2303,11 @@ abstract class _SelectValues implements SelectValues {
   String? get first;
   @override
   String? get second;
+
+  /// Create a copy of SelectValues
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SelectValuesImplCopyWith<_$SelectValuesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

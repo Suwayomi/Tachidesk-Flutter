@@ -16,6 +16,7 @@ import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../settings/presentation/reader/widgets/reader_mode_tile/reader_mode_tile.dart';
 import '../../data/manga_book_repository.dart';
 import '../../domain/chapter_patch/chapter_put_model.dart';
+import '../../domain/manga/manga_model.dart';
 import '../manga_details/controller/manga_details_controller.dart';
 import 'controller/reader_controller.dart';
 import 'widgets/reader_mode/continuous_reader_mode.dart';
@@ -45,7 +46,7 @@ class ReaderScreen extends HookConsumerWidget {
     final updateLastRead = useCallback((int currentPage) async {
       final chapterValue = chapter.valueOrNull;
       final isReadingCompeted = chapterValue != null &&
-          ((chapterValue.read).ifNull() ||
+          ((chapterValue.isRead).ifNull() ||
               (currentPage >=
                   ((chapterValue.pageCount).getValueOnNullOrNegative() - 1)));
       await AsyncValue.guard(
@@ -63,7 +64,7 @@ class ReaderScreen extends HookConsumerWidget {
     final onPageChanged = useCallback<AsyncValueSetter<int>>(
       (int index) async {
         final chapterValue = chapter.valueOrNull;
-        if ((chapterValue?.read).ifNull() ||
+        if ((chapterValue?.isRead).ifNull() ||
             (chapterValue?.lastPageRead).getValueOnNullOrNegative() >= index) {
           return;
         }
@@ -114,7 +115,8 @@ class ReaderScreen extends HookConsumerWidget {
                 context,
                 (chapterData) {
                   if (chapterData == null) return const SizedBox.shrink();
-                  return switch (data.meta?.readerMode ?? defaultReaderMode) {
+                  return switch (
+                      data.metaData.readerMode ?? defaultReaderMode) {
                     ReaderMode.singleVertical => SinglePageReaderMode(
                         chapter: chapterData,
                         manga: data,

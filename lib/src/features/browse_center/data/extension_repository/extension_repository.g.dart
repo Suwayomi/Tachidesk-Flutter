@@ -7,7 +7,7 @@ part of 'extension_repository.dart';
 // **************************************************************************
 
 String _$extensionRepositoryHash() =>
-    r'd5be612415075dc1ca3ac53de932d9ec4ee92ff2';
+    r'259993274ae00a2f208ba7064c87da097deee958';
 
 /// See also [extensionRepository].
 @ProviderFor(extensionRepository)

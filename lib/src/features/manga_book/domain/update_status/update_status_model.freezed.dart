@@ -12,11 +12,7 @@ part of 'update_status_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-UpdateStatus _$UpdateStatusFromJson(Map<String, dynamic> json) {
-  return _UpdateStatus.fromJson(json);
-}
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$UpdateStatus {
@@ -29,8 +25,9 @@ mixin _$UpdateStatus {
   @JsonKey(name: "FAILED")
   List<Manga>? get failed => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+  /// Create a copy of UpdateStatus
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $UpdateStatusCopyWith<UpdateStatus> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -58,6 +55,8 @@ class _$UpdateStatusCopyWithImpl<$Res, $Val extends UpdateStatus>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of UpdateStatus
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -110,6 +109,8 @@ class __$$UpdateStatusImplCopyWithImpl<$Res>
       _$UpdateStatusImpl _value, $Res Function(_$UpdateStatusImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UpdateStatus
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -140,7 +141,7 @@ class __$$UpdateStatusImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$UpdateStatusImpl extends _UpdateStatus {
   _$UpdateStatusImpl(
       {@JsonKey(name: "PENDING") final List<Manga>? pending,
@@ -152,9 +153,6 @@ class _$UpdateStatusImpl extends _UpdateStatus {
         _completed = completed,
         _failed = failed,
         super._();
-
-  factory _$UpdateStatusImpl.fromJson(Map<String, dynamic> json) =>
-      _$$UpdateStatusImplFromJson(json);
 
   final List<Manga>? _pending;
   @override
@@ -217,7 +215,6 @@ class _$UpdateStatusImpl extends _UpdateStatus {
             const DeepCollectionEquality().equals(other._failed, _failed));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -226,18 +223,13 @@ class _$UpdateStatusImpl extends _UpdateStatus {
       const DeepCollectionEquality().hash(_completed),
       const DeepCollectionEquality().hash(_failed));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UpdateStatus
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UpdateStatusImplCopyWith<_$UpdateStatusImpl> get copyWith =>
       __$$UpdateStatusImplCopyWithImpl<_$UpdateStatusImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$UpdateStatusImplToJson(
-      this,
-    );
-  }
 }
 
 abstract class _UpdateStatus extends UpdateStatus {
@@ -247,9 +239,6 @@ abstract class _UpdateStatus extends UpdateStatus {
       @JsonKey(name: "COMPLETE") final List<Manga>? completed,
       @JsonKey(name: "FAILED") final List<Manga>? failed}) = _$UpdateStatusImpl;
   _UpdateStatus._() : super._();
-
-  factory _UpdateStatus.fromJson(Map<String, dynamic> json) =
-      _$UpdateStatusImpl.fromJson;
 
   @override
   @JsonKey(name: "PENDING")
@@ -263,8 +252,11 @@ abstract class _UpdateStatus extends UpdateStatus {
   @override
   @JsonKey(name: "FAILED")
   List<Manga>? get failed;
+
+  /// Create a copy of UpdateStatus
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UpdateStatusImplCopyWith<_$UpdateStatusImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -21,7 +21,7 @@
   },
   "appTitle": "تاشيديسك سورايومي",
   "@appTitle": {
-    "description": "Name of the app (Tachidesk Sorayomi in native script)"
+    "description": "Name of the app (Sorayomi in native script)"
   },
   "authType": "نوع المصادقة",
   "@authType": {
@@ -118,7 +118,7 @@
     "description": "Toast text to show that the message has been copied",
     "placeholders": {
       "msg": {
-        "example": "Client : Tachidesk Sorayomi",
+        "example": "Client : Sorayomi",
         "type": "String"
       }
     }

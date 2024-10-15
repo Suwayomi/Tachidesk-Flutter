@@ -44,7 +44,7 @@ class MultiChaptersActionIcon extends ConsumerWidget {
                   ),
         );
         if (context.mounted) {
-          result.showToastOnError(ref.read(toastProvider(context)));
+          result.showToastOnError(ref.read(toastProvider));
         }
         await refresh(change != null);
       },

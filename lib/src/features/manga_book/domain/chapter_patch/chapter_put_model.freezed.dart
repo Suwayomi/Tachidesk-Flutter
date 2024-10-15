@@ -12,7 +12,7 @@ part of 'chapter_put_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 ChapterPut _$ChapterPutFromJson(Map<String, dynamic> json) {
   return _ChapterPut.fromJson(json);
@@ -25,8 +25,12 @@ mixin _$ChapterPut {
   bool? get markPrevRead => throw _privateConstructorUsedError;
   int? get lastPageRead => throw _privateConstructorUsedError;
 
+  /// Serializes this ChapterPut to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ChapterPut
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ChapterPutCopyWith<ChapterPut> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +55,8 @@ class _$ChapterPutCopyWithImpl<$Res, $Val extends ChapterPut>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ChapterPut
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -100,6 +106,8 @@ class __$$ChapterPutImplCopyWithImpl<$Res>
       _$ChapterPutImpl _value, $Res Function(_$ChapterPutImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ChapterPut
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -166,12 +174,14 @@ class _$ChapterPutImpl implements _ChapterPut {
                 other.lastPageRead == lastPageRead));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, read, bookmarked, markPrevRead, lastPageRead);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ChapterPut
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ChapterPutImplCopyWith<_$ChapterPutImpl> get copyWith =>
@@ -203,8 +213,11 @@ abstract class _ChapterPut implements ChapterPut {
   bool? get markPrevRead;
   @override
   int? get lastPageRead;
+
+  /// Create a copy of ChapterPut
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChapterPutImplCopyWith<_$ChapterPutImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

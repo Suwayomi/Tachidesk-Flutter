@@ -1,0 +1,22 @@
+fragment ChapterFragment on ChapterType {
+  chapterNumber
+  fetchedAt
+  id
+  isBookmarked
+  isDownloaded
+  isRead
+  lastPageRead
+  lastReadAt
+  mangaId
+  name
+  pageCount
+  realUrl
+  scanlator
+  sourceOrder
+  uploadDate
+  url
+  meta {
+    key
+    value
+  }
+}

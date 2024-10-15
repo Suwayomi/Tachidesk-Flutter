@@ -1,0 +1,4 @@
+fragment ServerBindingFragment on SettingsType {
+  ip
+  port
+}

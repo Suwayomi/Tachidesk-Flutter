@@ -10,7 +10,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../../constants/language_list.dart';
 
 import '../../../../../utils/extensions/custom_extensions.dart';
-import '../../../../../widgets/pop_button.dart';
+import '../../../../../widgets/popup_widgets/pop_button.dart';
 import '../../../domain/language/language_model.dart';
 import '../controller/extension_controller.dart';
 
@@ -21,7 +21,7 @@ class ExtensionLanguageFilterDialog extends ConsumerWidget {
     final languageCodes = ref.watch(extensionFilterLangListProvider);
     final enabledLanguages = ref.watch(extensionLanguageFilterProvider);
     return AlertDialog(
-      title: Text(context.l10n!.languages),
+      title: Text(context.l10n.languages),
       content: SizedBox(
         height: context.heightScale(scale: .5),
         width: context.widthScale(scale: context.isSmallTablet ? .5 : .8),
@@ -61,7 +61,7 @@ class ExtensionLanguageFilterDialog extends ConsumerWidget {
           },
         ),
       ),
-      actions: [PopButton(popText: context.l10n!.close)],
+      actions: [PopButton(popText: context.l10n.close)],
     );
   }
 }

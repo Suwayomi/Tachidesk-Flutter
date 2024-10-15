@@ -1,0 +1,51 @@
+fragment SourcePreferenceFragment on Preference {
+    ... on CheckBoxPreference {
+        type: __typename
+        CheckBoxCheckBoxCurrentValue: currentValue
+        summary
+        CheckBoxDefault: default
+        key
+        CheckBoxTitle: title
+    }
+    ... on EditTextPreference {
+        type: __typename
+        EditTextPreferenceCurrentValue: currentValue
+        EditTextPreferenceDefault: default
+        EditTextPreferenceTitle: title
+        text
+        summary
+        key
+        dialogTitle
+        dialogMessage
+    }
+    ... on SwitchPreference {
+        type: __typename
+        SwitchPreferenceCurrentValue: currentValue
+        summary
+        key
+        SwitchPreferenceDefault: default
+        SwitchPreferenceTitle: title
+    }
+    ... on MultiSelectListPreference {
+        type: __typename
+        dialogMessage
+        dialogTitle
+        MultiSelectListPreferenceTitle: title
+        summary
+        key
+        entryValues
+        entries
+        MultiSelectListPreferenceDefault: default
+        MultiSelectListPreferenceCurrentValue: currentValue
+    }
+    ... on ListPreference {
+        type: __typename
+        ListPreferenceCurrentValue: currentValue
+        ListPreferenceDefault: default
+        ListPreferenceTitle: title
+        summary
+        key
+        entryValues
+        entries
+    }
+}

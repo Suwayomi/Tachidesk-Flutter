@@ -6,7 +6,7 @@ part of 'edit_category_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$categoryListQueryHash() => r'47eb6a35cc23a6d24dbe7981cff742174512b4ce';
+String _$categoryListQueryHash() => r'ee7ffd75f50ce565abffeb65feb24b83faedbfa0';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -157,11 +157,11 @@ class _CategoryListQueryProviderElement
 }
 
 String _$categoryControllerHash() =>
-    r'03ec5d51bea1147db0139fa68edaeefdacb11f70';
+    r'1a4453817f93c7384a38d27071936aaab3844b9f';
 
 /// See also [CategoryController].
 @ProviderFor(CategoryController)
-final categoryControllerProvider = AutoDisposeAsyncNotifierProvider<
+final categoryControllerProvider = AutoDisposeStreamNotifierProvider<
     CategoryController, List<Category>?>.internal(
   CategoryController.new,
   name: r'categoryControllerProvider',
@@ -172,6 +172,6 @@ final categoryControllerProvider = AutoDisposeAsyncNotifierProvider<
   allTransitiveDependencies: null,
 );
 
-typedef _$CategoryController = AutoDisposeAsyncNotifier<List<Category>?>;
+typedef _$CategoryController = AutoDisposeStreamNotifier<List<Category>?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

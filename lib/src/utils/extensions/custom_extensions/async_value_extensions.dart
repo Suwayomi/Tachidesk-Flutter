@@ -20,7 +20,8 @@ extension AsyncValueExtensions<T> on AsyncValue<T> {
     }
   }
 
-  void showToastOnError(Toast toast, {bool withMicrotask = false}) {
+  void showToastOnError(Toast? toast, {bool withMicrotask = false}) {
+    if (toast == null) return;
     if (withMicrotask) {
       Future.microtask(() => (this._showToastOnError(toast)));
     } else {
@@ -28,7 +29,7 @@ extension AsyncValueExtensions<T> on AsyncValue<T> {
     }
   }
 
-  T? valueOrToast(Toast toast, {bool withMicrotask = false}) =>
+  T? valueOrToast(Toast? toast, {bool withMicrotask = false}) =>
       (this..showToastOnError(toast, withMicrotask: withMicrotask)).valueOrNull;
 
   Widget showUiWhenData(
@@ -45,21 +46,21 @@ extension AsyncValueExtensions<T> on AsyncValue<T> {
     return when(
       data: data,
       skipError: true,
-      error: (error, trace) => AppUtils.wrapIf(
+      error: (error, trace) => AppUtils.wrapOn(
           wrapper,
           Emoticons(
-            text: showGenericError
-                ? context.l10n!.errorSomethingWentWrong
+            title: showGenericError
+                ? context.l10n.errorSomethingWentWrong
                 : error.toString(),
             button: refresh != null
                 ? TextButton(
                     onPressed: refresh,
-                    child: Text(context.l10n!.refresh),
+                    child: Text(context.l10n.refresh),
                   )
                 : null,
           )),
       loading: () =>
-          AppUtils.wrapIf(wrapper, const CenterSorayomiShimmerIndicator()),
+          AppUtils.wrapOn(wrapper, const CenterSorayomiShimmerIndicator()),
     );
   }
 
