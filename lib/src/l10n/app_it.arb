@@ -1,0 +1,920 @@
+{
+  "addToLibrary": "Aggiungi alla libreria",
+  "@addToLibrary": {
+    "description": "Button text to add Manga to Library in Manga Details Screen"
+  },
+  "appLanguage": "Lingua dell'app",
+  "@appLanguage": {
+    "description": "Popup title and Button text to change App Language"
+  },
+  "appTheme": "Aspetto",
+  "@appTheme": {
+    "description": "Popup title and Button text to change App Theme Mode"
+  },
+  "appTitle": "Tachidesk Sorayomi",
+  "@appTitle": {
+    "description": "Name of the app (Tachidesk Sorayomi in native script)"
+  },
+  "appearance": "Aspetto",
+  "@appearance": {
+    "description": "Screen title and Button text of Appearance screen"
+  },
+  "authType": "Tipo di autenticazione",
+  "@authType": {
+    "description": "Popup title and Button text to change App Authentication"
+  },
+  "backup": "Backup e ripristino",
+  "@backup": {
+    "description": "Screen title and Button text of Backup & Restore screen"
+  },
+  "authTypeBasic": "Autorizzazione di base",
+  "@authTypeBasic": {
+    "description": "Radio button text for the Basic Authentication type"
+  },
+  "buildTime": "Data della build",
+  "@buildTime": {
+    "description": "Text title to show build time of Server in About Screen"
+  },
+  "chapterNumber": "Capitolo{number}",
+  "@chapterNumber": {
+    "description": "Text title for Chapter name in chapter list",
+    "placeholders": {
+      "number": {
+        "example": "12.5",
+        "type": "double"
+      }
+    }
+  },
+  "chapterSortUploadDate": "Per data di caricamento",
+  "@chapterSortUploadDate": {
+    "description": "Radio button text for sort by Upload Date"
+  },
+  "current": "Attuale",
+  "@current": {
+    "description": "Text to show the currently reading chapter in Reader Screen"
+  },
+  "daysAgo": "{days} giorni fa",
+  "@daysAgo": {
+    "description": "Days ago text to show the release date of manga"
+  },
+  "defaultCategory": "Categoria predefinita quando si aggiungono nuovi manga alla libreria",
+  "@defaultCategory": {
+    "description": "Checkbox description when creating a Category to add manga to the Category by Default"
+  },
+  "delete": "Cancella",
+  "@delete": {
+    "description": "Text for delete button"
+  },
+  "deleteCategoryDescription": "Questo unirà tutti i Manga di questa categoria per impostazione predefinita!",
+  "@deleteCategoryDescription": {
+    "description": "Popup description when deleting Category"
+  },
+  "deleteCategoryTitle": "Sei sicuro?",
+  "@deleteCategoryTitle": {
+    "description": "Popup title when deleting Category"
+  },
+  "displayMode": "Modalità di visualizzazione",
+  "@displayMode": {
+    "description": "Radio Group title to change manga Cover display in Library and Source Screens"
+  },
+  "displayModeDescriptiveList": "Elenco descrittivo",
+  "@displayModeDescriptiveList": {
+    "description": "Radio button text for Manga Cover display mode - Descriptive List"
+  },
+  "globalUpdate": "Aggiornamento globale",
+  "@globalUpdate": {
+    "description": "Button text of Global Manga Update"
+  },
+  "isTrueBlack": "Nero vero",
+  "@isTrueBlack": {
+    "description": "Switch title to enable {} black theme"
+  },
+  "languages": "Lingue",
+  "@languages": {
+    "description": "Popup title to filter extensions based on language"
+  },
+  "mangaMissingSources": "Fonti Manga mancanti",
+  "@mangaMissingSources": {
+    "description": "Group title to show the Manga Missing Sources when restoring Backup"
+  },
+  "mangaSortAlphabetical": "In ordine alfabetico",
+  "@mangaSortAlphabetical": {
+    "description": "Radio button text for Manga sort Type - Alphabetical"
+  },
+  "mangaStatusLicensed": "Licenza",
+  "@mangaStatusLicensed": {
+    "description": "Text to show Manga Status Licensed in Manga details screen"
+  },
+  "mangaStatusOnHiatus": "In pausa",
+  "@mangaStatusOnHiatus": {
+    "description": "Text to show Manga Status On Hiatus in Manga details screen"
+  },
+  "mangaStatusUnknown": "Sconosciuto",
+  "@mangaStatusUnknown": {
+    "description": "Text to show Manga Status Unknown in Manga details screen"
+  },
+  "missingTrackers": "Tracciatori mancanti",
+  "@missingTrackers": {
+    "description": "Group title to show the Missing Trackers when restoring Backup"
+  },
+  "more": "Di più",
+  "@more": {
+    "description": "Screen title and Navigation text of More screen"
+  },
+  "nextChapter": "Prossimo: {chapterTitle}",
+  "@nextChapter": {
+    "description": "Text for Next Chapter button in Manga Reader Screen"
+  },
+  "noCategoriesFoundAlt": "Non ci sono categorie. \nCreatene una nelle impostazioni per organizzare la tua libreria",
+  "@noCategoriesFoundAlt": {
+    "description": "Hint text to add new Category in Settings when category list is empty"
+  },
+  "noCategoryMangaFound": "Nessun manga trovato in questa categoria. \n(Suggerimento: controllare la ricerca e i filtri!)",
+  "@noCategoryMangaFound": {
+    "description": "Hint text to check filter when manga list is empty in Category tab in Library"
+  },
+  "noChaptersFound": "Nessun capitolo trovato",
+  "@noChaptersFound": {
+    "description": "Text to show that the Chapter list is empty in Manga details Screen"
+  },
+  "noDownloads": "Nessun download",
+  "@noDownloads": {
+    "description": "Text to show that there is no active downloads in Downloads Screen"
+  },
+  "noMangaFound": "Nessun Manga trovato",
+  "@noMangaFound": {
+    "description": "Text to show that the Manga list is empty"
+  },
+  "noOfChapters": "{count} Capitoli",
+  "@noOfChapters": {
+    "description": "Title text to show the number of chapters in the Manga details screen",
+    "placeholders": {
+      "count": {
+        "example": "23",
+        "type": "int"
+      }
+    }
+  },
+  "noResultFound": "Nessun risultato trovato",
+  "@noResultFound": {
+    "description": "Text to show that no results found for the given search query"
+  },
+  "noServerFound": "Nessun server trovato nella rete locale",
+  "@noServerFound": {
+    "description": "Text to show that no Server found in locale network"
+  },
+  "noSourcesFound": "Nessuna fonte trovata",
+  "@noSourcesFound": {
+    "description": "Text to show that the Source list is empty"
+  },
+  "noCategoriesFound": "Non ci sono categorie. \n(Suggerimento: toccare il pulsante Più per crearne una per organizzare la libreria)",
+  "@noCategoriesFound": {
+    "description": "Hint text to add new Category when category list is empty"
+  },
+  "nsfwInfo": "Questo non impedisce alle estensioni non ufficiali o potenzialmente contrassegnate in modo errato di visualizzare contenuti NSFW (18+) all'interno dell'applicazione",
+  "@nsfwInfo": {
+    "description": "Hint text to show that the nsfw switch cannot prevent incorrectly flagged extensions from surfacing"
+  },
+  "page": "Pagina: {number}",
+  "@page": {
+    "description": "Text to show the last read Page number of the chapter in Manga details screen",
+    "placeholders": {
+      "number": {
+        "example": "23",
+        "type": "int"
+      }
+    }
+  },
+  "password": "Password",
+  "@password": {
+    "description": "Title text for password field"
+  },
+  "pause": "Pausa",
+  "@pause": {
+    "description": "Button text to pause downloads"
+  },
+  "pending": "In attesa",
+  "@pending": {
+    "description": "Pending status Manga Group title in Update Summary Screen"
+  },
+  "pinchToZoom": "Pizzica per ingrandire",
+  "@pinchToZoom": {
+    "description": "Switch title to enable pinch to zoom in reader screen"
+  },
+  "previousChapter": "Precedente: {chapterTitle}",
+  "@previousChapter": {
+    "description": "Text for Previous Chapter button in Manga Reader Screen"
+  },
+  "quickSearch": "Ricerca rapida",
+  "@quickSearch": {
+    "description": "Screen title and Button text of Quick Search screen"
+  },
+  "quickSearchCategory": "Vai alla categoria 'C'",
+  "@quickSearchCategory": {
+    "description": "Quick Open Hint text for Category C with prefill '#C'"
+  },
+  "quickSearchShowAllCommandTip": "Suggerimento: immettere '?' per visualizzare tutti i comandi",
+  "@quickSearchShowAllCommandTip": {
+    "description": "Quick Open Tip text for showing all commands by entering '?'"
+  },
+  "quickSearchSource": "Vai alla sorgente 'S'",
+  "@quickSearchSource": {
+    "description": "Quick Open Hint text for Source S with prefill '@S'"
+  },
+  "reader": "Lettore",
+  "@reader": {
+    "description": "Screen title and Button text of Reader screen"
+  },
+  "readerMode": "Modalità di lettura",
+  "@readerMode": {
+    "description": "Popup title and Button text of Reader Mode popup"
+  },
+  "readerModeContinuousHorizontalLTR": "Orizzontale continuo (LTR)",
+  "@readerModeContinuousHorizontalLTR": {
+    "description": "Radio button text for Reader Mode Type - Continuous Horizontal (LTR)"
+  },
+  "readerModeContinuousHorizontalRTL": "Orizzontale continuo (RTL)",
+  "@readerModeContinuousHorizontalRTL": {
+    "description": "Radio button text for Reader Mode Type - Continuous Horizontal (RTL)"
+  },
+  "readerModeDefaultReader": "Predefinito",
+  "@readerModeDefaultReader": {
+    "description": "Radio button text for Reader Mode Type - Default"
+  },
+  "readerModeSingleHorizontalLTR": "Singolo orizzontale (LTR)",
+  "@readerModeSingleHorizontalLTR": {
+    "description": "Radio button text for Reader Mode Type - Single Horizontal (LTR)"
+  },
+  "readerModeSingleHorizontalRTL": "Singolo orizzontale (RTL)",
+  "@readerModeSingleHorizontalRTL": {
+    "description": "Radio button text for Reader Mode Type - Single Horizontal (RTL)"
+  },
+  "readerNavigationLayoutInvert": "Invertire il tapping",
+  "@readerNavigationLayoutInvert": {
+    "description": "Switch title to invert Tap to scroll in reader screen"
+  },
+  "readerNavigationLayoutLShaped": "A forma di L",
+  "@readerNavigationLayoutLShaped": {
+    "description": "Radio button text for Reader Navigation Layout - L Shaped"
+  },
+  "readerPadding": "Padding del lettore",
+  "@readerPadding": {
+    "description": "Slider title text for Reader Padding"
+  },
+  "readerSwipeChapterToggleDescription": "Swipe per cambiare capitolo nel lettore",
+  "@readerSwipeChapterToggleDescription": {
+    "description": "Switch tile description for, toggle `swipe to change chapter` in reader screen"
+  },
+  "readerSwipeChapterToggle": "Swipe per attivare/disattivare",
+  "@readerSwipeChapterToggle": {
+    "description": "Switch title to toggle `swipe to change chapter` in reader screen"
+  },
+  "readerVolumeTap": "Tasti del volume",
+  "@readerVolumeTap": {
+    "description": "Switch button text for Reader Page Navigation with Volume Tap"
+  },
+  "reload": "Ricarica",
+  "@reload": {
+    "description": "Reload button text"
+  },
+  "remove": "Rimuovi",
+  "@remove": {
+    "description": "Remove Button text"
+  },
+  "removeFromLibrary": "Rimuovere dalla biblioteca?",
+  "@removeFromLibrary": {
+    "description": "Remove From Library Popup text"
+  },
+  "retry": "Riprova",
+  "@retry": {
+    "description": "Retry Button Text"
+  },
+  "running": "In esecuzione",
+  "@running": {
+    "description": "Running status Manga Group title in Update Summary Screen"
+  },
+  "save": "Salva",
+  "@save": {
+    "description": "Save Button Text"
+  },
+  "scanlators": "scanner",
+  "@scanlators": {
+    "description": "Title text for Scanlators"
+  },
+  "search": "Cerca",
+  "@search": {
+    "description": "Search field hint Text"
+  },
+  "selectInBetween": "Selezionare tra",
+  "@selectInBetween": {
+    "description": "Toast Text for selecting chapters in between first and last Chapters"
+  },
+  "selectNext10": "Seleziona i prossimi 10",
+  "@selectNext10": {
+    "description": "Toast Text for selecting next 10 chapters"
+  },
+  "selectUnread": "Seleziona non letti",
+  "@selectUnread": {
+    "description": "Popup Text for selecting unread chapters"
+  },
+  "server": "Server",
+  "@server": {
+    "description": "Text title for the server in About screen"
+  },
+  "serverPortHintText": "Porta del server",
+  "@serverPortHintText": {
+    "description": "Text Filed hint text to update Server Port"
+  },
+  "serverUrl": "URL del Server",
+  "@serverUrl": {
+    "description": "Popup title and Button text to update Server Url"
+  },
+  "serverUrlHintText": "URL del server",
+  "@serverUrlHintText": {
+    "description": "Text Filed hint text to update Server Url"
+  },
+  "serverVersion": "Versione del server",
+  "@serverVersion": {
+    "description": "Text title for the current version of the Server in About screen"
+  },
+  "settings": "Impostazioni",
+  "@settings": {
+    "description": "Screen title and Button text of Settings screen"
+  },
+  "source": "Fonte",
+  "@source": {
+    "description": "Screen title and Button text of source screen"
+  },
+  "sourceTypeFilter": "Filtro",
+  "@sourceTypeFilter": {
+    "description": "Tab text Filter for source screen type"
+  },
+  "sourceTypeLatest": "Ultimo",
+  "@sourceTypeLatest": {
+    "description": "Tab text Latest for source screen type"
+  },
+  "sourceTypePopular": "Popolare",
+  "@sourceTypePopular": {
+    "description": "Tab text Popular for source screen type"
+  },
+  "themeModeSystem": "Sistema",
+  "@themeModeSystem": {
+    "description": "Radio button text for App theme - System"
+  },
+  "updatesSummary": "Sintesi degli aggiornamenti",
+  "@updatesSummary": {
+    "description": "Screen title and Button text of Updates Summary screen"
+  },
+  "updating": "Aggiornando",
+  "@updating": {
+    "description": "Button text to show that the extension is updating"
+  },
+  "userName": "Nome utente",
+  "@userName": {
+    "description": "Title text for User Name field"
+  },
+  "versionAvailable": "Versione {version} disponibile per {app}!!",
+  "@versionAvailable": {
+    "description": "Text to show that there is an update to App/Server",
+    "placeholders": {
+      "app": {
+        "example": "Server",
+        "type": "String"
+      },
+      "version": {
+        "example": "v0.4.2",
+        "type": "String"
+      }
+    }
+  },
+  "webUI": "Apri nel WEB",
+  "@webUI": {
+    "description": "Button text to open in web UI"
+  },
+  "webView": "Vista Web",
+  "@webView": {
+    "description": "Button text to open manga website"
+  },
+  "yesterday": "Ieri",
+  "@yesterday": {
+    "description": "Yesterday Text to show the release date of manga"
+  },
+  "about": "Info",
+  "@about": {
+    "description": "Screen title and Button text of About screen"
+  },
+  "cacheCleared": "Cache cancellata",
+  "@cacheCleared": {
+    "description": "Toast Text to show after clearing cache"
+  },
+  "categoryUpdate": "Aggiornamento della categoria",
+  "@categoryUpdate": {
+    "description": "Button text to update the mangas in the Category"
+  },
+  "addCategory": "Aggiungi Categoria",
+  "@addCategory": {
+    "description": "Popup title and Button text to add new category in Edit Category Screen"
+  },
+  "allScanlators": "Tutti gli scanner",
+  "@allScanlators": {
+    "description": "Text for all Scanlators in manga description screen chapter filter"
+  },
+  "authTypeNone": "Nessuno",
+  "@authTypeNone": {
+    "description": "Radio button text for no Authentication"
+  },
+  "badges": "Distintivi",
+  "@badges": {
+    "description": "Checkbox Group title to enable Badges on manga Cover in Library Screen"
+  },
+  "bookmarked": "Segnato",
+  "@bookmarked": {
+    "description": "Checkbox text to filter bookmarked manga chapters in Manga Details screen"
+  },
+  "cancel": "Annulla",
+  "@cancel": {
+    "description": "Text for Cancel button in a Popup"
+  },
+  "categories": "Categorie",
+  "@categories": {
+    "description": "Button text of edit Categories screen in Library settings screen"
+  },
+  "browse": "Navigare",
+  "@browse": {
+    "description": "Screen title, Navigation Bar text and Button text of both Browse screen and Browse Settings Screen"
+  },
+  "channel": "Canale",
+  "@channel": {
+    "description": "Text title to show Channel of the Server (Stable, preview) in About Screen"
+  },
+  "chapterSortFetchedDate": "Per data di acquisizione",
+  "@chapterSortFetchedDate": {
+    "description": "Radio button text for sort by Fetched Date"
+  },
+  "chapterSortSource": "Per Sorgente",
+  "@chapterSortSource": {
+    "description": "Radio button text for sort by Source"
+  },
+  "credentials": "Credenziali",
+  "@credentials": {
+    "description": "Popup title and Button text to enter Authentication credentials"
+  },
+  "checkForServerUpdates": "Verifica aggiornamenti del server",
+  "@checkForServerUpdates": {
+    "description": "Button text to check for Server updates"
+  },
+  "checkForUpdates": "Controlla aggiornamenti",
+  "@checkForUpdates": {
+    "description": "Button text to check for App Updates"
+  },
+  "clearCache": "Cancella la cache",
+  "@clearCache": {
+    "description": "Button text for clear cache in General Settings screen"
+  },
+  "client": "Client",
+  "@client": {
+    "description": "Text title for the name of the client in About screen"
+  },
+  "clientVersion": "Versione Client",
+  "@clientVersion": {
+    "description": "Text title for the current version of the client in About screen"
+  },
+  "close": "Chiudi",
+  "@close": {
+    "description": "Text for close button"
+  },
+  "completed": "Completato",
+  "@completed": {
+    "description": "Checkbox text to filter Completed mangas in Library screen and Manga Grouping text in Update Summary screen"
+  },
+  "copyMsg": "'{msg}' Copiati!",
+  "@copyMsg": {
+    "description": "Toast text to show that the message has been copied",
+    "placeholders": {
+      "msg": {
+        "example": "Client : Tachidesk Sorayomi",
+        "type": "String"
+      }
+    }
+  },
+  "createBackupTitle": "Crea backup",
+  "@createBackupTitle": {
+    "description": "Button text to create backup"
+  },
+  "createBackupDescription": "Backup della libreria come backup Tachidesk",
+  "@createBackupDescription": {
+    "description": "Button text description to create backup"
+  },
+  "discord": "Discord",
+  "@discord": {
+    "description": "Discord app title"
+  },
+  "display": "Display",
+  "@display": {
+    "description": "Text for Display tab in Library screen drawer"
+  },
+  "downloads": "Downloads",
+  "@downloads": {
+    "description": "Screen title and Navigation text of Downloads screen"
+  },
+  "editCategory": "Modifica Categoria",
+  "@editCategory": {
+    "description": "Screen title, Button text and  of Downloads screen"
+  },
+  "displayModeGrid": "Griglia",
+  "@displayModeGrid": {
+    "description": "Radio button text for Manga Cover display mode - Grid"
+  },
+  "displayModeList": "Lista",
+  "@displayModeList": {
+    "description": "Radio button text for Manga Cover display mode - List"
+  },
+  "downloaded": "Scaricati",
+  "@downloaded": {
+    "description": "Text to show downloaded chapters status in Filters  "
+  },
+  "edit": "Modifica",
+  "@edit": {
+    "description": "Popup button text to edit Category in Edit category screen"
+  },
+  "emptyCategory": "Il nome della categoria non può essere vuoto",
+  "@emptyCategory": {
+    "description": "Description to show that category list is empty in Edit Category screen"
+  },
+  "extensions": "Estensioni",
+  "@extensions": {
+    "description": "Extension list Tab title in Browse Screen"
+  },
+  "errorExtension": "Impossibile trovare l'estensione selezionata",
+  "@errorExtension": {
+    "description": "Error Description to show when user selected unknown extension from list"
+  },
+  "errorFilePick": "File non selezionato!",
+  "@errorFilePick": {
+    "description": "Error Description to show when user does not selected an file"
+  },
+  "errorLaunchURL": "Apertura fallita!\nCopia di \"{url}\" negli appunti",
+  "@errorLaunchURL": {
+    "description": "Error Description to show when App failed to launch an URL and copied the URL to clipboard",
+    "placeholders": {
+      "url": {
+        "example": "http://sorayomi.suwayomi.org",
+        "type": "String"
+      }
+    }
+  },
+  "errorFilePickUnknownExtension": "Selezionare un file con estensione {extensionName}",
+  "@errorFilePickUnknownExtension": {
+    "description": "Error Description to show when user selected unknown extension file"
+  },
+  "errorPassword": "La password non può essere vuota",
+  "@errorPassword": {
+    "description": "Error Description to show that password cannot be empty"
+  },
+  "errorSomethingWentWrong": "Qualcosa è andato storto!",
+  "@errorSomethingWentWrong": {
+    "description": "Error Description to show that Something went wrong!"
+  },
+  "errorUserName": "Il nome utente non può essere vuoto",
+  "@errorUserName": {
+    "description": "Error Description to show that UserName cannot be empty"
+  },
+  "extensionInstalled": "Estensione installata!",
+  "@extensionInstalled": {
+    "description": "Toast text to show that the Extension Installed successfully"
+  },
+  "extensionListEmpty": "L'elenco delle estensioni è vuoto",
+  "@extensionListEmpty": {
+    "description": "Description to show that Extension list is empty in Extension list tab of Browse screen"
+  },
+  "gitHub": "GitHub",
+  "@gitHub": {
+    "description": "GitHub app title"
+  },
+  "help": "Aiuto",
+  "@help": {
+    "description": "Button text of help in about screen"
+  },
+  "general": "Generale",
+  "@general": {
+    "description": "Screen title and Button text of General setting screen"
+  },
+  "failed": "Fallito",
+  "@failed": {
+    "description": "Failed status Manga Group title in Update Summary Screen"
+  },
+  "findServer": "Trova",
+  "@findServer": {
+    "description": "Button text of Find Server"
+  },
+  "filter": "Filtro",
+  "@filter": {
+    "description": "title of filter Tab across the app"
+  },
+  "finished": "Finito",
+  "@finished": {
+    "description": "Text to show the Currently Finished reading chapter in Reader Screen"
+  },
+  "globalSearch": "Ricerca globale",
+  "@globalSearch": {
+    "description": "Screen title of Global Search screen"
+  },
+  "inLibrary": "In biblioteca",
+  "@inLibrary": {
+    "description": "Button and Chip text to show that the manga is in Library"
+  },
+  "installing": "Installazione",
+  "@installing": {
+    "description": "Button text to show that the extension is installing"
+  },
+  "install": "Installare",
+  "@install": {
+    "description": "Button text to install the extension"
+  },
+  "installingExtension": "Installazione dell'estensione",
+  "@installingExtension": {
+    "description": "Toast text to show that the extension is installing"
+  },
+  "latest": "Ultime novità",
+  "@latest": {
+    "description": "Button text to take user to the latest tab of Source manga screen"
+  },
+  "mangaGridSize": "Dimensione della griglia Manga",
+  "@mangaGridSize": {
+    "description": "Popup title and Button text to change Manga Grid size"
+  },
+  "mangaStatusCancelled": "Annullato",
+  "@mangaStatusCancelled": {
+    "description": "Text to show Manga Status Cancelled in Manga details screen"
+  },
+  "library": "Biblioteca",
+  "@library": {
+    "description": "Screen title and Button text of Library and Library Settings screen"
+  },
+  "mangaSortDateAdded": "Data aggiunta",
+  "@mangaSortDateAdded": {
+    "description": "Radio button text for Manga sort Type - Date Added"
+  },
+  "mangaStatusOngoing": "In corso",
+  "@mangaStatusOngoing": {
+    "description": "Text to show Manga Status Ongoing in Manga details screen"
+  },
+  "moveToBottom": "Vai in basso",
+  "@moveToBottom": {
+    "description": "Button text to move download/category to the bottom of list"
+  },
+  "manga": "Manga",
+  "@manga": {
+    "description": "Screen title and Button text of Manga details screen"
+  },
+  "mangaSortLastRead": "Ultima lettura",
+  "@mangaSortLastRead": {
+    "description": "Radio button text for Manga sort Type - Last Read"
+  },
+  "mangaSortUnread": "Non letto",
+  "@mangaSortUnread": {
+    "description": "Radio button text for Manga sort Type - Unread"
+  },
+  "mangaStatusCompleted": "Completato",
+  "@mangaStatusCompleted": {
+    "description": "Text to show Manga Status Completed in Manga details screen"
+  },
+  "mangaStatusPublishingFinished": "Pubblicazione finita",
+  "@mangaStatusPublishingFinished": {
+    "description": "Text to show Manga Status Publishing Finished in Manga details screen"
+  },
+  "missingExtension": "Estensioni mancanti",
+  "@missingExtension": {
+    "description": "Group title to show the Missing Extensions when restoring Backup"
+  },
+  "moveToTop": "Vai all'inizio",
+  "@moveToTop": {
+    "description": "Button text to move download/category to the top of list"
+  },
+  "nameCountDisplay": "{name}: {count}",
+  "@nameCountDisplay": {
+    "description": "Text pattern to display an name and count in a string",
+    "placeholders": {
+      "count": {
+        "example": "22",
+        "type": "int"
+      },
+      "name": {
+        "example": "Downloaded",
+        "type": "String"
+      }
+    }
+  },
+  "newUpdateAvailable": "Nuovo aggiornamento disponibile",
+  "@newUpdateAvailable": {
+    "description": "Popup title to show that the App/Server has and update"
+  },
+  "noUpdatesAvailable": "Stai utilizzando l'ultima versione",
+  "@noUpdatesAvailable": {
+    "description": "Text to show that the user is using the latest version of the app"
+  },
+  "noUpdatesFound": "Nessun aggiornamento trovato",
+  "@noUpdatesFound": {
+    "description": "Toast Text to show that there are no Updates available"
+  },
+  "nsfw": "Mostra estensioni e fonti NSFW",
+  "@nsfw": {
+    "description": "Switch text to show/hide the nsfw extensions"
+  },
+  "nsfw18": "18+",
+  "@nsfw18": {
+    "description": "18+ tag Text to show in extensions list"
+  },
+  "numSelected": "{num} Selezionati",
+  "@numSelected": {
+    "description": "Title text to show the number of chapters selected in the Manga details screen and Updates screen",
+    "placeholders": {
+      "num": {
+        "example": "23",
+        "type": "int"
+      }
+    }
+  },
+  "obsolete": "Obsoleto",
+  "@obsolete": {
+    "description": "Text to show that the extension has become Obsolete"
+  },
+  "quickSearchCategoryManga": "Vai a Manga 'M' nella Categoria 'C'",
+  "@quickSearchCategoryManga": {
+    "description": "Quick Open Hint text for searching Manga M in Category C with prefill '#C/M'"
+  },
+  "quickSearchCategoryMangaChapter": "Vai al nome del capitolo \"CN\" dal manga \"M\" nella categoria \"C\"",
+  "@quickSearchCategoryMangaChapter": {
+    "description": "Quick Open Hint text for searching Chapter name CN from Manga M in Source S with prefill '#C/M:CN'"
+  },
+  "quickSearchContext": "Ricerca della query X (i risultati sono basati sul contesto dello schermo)",
+  "@quickSearchContext": {
+    "description": "Quick Open Hint text for query X"
+  },
+  "quickSearchSourceManga": "Ricerca del Manga 'M' in Fonte 'S'",
+  "@quickSearchSourceManga": {
+    "description": "Quick Open Hint text for searching Manga M in Source S with prefill '@S/M'"
+  },
+  "readerMagnifierSize": "Dimensioni della lente d'ingrandimento",
+  "@readerMagnifierSize": {
+    "description": "Slider title text for Reader Magnifier Size"
+  },
+  "readerNavigationLayout": "Layout di navigazione",
+  "@readerNavigationLayout": {
+    "description": "Popup title and Button text of Reader Navigation Layout popup"
+  },
+  "readerNavigationLayoutDefault": "Predefinito",
+  "@readerNavigationLayoutDefault": {
+    "description": "Radio button text for Reader Navigation Layout - Default"
+  },
+  "readerModeContinuousVertical": "Verticale continuo",
+  "@readerModeContinuousVertical": {
+    "description": "Radio button text for Reader Mode Type - Continuous Vertical"
+  },
+  "readerNavigationLayoutEdge": "Bordo",
+  "@readerNavigationLayoutEdge": {
+    "description": "Radio button text for Reader Navigation Layout - Edge"
+  },
+  "readerNavigationLayoutKindlish": "tipo Kindle",
+  "@readerNavigationLayoutKindlish": {
+    "description": "Radio button text for Reader Navigation Layout - Kindle-ish"
+  },
+  "readerModeSingleVertical": "Singolo verticale",
+  "@readerModeSingleVertical": {
+    "description": "Radio button text for Reader Mode Type - Single Vertical"
+  },
+  "readerModeWebtoon": "Webtoon",
+  "@readerModeWebtoon": {
+    "description": "Radio button text for Reader Mode Type - Webtoon"
+  },
+  "readerScrollAnimation": "Animazione di scorrimento",
+  "@readerScrollAnimation": {
+    "description": "Switch title to Disable scroll animation in reader screen"
+  },
+  "uninstall": "Disinstalla",
+  "@uninstall": {
+    "description": "Button text to Uninstall the extension"
+  },
+  "readerNavigationLayoutDisabled": "Disabilitato",
+  "@readerNavigationLayoutDisabled": {
+    "description": "Radio button text for Reader Navigation Layout - Disabled"
+  },
+  "readerNavigationLayoutRightAndLeft": "Destra e sinistra",
+  "@readerNavigationLayoutRightAndLeft": {
+    "description": "Radio button text for Reader Navigation Layout - Right And Left"
+  },
+  "readerOverlay": "Sovrapposizione iniziale del lettore",
+  "@readerOverlay": {
+    "description": "Toggle subtile text for Initial Reader Overlay"
+  },
+  "readerOverlaySubtitle": "Mostra il titolo e le impostazioni rapide quando si apre un capitolo",
+  "@readerOverlaySubtitle": {},
+  "readerVolumeTapInvert": "Invertire i tasti del volume",
+  "@readerVolumeTapInvert": {
+    "description": "Switch button text to invert Volume Tap "
+  },
+  "readerVolumeTapSubtitle": "Navigazione con i tasti del volume",
+  "@readerVolumeTapSubtitle": {
+    "description": "Switch button Subtitle text for Reader Page Navigation with Volume Tap"
+  },
+  "reddit": "Reddit",
+  "@reddit": {
+    "description": "Reddit app title"
+  },
+  "refresh": "Aggiorna",
+  "@refresh": {
+    "description": "Refresh button text"
+  },
+  "reset": "Reset",
+  "@reset": {
+    "description": "Button text of reset button in source filters"
+  },
+  "restoreBackupDescription": "Ripristina Tachidesk dal backup",
+  "@restoreBackupDescription": {
+    "description": "Button text description to create backup"
+  },
+  "restoreBackupTitle": "Ripristina backup",
+  "@restoreBackupTitle": {
+    "description": "Button text to create backup"
+  },
+  "restored": "Backup ripristinato!",
+  "@restored": {
+    "description": "Toast Text to show that the backup has been restored"
+  },
+  "resume": "Riprendere",
+  "@resume": {
+    "description": "Button Text to resume Chapter reading/downloading"
+  },
+  "restoring": "Ripristino del backup",
+  "@restoring": {
+    "description": "Toast Text to show that the backup is restoring"
+  },
+  "searchingForUpdates": "Ricerca degli aggiornamenti",
+  "@searchingForUpdates": {
+    "description": "Toast Text for searching for updates of the App/Server"
+  },
+  "serverPort": "Porta del Server",
+  "@serverPort": {
+    "description": "Popup title and Button text to update Server Port"
+  },
+  "sort": "Ordinamento",
+  "@sort": {
+    "description": "title of sort Tab across the app"
+  },
+  "today": "Oggi",
+  "@today": {
+    "description": "Today Text to show the release date of manga"
+  },
+  "unread": "Non letto",
+  "@unread": {
+    "description": "Checkbox text to unread bookmarked manga/chapters across app"
+  },
+  "sources": "Fonti",
+  "@sources": {
+    "description": "title of Sources Tab in Browse Screen"
+  },
+  "start": "Inizio",
+  "@start": {
+    "description": "Button text start reading the manga"
+  },
+  "themeModeDark": "Scuro",
+  "@themeModeDark": {
+    "description": "Radio button text for App theme - Dark"
+  },
+  "unknownManga": "Manga sconosciuto",
+  "@unknownManga": {
+    "description": "Text to show unknown manga in Manga details screen"
+  },
+  "uninstalling": "Disinstallazione",
+  "@uninstalling": {
+    "description": "Button text to show that the extension is uninstalling"
+  },
+  "updates": "Aggiornamenti",
+  "@updates": {
+    "description": "Screen title and Button text of Updates screen"
+  },
+  "themeModeLight": "Chiaro",
+  "@themeModeLight": {
+    "description": "Radio button text for App theme - Light"
+  },
+  "unknownAuthor": "Autore sconosciuto",
+  "@unknownAuthor": {
+    "description": "Text to show unknown author in Manga details screen"
+  },
+  "unknownSource": "Fonte sconosciuta",
+  "@unknownSource": {
+    "description": "Text to show unknown Source in Manga details screen"
+  },
+  "updateCompleted": "Aggiornamento completato",
+  "@updateCompleted": {
+    "description": "Button text to show that extension update is completed"
+  },
+  "update": "Aggiornamento",
+  "@update": {
+    "description": "Button text to update the extension"
+  },
+  "whatsNew": "Cosa c'è di nuovo?",
+  "@whatsNew": {
+    "description": "Button text to open whats new page of app in web"
+  }
+}

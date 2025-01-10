@@ -99,7 +99,7 @@
   "@missingExtension": {
     "description": "Group title to show the Missing Extensions when restoring Backup"
   },
-  "appTheme": "應用程式主題",
+  "appTheme": "應用主題",
   "@appTheme": {
     "description": "Popup title and Button text to change App Theme"
   },
@@ -904,5 +904,17 @@
   "remove": "移除",
   "@remove": {
     "description": "Remove Button text"
+  },
+  "isTrueBlack": "純黑",
+  "@isTrueBlack": {
+    "description": "Switch title to enable {} black theme"
+  },
+  "pinchToZoom": "收縮以縮放",
+  "@pinchToZoom": {
+    "description": "Switch title to enable pinch to zoom in reader screen"
+  },
+  "quickSearch": "快速搜索",
+  "@quickSearch": {
+    "description": "Screen title and Button text of Quick Search screen"
   }
 }
