@@ -5,6 +5,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:dio/dio.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../data/manga_book_repository.dart';
@@ -14,7 +15,7 @@ part 'reader_controller.g.dart';
 
 @riverpod
 FutureOr<Chapter?> chapter(
-  ChapterRef ref, {
+  Ref ref, {
   required int mangaId,
   required int chapterIndex,
 }) async {

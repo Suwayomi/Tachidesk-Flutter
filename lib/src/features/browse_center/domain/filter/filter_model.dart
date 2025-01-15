@@ -4,64 +4,55 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'dart:convert';
+import '../../../../graphql/__generated__/schema.schema.gql.dart';
+import '../../data/source_repository/graphql/queries/__generated__/source_filter_by_id.data.gql.dart';
 
-import 'package:freezed_annotation/freezed_annotation.dart';
+typedef Filter = GFilterFragment;
 
-import '../../../../utils/extensions/custom_extensions.dart';
-import '../filter_state/filter_state_model.dart';
+typedef FilterHeader = GPrimitiveFilterFragment__asHeaderFilter;
 
-part 'filter_model.freezed.dart';
-part 'filter_model.g.dart';
+typedef FilterSeparator = GPrimitiveFilterFragment__asSeparatorFilter;
 
-@freezed
-class Filter with _$Filter {
-  factory Filter({
-    String? type,
-    @JsonKey(readValue: Filter.filterFromJson, name: 'filter')
-    FilterState? filterState,
-  }) = _Filter;
+typedef FilterText = GPrimitiveFilterFragment__asTextFilter;
 
-  factory Filter.fromJson(Map<String, dynamic> json) => _$FilterFromJson(json);
+typedef FilterCheckBox = GPrimitiveFilterFragment__asCheckBoxFilter;
 
-  static Map<String, dynamic> filterFromJson(
-      Map<dynamic, dynamic> json, String str) {
-    final filter = json['filter'];
-    return {
-      'type': json['type'],
-      if (filter is Map<String, dynamic>) ...filter,
-    };
-  }
+typedef FilterTriState = GPrimitiveFilterFragment__asTriStateFilter;
 
-  static List<Map<String, dynamic>> filtersToJson(List<Filter> filters) {
-    final jsonFilter = <Map<String, dynamic>>[];
-    for (int i = 0; i < filters.length; i++) {
-      final map = Filter.customFilterToJson(filters[i], i);
-      if (map != null) jsonFilter.addAll(map);
+typedef FilterSort = GPrimitiveFilterFragment__asSortFilter;
+
+typedef FilterSelect = GPrimitiveFilterFragment__asSelectFilter;
+
+typedef FilterGroup = GFilterFragment__asGroupFilter;
+
+typedef TriState = GTriState;
+
+typedef FilterChange = GFilterChangeInputBuilder;
+
+typedef SortStateChange = GSortSelectionInputBuilder;
+
+typedef SortState = GPrimitiveFilterFragment__asSortFilter_sortState;
+
+extension TriStateExtension on GTriState {
+  bool? get toBool {
+    // static const GTriState IGNORE = _$gTriStateIGNORE;
+
+    // static const GTriState INCLUDE = _$gTriStateINCLUDE;
+
+    // static const GTriState EXCLUDE = _$gTriStateEXCLUDE;
+    if (this == GTriState.IGNORE) {
+      return null;
+    } else if (this == GTriState.INCLUDE) {
+      return true;
+    } else if (this == GTriState.EXCLUDE) {
+      return false;
     }
-    return jsonFilter;
+    throw Exception("State Not Found");
   }
 
-  static List<Map<String, dynamic>>? customFilterToJson(
-      Filter filter, int position) {
-    return switch (filter.filterState) {
-      FilterGroup(
-        state: List<Filter>? state,
-      ) =>
-        [
-          for (int i = 0; i < (state?.length).getValueOnNullOrNegative(); i++)
-            {
-              "position": position,
-              "state": json.encode(customFilterToJson(state![i], i)?.first),
-            },
-        ],
-      null => null,
-      _ => [
-          {
-            "position": position,
-            "state": json.encode(filter.filterState?.toJson()["state"])
-          }
-        ],
-    };
-  }
+  static GTriState fromBool(bool? value) => switch (value) {
+        true => GTriState.INCLUDE,
+        false => GTriState.EXCLUDE,
+        null => GTriState.IGNORE,
+      };
 }

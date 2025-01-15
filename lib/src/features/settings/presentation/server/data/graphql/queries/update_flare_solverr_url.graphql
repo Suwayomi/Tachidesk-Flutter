@@ -1,0 +1,9 @@
+# import '/src/features/settings/domain/settings/graphql/settings_fragment.graphql'
+
+mutation UpdateFlareSolverrUrl($flareSolverrUrl: String!) {
+  setSettings(input: {settings: {flareSolverrUrl: $flareSolverrUrl}}) {
+    settings {
+      ...SettingsFragment
+    }
+  }
+}

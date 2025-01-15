@@ -6,7 +6,6 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../constants/app_sizes.dart';
@@ -46,24 +45,24 @@ class MultiChaptersActionsBottomAppBar extends HookConsumerWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          if (selectedList.any((e) => e.bookmarked.ifNull()))
+          if (selectedList.any((e) => e.isBookmarked.ifNull()))
             MultiChaptersActionIcon(
-              icon: Icons.bookmark_remove_sharp,
+              icon: Icons.bookmark_remove_rounded,
               chapterList: chapterList,
               change: ChapterChange(isBookmarked: false),
               refresh: refresh,
             ),
-          if (selectedList.any((e) => !(e.bookmarked.ifNull())))
+          if (selectedList.any((e) => !(e.isBookmarked.ifNull())))
             MultiChaptersActionIcon(
-              icon: Icons.bookmark_add_sharp,
+              icon: Icons.bookmark_add_rounded,
               chapterList: chapterList,
               change: ChapterChange(isBookmarked: true),
               refresh: refresh,
             ),
           if (selectedList.isSingletonList && hasPreviousDone)
             SingleChapterActionIcon(
-              chapterIndex: selectedChapters.value[chapterList.first]!.index!,
-              mangaId: selectedChapters.value[chapterList.first]!.mangaId!,
+              chapterIndex: selectedChapters.value[chapterList.first]!.index,
+              mangaId: selectedChapters.value[chapterList.first]!.mangaId,
               imageIcon: ImageIcon(
                 Assets.icons.previousDone.provider(),
                 color: context.theme.cardTheme.color,
@@ -71,32 +70,32 @@ class MultiChaptersActionsBottomAppBar extends HookConsumerWidget {
               chapterPut: ChapterPut(markPrevRead: true),
               refresh: refresh,
             ),
-          if (selectedList.any((e) => !(e.read.ifNull())))
+          if (selectedList.any((e) => !(e.isRead.ifNull())))
             MultiChaptersActionIcon(
-              icon: Icons.done_all_sharp,
+              icon: Icons.done_all_rounded,
               chapterList: chapterList,
               change: ChapterChange(isRead: true, lastPageRead: 0),
               refresh: refresh,
             ),
-          if (selectedList.any((e) => e.read.ifNull()))
+          if (selectedList.any((e) => e.isRead.ifNull()))
             MultiChaptersActionIcon(
-              icon: Icons.remove_done_sharp,
+              icon: Icons.remove_done_rounded,
               chapterList: chapterList,
               change: ChapterChange(isRead: false),
               refresh: refresh,
             ),
-          if (selectedList.any((e) => !(e.downloaded.ifNull())))
+          if (selectedList.any((e) => !(e.isDownloaded.ifNull())))
             MultiChaptersActionIcon(
-              icon: Icons.download_sharp,
+              icon: Icons.download_rounded,
               chapterList: <int>[
                 for (var e in selectedList)
-                  if (!(e.downloaded.ifNull(true))) (e.id!)
+                  if (!(e.isDownloaded.ifNull(true))) (e.id)
               ],
               refresh: refresh,
             ),
-          if (selectedList.any((e) => e.downloaded.ifNull()))
+          if (selectedList.any((e) => e.isDownloaded.ifNull()))
             MultiChaptersActionIcon(
-              icon: Icons.delete_sharp,
+              icon: Icons.delete_rounded,
               chapterList: chapterList,
               change: ChapterChange(delete: true),
               refresh: refresh,

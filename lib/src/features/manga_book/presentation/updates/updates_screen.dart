@@ -93,11 +93,11 @@ class UpdatesScreen extends HookConsumerWidget {
                 icon: const Icon(Icons.close_rounded),
               ),
               title: Text(
-                context.l10n!.numSelected(selectedChapters.value.length),
+                context.l10n.numSelected(selectedChapters.value.length),
               ),
             )
           : AppBar(
-              title: Text(context.l10n!.updates),
+              title: Text(context.l10n.updates),
               actions: const [UpdateStatusPopupMenu()],
             ),
       bottomSheet: selectedChapters.value.isNotEmpty
@@ -118,24 +118,25 @@ class UpdatesScreen extends HookConsumerWidget {
             firstPageProgressIndicatorBuilder: (context) =>
                 const CenterSorayomiShimmerIndicator(),
             firstPageErrorIndicatorBuilder: (context) => Emoticons(
-              text: controller.error.toString(),
+              title: controller.error.toString(),
               button: TextButton(
                 onPressed: () => controller.refresh(),
-                child: Text(context.l10n!.retry),
+                child: Text(context.l10n.retry),
               ),
             ),
             noItemsFoundIndicatorBuilder: (context) => Emoticons(
-              text: context.l10n!.noUpdatesFound,
+              title: context.l10n.noUpdatesFound,
               button: TextButton(
                 onPressed: () => controller.refresh(),
-                child: Text(context.l10n!.refresh),
+                child: Text(context.l10n.refresh),
               ),
             ),
             itemBuilder: (context, item, index) {
               int? previousDate;
               try {
-                previousDate =
-                    controller.itemList?[index - 1].chapter?.fetchedAt;
+                previousDate = int.tryParse(
+                    controller.itemList?[index - 1].chapter?.fetchedAt.value ??
+                        "");
               } catch (e) {
                 previousDate = null;
               }
@@ -147,10 +148,10 @@ class UpdatesScreen extends HookConsumerWidget {
                   } else {
                     final chapter = ref
                         .refresh(chapterProvider(
-                          mangaId: item.manga!.id!,
-                          chapterIndex: item.chapter!.index!,
+                          mangaId: item.manga!.id,
+                          chapterIndex: item.chapter!.index,
                         ))
-                        .valueOrToast(ref.read(toastProvider(context)));
+                        .valueOrToast(ref.read(toastProvider));
                     try {
                       controller.itemList = [...?controller.itemList]
                         ..replaceRange(index, index + 1, [
@@ -164,15 +165,16 @@ class UpdatesScreen extends HookConsumerWidget {
                   }
                 },
                 isSelected:
-                    selectedChapters.value.containsKey(item.chapter!.id!),
+                    selectedChapters.value.containsKey(item.chapter!.id),
                 canTapSelect: selectedChapters.value.isNotEmpty,
                 toggleSelect: (Chapter val) {
                   if ((val.id).isNull) return;
                   selectedChapters.value =
-                      (selectedChapters.value.toggleKey(val.id!, val));
+                      (selectedChapters.value.toggleKey(val.id, val));
                 },
               );
-              if ((item.chapter?.fetchedAt).isSameDayAs(previousDate)) {
+              if ((int.tryParse(item.chapter?.fetchedAt.value ?? ""))
+                  .isSameDayAs(previousDate)) {
                 return chapterTile;
               } else {
                 return Column(
@@ -180,7 +182,8 @@ class UpdatesScreen extends HookConsumerWidget {
                   children: [
                     ListTile(
                       title: Text(
-                        item.chapter!.fetchedAt.toDaysAgoFromSeconds(context),
+                        int.tryParse(item.chapter?.fetchedAt.value ?? "")
+                            .toDaysAgoFromSeconds(context),
                       ),
                     ),
                     chapterTile,

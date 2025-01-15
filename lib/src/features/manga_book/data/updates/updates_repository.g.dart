@@ -6,7 +6,7 @@ part of 'updates_repository.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$updatesRepositoryHash() => r'7137ec4e542f1b7b9e5f9d74abcc570b100530d0';
+String _$updatesRepositoryHash() => r'271b48a746e3ae29ecb4615f7f207b8ea15301aa';
 
 /// See also [updatesRepository].
 @ProviderFor(updatesRepository)
@@ -21,8 +21,10 @@ final updatesRepositoryProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef UpdatesRepositoryRef = AutoDisposeProviderRef<UpdatesRepository>;
-String _$updateSummaryHash() => r'cd04991640fe6971183b65daf9e45e9445205800';
+String _$updateSummaryHash() => r'a066bf3f698ef9b13c3aa1ce12fa326ced8688cd';
 
 /// See also [updateSummary].
 @ProviderFor(updateSummary)
@@ -36,6 +38,8 @@ final updateSummaryProvider = AutoDisposeFutureProvider<UpdateStatus?>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef UpdateSummaryRef = AutoDisposeFutureProviderRef<UpdateStatus?>;
 String _$updatesSocketHash() => r'714e545daee4dc279babf3b72e9c1c5a4f8934e5';
 
@@ -54,4 +58,4 @@ final updatesSocketProvider =
 
 typedef _$UpdatesSocket = AutoDisposeStreamNotifier<UpdateStatus>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

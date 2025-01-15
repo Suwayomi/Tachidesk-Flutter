@@ -1,0 +1,9 @@
+# import '/src/features/settings/domain/settings/graphql/settings_fragment.graphql'
+
+mutation UpdateBackupTime($backupTime: String = "12:00") {
+  setSettings(input: {settings: {backupTime: $backupTime}}) {
+    settings {
+      ...SettingsFragment
+    }
+  }
+}

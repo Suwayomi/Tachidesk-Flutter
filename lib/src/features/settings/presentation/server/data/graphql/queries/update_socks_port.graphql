@@ -1,0 +1,9 @@
+# import '/src/features/settings/domain/settings/graphql/settings_fragment.graphql'
+
+mutation UpdateSocksPort($socksProxyPort: String!) {
+  setSettings(input: {settings: {socksProxyPort: $socksProxyPort}}){
+    settings {
+      ...SettingsFragment
+    }
+  }
+}

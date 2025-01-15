@@ -76,7 +76,7 @@ class MangaCoverGridTile extends StatelessWidget {
                   contentPadding: const EdgeInsets.symmetric(horizontal: 8),
                   dense: true,
                   title: Text(
-                    (manga.title ?? manga.author ?? ""),
+                    manga.title,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
                   ),
@@ -92,7 +92,8 @@ class MangaCoverGridTile extends StatelessWidget {
                     boxShadow: showDarkOverlay
                         ? [
                             BoxShadow(
-                              color: context.theme.canvasColor.withOpacity(.5),
+                              color: context.theme.canvasColor
+                                  .withValues(alpha: .5),
                             )
                           ]
                         : null,
@@ -101,9 +102,9 @@ class MangaCoverGridTile extends StatelessWidget {
                             begin: Alignment.center,
                             end: Alignment.bottomCenter,
                             colors: [
-                              context.theme.canvasColor.withOpacity(0),
-                              context.theme.canvasColor.withOpacity(0.4),
-                              context.theme.canvasColor.withOpacity(0.9),
+                              context.theme.canvasColor.withValues(alpha: 0),
+                              context.theme.canvasColor.withValues(alpha: 0.4),
+                              context.theme.canvasColor.withValues(alpha: 0.9),
                             ],
                           )
                         : null,

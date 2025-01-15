@@ -5,108 +5,103 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../../../../constants/app_sizes.dart';
+import '../../../../../graphql/__generated__/schema.schema.gql.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/search_field.dart';
 import '../../../../../widgets/sort_list_tile.dart';
 import '../../../domain/filter/filter_model.dart';
-import '../../../domain/filter_state/filter_state_model.dart';
 
 class FilterToWidget extends StatelessWidget {
   const FilterToWidget({
     super.key,
     required this.filter,
+    required this.currentChanges,
     required this.onChanged,
   });
   final Filter filter;
-  final ValueChanged<Filter> onChanged;
-
-  void onChangedFilterCopyWith<T extends FilterState>(T filterState) =>
-      onChanged(filter.copyWith(filterState: filterState));
+  final List<FilterChange> currentChanges;
+  final ValueChanged<List<FilterChange>> onChanged;
 
   @override
   Widget build(BuildContext context) {
-    FilterState? filterState = filter.filterState;
-    return switch (filterState) {
+    return switch (filter) {
       FilterHeader(name: String? name) => name.isNotBlank
           ? ListTile(
-              title: Text(name!),
+              title: Text(name),
               dense: true,
             )
           : const SizedBox.shrink(),
       FilterSeparator() => const Divider(),
       FilterText(
         name: String? name,
-        state: String? state,
+        textState: String? state,
       ) =>
         SearchField(
           autofocus: false,
-          onChanged: (val) =>
-              onChangedFilterCopyWith(filterState.copyWith(state: val)),
+          onChanged: (val) => onChanged([FilterChange()..textState = val]),
           hintText: name,
-          initialText: state,
+          initialText: currentChanges.firstOrNull?.textState ?? state,
         ),
       FilterCheckBox(
         name: String? name,
-        state: bool? state,
+        checkBoxState: bool? state,
       ) =>
         CheckboxListTile(
-          value: state.ifNull(),
-          title: Text(name ?? ""),
+          value: currentChanges.firstOrNull?.checkBoxState ?? state.ifNull(),
+          title: Text(name),
           onChanged: (value) =>
-              onChangedFilterCopyWith(filterState.copyWith(state: value)),
+              onChanged([FilterChange()..checkBoxState = value]),
           controlAffinity: ListTileControlAffinity.leading,
         ),
       FilterTriState(
         name: String? name,
-        state: int? state,
+        tristate: GTriState state,
       ) =>
         CheckboxListTile(
-          value: state.toBool,
-          onChanged: (value) =>
-              onChangedFilterCopyWith(filterState.copyWith(state: value.toInt)),
-          title: Text(name ?? ""),
+          value: currentChanges.firstOrNull?.triState?.toBool ?? state.toBool,
+          onChanged: (value) => onChanged(
+              [FilterChange()..triState = TriStateExtension.fromBool(value)]),
+          title: Text(name),
           controlAffinity: ListTileControlAffinity.leading,
           tristate: true,
         ),
       FilterSort(
-        name: String? name,
-        state: SortState? state,
-        values: List<String>? values,
+        name: String name,
+        sortState: SortState state,
+        displayValues: List<String> values,
       ) =>
         ExpansionTile(
           title: Text(
-            name ?? "",
+            name,
             style: context.textTheme.labelLarge,
           ),
           children: [
-            for (int i = 0;
-                i < (values?.length).getValueOnNullOrNegative();
-                i++)
+            for (int i = 0; i < (values.length).getValueOnNullOrNegative(); i++)
               SortListTile(
                 key: ValueKey("$name-$i"),
-                ascending: (state?.ascending).ifNull(true),
-                title: Text(values != null ? values[i] : ""),
-                selected: i == state?.index,
+                ascending: (currentChanges.firstOrNull?.sortState.ascending ??
+                        state.ascending)
+                    .ifNull(true),
+                title: Text(values[i]),
+                selected: i == state.index,
                 onChanged: (value) {
-                  if (filterState.copyWith.state == null) return;
-                  onChangedFilterCopyWith(
-                    filterState.copyWith.state!(ascending: value),
-                  );
+                  final sortChange = SortStateChange()..ascending = value;
+                  onChanged([FilterChange()..sortState = sortChange]);
                 },
                 onSelected: () {
-                  if (filterState.copyWith.state == null) return;
-                  onChangedFilterCopyWith(
-                      filterState.copyWith.state!(index: i));
+                  final sortChange = SortStateChange()..ascending = true;
+                  onChanged([FilterChange()..sortState = sortChange]);
                 },
               )
           ],
         ),
       FilterSelect(
-        name: String? name,
-        state: int? state,
-        displayValues: List<String>? displayValues,
+        name: String name,
+        selectState: int state,
+        displayValues: List<String> displayValues,
       ) =>
         Row(
           mainAxisSize: MainAxisSize.min,
@@ -114,7 +109,7 @@ class FilterToWidget extends StatelessWidget {
             Expanded(
               child: ListTile(
                 title: Text(
-                  name ?? "",
+                  name,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -125,26 +120,26 @@ class FilterToWidget extends StatelessWidget {
                 child: Padding(
                   padding: KEdgeInsets.h16.size,
                   child: DropdownButton(
-                    icon: const Icon(Icons.keyboard_arrow_down),
+                    icon: const Icon(Icons.keyboard_arrow_down_rounded),
                     isExpanded: true,
-                    value: state,
-                    hint: Text(name ?? ""),
+                    value: currentChanges.firstOrNull?.selectState ?? state,
+                    hint: Text(name),
                     items: List.generate(
-                      (displayValues?.length).getValueOnNullOrNegative(),
+                      (displayValues.length).getValueOnNullOrNegative(),
                       (index) => index,
                     )
                         .map((e) => DropdownMenuItem(
                               value: e,
                               child: Text(
-                                displayValues![e],
+                                displayValues[e],
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                                 style: context.textTheme.bodySmall,
                               ),
                             ))
                         .toList(),
-                    onChanged: (value) => onChangedFilterCopyWith(
-                        filterState.copyWith(state: value)),
+                    onChanged: (value) =>
+                        onChanged([FilterChange()..selectState = value]),
                   ),
                 ),
               ),
@@ -152,28 +147,83 @@ class FilterToWidget extends StatelessWidget {
           ],
         ),
       FilterGroup(
-        name: String? name,
-        state: List<Filter>? state,
+        name: String name,
+        groupState: List<Filter> state,
       ) =>
-        ExpansionTile(
-          title: Text(
-            name ?? "",
-            style: context.textTheme.labelLarge,
-          ),
-          children: [
-            for (int i = 0; i < (state?.length).getValueOnNullOrNegative(); i++)
-              FilterToWidget(
-                key: ValueKey("$name-$i"),
-                filter: state![i],
-                onChanged: (groupFilter) => onChangedFilterCopyWith(
-                  filterState.copyWith(
-                    state: [...state]..replaceRange(i, i + 1, [groupFilter]),
-                  ),
-                ),
-              ),
-          ],
+        FilterGroupWidget(
+          name: name,
+          filters: state,
+          currentChanges: currentChanges,
+          onChanged: onChanged,
         ),
-      null => const SizedBox.shrink(),
+      Filter() => throw UnimplementedError(),
     };
+  }
+}
+
+class FilterGroupWidget extends HookWidget {
+  const FilterGroupWidget({
+    super.key,
+    required this.name,
+    required this.filters,
+    required this.currentChanges,
+    required this.onChanged,
+  });
+
+  final String name;
+  final List<Filter> filters;
+  final List<FilterChange> currentChanges;
+  final ValueChanged<List<FilterChange>> onChanged;
+
+  void onChangedWrapper(Map<int, List<FilterChange>> filterChangeMap) {
+    final filterChanges = filterChangeMap.values.fold(
+      <FilterChange>[],
+      (prev, curr) {
+        prev.addAll(curr);
+        return prev;
+      },
+    );
+    onChanged(filterChanges
+        .map((groupFilter) => FilterChange()..groupChange = groupFilter)
+        .toList());
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final filterChangeMap = useState<Map<int, List<FilterChange>>>({});
+
+    useEffect(() {
+      Map<int, List<FilterChange>> changeMap = {};
+      for (var change in currentChanges) {
+        if (change.groupChange.position != null) continue;
+        changeMap[change.groupChange.position!] = [
+          ...?changeMap[change.groupChange.position!],
+          change.groupChange,
+        ];
+      }
+      filterChangeMap.value = changeMap;
+      return null;
+    }, [currentChanges]);
+
+    return ExpansionTile(
+      title: Text(name, style: context.textTheme.labelLarge),
+      children: [
+        for (int index = 0; index < filters.length; index++)
+          FilterToWidget(
+            key: ValueKey("$name-$index"),
+            filter: filters[index],
+            currentChanges: filterChangeMap.value[index] ?? [],
+            onChanged: (groupFilter) {
+              for (var filter in groupFilter) {
+                filter.update((newFilter) => newFilter.position = index);
+              }
+              onChangedWrapper({
+                ...filterChangeMap.value,
+                index: groupFilter,
+              });
+            },
+          ),
+      ],
+    );
   }
 }

@@ -4,33 +4,54 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import 'package:built_collection/built_collection.dart';
 import 'package:dio/dio.dart';
+import 'package:ferry/ferry.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../constants/endpoints.dart';
-import '../../../../constants/enum.dart';
 import '../../../../global_providers/global_providers.dart';
+import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/storage/dio/dio_client.dart';
 import '../../domain/filter/filter_model.dart';
 import '../../domain/manga_page/manga_page.dart';
 import '../../domain/source/source_model.dart';
 import '../../domain/source_preference/source_preference.dart';
+import 'graphql/query.dart';
 
 part 'source_repository.g.dart';
 
 class SourceRepository {
   final DioClient dioClient;
+  final Client ferryClient;
 
-  SourceRepository(this.dioClient);
+  SourceRepository(this.dioClient, this.ferryClient);
 
-  Future<List<Source>?> getSourceList({CancelToken? cancelToken}) async =>
-      (await dioClient.get<List<Source>, Source>(
-        SourceUrl.sourceList,
-        decoder: (e) =>
-            e is Map<String, dynamic> ? Source.fromJson(e) : Source(),
-        cancelToken: cancelToken,
-      ))
-          .data;
+  Stream<List<Source>?> getSourceList({CancelToken? cancelToken}) =>
+      (ferryClient.fetch(
+        SourceQuery.getSourceList(),
+        (data) => data.sources.nodes.asList(),
+      ));
+
+  Future<MangaPage?> fetchSourceManga({
+    required String sourceId,
+    required SourceType sourceType,
+    required int page,
+    String? query,
+    List<FilterChange>? filters,
+  }) =>
+      ferryClient
+          .fetch(
+            SourceQuery.fetchSourceManga(
+              sourceId,
+              sourceType,
+              query,
+              filters,
+              page,
+            ),
+            (data) => data.fetchSourceManga,
+          )
+          .first;
 
   Future<MangaPage?> getMangaList({
     required String sourceId,
@@ -40,11 +61,10 @@ class SourceRepository {
     List<Map<String, dynamic>>? filter,
     CancelToken? cancelToken,
   }) async {
-    if (sourceType != SourceType.filter) {
+    if (sourceType != SourceType.SEARCH) {
       return (await dioClient.get<MangaPage, MangaPage?>(
         SourceUrl.getMangaList(sourceId, sourceType.name, pageNum),
-        decoder: (e) =>
-            e is Map<String, dynamic> ? MangaPage.fromJson(e) : null,
+        decoder: (e) => null, //TODO: Implement decoder
         cancelToken: cancelToken,
       ))
           .data;
@@ -58,48 +78,29 @@ class SourceRepository {
           "searchTerm": query ?? "",
           "filter": [...?filter],
         },
-        decoder: (e) =>
-            e is Map<String, dynamic> ? MangaPage.fromJson(e) : null,
+        decoder: (e) => null,
         cancelToken: cancelToken,
       ))
           .data;
     }
   }
 
-  Future<List<Filter>?> getFilterList({
-    required String sourceId,
-    CancelToken? cancelToken,
-  }) async =>
-      (await dioClient.get<List<Filter>, Filter>(
-        SourceUrl.filters(sourceId),
-        decoder: (e) =>
-            e is Map<String, dynamic> ? Filter.fromJson(e) : Filter(),
-        cancelToken: cancelToken,
-      ))
-          .data;
+  Stream<Source?> getSource(String sourceId) => ferryClient.fetch(
+      SourceQuery.getSourceById(sourceId), (data) => data.source);
 
-  Future<Source?> getSource(
-          {required String sourceId, CancelToken? cancelToken}) async =>
-      (await dioClient.get<Source, Source>(
-        SourceUrl.withId(sourceId),
-        decoder: (e) =>
-            e is Map<String, dynamic> ? Source.fromJson(e) : Source(),
-        cancelToken: cancelToken,
-      ))
-          .data;
+  Stream<BuiltList<SourcePreference>?> getSourcePreference(String sourceId) =>
+      ferryClient.fetch(SourceQuery.getSourcePreferenceById(sourceId),
+          (data) => data.source.preferences);
 
-  Future<List<SourcePreference>?> getPreferenceList({
-    required String sourceId,
-    CancelToken? cancelToken,
-  }) async =>
-      (await dioClient.get<List<SourcePreference>, SourcePreference>(
-        SourceUrl.preferences(sourceId),
-        decoder: (e) => e is Map<String, dynamic>
-            ? SourcePreference.fromJson(e)
-            : SourcePreference(),
-        cancelToken: cancelToken,
-      ))
-          .data;
+  Stream<BuiltList<Filter>?> getSourceFilter(String sourceId) =>
+      ferryClient.fetch(SourceQuery.getSourceFilterById(sourceId),
+          (data) => data.source.filters);
+
+  Future<void> updateSourcePreferenceById(
+          String sourceId, SourcePreferenceChange change) =>
+      ferryClient
+          .fetch(SourceQuery.updateSourcePreferences(sourceId, change))
+          .first;
 
   Future<void> updatePreferenceList({
     required String sourceId,
@@ -115,5 +116,5 @@ class SourceRepository {
 }
 
 @riverpod
-SourceRepository sourceRepository(ref) =>
-    SourceRepository(ref.watch(dioClientKeyProvider));
+SourceRepository sourceRepository(ref) => SourceRepository(
+    ref.watch(dioClientKeyProvider), ref.watch(ferryClientProvider));

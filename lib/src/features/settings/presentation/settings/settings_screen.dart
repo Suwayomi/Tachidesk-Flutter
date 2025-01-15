@@ -16,44 +16,49 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.l10n!.settings),
+        title: Text(context.l10n.settings),
       ),
       body: ListView(
         children: [
           ListTile(
-            title: Text(context.l10n!.general),
+            title: Text(context.l10n.general),
             leading: const Icon(Icons.tune_rounded),
-            onTap: () => const GeneralSettingsRoute().push(context),
+            onTap: () => const GeneralSettingsRoute().go(context),
           ),
           ListTile(
-            title: Text(context.l10n!.appearance),
+            title: Text(context.l10n.appearance),
             leading: const Icon(Icons.color_lens_rounded),
-            onTap: () => const AppearanceSettingsRoute().push(context),
+            onTap: () => const AppearanceSettingsRoute().go(context),
           ),
           ListTile(
-            title: Text(context.l10n!.library),
+            title: Text(context.l10n.library),
             leading: const Icon(Icons.collections_bookmark_rounded),
-            onTap: () => const LibrarySettingsRoute().push(context),
+            onTap: () => const LibrarySettingsRoute().go(context),
           ),
           ListTile(
-            title: Text(context.l10n!.reader),
+            title: Text(context.l10n.downloads),
+            leading: const Icon(Icons.download_rounded),
+            onTap: () => const DownloadsSettingsRoute().go(context),
+          ),
+          ListTile(
+            title: Text(context.l10n.reader),
             leading: const Icon(Icons.chrome_reader_mode_rounded),
-            onTap: () => const ReaderSettingsRoute().push(context),
+            onTap: () => const ReaderSettingsRoute().go(context),
           ),
           ListTile(
-            title: Text(context.l10n!.browse),
+            title: Text(context.l10n.browse),
             leading: const Icon(Icons.explore_rounded),
-            onTap: () => const BrowseSettingsRoute().push(context),
+            onTap: () => const BrowseSettingsRoute().go(context),
           ),
           ListTile(
-            title: Text(context.l10n!.backup),
+            title: Text(context.l10n.backup),
             leading: const Icon(Icons.settings_backup_restore_rounded),
-            onTap: () => const BackupRoute().push(context),
+            onTap: () => const BackupRoute().go(context),
           ),
           ListTile(
-            title: Text(context.l10n!.server),
+            title: Text(context.l10n.server),
             leading: const Icon(Icons.computer_rounded),
-            onTap: () => const ServerSettingsRoute().push(context),
+            onTap: () => const ServerSettingsRoute().go(context),
           ),
         ],
       ),

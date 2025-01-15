@@ -1,0 +1,9 @@
+# import '/src/features/settings/domain/settings/graphql/settings_fragment.graphql'
+
+mutation UpdateLocalSourcePath($localSourcePath: String!) {
+  setSettings(input: {settings: {localSourcePath: $localSourcePath}}) {
+    settings {
+      ...SettingsFragment
+    }
+  }
+}

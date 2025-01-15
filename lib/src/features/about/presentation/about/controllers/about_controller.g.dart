@@ -6,11 +6,11 @@ part of 'about_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$aboutHash() => r'71e0d6115e3d5baeb6cd30cea233be2cba2142bb';
+String _$aboutHash() => r'009cada3daaab584c902ff5c2f0d84999d29b78e';
 
 /// See also [about].
 @ProviderFor(about)
-final aboutProvider = AutoDisposeFutureProvider<About?>.internal(
+final aboutProvider = AutoDisposeStreamProvider<AboutDto?>.internal(
   about,
   name: r'aboutProvider',
   debugGetCreateSourceHash:
@@ -19,7 +19,9 @@ final aboutProvider = AutoDisposeFutureProvider<About?>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef AboutRef = AutoDisposeFutureProviderRef<About?>;
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef AboutRef = AutoDisposeStreamProviderRef<AboutDto?>;
 String _$packageInfoHash() => r'a5025c8498b8f2eacf55450228619ff1477adc05';
 
 /// See also [packageInfo].
@@ -33,6 +35,8 @@ final packageInfoProvider = AutoDisposeProvider<PackageInfo>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef PackageInfoRef = AutoDisposeProviderRef<PackageInfo>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

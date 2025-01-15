@@ -9,14 +9,13 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../../../../../constants/app_sizes.dart';
-
 import '../../../../../routes/router_config.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/custom_circular_progress_indicator.dart';
 import '../../../../../widgets/emoticons.dart';
 import '../../../../../widgets/manga_cover/grid/manga_cover_grid_tile.dart';
 import '../../../../manga_book/domain/manga/manga_model.dart';
-import '../../../../settings/presentation/appearance/widgets/grid_cover_min_width.dart';
+import '../../../../settings/presentation/appearance/widgets/grid_cover_width_slider/grid_cover_width_slider.dart';
 import '../../../domain/source/source_model.dart';
 
 class SourceMangaGridView extends ConsumerWidget {
@@ -24,11 +23,15 @@ class SourceMangaGridView extends ConsumerWidget {
     super.key,
     required this.toggleFavorite,
     required this.controller,
+    required this.sourceId,
+    required this.sourceType,
     this.source,
   });
   final Future<AsyncValue?> Function(Manga) toggleFavorite;
   final PagingController<int, Manga> controller;
   final Source? source;
+  final String sourceId;
+  final SourceType sourceType;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -40,35 +43,34 @@ class SourceMangaGridView extends ConsumerWidget {
         newPageProgressIndicatorBuilder: (context) =>
             const CenterSorayomiShimmerIndicator(),
         firstPageErrorIndicatorBuilder: (context) => Emoticons(
-          text: controller.error.toString(),
+          title: controller.error.toString(),
           button: TextButton(
             onPressed: () => controller.refresh(),
-            child: Text(context.l10n!.retry),
+            child: Text(context.l10n.retry),
           ),
         ),
         noItemsFoundIndicatorBuilder: (context) => Emoticons(
-          text: context.l10n!.noMangaFound,
+          title: context.l10n.noMangaFound,
           button: TextButton(
             onPressed: () => controller.refresh(),
-            child: Text(context.l10n!.refresh),
+            child: Text(context.l10n.refresh),
           ),
         ),
         itemBuilder: (context, item, index) => MangaCoverGridTile(
-          manga: item.copyWith(source: source),
+          manga: item,
           showDarkOverlay: item.inLibrary.ifNull(),
           onLongPress: () async {
             final value = await toggleFavorite(item);
             if (value == null) return;
             if (value is! AsyncError) {
               final items = [...?controller.itemList];
-              items[index] = item.copyWith(inLibrary: !item.inLibrary.ifNull());
+              //TODO: Implement copyWith
+              // items[index] = item.copyWith(inLibrary: !item.inLibrary.ifNull());
               controller.itemList = items;
             }
           },
           onPressed: () {
-            if (item.id != null) {
-              MangaRoute(mangaId: item.id!).push(context);
-            }
+            MangaRoute(mangaId: item.id).push(context);
           },
         ),
       ),

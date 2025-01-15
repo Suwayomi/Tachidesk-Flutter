@@ -20,21 +20,17 @@ class ClipboardListTile extends ConsumerWidget {
   final String title;
   final String? value;
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return ListTile(
-      title: Text(title),
-      subtitle: value.isNotBlank ? Text(value!) : null,
-      onTap: value.isNotBlank
-          ? () {
-              final msg = "$title: $value";
-              Clipboard.setData(
-                ClipboardData(text: msg),
-              );
-              ref
-                  .read(toastProvider(context))
-                  .instantShow(context.l10n!.copyMsg(msg));
-            }
-          : null,
-    );
-  }
+  Widget build(BuildContext context, WidgetRef ref) => ListTile(
+        title: Text(title),
+        subtitle: value.isNotBlank ? Text(value!) : null,
+        onTap: value.isNotBlank
+            ? () {
+                final msg = "$title: $value";
+                Clipboard.setData(ClipboardData(text: msg));
+                ref
+                    .read(toastProvider)
+                    ?.show(context.l10n.copyMsg(msg), instantShow: true);
+              }
+            : null,
+      );
 }

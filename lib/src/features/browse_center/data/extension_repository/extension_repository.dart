@@ -4,89 +4,59 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:dio/dio.dart';
-
+import 'package:ferry/ferry.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:http/http.dart' as http;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../../constants/endpoints.dart';
 import '../../../../global_providers/global_providers.dart';
-
 import '../../../../utils/extensions/custom_extensions.dart';
-import '../../../../utils/storage/dio/dio_client.dart';
 import '../../domain/extension/extension_model.dart';
+import 'graphql/query.dart';
 
 part 'extension_repository.g.dart';
 
 class ExtensionRepository {
-  final DioClient dioClient;
+  final Client ferryClient;
 
-  ExtensionRepository(this.dioClient);
+  ExtensionRepository(this.ferryClient);
 
   Future<void> installExtensionFile(
     BuildContext context, {
     PlatformFile? file,
-    CancelToken? cancelToken,
   }) async {
-    if ((file?.path).isBlank) {
-      throw context.l10n!.errorFilePick;
+    if ((file?.name).isBlank) {
+      throw context.l10n.errorFilePick;
     }
     if (!(file!.name.endsWith('.apk'))) {
-      throw context.l10n!.errorFilePickUnknownExtension(".apk");
+      throw context.l10n.errorFilePickUnknownExtension(".apk");
     }
-    return (file.path).isNotBlank
-        ? (await dioClient.post(
-            ExtensionUrl.installFile,
-            data: FormData.fromMap({
-              'file': MultipartFile.fromFileSync(
-                file.path!,
-                filename: file.name,
-              )
-            }),
-            cancelToken: cancelToken,
-          ))
-            .data
-        : null;
+    return (ferryClient.fetch(
+      ExtensionQuery.installExternalExtension(
+          await http.MultipartFile.fromPath("extensionFile", file.path!)),
+    )).first;
   }
 
-  Future<void> installExtension(
-    String pkgName, {
-    CancelToken? cancelToken,
-  }) =>
-      dioClient.get(
-        ExtensionUrl.installPkg(pkgName),
-        cancelToken: cancelToken,
-      );
+  Future<void> installExtension(String pkgName) => (ferryClient
+          .fetch(ExtensionQuery.updateExtension(pkgName, install: true)))
+      .first;
 
-  Future<void> uninstallExtension(
-    String pkgName, {
-    CancelToken? cancelToken,
-  }) =>
-      dioClient.get(
-        ExtensionUrl.uninstallPkg(pkgName),
-        cancelToken: cancelToken,
-      );
+  Future<void> uninstallExtension(String pkgName) => (ferryClient
+          .fetch(ExtensionQuery.updateExtension(pkgName, uninstall: true)))
+      .first;
 
-  Future<void> updateExtension(
-    String pkgName, {
-    CancelToken? cancelToken,
-  }) =>
-      dioClient.get(
-        ExtensionUrl.updatePkg(pkgName),
-        cancelToken: cancelToken,
-      );
+  Future<void> updateExtension(String pkgName) =>
+      (ferryClient.fetch(ExtensionQuery.updateExtension(pkgName, update: true)))
+          .first;
 
-  Future<List<Extension>?> getExtensionList({CancelToken? cancelToken}) async =>
-      (await dioClient.get<List<Extension>, Extension>(
-        ExtensionUrl.list,
-        decoder: (e) =>
-            e is Map<String, dynamic> ? Extension.fromJson(e) : Extension(),
-        cancelToken: cancelToken,
-      ))
-          .data;
+  Stream<List<Extension>?> getExtensionListStream() => (ferryClient.fetch(
+        ExtensionQuery.extensionList(),
+        (data) => data.fetchExtensions?.extensions.toList(),
+      ));
 }
 
 @riverpod
-ExtensionRepository extensionRepository(ExtensionRepositoryRef ref) =>
-    ExtensionRepository(ref.watch(dioClientKeyProvider));
+ExtensionRepository extensionRepository(Ref ref) =>
+    ExtensionRepository(ref.watch(ferryClientProvider));

@@ -9,11 +9,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../constants/db_keys.dart';
 import '../../../../../constants/enum.dart';
-
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/custom_checkbox_list_tile.dart';
 import '../../../../../widgets/manga_cover/providers/manga_cover_providers.dart';
-import '../../../../../widgets/radio_list_popup.dart';
+import '../../../../../widgets/popup_widgets/radio_list_popup.dart';
 import '../controller/library_controller.dart';
 
 class LibraryMangaDisplay extends ConsumerWidget {
@@ -26,7 +25,7 @@ class LibraryMangaDisplay extends ConsumerWidget {
       children: [
         ListTile(
           title: Text(
-            context.l10n!.displayMode,
+            context.l10n.displayMode,
             style: context.textTheme.labelLarge,
           ),
           dense: true,
@@ -40,19 +39,19 @@ class LibraryMangaDisplay extends ConsumerWidget {
         ),
         ListTile(
           title: Text(
-            context.l10n!.badges,
+            context.l10n.badges,
             style: context.textTheme.labelLarge,
           ),
           dense: true,
         ),
         CustomCheckboxListTile(
-          title: context.l10n!.downloaded,
+          title: context.l10n.downloaded,
           provider: downloadedBadgeProvider,
           onChanged: ref.read(downloadedBadgeProvider.notifier).update,
           tristate: false,
         ),
         CustomCheckboxListTile(
-          title: context.l10n!.unread,
+          title: context.l10n.unread,
           provider: unreadBadgeProvider,
           onChanged: ref.read(unreadBadgeProvider.notifier).update,
           tristate: false,

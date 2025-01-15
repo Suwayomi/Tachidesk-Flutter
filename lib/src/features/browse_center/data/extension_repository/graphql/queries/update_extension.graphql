@@ -1,0 +1,12 @@
+# import '/src/features/browse_center/domain/extension/graphql/extension_fragment.graphql'
+
+mutation UpdateExtension($id: String!, $install: Boolean = false, $uninstall: Boolean = false, $update: Boolean = false) {
+  updateExtension(
+    input: {id: $id, patch: {install: $install, uninstall: $uninstall, update: $update}}
+  ) {
+    clientMutationId
+    extension {
+      ...ExtensionFragment
+    }
+  }
+}

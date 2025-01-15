@@ -1,0 +1,11 @@
+# import '/src/features/settings/domain/restore_status/graphql/restore_status_fragment.graphql'
+
+mutation RestoreBackup($backup: Upload!) {
+  restoreBackup(input: { backup: $backup }) {
+    clientMutationId
+    id
+    status {
+      ...RestoreStatusFragment
+    }
+  }
+}

@@ -10,7 +10,6 @@ import '../chapter/chapter_model.dart';
 import '../manga/manga_model.dart';
 
 part 'downloads_queue_model.freezed.dart';
-part 'downloads_queue_model.g.dart';
 
 @freezed
 class DownloadsQueue with _$DownloadsQueue {
@@ -23,7 +22,4 @@ class DownloadsQueue with _$DownloadsQueue {
     String? state,
     int? tries,
   }) = _DownloadsQueue;
-
-  factory DownloadsQueue.fromJson(Map<String, dynamic> json) =>
-      _$DownloadsQueueFromJson(json);
 }

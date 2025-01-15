@@ -1,0 +1,9 @@
+# import '/src/features/settings/domain/settings/graphql/settings_fragment.graphql'
+
+mutation UpdateDownloadsLocation($downloadsPath: String!) {
+  setSettings(input: {settings: {downloadsPath: $downloadsPath}}) {
+    settings {
+      ...SettingsFragment
+    }
+  }
+}

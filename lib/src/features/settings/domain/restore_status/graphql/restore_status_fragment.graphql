@@ -1,0 +1,6 @@
+
+fragment RestoreStatusFragment on BackupRestoreStatus {
+  mangaProgress
+  state
+  totalManga
+}

@@ -12,11 +12,7 @@ part of 'downloads_queue_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-DownloadsQueue _$DownloadsQueueFromJson(Map<String, dynamic> json) {
-  return _DownloadsQueue.fromJson(json);
-}
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$DownloadsQueue {
@@ -28,8 +24,9 @@ mixin _$DownloadsQueue {
   String? get state => throw _privateConstructorUsedError;
   int? get tries => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+  /// Create a copy of DownloadsQueue
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DownloadsQueueCopyWith<DownloadsQueue> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,9 +45,6 @@ abstract class $DownloadsQueueCopyWith<$Res> {
       double? progress,
       String? state,
       int? tries});
-
-  $ChapterCopyWith<$Res>? get chapter;
-  $MangaCopyWith<$Res>? get manga;
 }
 
 /// @nodoc
@@ -63,6 +57,8 @@ class _$DownloadsQueueCopyWithImpl<$Res, $Val extends DownloadsQueue>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DownloadsQueue
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -105,30 +101,6 @@ class _$DownloadsQueueCopyWithImpl<$Res, $Val extends DownloadsQueue>
               as int?,
     ) as $Val);
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ChapterCopyWith<$Res>? get chapter {
-    if (_value.chapter == null) {
-      return null;
-    }
-
-    return $ChapterCopyWith<$Res>(_value.chapter!, (value) {
-      return _then(_value.copyWith(chapter: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $MangaCopyWith<$Res>? get manga {
-    if (_value.manga == null) {
-      return null;
-    }
-
-    return $MangaCopyWith<$Res>(_value.manga!, (value) {
-      return _then(_value.copyWith(manga: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -147,11 +119,6 @@ abstract class _$$DownloadsQueueImplCopyWith<$Res>
       double? progress,
       String? state,
       int? tries});
-
-  @override
-  $ChapterCopyWith<$Res>? get chapter;
-  @override
-  $MangaCopyWith<$Res>? get manga;
 }
 
 /// @nodoc
@@ -162,6 +129,8 @@ class __$$DownloadsQueueImplCopyWithImpl<$Res>
       _$DownloadsQueueImpl _value, $Res Function(_$DownloadsQueueImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DownloadsQueue
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -207,7 +176,7 @@ class __$$DownloadsQueueImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$DownloadsQueueImpl implements _DownloadsQueue {
   _$DownloadsQueueImpl(
       {this.chapter,
@@ -217,9 +186,6 @@ class _$DownloadsQueueImpl implements _DownloadsQueue {
       this.progress,
       this.state,
       this.tries});
-
-  factory _$DownloadsQueueImpl.fromJson(Map<String, dynamic> json) =>
-      _$$DownloadsQueueImplFromJson(json);
 
   @override
   final Chapter? chapter;
@@ -246,10 +212,10 @@ class _$DownloadsQueueImpl implements _DownloadsQueue {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DownloadsQueueImpl &&
-            (identical(other.chapter, chapter) || other.chapter == chapter) &&
+            const DeepCollectionEquality().equals(other.chapter, chapter) &&
             (identical(other.chapterIndex, chapterIndex) ||
                 other.chapterIndex == chapterIndex) &&
-            (identical(other.manga, manga) || other.manga == manga) &&
+            const DeepCollectionEquality().equals(other.manga, manga) &&
             (identical(other.mangaId, mangaId) || other.mangaId == mangaId) &&
             (identical(other.progress, progress) ||
                 other.progress == progress) &&
@@ -257,24 +223,25 @@ class _$DownloadsQueueImpl implements _DownloadsQueue {
             (identical(other.tries, tries) || other.tries == tries));
   }
 
-  @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, chapter, chapterIndex, manga,
-      mangaId, progress, state, tries);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(chapter),
+      chapterIndex,
+      const DeepCollectionEquality().hash(manga),
+      mangaId,
+      progress,
+      state,
+      tries);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DownloadsQueue
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DownloadsQueueImplCopyWith<_$DownloadsQueueImpl> get copyWith =>
       __$$DownloadsQueueImplCopyWithImpl<_$DownloadsQueueImpl>(
           this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$DownloadsQueueImplToJson(
-      this,
-    );
-  }
 }
 
 abstract class _DownloadsQueue implements DownloadsQueue {
@@ -286,9 +253,6 @@ abstract class _DownloadsQueue implements DownloadsQueue {
       final double? progress,
       final String? state,
       final int? tries}) = _$DownloadsQueueImpl;
-
-  factory _DownloadsQueue.fromJson(Map<String, dynamic> json) =
-      _$DownloadsQueueImpl.fromJson;
 
   @override
   Chapter? get chapter;
@@ -304,8 +268,11 @@ abstract class _DownloadsQueue implements DownloadsQueue {
   String? get state;
   @override
   int? get tries;
+
+  /// Create a copy of DownloadsQueue
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DownloadsQueueImplCopyWith<_$DownloadsQueueImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

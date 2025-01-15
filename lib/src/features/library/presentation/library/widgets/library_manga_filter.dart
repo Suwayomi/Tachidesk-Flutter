@@ -19,18 +19,18 @@ class LibraryMangaFilter extends ConsumerWidget {
     return ListView(
       children: [
         CustomCheckboxListTile(
-          title: context.l10n!.unread,
+          title: context.l10n.unread,
           provider: libraryMangaFilterUnreadProvider,
           onChanged: ref.read(libraryMangaFilterUnreadProvider.notifier).update,
         ),
         CustomCheckboxListTile(
-          title: context.l10n!.completed,
+          title: context.l10n.completed,
           provider: libraryMangaFilterCompletedProvider,
           onChanged:
               ref.read(libraryMangaFilterCompletedProvider.notifier).update,
         ),
         CustomCheckboxListTile(
-          title: context.l10n!.downloaded,
+          title: context.l10n.downloaded,
           provider: libraryMangaFilterDownloadedProvider,
           onChanged:
               ref.read(libraryMangaFilterDownloadedProvider.notifier).update,

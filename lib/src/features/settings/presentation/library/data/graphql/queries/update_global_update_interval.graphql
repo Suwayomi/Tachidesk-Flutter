@@ -1,0 +1,9 @@
+# import '/src/features/settings/domain/settings/graphql/settings_fragment.graphql'
+
+mutation UpdateGlobalUpdateInterval($globalUpdateInterval: Float = 12) {
+  setSettings(input: {settings: {globalUpdateInterval: $globalUpdateInterval}}) {
+    settings {
+      ...SettingsFragment
+    }
+  }
+}

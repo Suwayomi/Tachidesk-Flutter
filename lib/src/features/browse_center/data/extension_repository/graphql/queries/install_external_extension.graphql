@@ -1,0 +1,10 @@
+# import '/src/features/browse_center/domain/extension/graphql/extension_fragment.graphql'
+
+mutation InstallExternalExtension($extensionFile: Upload!) {
+  installExternalExtension(input: {extensionFile: $extensionFile}) {
+    clientMutationId
+    extension {
+      ...ExtensionFragment
+    }
+  }
+}

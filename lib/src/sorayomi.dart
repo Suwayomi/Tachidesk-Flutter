@@ -29,7 +29,7 @@ class Sorayomi extends ConsumerWidget {
     final isTrueBlack = ref.watch(isTrueBlackProvider);
     return MaterialApp.router(
       builder: FToastBuilder(),
-      onGenerateTitle: (context) => context.l10n!.appTitle,
+      onGenerateTitle: (context) => context.l10n.appTitle,
       debugShowCheckedModeBanner: false,
       theme: FlexThemeData.light(
         scheme: appScheme,

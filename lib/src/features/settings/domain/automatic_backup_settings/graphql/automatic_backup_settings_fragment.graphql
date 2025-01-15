@@ -1,0 +1,7 @@
+
+fragment AutomaticBackupSettingsFragment on SettingsType {
+  backupInterval
+  backupPath
+  backupTTL
+  backupTime
+}

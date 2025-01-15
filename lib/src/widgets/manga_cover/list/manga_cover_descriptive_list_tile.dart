@@ -7,8 +7,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../constants/app_sizes.dart';
+import '../../../constants/enum.dart';
 import '../../../features/manga_book/domain/manga/manga_model.dart';
-
 import '../../../utils/extensions/custom_extensions.dart';
 import '../grid/manga_cover_grid_tile.dart';
 import '../widgets/manga_badges.dart';
@@ -33,7 +33,7 @@ class MangaCoverDescriptiveListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final sourceName =
-        " • ${manga.source?.displayName ?? context.l10n!.unknownSource}";
+        " • ${manga.source?.displayName ?? context.l10n.unknownSource}";
     return InkWell(
       onTap: onPressed,
       onLongPress: onLongPress,
@@ -65,7 +65,7 @@ class MangaCoverDescriptiveListTile extends StatelessWidget {
                           ? () => onTitleClicked!(manga.title)
                           : null,
                       child: Text(
-                        (manga.title ?? context.l10n!.unknownManga),
+                        manga.title,
                         style: context.textTheme.titleLarge,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
@@ -75,7 +75,7 @@ class MangaCoverDescriptiveListTile extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 2.0),
                       child: Text(
-                        manga.author ?? context.l10n!.unknownAuthor,
+                        manga.author ?? context.l10n.unknownAuthor,
                         overflow: TextOverflow.ellipsis,
                         style: context.textTheme.bodySmall,
                       ),
@@ -83,14 +83,14 @@ class MangaCoverDescriptiveListTile extends StatelessWidget {
                     Wrap(
                       crossAxisAlignment: WrapCrossAlignment.center,
                       children: [
-                        if (manga.status != null) ...[
+                        ...[
                           Icon(
-                            manga.status!.icon,
+                            MangaStatus.fromJson(manga.status.name).icon,
                             size: 16,
                             color: context.textTheme.bodySmall?.color,
                           ),
                           Text(
-                            " ${manga.status!.toLocale(context)}",
+                            " ${MangaStatus.fromJson(manga.status.name).toLocale(context)}",
                             style: context.textTheme.bodySmall,
                           ),
                         ],

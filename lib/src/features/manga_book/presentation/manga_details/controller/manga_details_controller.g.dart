@@ -7,7 +7,7 @@ part of 'manga_details_controller.dart';
 // **************************************************************************
 
 String _$mangaScanlatorListHash() =>
-    r'de9a418bc7324f26283f6409bff10dff5b8c676d';
+    r'aa65884a0f8c44453afeffc4d13548e264a0fb40';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -143,6 +143,8 @@ class MangaScanlatorListProvider extends AutoDisposeProvider<Set<String>> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin MangaScanlatorListRef on AutoDisposeProviderRef<Set<String>> {
   /// The parameter `mangaId` of this provider.
   int get mangaId;
@@ -157,7 +159,7 @@ class _MangaScanlatorListProviderElement
 }
 
 String _$mangaChapterListWithFilterHash() =>
-    r'd8e95ee63920e7ee5acf15deda7b9d795ca452c9';
+    r'8517b5f2aab0c77ed4c291317e2e48acf8712b9c';
 
 /// See also [mangaChapterListWithFilter].
 @ProviderFor(mangaChapterListWithFilter)
@@ -276,6 +278,8 @@ class MangaChapterListWithFilterProvider
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin MangaChapterListWithFilterRef
     on AutoDisposeProviderRef<AsyncValue<List<Chapter>?>> {
   /// The parameter `mangaId` of this provider.
@@ -292,7 +296,7 @@ class _MangaChapterListWithFilterProviderElement
 }
 
 String _$firstUnreadInFilteredChapterListHash() =>
-    r'ed13a5108da7bb4f9224899075348531da8a118e';
+    r'51255baa2ec913d6403ecc04af473c4b316f05ea';
 
 /// See also [firstUnreadInFilteredChapterList].
 @ProviderFor(firstUnreadInFilteredChapterList)
@@ -410,6 +414,8 @@ class FirstUnreadInFilteredChapterListProvider
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin FirstUnreadInFilteredChapterListRef on AutoDisposeProviderRef<Chapter?> {
   /// The parameter `mangaId` of this provider.
   int get mangaId;
@@ -426,7 +432,7 @@ class _FirstUnreadInFilteredChapterListProviderElement
 }
 
 String _$getNextAndPreviousChaptersHash() =>
-    r'c4de0562e24cb2b3a6ead00889b2c5325d8cf7b5';
+    r'06835d382e1349f2ca053721478c48fe7ae7dbc4';
 
 /// See also [getNextAndPreviousChapters].
 @ProviderFor(getNextAndPreviousChapters)
@@ -569,6 +575,8 @@ class GetNextAndPreviousChaptersProvider
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin GetNextAndPreviousChaptersRef
     on AutoDisposeProviderRef<({Chapter? first, Chapter? second})?> {
   /// The parameter `mangaId` of this provider.
@@ -724,6 +732,8 @@ class MangaWithIdProvider
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin MangaWithIdRef on AutoDisposeAsyncNotifierProviderRef<Manga?> {
   /// The parameter `mangaId` of this provider.
   int get mangaId;
@@ -868,6 +878,8 @@ class MangaChapterListProvider extends AutoDisposeAsyncNotifierProviderImpl<
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin MangaChapterListRef
     on AutoDisposeAsyncNotifierProviderRef<List<Chapter>?> {
   /// The parameter `mangaId` of this provider.
@@ -884,7 +896,7 @@ class _MangaChapterListProviderElement
 }
 
 String _$mangaChapterFilterScanlatorHash() =>
-    r'4d6da76af3cbbf033f1ca5fb04ea6eb7798c5820';
+    r'1e9cc2f48459bce949610737e71ad921f2d9aece';
 
 abstract class _$MangaChapterFilterScanlator
     extends BuildlessAutoDisposeNotifier<String> {
@@ -1016,6 +1028,8 @@ class MangaChapterFilterScanlatorProvider
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin MangaChapterFilterScanlatorRef on AutoDisposeNotifierProviderRef<String> {
   /// The parameter `mangaId` of this provider.
   int get mangaId;
@@ -1114,7 +1128,7 @@ final mangaChapterFilterBookmarkedProvider =
 );
 
 typedef _$MangaChapterFilterBookmarked = AutoDisposeNotifier<bool?>;
-String _$mangaCategoryListHash() => r'3fec3a544adc138ec7fbc98ad216e1b7399d0983';
+String _$mangaCategoryListHash() => r'05985e2dadc47610c47a1e095477346d94d696fb';
 
 abstract class _$MangaCategoryList
     extends BuildlessAutoDisposeAsyncNotifier<Map<String, Category>?> {
@@ -1245,6 +1259,8 @@ class MangaCategoryListProvider extends AutoDisposeAsyncNotifierProviderImpl<
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin MangaCategoryListRef
     on AutoDisposeAsyncNotifierProviderRef<Map<String, Category>?> {
   /// The parameter `mangaId` of this provider.
@@ -1260,4 +1276,4 @@ class _MangaCategoryListProviderElement
   int get mangaId => (origin as MangaCategoryListProvider).mangaId;
 }
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -10,7 +10,6 @@ import '../../../../utils/extensions/custom_extensions.dart';
 import '../manga/manga_model.dart';
 
 part 'update_status_model.freezed.dart';
-part 'update_status_model.g.dart';
 
 @freezed
 class UpdateStatus with _$UpdateStatus {
@@ -36,7 +35,4 @@ class UpdateStatus with _$UpdateStatus {
 
   bool get isUpdateChecking =>
       (total).isGreaterThan(0) && !(isUpdateCheckCompleted);
-
-  factory UpdateStatus.fromJson(Map<String, dynamic> json) =>
-      _$UpdateStatusFromJson(json);
 }

@@ -1,0 +1,14 @@
+fragment SourceFragment on SourceType {
+  displayName
+  iconUrl
+  id
+  isConfigurable
+  isNsfw
+  lang
+  name
+  supportsLatest
+  extension {
+        pkgName
+        repo
+    }
+}

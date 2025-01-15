@@ -1,0 +1,8 @@
+# import '/src/features/manga_book/domain/manga/graphql/manga_fragment.graphql'
+
+fragment SourceMangaPage on FetchSourceMangaPayload {
+  hasNextPage
+  mangas {
+    ...MangaFragment
+  }
+}

@@ -7,7 +7,7 @@ part of 'quick_search_controller.dart';
 // **************************************************************************
 
 String _$processesQuickSearchHash() =>
-    r'93fc20d8122c2e7cb96f566d756f68d9436cc08c';
+    r'b942ca982add9beef7a5fc12a5a05e30455014c2';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -144,6 +144,8 @@ class ProcessesQuickSearchProvider
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin ProcessesQuickSearchRef
     on AutoDisposeProviderRef<List<QuickSearchResult>?> {
   /// The parameter `context` of this provider.
@@ -176,4 +178,4 @@ final quickSearchQueryProvider =
 
 typedef _$QuickSearchQuery = AutoDisposeNotifier<String?>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

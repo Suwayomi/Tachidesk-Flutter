@@ -36,7 +36,7 @@ class SliderSettingTile<T> extends StatelessWidget {
       title: Text(title),
       trailing: IconButton(
         onPressed: () => onChanged(defaultValue),
-        icon: const Icon(Icons.refresh),
+        icon: const Icon(Icons.refresh_rounded),
       ),
       subtitle: Row(
         children: [

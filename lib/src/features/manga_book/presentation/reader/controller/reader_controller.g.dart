@@ -6,7 +6,7 @@ part of 'reader_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$chapterHash() => r'8cdfda4725491b07f03c8b51a655b22090fca811';
+String _$chapterHash() => r'c03d4bb14e3916369e4c391e4deb83863365bd55';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -153,6 +153,8 @@ class ChapterProvider extends AutoDisposeFutureProvider<Chapter?> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin ChapterRef on AutoDisposeFutureProviderRef<Chapter?> {
   /// The parameter `mangaId` of this provider.
   int get mangaId;
@@ -171,4 +173,4 @@ class _ChapterProviderElement extends AutoDisposeFutureProviderElement<Chapter?>
   int get chapterIndex => (origin as ChapterProvider).chapterIndex;
 }
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

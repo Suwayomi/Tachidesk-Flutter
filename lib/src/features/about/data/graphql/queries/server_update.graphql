@@ -1,0 +1,7 @@
+# import '/src/features/about/domain/server_update/graphql/service_update_fragment.graphql'
+
+query ServerUpdate {
+  checkForServerUpdates {
+    ...ServerUpdateFragment
+  }
+}

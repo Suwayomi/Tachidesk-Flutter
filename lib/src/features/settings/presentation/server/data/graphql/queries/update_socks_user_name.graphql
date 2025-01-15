@@ -1,0 +1,9 @@
+# import '/src/features/settings/domain/settings/graphql/settings_fragment.graphql'
+
+mutation UpdateSocksUserName($socksProxyUsername: String!) {
+  setSettings(input: {settings: {socksProxyUsername: $socksProxyUsername}}){
+    settings {
+      ...SettingsFragment
+    }
+  }
+}

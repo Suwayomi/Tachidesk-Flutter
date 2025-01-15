@@ -7,7 +7,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
-import '../dio_error_util.dart';
+import 'dio_error_util.dart';
 
 typedef ResponseDecoderCallBack<DecoderType> = DecoderType Function(dynamic);
 

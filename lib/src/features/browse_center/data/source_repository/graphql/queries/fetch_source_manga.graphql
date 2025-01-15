@@ -1,0 +1,7 @@
+# import '/src/features/browse_center/domain/manga_page/graphql/manga_page_fragment.graphql'
+
+mutation FetchSourceManga($input: FetchSourceMangaInput!) {
+  fetchSourceManga(input: $input) {
+    ...SourceMangaPage
+  }
+}

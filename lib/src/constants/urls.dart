@@ -15,7 +15,10 @@ enum AppUrls {
   sorayomiLatestReleaseApiUrl(
     url:
         "https://api.github.com/repos/Suwayomi/Tachidesk-Sorayomi/releases/latest",
-  );
+  ),
+  flareSolverr(
+      url:
+          "https://github.com/FlareSolverr/FlareSolverr?tab=readme-ov-file#installation");
 
   const AppUrls({required this.url});
 

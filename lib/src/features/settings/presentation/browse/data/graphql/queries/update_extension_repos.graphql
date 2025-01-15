@@ -1,0 +1,9 @@
+# import '/src/features/settings/domain/settings/graphql/settings_fragment.graphql'
+
+mutation UpdateExtensionRepos($extensionRepos: [String!]!) {
+  setSettings(input: {settings: {extensionRepos: $extensionRepos}}) {
+    settings {
+      ...SettingsFragment
+    }
+  }
+}

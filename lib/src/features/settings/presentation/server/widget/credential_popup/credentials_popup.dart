@@ -15,7 +15,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../../../constants/db_keys.dart';
 import '../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../utils/mixin/shared_preferences_client_mixin.dart';
-import '../../../../../../widgets/pop_button.dart';
+import '../../../../../../widgets/popup_widgets/pop_button.dart';
 
 part 'credentials_popup.g.dart';
 
@@ -44,7 +44,7 @@ class CredentialsPopup extends HookConsumerWidget {
     final username = useTextEditingController();
     final password = useTextEditingController();
     return AlertDialog(
-      title: Text(context.l10n!.credentials),
+      title: Text(context.l10n.credentials),
       content: Form(
         key: formKey,
         child: Column(
@@ -53,9 +53,9 @@ class CredentialsPopup extends HookConsumerWidget {
             TextFormField(
               controller: username,
               validator: (value) =>
-                  value.isBlank ? (context.l10n!.errorUserName) : null,
+                  value.isBlank ? (context.l10n.errorUserName) : null,
               decoration: InputDecoration(
-                hintText: context.l10n!.userName,
+                hintText: context.l10n.userName,
                 border: const OutlineInputBorder(),
               ),
             ),
@@ -63,10 +63,10 @@ class CredentialsPopup extends HookConsumerWidget {
             TextFormField(
               controller: password,
               validator: (value) =>
-                  value.isBlank ? (context.l10n!.errorPassword) : null,
+                  value.isBlank ? (context.l10n.errorPassword) : null,
               obscureText: true,
               decoration: InputDecoration(
-                hintText: context.l10n!.password,
+                hintText: context.l10n.password,
                 border: const OutlineInputBorder(),
               ),
             ),
@@ -87,7 +87,7 @@ class CredentialsPopup extends HookConsumerWidget {
               Navigator.pop(context);
             }
           },
-          child: Text(context.l10n!.save),
+          child: Text(context.l10n.save),
         ),
       ],
     );

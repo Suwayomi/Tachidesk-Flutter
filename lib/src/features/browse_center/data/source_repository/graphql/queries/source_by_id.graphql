@@ -1,0 +1,7 @@
+# import '/src/features/browse_center/domain/source/graphql/source_fragment.graphql'
+
+query SourceById($id: LongString!) {
+  source(id: $id) {
+    ...SourceFragment
+  }
+}

@@ -12,7 +12,7 @@ import '../../../../../../constants/db_keys.dart';
 import '../../../../../../constants/enum.dart';
 import '../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../utils/mixin/shared_preferences_client_mixin.dart';
-import '../../../../../../widgets/radio_list_popup.dart';
+import '../../../../../../widgets/popup_widgets/radio_list_popup.dart';
 
 part 'reader_mode_tile.g.dart';
 
@@ -33,11 +33,11 @@ class ReaderModeTile extends ConsumerWidget {
     return ListTile(
       leading: const Icon(Icons.app_settings_alt_rounded),
       subtitle: readerMode != null ? Text(readerMode.toLocale(context)) : null,
-      title: Text(context.l10n!.readerMode),
+      title: Text(context.l10n.readerMode),
       onTap: () => showDialog(
         context: context,
         builder: (context) => RadioListPopup<ReaderMode>(
-          title: context.l10n!.readerMode,
+          title: context.l10n.readerMode,
           optionList: ReaderMode.values.sublist(1),
           getOptionTitle: (value) => value.toLocale(context),
           value: readerMode ?? ReaderMode.webtoon,

@@ -1,0 +1,66 @@
+
+fragment PrimitiveFilterFragment on Filter {
+    __typename
+    ... on CheckBoxFilter {
+        __typename
+        checkBoxState: default
+        name
+    }
+    ... on HeaderFilter {
+        __typename
+        name
+    }
+    ... on SelectFilter {
+        __typename
+        selectState: default
+        name
+        displayValues: values
+    }
+    ... on TriStateFilter {
+        __typename
+        tristate: default
+        name
+    }
+    ... on TextFilter {
+        __typename
+        textState: default
+        name
+    }
+    ... on SortFilter {
+        __typename
+        sortState: default {
+            ...SortSelectionFragment
+        }
+        name
+        displayValues: values
+    }
+    ... on SeparatorFilter {
+        __typename
+        name
+    }
+}
+fragment FilterFragment on Filter {
+    ...PrimitiveFilterFragment
+    ... on GroupFilter {
+        __typename
+        name
+        groupState: filters {
+            ...PrimitiveFilterFragment
+        }
+    }
+}
+
+fragment SortSelectionFragment on SortSelection {
+  ascending
+  index
+}
+
+query SourceFilterById($id: LongString!) {
+    source(id: $id) {
+        filters {
+            ...FilterFragment
+        }
+    }
+}
+
+

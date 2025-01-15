@@ -5,7 +5,9 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../abstracts/value_enum.dart';
 import '../utils/extensions/custom_extensions.dart';
 
 enum AuthType {
@@ -13,8 +15,8 @@ enum AuthType {
   basic;
 
   String toLocale(BuildContext context) => switch (this) {
-        AuthType.none => context.l10n!.authTypeNone,
-        AuthType.basic => context.l10n!.authTypeBasic,
+        AuthType.none => context.l10n.authTypeNone,
+        AuthType.basic => context.l10n.authTypeBasic,
       };
 }
 
@@ -29,19 +31,19 @@ enum ReaderMode {
   webtoon;
 
   String toLocale(BuildContext context) => switch (this) {
-        ReaderMode.defaultReader => context.l10n!.readerModeDefaultReader,
+        ReaderMode.defaultReader => context.l10n.readerModeDefaultReader,
         ReaderMode.continuousVertical =>
-          context.l10n!.readerModeContinuousVertical,
+          context.l10n.readerModeContinuousVertical,
         ReaderMode.singleHorizontalLTR =>
-          context.l10n!.readerModeSingleHorizontalLTR,
+          context.l10n.readerModeSingleHorizontalLTR,
         ReaderMode.singleHorizontalRTL =>
-          context.l10n!.readerModeSingleHorizontalRTL,
+          context.l10n.readerModeSingleHorizontalRTL,
         ReaderMode.continuousHorizontalLTR =>
-          context.l10n!.readerModeContinuousHorizontalLTR,
+          context.l10n.readerModeContinuousHorizontalLTR,
         ReaderMode.continuousHorizontalRTL =>
-          context.l10n!.readerModeContinuousHorizontalRTL,
-        ReaderMode.singleVertical => context.l10n!.readerModeSingleVertical,
-        ReaderMode.webtoon => context.l10n!.readerModeWebtoon
+          context.l10n.readerModeContinuousHorizontalRTL,
+        ReaderMode.singleVertical => context.l10n.readerModeSingleVertical,
+        ReaderMode.webtoon => context.l10n.readerModeWebtoon
       };
 }
 
@@ -55,30 +57,28 @@ enum ReaderNavigationLayout {
 
   String toLocale(BuildContext context) => switch (this) {
         ReaderNavigationLayout.defaultNavigation =>
-          context.l10n!.readerNavigationLayoutDefault,
+          context.l10n.readerNavigationLayoutDefault,
         ReaderNavigationLayout.lShaped =>
-          context.l10n!.readerNavigationLayoutLShaped,
+          context.l10n.readerNavigationLayoutLShaped,
         ReaderNavigationLayout.rightAndLeft =>
-          context.l10n!.readerNavigationLayoutRightAndLeft,
-        ReaderNavigationLayout.edge => context.l10n!.readerNavigationLayoutEdge,
+          context.l10n.readerNavigationLayoutRightAndLeft,
+        ReaderNavigationLayout.edge => context.l10n.readerNavigationLayoutEdge,
         ReaderNavigationLayout.kindlish =>
-          context.l10n!.readerNavigationLayoutKindlish,
+          context.l10n.readerNavigationLayoutKindlish,
         ReaderNavigationLayout.disabled =>
-          context.l10n!.readerNavigationLayoutDisabled
+          context.l10n.readerNavigationLayoutDisabled
       };
 }
 
 enum MangaSort {
   alphabetical,
   dateAdded,
-  unread,
-  lastRead;
+  unread;
 
   String toLocale(BuildContext context) => switch (this) {
-        MangaSort.alphabetical => context.l10n!.mangaSortAlphabetical,
-        MangaSort.dateAdded => context.l10n!.mangaSortDateAdded,
-        MangaSort.unread => context.l10n!.mangaSortUnread,
-        MangaSort.lastRead => context.l10n!.mangaSortLastRead
+        MangaSort.alphabetical => context.l10n.mangaSortAlphabetical,
+        MangaSort.dateAdded => context.l10n.mangaSortDateAdded,
+        MangaSort.unread => context.l10n.mangaSortUnread,
       };
 }
 
@@ -88,9 +88,9 @@ enum ChapterSort {
   fetchedDate;
 
   String toLocale(BuildContext context) => switch (this) {
-        ChapterSort.source => context.l10n!.chapterSortSource,
-        ChapterSort.fetchedDate => context.l10n!.chapterSortFetchedDate,
-        ChapterSort.uploadDate => context.l10n!.chapterSortUploadDate
+        ChapterSort.source => context.l10n.chapterSortSource,
+        ChapterSort.fetchedDate => context.l10n.chapterSortFetchedDate,
+        ChapterSort.uploadDate => context.l10n.chapterSortUploadDate
       };
 }
 
@@ -109,9 +109,9 @@ enum DisplayMode {
   const DisplayMode(this.icon);
 
   String toLocale(BuildContext context) => switch (this) {
-        DisplayMode.grid => context.l10n!.displayModeGrid,
-        DisplayMode.list => context.l10n!.displayModeList,
-        DisplayMode.descriptiveList => context.l10n!.displayModeDescriptiveList
+        DisplayMode.grid => context.l10n.displayModeGrid,
+        DisplayMode.list => context.l10n.displayModeList,
+        DisplayMode.descriptiveList => context.l10n.displayModeDescriptiveList
       };
 }
 
@@ -139,30 +139,25 @@ enum MangaStatus {
       status?.title ?? MangaStatus.unknown.title;
 
   String toLocale(BuildContext context) => switch (this) {
-        MangaStatus.unknown => context.l10n!.mangaStatusUnknown,
-        MangaStatus.ongoing => context.l10n!.mangaStatusOngoing,
-        MangaStatus.completed => context.l10n!.mangaStatusCompleted,
-        MangaStatus.licensed => context.l10n!.mangaStatusLicensed,
+        MangaStatus.unknown => context.l10n.mangaStatusUnknown,
+        MangaStatus.ongoing => context.l10n.mangaStatusOngoing,
+        MangaStatus.completed => context.l10n.mangaStatusCompleted,
+        MangaStatus.licensed => context.l10n.mangaStatusLicensed,
         MangaStatus.publishingFinished =>
-          context.l10n!.mangaStatusPublishingFinished,
-        MangaStatus.cancelled => context.l10n!.mangaStatusCancelled,
-        MangaStatus.onHiatus => context.l10n!.mangaStatusOnHiatus
+          context.l10n.mangaStatusPublishingFinished,
+        MangaStatus.cancelled => context.l10n.mangaStatusCancelled,
+        MangaStatus.onHiatus => context.l10n.mangaStatusOnHiatus
       };
 }
 
-enum SourceType {
-  latest(Icons.new_releases_outlined, Icons.new_releases_rounded),
-  popular(Icons.favorite_border_rounded, Icons.favorite_rounded),
-  filter(Icons.filter_list_outlined, Icons.filter_list_rounded);
+@JsonEnum(valueField: 'value')
+enum IncludeOrExclude implements ValueEnum {
+  include("INCLUDE"),
+  exclude("EXCLUDE"),
+  unset("UNSET");
 
-  const SourceType(this.icon, this.selectedIcon);
+  const IncludeOrExclude(this.value);
 
-  final IconData icon;
-  final IconData selectedIcon;
-
-  String toLocale(BuildContext context) => switch (this) {
-        SourceType.latest => context.l10n!.sourceTypeLatest,
-        SourceType.popular => context.l10n!.sourceTypePopular,
-        SourceType.filter => context.l10n!.sourceTypeFilter
-      };
+  @override
+  final String value;
 }

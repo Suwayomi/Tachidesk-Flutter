@@ -1,0 +1,8 @@
+mutation CreateBackup($includeCategories: Boolean = true, $includeChapters: Boolean = true) {
+  createBackup(
+    input: {includeCategories: $includeCategories, includeChapters: $includeChapters}
+  ) {
+    clientMutationId
+    url
+  }
+}

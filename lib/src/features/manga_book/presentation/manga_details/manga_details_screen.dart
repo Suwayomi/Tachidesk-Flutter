@@ -58,8 +58,8 @@ class MangaDetailsScreen extends HookConsumerWidget {
 
     final refresh = useCallback(([onlineFetch = false]) async {
       if (context.mounted && onlineFetch) {
-        ref.read(toastProvider(context)).show(
-              context.l10n!.updating,
+        ref.read(toastProvider)?.show(
+              context.l10n.updating,
               withMicrotask: true,
             );
       }
@@ -67,12 +67,12 @@ class MangaDetailsScreen extends HookConsumerWidget {
       await chapterListRefresh(onlineFetch);
       if (context.mounted && onlineFetch) {
         if (manga.hasError) {
-          ref.read(toastProvider(context)).showError(
-                context.l10n!.errorSomethingWentWrong,
+          ref.read(toastProvider)?.showError(
+                context.l10n.errorSomethingWentWrong,
               );
         } else {
-          ref.read(toastProvider(context)).show(
-                context.l10n!.updateCompleted,
+          ref.read(toastProvider)?.show(
+                context.l10n.updateCompleted,
                 withMicrotask: true,
               );
         }
@@ -85,7 +85,7 @@ class MangaDetailsScreen extends HookConsumerWidget {
     }, []);
 
     return PopScope(
-      onPopInvoked: (didPop) async {
+      onPopInvokedWithResult: (didPop, _) async {
         if (didPop && categoryId != null) {
           ref.invalidate(categoryMangaListProvider(categoryId!));
         }
@@ -100,7 +100,7 @@ class MangaDetailsScreen extends HookConsumerWidget {
                     icon: const Icon(Icons.close_rounded),
                   ),
                   title: Text(
-                    context.l10n!.numSelected(selectedChapters.value.length),
+                    context.l10n.numSelected(selectedChapters.value.length),
                   ),
                   actions: [
                     IconButton(
@@ -108,10 +108,8 @@ class MangaDetailsScreen extends HookConsumerWidget {
                         final chapterList = [
                           ...?filteredChapterList.valueOrNull
                         ];
-                        selectedChapters.value = ({
-                          for (Chapter i in chapterList)
-                            if (i.id != null) i.id!: i
-                        });
+                        selectedChapters.value =
+                            ({for (Chapter i in chapterList) i.id: i});
                       },
                       icon: const Icon(Icons.select_all_rounded),
                     ),
@@ -122,9 +120,8 @@ class MangaDetailsScreen extends HookConsumerWidget {
                         ];
                         selectedChapters.value = ({
                           for (Chapter i in chapterList)
-                            if (i.id != null &&
-                                !selectedChapters.value.containsKey(i.id))
-                              i.id!: i
+                            if (!selectedChapters.value.containsKey(i.id))
+                              i.id: i
                         });
                       },
                       icon: const Icon(Icons.flip_to_back_rounded),
@@ -136,7 +133,7 @@ class MangaDetailsScreen extends HookConsumerWidget {
                   ],
                 )
               : AppBar(
-                  title: Text(data?.title ?? context.l10n!.manga),
+                  title: Text(data?.title ?? context.l10n.manga),
                   actions: [
                     if (context.isTablet) ...[
                       IconButton(
@@ -181,17 +178,20 @@ class MangaDetailsScreen extends HookConsumerWidget {
                         itemBuilder: (context) => [
                           PopupMenuItem(
                             onTap: () => Future.microtask(
-                              () => showDialog(
-                                context: context,
-                                builder: (context) =>
-                                    EditMangaCategoryDialog(mangaId: mangaId),
-                              ),
+                              () {
+                                if (!context.mounted) return null;
+                                return showDialog(
+                                  context: context,
+                                  builder: (context) =>
+                                      EditMangaCategoryDialog(mangaId: mangaId),
+                                );
+                              },
                             ),
-                            child: Text(context.l10n!.editCategory),
+                            child: Text(context.l10n.editCategory),
                           ),
                           PopupMenuItem(
                             onTap: () => refresh(true),
-                            child: Text(context.l10n!.refresh),
+                            child: Text(context.l10n.refresh),
                           ),
                         ],
                       )
@@ -213,15 +213,15 @@ class MangaDetailsScreen extends HookConsumerWidget {
                   ? FloatingActionButton.extended(
                       isExtended: context.isTablet,
                       label: Text(
-                        data?.lastChapterRead?.index != null
-                            ? context.l10n!.resume
-                            : context.l10n!.start,
+                        data?.lastReadChapter?.index != null
+                            ? context.l10n.resume
+                            : context.l10n.start,
                       ),
                       icon: const Icon(Icons.play_arrow_rounded),
                       onPressed: () {
                         ReaderRoute(
-                          mangaId: firstUnreadChapter.mangaId ?? mangaId,
-                          chapterIndex: firstUnreadChapter.index ?? 0,
+                          mangaId: firstUnreadChapter.mangaId,
+                          chapterIndex: firstUnreadChapter.index,
                           showReaderLayoutAnimation: true,
                         ).push(context);
                       },
@@ -248,17 +248,17 @@ class MangaDetailsScreen extends HookConsumerWidget {
                       selectedChapters: selectedChapters,
                     )
               : Emoticons(
-                  text: context.l10n!.noMangaFound,
+                  title: context.l10n.noMangaFound,
                   button: TextButton(
                     onPressed: refresh,
-                    child: Text(context.l10n!.refresh),
+                    child: Text(context.l10n.refresh),
                   ),
                 ),
         ),
         refresh: refresh,
         wrapper: (body) => Scaffold(
           appBar: AppBar(
-            title: Text(context.l10n!.manga),
+            title: Text(context.l10n.manga),
           ),
           body: body,
         ),
@@ -295,11 +295,10 @@ class MultiSelectPopupButton extends StatelessWidget {
             selectedChapters.value = ({
               ...selectedChapters.value,
               for (int i = lastIndex + 1; i < maxIndex; i++)
-                if (chapterList[i].id != null)
-                  chapterList[i].id!: chapterList[i]
+                chapterList[i].id: chapterList[i]
             });
           },
-          child: Text(context.l10n!.selectNext10),
+          child: Text(context.l10n.selectNext10),
         ),
         PopupMenuItem(
           onTap: () {
@@ -307,10 +306,10 @@ class MultiSelectPopupButton extends StatelessWidget {
 
             selectedChapters.value = ({
               for (Chapter i in chapterList)
-                if (i.id != null && !i.read.ifNull()) i.id!: i
+                if (!i.isRead.ifNull()) i.id: i
             });
           },
-          child: Text(context.l10n!.selectUnread),
+          child: Text(context.l10n.selectUnread),
         ),
         PopupMenuItem(
           onTap: () {
@@ -326,11 +325,10 @@ class MultiSelectPopupButton extends StatelessWidget {
 
             selectedChapters.value = ({
               for (int i = firstIndex; i <= lastIndex; i++)
-                if (chapterList[i].id != null)
-                  chapterList[i].id!: chapterList[i]
+                chapterList[i].id: chapterList[i]
             });
           },
-          child: Text(context.l10n!.selectInBetween),
+          child: Text(context.l10n.selectInBetween),
         ),
       ],
     );

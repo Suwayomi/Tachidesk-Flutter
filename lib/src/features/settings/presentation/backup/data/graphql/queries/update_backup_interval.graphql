@@ -1,0 +1,9 @@
+# import '/src/features/settings/domain/settings/graphql/settings_fragment.graphql'
+
+mutation UpdateBackupInterval($backupInterval: Int = 1) {
+  setSettings(input: {settings: {backupInterval: $backupInterval}}) {
+    settings {
+      ...SettingsFragment
+    }
+  }
+}

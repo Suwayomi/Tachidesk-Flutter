@@ -1,0 +1,9 @@
+# import '/src/features/settings/domain/settings/graphql/settings_fragment.graphql'
+
+mutation UpdateBackupPath($backupPath: String!) {
+  setSettings(input: {settings: {backupPath: $backupPath}}) {
+    settings {
+      ...SettingsFragment
+    }
+  }
+}

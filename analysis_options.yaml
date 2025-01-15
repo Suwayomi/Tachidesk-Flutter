@@ -34,6 +34,7 @@ analyzer:
     - "**/*.gform.dart"
     - "**/*.g.dart"
     - "**/*.freezed.dart"
+    - "**/*.gql.dart"
 
   errors:
     invalid_annotation_target: ignore

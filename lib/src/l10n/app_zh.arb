@@ -76,7 +76,7 @@
     "description": "Toast text to show that the message has been copied",
     "placeholders": {
       "msg": {
-        "example": "Client : Tachidesk Sorayomi",
+        "example": "Client : Sorayomi",
         "type": "String"
       }
     }
@@ -107,7 +107,7 @@
   },
   "appTitle": "Sorayomi",
   "@appTitle": {
-    "description": "Name of the app (Tachidesk Sorayomi in native script)"
+    "description": "Name of the app (Sorayomi in native script)"
   },
   "addToLibrary": "添加到书架",
   "@addToLibrary": {

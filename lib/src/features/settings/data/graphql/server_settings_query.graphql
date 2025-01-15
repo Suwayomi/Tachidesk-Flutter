@@ -1,0 +1,7 @@
+# import '/src/features/settings/domain/settings/graphql/settings_fragment.graphql'
+
+query ServerSettings {
+    settings {
+        ...SettingsFragment
+    }
+}

@@ -6,11 +6,11 @@ part of 'source_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$sourceListHash() => r'80d37bd602ce3e229ac64c39743cee84d94fd1f9';
+String _$sourceListHash() => r'3de5f4afc9cf7ce846e5f1b2a15df1f1965bc3f2';
 
 /// See also [sourceList].
 @ProviderFor(sourceList)
-final sourceListProvider = AutoDisposeFutureProvider<List<Source>?>.internal(
+final sourceListProvider = AutoDisposeStreamProvider<List<Source>?>.internal(
   sourceList,
   name: r'sourceListProvider',
   debugGetCreateSourceHash:
@@ -19,8 +19,10 @@ final sourceListProvider = AutoDisposeFutureProvider<List<Source>?>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef SourceListRef = AutoDisposeFutureProviderRef<List<Source>?>;
-String _$sourceMapHash() => r'13682cd8c100d4d7ef007793b2c5ab9f97bad438';
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef SourceListRef = AutoDisposeStreamProviderRef<List<Source>?>;
+String _$sourceMapHash() => r'ba9f44522c74fab750999c2258f1208a48cebb85';
 
 /// See also [sourceMap].
 @ProviderFor(sourceMap)
@@ -34,9 +36,11 @@ final sourceMapProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef SourceMapRef
     = AutoDisposeProviderRef<AsyncValue<Map<String, List<Source>>>>;
-String _$sourceMapFilteredHash() => r'0154413eb0639738378258287e318c3fa3e92ecc';
+String _$sourceMapFilteredHash() => r'cb476151661aa7f8e69d79f2a05432d0283b3917';
 
 /// See also [sourceMapFiltered].
 @ProviderFor(sourceMapFiltered)
@@ -51,9 +55,11 @@ final sourceMapFilteredProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef SourceMapFilteredRef
     = AutoDisposeProviderRef<AsyncValue<Map<String, List<Source>>?>>;
-String _$sourceQueryHash() => r'4e0ea33fcbc3640e4cc3ecbdf15c75923384ed69';
+String _$sourceQueryHash() => r'0925ecbd15d5daff75544abe307f929ea109a4ea';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -189,6 +195,8 @@ class SourceQueryProvider extends AutoDisposeProvider<List<Source>?> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin SourceQueryRef on AutoDisposeProviderRef<List<Source>?> {
   /// The parameter `query` of this provider.
   String? get query;
@@ -253,4 +261,4 @@ final sourceLastUsedProvider =
 
 typedef _$SourceLastUsed = AutoDisposeNotifier<String?>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

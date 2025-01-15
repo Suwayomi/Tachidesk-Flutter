@@ -1,0 +1,56 @@
+query SourcePreferenceById($id: LongString!) {
+    source(id: $id) {
+        preferences {
+            __typename
+            ... on CheckBoxPreference {
+                checkBoxValue: currentValue
+                summary
+                checkBoxDefaultValue: default
+                key
+                checkBoxTitle: title
+            }
+            ... on EditTextPreference {
+                editTextValue: currentValue
+                EditTextDefaultValue: default
+                editTextTitle: title
+                text
+                summary
+                key
+                dialogTitle
+                dialogMessage
+            }
+            ... on SwitchPreference {
+                switchValue: currentValue
+                summary
+                key
+                switchDefaultValue: default
+                switchTitle: title
+            }
+            ... on MultiSelectListPreference {
+                dialogMessage
+                dialogTitle
+                multiSelectTitle: title
+                summary
+                key
+                entryValues
+                entries
+                multiSelectDefaultValue: default
+                multiSelectValue:currentValue
+            }
+            ... on ListPreference {
+                listValue:currentValue
+                listDefaultValue: default
+                listTitle: title
+                summary
+                key
+                entryValues
+                entries
+            }
+        }
+    }
+}
+mutation UpdateSourcePreference($input: UpdateSourcePreferenceInput!) {
+    updateSourcePreference(input: $input) {
+        __typename
+    }
+}

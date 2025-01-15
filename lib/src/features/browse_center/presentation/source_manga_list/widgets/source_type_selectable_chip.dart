@@ -7,8 +7,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../constants/app_sizes.dart';
-import '../../../../../constants/enum.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
+import '../../../domain/source/source_model.dart';
 
 class SourceTypeSelectableChip extends StatelessWidget {
   const SourceTypeSelectableChip({
@@ -34,7 +34,7 @@ class SourceTypeSelectableChip extends StatelessWidget {
             : Icon(
                 selected ? value.selectedIcon : value.icon,
                 color: context.theme.colorScheme.onSurface
-                    .withOpacity(selected ? .5 : 1),
+                    .withValues(alpha: selected ? .5 : 1),
               ),
         onSelected: onSelected,
       ),

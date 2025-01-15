@@ -4,3 +4,22 @@ targets:
       json_serializable:
         options:
           explicit_to_json: true
+      ferry_generator|graphql_builder:
+        enabled: true
+        options:
+          schema: tachidesk_sorayomi|lib/src/graphql/schema.graphql
+          type_overrides:
+            Upload:
+              name: MultipartFile
+              import: 'package:http/http.dart'
+      ferry_generator|serializer_builder:
+        enabled: true
+        options:
+          schema: tachidesk_sorayomi|lib/src/graphql/schema.graphql
+          type_overrides:
+            Upload:
+              name: MultipartFile
+              import: 'package:http/http.dart'
+          custom_serializers:
+            - import: 'package:tachidesk_sorayomi/src/utils/misc/upload_serializer.dart'
+              name: UploadSerializer

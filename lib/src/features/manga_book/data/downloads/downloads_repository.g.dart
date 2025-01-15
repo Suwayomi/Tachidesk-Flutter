@@ -7,7 +7,7 @@ part of 'downloads_repository.dart';
 // **************************************************************************
 
 String _$downloadsRepositoryHash() =>
-    r'5863e339050a4025a026249d55ea40d25137c001';
+    r'db151398723b6123577f0c7c81872408ce7bf0c3';
 
 /// See also [downloadsRepository].
 @ProviderFor(downloadsRepository)
@@ -22,8 +22,10 @@ final downloadsRepositoryProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef DownloadsRepositoryRef = AutoDisposeProviderRef<DownloadsRepository>;
-String _$downloadsMapHash() => r'069e7137bb59b01aea1cc49d4605e4b8c8a9d7fd';
+String _$downloadsMapHash() => r'bc9bbe92a95d406355180248d824649b4f551a85';
 
 /// See also [downloadsMap].
 @ProviderFor(downloadsMap)
@@ -37,8 +39,10 @@ final downloadsMapProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef DownloadsMapRef = AutoDisposeProviderRef<Map<int, DownloadsQueue>>;
-String _$downloadsFromIdHash() => r'ebec2d8410a8aa34a66a72061acfe62582f955dd';
+String _$downloadsFromIdHash() => r'5e029483d68ff6340126a743236948afd2bfa216';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -174,6 +178,8 @@ class DownloadsFromIdProvider extends AutoDisposeProvider<DownloadsQueue?> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin DownloadsFromIdRef on AutoDisposeProviderRef<DownloadsQueue?> {
   /// The parameter `chapterId` of this provider.
   int get chapterId;
@@ -189,7 +195,7 @@ class _DownloadsFromIdProviderElement
 }
 
 String _$downloadsChapterIdsHash() =>
-    r'3c490718de46a5ffd3009b398c3c61441421d958';
+    r'45606c446e6925ef5a61f3a848059f6ad2b50378';
 
 /// See also [downloadsChapterIds].
 @ProviderFor(downloadsChapterIds)
@@ -203,8 +209,10 @@ final downloadsChapterIdsProvider = AutoDisposeProvider<List<int>>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef DownloadsChapterIdsRef = AutoDisposeProviderRef<List<int>>;
-String _$downloadsStatusHash() => r'e1f120563dfc9a83a2e3459680f56168bbf21637';
+String _$downloadsStatusHash() => r'6cd2455d71c5e564608adb9517d534689d43d24f';
 
 /// See also [downloadsStatus].
 @ProviderFor(downloadsStatus)
@@ -219,8 +227,10 @@ final downloadsStatusProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef DownloadsStatusRef = AutoDisposeProviderRef<AsyncValue<String?>>;
-String _$showDownloadsFABHash() => r'4c00b8fa136dc475476fed61a807a4901cc7cdb8';
+String _$showDownloadsFABHash() => r'655444c99e10f811304558c95c107aa985760ad3';
 
 /// See also [showDownloadsFAB].
 @ProviderFor(showDownloadsFAB)
@@ -234,6 +244,8 @@ final showDownloadsFABProvider = AutoDisposeProvider<bool>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef ShowDownloadsFABRef = AutoDisposeProviderRef<bool>;
 String _$downloadsSocketHash() => r'ee5f9b56575b716ba8051e1e1d2b65e8bfb222e8';
 
@@ -252,4 +264,4 @@ final downloadsSocketProvider =
 
 typedef _$DownloadsSocket = AutoDisposeStreamNotifier<Downloads>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

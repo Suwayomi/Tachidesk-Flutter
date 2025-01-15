@@ -6,7 +6,23 @@ part of 'global_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$dioClientKeyHash() => r'3c0bdf6561be103898cbba24855ca355c5dfba6b';
+String _$ferryClientHash() => r'715836754d4c697becc04e93da3a0ebcb2b9d9ca';
+
+/// See also [ferryClient].
+@ProviderFor(ferryClient)
+final ferryClientProvider = AutoDisposeProvider<Client>.internal(
+  ferryClient,
+  name: r'ferryClientProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$ferryClientHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef FerryClientRef = AutoDisposeProviderRef<Client>;
+String _$dioClientKeyHash() => r'a6ea692d8f08bd920f4f16c43eaefe3732599d51';
 
 /// See also [dioClientKey].
 @ProviderFor(dioClientKey)
@@ -19,6 +35,8 @@ final dioClientKeyProvider = AutoDisposeProvider<DioClient>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef DioClientKeyRef = AutoDisposeProviderRef<DioClient>;
 String _$sharedPreferencesHash() => r'dd034076f3a6cac11ba173b2ebd1bd0debcadd42';
 
@@ -35,6 +53,8 @@ final sharedPreferencesProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef SharedPreferencesRef = AutoDisposeProviderRef<SharedPreferences>;
 String _$appDirectoryHash() => r'598612365ff87cbdf65761e923161467412ec463';
 
@@ -49,8 +69,10 @@ final appDirectoryProvider = AutoDisposeProvider<Directory?>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef AppDirectoryRef = AutoDisposeProviderRef<Directory?>;
-String _$hiveCacheStoreHash() => r'9b2759c40cc610a05bf24953b306f6dec44cb2e6';
+String _$hiveCacheStoreHash() => r'8c025c8de70bbc267813d7213fcf6c5af23da63c';
 
 /// See also [hiveCacheStore].
 @ProviderFor(hiveCacheStore)
@@ -64,8 +86,26 @@ final hiveCacheStoreProvider = AutoDisposeProvider<HiveCacheStore>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef HiveCacheStoreRef = AutoDisposeProviderRef<HiveCacheStore>;
-String _$rateLimitQueueHash() => r'160a82b2737ac46d9dabad1f6ae8f59bfdcb24ca';
+String _$hiveStoreHash() => r'93ba9cf12843b25b6107a3e76f84bd65b7e0c7c1';
+
+/// See also [hiveStore].
+@ProviderFor(hiveStore)
+final hiveStoreProvider = AutoDisposeProvider<HiveStore>.internal(
+  hiveStore,
+  name: r'hiveStoreProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$hiveStoreHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef HiveStoreRef = AutoDisposeProviderRef<HiveStore>;
+String _$rateLimitQueueHash() => r'59e94cb8add92522ec8b8676d88d1852544ad66d';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -201,6 +241,8 @@ class RateLimitQueueProvider extends AutoDisposeProvider<Queue> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin RateLimitQueueRef on AutoDisposeProviderRef<Queue> {
   /// The parameter `query` of this provider.
   String? get query;
@@ -244,4 +286,4 @@ final l10nProvider = AutoDisposeNotifierProvider<L10n, Locale?>.internal(
 
 typedef _$L10n = AutoDisposeNotifier<Locale?>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

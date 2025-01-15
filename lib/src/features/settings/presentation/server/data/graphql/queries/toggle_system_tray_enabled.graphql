@@ -1,0 +1,9 @@
+# import '/src/features/settings/domain/settings/graphql/settings_fragment.graphql'
+
+mutation ToggleSystemTrayEnabled($systemTrayEnabled: Boolean = false) {
+  setSettings(input: {settings: {systemTrayEnabled: $systemTrayEnabled}}) {
+    settings {
+      ...SettingsFragment
+    }
+  }
+}

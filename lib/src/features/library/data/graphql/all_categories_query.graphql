@@ -1,0 +1,21 @@
+#  import "/src/features/library/domain/category/graphql/category_fragment.graphql"
+#  import "/src/graphql/fragments.graphql"
+
+query AllCategories($condition: CategoryConditionInput, $filter: CategoryFilterInput, $first: Int, $offset: Int) {
+  categories(
+    condition: $condition
+    filter: $filter
+    first: $first
+    orderBy: ORDER
+    orderByType: ASC
+    offset: $offset
+  ) {
+    nodes {
+      ...CategoryFragment
+    }
+    pageInfo {
+      ...PageInfoFragment
+    }
+    totalCount
+  }
+}

@@ -46,7 +46,7 @@ class DioNetworkModule {
       maxStale: const Duration(days: 14),
     );
     final dio = Dio();
-    (dio.transformer as BackgroundTransformer).jsonDecodeCallback = parseJson;
+    // (dio.transformer as BackgroundTransformer).jsonDecodeCallback = parseJson;
 
     dio
       ..options.baseUrl = Endpoints.baseApi(

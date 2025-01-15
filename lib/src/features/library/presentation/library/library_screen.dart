@@ -22,11 +22,11 @@ import 'controller/library_controller.dart';
 import 'widgets/library_manga_organizer.dart';
 
 class LibraryScreen extends HookConsumerWidget {
-  const LibraryScreen({super.key, this.initialCategoryOrder});
-  final int? initialCategoryOrder;
+  const LibraryScreen({super.key, required this.categoryId});
+  final int categoryId;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final toast = ref.watch(toastProvider(context));
+    final toast = ref.watch(toastProvider);
     final categoryList = ref.watch(categoryControllerProvider);
     final showSearch = useState(false);
     useEffect(() {
@@ -36,116 +36,118 @@ class LibraryScreen extends HookConsumerWidget {
 
     return categoryList.showUiWhenData(
       context,
-      (data) => data.isBlank
-          ? Emoticons(
-              text: context.l10n!.noCategoriesFound,
-              button: TextButton(
-                onPressed: () => ref.refresh(categoryControllerProvider),
-                child: Text(context.l10n!.refresh),
-              ),
-            )
-          : DefaultTabController(
-              length: data!.length,
-              initialIndex: min(initialCategoryOrder.getValueOnNullOrNegative(),
-                  data.length - 1),
-              child: Scaffold(
-                appBar: AppBar(
-                  title: Text(context.l10n!.library),
-                  centerTitle: true,
-                  bottom: PreferredSize(
-                    preferredSize: kCalculateAppBarBottomSize(
-                      [data.length.isGreaterThan(1), showSearch.value],
-                    ),
-                    child: Column(
-                      children: [
-                        if (data.length.isGreaterThan(1))
-                          TabBar(
-                            isScrollable: true,
-                            tabs: data
-                                .map((e) => Tab(text: e.name ?? ""))
-                                .toList(),
-                            dividerColor: Colors.transparent,
+      (data) {
+        if (data.isBlank) {
+          return Emoticons(
+            title: context.l10n.noCategoriesFound,
+            button: TextButton(
+              onPressed: () => ref.refresh(categoryControllerProvider),
+              child: Text(context.l10n.refresh),
+            ),
+          );
+        } else {
+          return DefaultTabController(
+            length: data!.length,
+            initialIndex:
+                min(categoryId.getValueOnNullOrNegative(), data.length - 1),
+            child: Scaffold(
+              appBar: AppBar(
+                title: Text(context.l10n.library),
+                centerTitle: true,
+                bottom: PreferredSize(
+                  preferredSize: kCalculateAppBarBottomSize(
+                    [data.length.isGreaterThan(1), showSearch.value],
+                  ),
+                  child: Column(
+                    children: [
+                      if (data.length.isGreaterThan(1))
+                        TabBar(
+                          isScrollable: true,
+                          tabs: data.map((e) => Tab(text: e.name)).toList(),
+                          dividerColor: Colors.transparent,
+                        ),
+                      if (showSearch.value)
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: SearchField(
+                            initialText: ref.read(libraryQueryProvider),
+                            onChanged: (val) => ref
+                                .read(libraryQueryProvider.notifier)
+                                .update(val),
+                            onClose: () => showSearch.value = (false),
                           ),
-                        if (showSearch.value)
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: SearchField(
-                              initialText: ref.read(libraryQueryProvider),
-                              onChanged: (val) => ref
-                                  .read(libraryQueryProvider.notifier)
-                                  .update(val),
-                              onClose: () => showSearch.value = (false),
+                        ),
+                    ],
+                  ),
+                ),
+                actions: [
+                  IconButton(
+                    onPressed: () => showSearch.value = (true),
+                    icon: const Icon(Icons.search_rounded),
+                  ),
+                  Builder(
+                    builder: (context) => IconButton(
+                      onPressed: () {
+                        if (context.isTablet) {
+                          Scaffold.of(context).openEndDrawer();
+                        } else {
+                          showModalBottomSheet(
+                            context: context,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: KBorderRadius.rT16.radius,
                             ),
-                          ),
-                      ],
+                            clipBehavior: Clip.hardEdge,
+                            builder: (_) => const LibraryMangaOrganizer(),
+                          );
+                        }
+                      },
+                      icon: const Icon(Icons.filter_list_rounded),
                     ),
                   ),
-                  actions: [
-                    IconButton(
-                      onPressed: () => showSearch.value = (true),
-                      icon: const Icon(Icons.search_rounded),
-                    ),
-                    Builder(
-                      builder: (context) => IconButton(
-                        onPressed: () {
-                          if (context.isTablet) {
-                            Scaffold.of(context).openEndDrawer();
-                          } else {
-                            showModalBottomSheet(
-                              context: context,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: KBorderRadius.rT16.radius,
-                              ),
-                              clipBehavior: Clip.hardEdge,
-                              builder: (_) => const LibraryMangaOrganizer(),
-                            );
-                          }
-                        },
-                        icon: const Icon(Icons.filter_list_rounded),
-                      ),
-                    ),
-                    Builder(
-                      builder: (context) {
-                        return UpdateStatusPopupMenu(
-                          getCategory: () => data.isNotBlank
-                              ? data[DefaultTabController.of(context).index]
-                              : null,
-                        );
-                      },
-                    ),
-                  ],
-                ),
-                endDrawerEnableOpenDragGesture: false,
-                endDrawer: const Drawer(
-                  width: kDrawerWidth,
-                  shape: RoundedRectangleBorder(),
-                  child: LibraryMangaOrganizer(),
-                ),
-                body: data.isBlank
-                    ? Emoticons(
-                        text: context.l10n!.noCategoriesFound,
-                        button: TextButton(
-                          onPressed: () =>
-                              ref.refresh(categoryControllerProvider),
-                          child: Text(context.l10n!.refresh),
-                        ),
-                      )
-                    : Padding(
-                        padding: KEdgeInsets.h8.size,
-                        child: TabBarView(
-                          children: data
-                              .map((e) => CategoryMangaList(
-                                    categoryId: e.id.getValueOnNullOrNegative(),
-                                  ))
-                              .toList(),
-                        ),
-                      ),
+                  Builder(
+                    builder: (context) {
+                      return UpdateStatusPopupMenu(
+                        getCategory: () => data.isNotBlank
+                            ? data[DefaultTabController.of(context).index]
+                            : null,
+                      );
+                    },
+                  ),
+                ],
               ),
+              endDrawerEnableOpenDragGesture: false,
+              endDrawer: const Drawer(
+                width: kDrawerWidth,
+                shape: RoundedRectangleBorder(),
+                child: LibraryMangaOrganizer(),
+              ),
+              body: data.isBlank
+                  ? Emoticons(
+                      title: context.l10n.noCategoriesFound,
+                      button: TextButton(
+                        onPressed: () =>
+                            ref.refresh(categoryControllerProvider),
+                        child: Text(context.l10n.refresh),
+                      ),
+                    )
+                  : Padding(
+                      padding: KEdgeInsets.h8.size,
+                      child: TabBarView(
+                        children: data
+                            .map((e) => CategoryMangaList(
+                                  categoryId: e.id.getValueOnNullOrNegative(),
+                                ))
+                            .toList(),
+                      ),
+                    ),
             ),
+          );
+        }
+      },
       refresh: () => ref.refresh(categoryControllerProvider),
       wrapper: (body) => Scaffold(
         appBar: AppBar(
-          title: Text(context.l10n!.library),
+          title: Text(context.l10n.library),
           centerTitle: true,
         ),
         body: body,

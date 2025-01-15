@@ -1,0 +1,15 @@
+
+fragment ExtensionFragment on ExtensionType {
+  apkName
+  hasUpdate
+  iconUrl
+  isInstalled
+  isNsfw
+  isObsolete
+  lang
+  name
+  pkgName
+  repo
+  versionCode
+  versionName
+}

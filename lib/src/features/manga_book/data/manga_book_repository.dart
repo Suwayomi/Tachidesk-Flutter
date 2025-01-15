@@ -5,6 +5,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:dio/dio.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../constants/endpoints.dart';
@@ -12,6 +13,7 @@ import '../../../global_providers/global_providers.dart';
 import '../../../utils/extensions/custom_extensions.dart';
 import '../../../utils/storage/dio/dio_client.dart';
 import '../../library/domain/category/category_model.dart';
+import '../../library/domain/category/graphql/__generated__/category_fragment.data.gql.dart';
 import '../domain/chapter/chapter_model.dart';
 import '../domain/chapter_batch/chapter_batch_model.dart';
 import '../domain/chapter_patch/chapter_put_model.dart';
@@ -40,7 +42,7 @@ class MangaBookRepository {
       (await dioClient.get<Manga, Manga?>(
         MangaUrl.fullWithId(mangaId),
         queryParameters: {"onlineFetch": onlineFetch},
-        decoder: (e) => e is Map<String, dynamic> ? Manga.fromJson(e) : null,
+        decoder: (e) => null,
         cancelToken: cancelToken,
       ))
           .data;
@@ -54,7 +56,7 @@ class MangaBookRepository {
   }) async =>
       (await dioClient.get<Chapter, Chapter?>(
         MangaUrl.chapterWithIndex(mangaId, chapterIndex),
-        decoder: (e) => e is Map<String, dynamic> ? Chapter.fromJson(e) : null,
+        decoder: (e) => e.data,
         cancelToken: cancelToken,
       ))
           .data;
@@ -91,8 +93,7 @@ class MangaBookRepository {
       (await dioClient.get<List<Chapter>, Chapter>(
         MangaUrl.chapters(mangaId),
         queryParameters: {"onlineFetch": onlineFetch},
-        decoder: (e) =>
-            e is Map<String, dynamic> ? Chapter.fromJson(e) : Chapter(),
+        decoder: (e) => e.data,
         cancelToken: cancelToken,
       ))
           .data;
@@ -103,8 +104,7 @@ class MangaBookRepository {
   }) async =>
       (await dioClient.get<List<Category>, Category>(
         MangaUrl.category(mangaId),
-        decoder: (e) =>
-            e is Map<String, dynamic> ? Category.fromJson(e) : Category(),
+        decoder: (e) => GCategoryFragmentData(),
         cancelToken: cancelToken,
       ))
           .data;
@@ -115,5 +115,5 @@ class MangaBookRepository {
 }
 
 @riverpod
-MangaBookRepository mangaBookRepository(MangaBookRepositoryRef ref) =>
+MangaBookRepository mangaBookRepository(Ref ref) =>
     MangaBookRepository(ref.watch(dioClientKeyProvider));

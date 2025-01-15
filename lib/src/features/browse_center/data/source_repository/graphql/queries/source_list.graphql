@@ -1,0 +1,9 @@
+# import '/src/features/browse_center/domain/source/graphql/source_fragment.graphql'
+
+query SourceList {
+  sources {
+    nodes {
+      ...SourceFragment
+    }
+  }
+}

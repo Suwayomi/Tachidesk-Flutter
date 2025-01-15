@@ -48,7 +48,7 @@ class ContinuousReaderMode extends HookConsumerWidget {
     final scrollController = useMemoized(() => ItemScrollController());
     final positionsListener = useMemoized(() => ItemPositionsListener.create());
     final currentIndex = useState(
-      chapter.read.ifNull()
+      chapter.isRead.ifNull()
           ? 0
           : (chapter.lastPageRead).getValueOnNullOrNegative(),
     );
@@ -127,7 +127,7 @@ class ContinuousReaderMode extends HookConsumerWidget {
                 alignment: alignment,
               );
       },
-      child: AppUtils.wrapIf(
+      child: AppUtils.wrapOn(
         !kIsWeb &&
                 (Platform.isAndroid || Platform.isIOS) &&
                 isPinchToZoomEnabled
@@ -136,12 +136,12 @@ class ContinuousReaderMode extends HookConsumerWidget {
         ScrollablePositionedList.separated(
           itemScrollController: scrollController,
           itemPositionsListener: positionsListener,
-          initialScrollIndex: chapter.read.ifNull()
+          initialScrollIndex: chapter.isRead.ifNull()
               ? 0
               : chapter.lastPageRead.getValueOnNullOrNegative(),
           scrollDirection: scrollDirection,
           reverse: reverse,
-          itemCount: chapter.pageCount ?? 0,
+          itemCount: chapter.pageCount,
           minCacheExtent: scrollDirection == Axis.vertical
               ? context.height * 2
               : context.width * 2,
@@ -155,8 +155,8 @@ class ContinuousReaderMode extends HookConsumerWidget {
                   : BoxFit.fitHeight,
               appendApiToUrl: true,
               imageUrl: MangaUrl.chapterPageWithIndex(
-                chapterIndex: chapter.index!,
-                mangaId: manga.id!,
+                chapterIndex: chapter.index,
+                mangaId: manga.id,
                 pageIndex: index,
               ),
               progressIndicatorBuilder: (_, __, downloadProgress) => Center(
@@ -174,7 +174,7 @@ class ContinuousReaderMode extends HookConsumerWidget {
                 child: child,
               ),
             );
-            if (index == 0 || index == (chapter.pageCount ?? 1) - 1) {
+            if (index == 0 || index == chapter.pageCount - 1) {
               final bool reverseDirection =
                   scrollDirection == Axis.horizontal && reverse;
               final separator = SizedBox(

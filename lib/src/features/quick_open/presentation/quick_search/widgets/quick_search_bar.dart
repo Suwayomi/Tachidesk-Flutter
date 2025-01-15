@@ -42,7 +42,7 @@ class QuickSearchBar extends HookConsumerWidget {
         },
         decoration: InputDecoration(
           isDense: true,
-          hintText: context.l10n!.search,
+          hintText: context.l10n.search,
           border: OutlineInputBorder(borderRadius: KBorderRadius.r16.radius),
         ),
       ),

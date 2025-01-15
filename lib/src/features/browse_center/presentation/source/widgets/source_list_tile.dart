@@ -8,8 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../constants/app_sizes.dart';
-import '../../../../../constants/enum.dart';
-
 import '../../../../../routes/router_config.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/server_image.dart';
@@ -25,34 +23,35 @@ class SourceListTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return ListTile(
       onTap: (() async {
-        if (source.id == null) return;
-        ref.read(sourceLastUsedProvider.notifier).update(source.id);
-        SourceMangaRoute(
-          sourceId: source.id!,
-          sourceType: SourceType.popular,
-        ).push(context);
+        ref.read(sourceLastUsedProvider.notifier).update(source.id.value);
+        SourceTypeRoute(
+          sourceId: source.id.value,
+          sourceType: SourceType.POPULAR.name,
+        ).go(context);
       }),
       leading: ClipRRect(
         borderRadius: KBorderRadius.r8.radius,
         child: ServerImage(
-          imageUrl: source.iconUrl ?? "",
+          imageUrl: source.iconUrl,
           size: const Size.square(48),
         ),
       ),
-      title: Text(source.name ?? ""),
-      subtitle: (source.lang?.displayName).isNotBlank
-          ? Text(source.lang?.displayName ?? "")
+      title: Text(source.name),
+      subtitle: (source.language?.displayName).isNotBlank
+          ? Text(source.language?.displayName ?? "")
           : null,
       trailing: (source.supportsLatest.ifNull())
           ? TextButton(
               onPressed: () async {
-                ref.read(sourceLastUsedProvider.notifier).update(source.id);
-                SourceMangaRoute(
-                  sourceId: source.id!,
-                  sourceType: SourceType.latest,
-                ).push(context);
+                ref
+                    .read(sourceLastUsedProvider.notifier)
+                    .update(source.id.value);
+                SourceTypeRoute(
+                  sourceId: source.id.value,
+                  sourceType: SourceType.LATEST.name,
+                ).go(context);
               },
-              child: Text(context.l10n!.latest),
+              child: Text(context.l10n.latest),
             )
           : null,
     );

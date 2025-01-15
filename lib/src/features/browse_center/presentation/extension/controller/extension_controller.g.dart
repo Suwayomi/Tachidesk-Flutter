@@ -6,11 +6,11 @@ part of 'extension_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$extensionHash() => r'7f4a60c97e38a62db718b504d572bd031b5b845d';
+String _$extensionHash() => r'18cdce42c4d4d3a2d435d4571ba6210909cd3aab';
 
 /// See also [extension].
 @ProviderFor(extension)
-final extensionProvider = AutoDisposeFutureProvider<List<Extension>?>.internal(
+final extensionProvider = AutoDisposeStreamProvider<List<Extension>?>.internal(
   extension,
   name: r'extensionProvider',
   debugGetCreateSourceHash:
@@ -19,8 +19,10 @@ final extensionProvider = AutoDisposeFutureProvider<List<Extension>?>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef ExtensionRef = AutoDisposeFutureProviderRef<List<Extension>?>;
-String _$extensionMapHash() => r'868e56067ad0639e41874adcffa4e97c49617f6c';
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef ExtensionRef = AutoDisposeStreamProviderRef<List<Extension>?>;
+String _$extensionMapHash() => r'05bd80c8a16e503efc3000ca2612a75bf2cfc35e';
 
 /// See also [extensionMap].
 @ProviderFor(extensionMap)
@@ -34,10 +36,12 @@ final extensionMapProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef ExtensionMapRef
     = AutoDisposeProviderRef<AsyncValue<Map<String, List<Extension>>>>;
 String _$extensionFilterLangListHash() =>
-    r'9b321188e52c96aa6f900d0bd671217e19d36832';
+    r'fcff9c0fa1a456138f7f5ae122503dd12c2bac1d';
 
 /// See also [extensionFilterLangList].
 @ProviderFor(extensionFilterLangList)
@@ -52,9 +56,11 @@ final extensionFilterLangListProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef ExtensionFilterLangListRef = AutoDisposeProviderRef<List<String>>;
 String _$extensionMapFilteredHash() =>
-    r'bcfe4ed3d11f2987273f35b672a3a27d9156fe77';
+    r'372ccefe11b8e35396b9d1c176519bf09fd8f6eb';
 
 /// See also [extensionMapFiltered].
 @ProviderFor(extensionMapFiltered)
@@ -69,10 +75,12 @@ final extensionMapFilteredProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef ExtensionMapFilteredRef
     = AutoDisposeProviderRef<AsyncValue<Map<String, List<Extension>>>>;
 String _$extensionMapFilteredAndQueriedHash() =>
-    r'211f3d7c994d5a1c7d9f4b1aba3437162cc69521';
+    r'c6a5f6bc23fb701aa0b2a48f08d1f7de5a0798cd';
 
 /// See also [extensionMapFilteredAndQueried].
 @ProviderFor(extensionMapFilteredAndQueried)
@@ -87,6 +95,8 @@ final extensionMapFilteredAndQueriedProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef ExtensionMapFilteredAndQueriedRef
     = AutoDisposeProviderRef<AsyncValue<Map<String, List<Extension>>>>;
 String _$extensionLanguageFilterHash() =>
@@ -123,4 +133,4 @@ final extensionQueryProvider =
 
 typedef _$ExtensionQuery = AutoDisposeNotifier<String?>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

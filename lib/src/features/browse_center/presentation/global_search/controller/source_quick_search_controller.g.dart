@@ -7,7 +7,7 @@ part of 'source_quick_search_controller.dart';
 // **************************************************************************
 
 String _$sourceQuickSearchMangaListHash() =>
-    r'5bdff0092cc32d1ced8fa590a4146cfdba0d108f';
+    r'180dfbcc447d1caa59f8f82ee23038f486e632f0';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -157,6 +157,8 @@ class SourceQuickSearchMangaListProvider
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin SourceQuickSearchMangaListRef
     on AutoDisposeFutureProviderRef<List<Manga>> {
   /// The parameter `sourceId` of this provider.
@@ -179,7 +181,7 @@ class _SourceQuickSearchMangaListProviderElement
 }
 
 String _$quickSearchResultsHash() =>
-    r'95c8745e42306378a3b8981adb88d6d40679966e';
+    r'afb320774f7c45d1dd0050807fc61f21c8dafa5d';
 
 /// See also [quickSearchResults].
 @ProviderFor(quickSearchResults)
@@ -299,6 +301,8 @@ class QuickSearchResultsProvider
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin QuickSearchResultsRef
     on AutoDisposeProviderRef<AsyncValue<List<QuickSearchResults>>> {
   /// The parameter `query` of this provider.
@@ -314,4 +318,4 @@ class _QuickSearchResultsProviderElement
   String? get query => (origin as QuickSearchResultsProvider).query;
 }
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -36,22 +36,22 @@ class CategoryQueryListTile extends StatelessWidget {
     } else if ((chapter?.name).isBlank) {
       title = (manga?.title ?? "");
     } else {
-      title = chapter?.getDisplayName(context) ?? "";
+      title = chapter?.name ?? "";
     }
 
     return InkWell(
       onTap: () {
         if (chapter?.index != null) {
           ReaderRoute(
-            mangaId: manga!.id!,
-            chapterIndex: chapter!.index!,
+            mangaId: manga!.id,
+            chapterIndex: chapter!.index,
             showReaderLayoutAnimation: true,
           ).push(context);
         } else if (manga?.id != null) {
-          MangaRoute(mangaId: manga!.id!, categoryId: category?.id)
+          MangaRoute(mangaId: manga!.id, categoryId: category?.id)
               .push(context);
         } else {
-          LibraryRoute(initialCategoryOrder: category?.order).push(context);
+          LibraryRoute(categoryId: category?.order ?? 0).push(context);
         }
         afterClick?.call();
       },

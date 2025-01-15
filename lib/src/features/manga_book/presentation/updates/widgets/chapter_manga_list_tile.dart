@@ -33,7 +33,7 @@ class ChapterMangaListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = (pair.chapter?.read).ifNull() ? Colors.grey : null;
+    final color = (pair.chapter?.isRead).ifNull() ? Colors.grey : null;
     return GestureDetector(
       onSecondaryTap:
           pair.chapter != null ? () => toggleSelect(pair.chapter!) : null,
@@ -41,8 +41,8 @@ class ChapterMangaListTile extends StatelessWidget {
         title: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            if ((pair.chapter?.bookmarked).ifNull()) ...[
-              const Icon(Icons.bookmark, size: 20),
+            if ((pair.chapter?.isBookmarked).ifNull()) ...[
+              const Icon(Icons.bookmark_rounded, size: 20),
               const Gap(4),
             ],
             Expanded(
@@ -59,7 +59,7 @@ class ChapterMangaListTile extends StatelessWidget {
             onTap: () {
               if ((pair.manga?.id) != null) {
                 MangaRoute(
-                  mangaId: pair.manga!.id!,
+                  mangaId: pair.manga!.id,
                 ).push(context);
               }
             },
@@ -75,8 +75,8 @@ class ChapterMangaListTile extends StatelessWidget {
         ),
         trailing: (pair.manga?.id != null && pair.chapter?.index != null)
             ? DownloadStatusIcon(
-                isDownloaded: (pair.chapter?.downloaded).ifNull(),
-                mangaId: pair.manga!.id!,
+                isDownloaded: (pair.chapter?.isDownloaded).ifNull(),
+                mangaId: pair.manga!.id,
                 chapter: pair.chapter!,
                 updateData: updatePair,
               )
@@ -91,8 +91,8 @@ class ChapterMangaListTile extends StatelessWidget {
                   toggleSelect(pair.chapter!);
                 } else {
                   ReaderRoute(
-                    mangaId: pair.manga!.id!,
-                    chapterIndex: pair.chapter!.index!,
+                    mangaId: pair.manga!.id,
+                    chapterIndex: pair.chapter!.index,
                     showReaderLayoutAnimation: true,
                   ).push(context);
                 }

@@ -6,7 +6,7 @@ part of 'source_manga_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$sourceHash() => r'02ebbe306c0a96174aa221c8e90e9f2c96f398ee';
+String _$sourceHash() => r'ba0522b8852d946a8af5b73f9bdc6abfffa9b070';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -72,7 +72,7 @@ class SourceFamily extends Family<AsyncValue<Source?>> {
 }
 
 /// See also [source].
-class SourceProvider extends AutoDisposeFutureProvider<Source?> {
+class SourceProvider extends AutoDisposeStreamProvider<Source?> {
   /// See also [source].
   SourceProvider(
     String sourceId,
@@ -106,7 +106,7 @@ class SourceProvider extends AutoDisposeFutureProvider<Source?> {
 
   @override
   Override overrideWith(
-    FutureOr<Source?> Function(SourceRef provider) create,
+    Stream<Source?> Function(SourceRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
@@ -123,7 +123,7 @@ class SourceProvider extends AutoDisposeFutureProvider<Source?> {
   }
 
   @override
-  AutoDisposeFutureProviderElement<Source?> createElement() {
+  AutoDisposeStreamProviderElement<Source?> createElement() {
     return _SourceProviderElement(this);
   }
 
@@ -141,12 +141,14 @@ class SourceProvider extends AutoDisposeFutureProvider<Source?> {
   }
 }
 
-mixin SourceRef on AutoDisposeFutureProviderRef<Source?> {
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+mixin SourceRef on AutoDisposeStreamProviderRef<Source?> {
   /// The parameter `sourceId` of this provider.
   String get sourceId;
 }
 
-class _SourceProviderElement extends AutoDisposeFutureProviderElement<Source?>
+class _SourceProviderElement extends AutoDisposeStreamProviderElement<Source?>
     with SourceRef {
   _SourceProviderElement(super.provider);
 
@@ -155,7 +157,7 @@ class _SourceProviderElement extends AutoDisposeFutureProviderElement<Source?>
 }
 
 String _$baseSourceMangaFilterListHash() =>
-    r'21b6028eb4e3ea54f9708d2faf1c73f21129721e';
+    r'3c388358917ac0729529b91f0b2afa80b3378762';
 
 /// See also [baseSourceMangaFilterList].
 @ProviderFor(baseSourceMangaFilterList)
@@ -163,7 +165,7 @@ const baseSourceMangaFilterListProvider = BaseSourceMangaFilterListFamily();
 
 /// See also [baseSourceMangaFilterList].
 class BaseSourceMangaFilterListFamily
-    extends Family<AsyncValue<List<Filter>?>> {
+    extends Family<AsyncValue<BuiltList<Filter>?>> {
   /// See also [baseSourceMangaFilterList].
   const BaseSourceMangaFilterListFamily();
 
@@ -202,7 +204,7 @@ class BaseSourceMangaFilterListFamily
 
 /// See also [baseSourceMangaFilterList].
 class BaseSourceMangaFilterListProvider
-    extends AutoDisposeFutureProvider<List<Filter>?> {
+    extends AutoDisposeFutureProvider<BuiltList<Filter>?> {
   /// See also [baseSourceMangaFilterList].
   BaseSourceMangaFilterListProvider(
     String sourceId,
@@ -237,7 +239,7 @@ class BaseSourceMangaFilterListProvider
 
   @override
   Override overrideWith(
-    FutureOr<List<Filter>?> Function(BaseSourceMangaFilterListRef provider)
+    FutureOr<BuiltList<Filter>?> Function(BaseSourceMangaFilterListRef provider)
         create,
   ) {
     return ProviderOverride(
@@ -255,7 +257,7 @@ class BaseSourceMangaFilterListProvider
   }
 
   @override
-  AutoDisposeFutureProviderElement<List<Filter>?> createElement() {
+  AutoDisposeFutureProviderElement<BuiltList<Filter>?> createElement() {
     return _BaseSourceMangaFilterListProviderElement(this);
   }
 
@@ -274,188 +276,21 @@ class BaseSourceMangaFilterListProvider
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin BaseSourceMangaFilterListRef
-    on AutoDisposeFutureProviderRef<List<Filter>?> {
+    on AutoDisposeFutureProviderRef<BuiltList<Filter>?> {
   /// The parameter `sourceId` of this provider.
   String get sourceId;
 }
 
 class _BaseSourceMangaFilterListProviderElement
-    extends AutoDisposeFutureProviderElement<List<Filter>?>
+    extends AutoDisposeFutureProviderElement<BuiltList<Filter>?>
     with BaseSourceMangaFilterListRef {
   _BaseSourceMangaFilterListProviderElement(super.provider);
 
   @override
   String get sourceId => (origin as BaseSourceMangaFilterListProvider).sourceId;
-}
-
-String _$sourceMangaFilterListHash() =>
-    r'8a73132c795c270e84df2fe1f325301b4e955c45';
-
-abstract class _$SourceMangaFilterList
-    extends BuildlessAutoDisposeNotifier<AsyncValue<List<Filter>?>> {
-  late final String sourceId;
-  late final List<Filter>? filter;
-
-  AsyncValue<List<Filter>?> build(
-    String sourceId, {
-    List<Filter>? filter,
-  });
-}
-
-/// See also [SourceMangaFilterList].
-@ProviderFor(SourceMangaFilterList)
-const sourceMangaFilterListProvider = SourceMangaFilterListFamily();
-
-/// See also [SourceMangaFilterList].
-class SourceMangaFilterListFamily extends Family<AsyncValue<List<Filter>?>> {
-  /// See also [SourceMangaFilterList].
-  const SourceMangaFilterListFamily();
-
-  /// See also [SourceMangaFilterList].
-  SourceMangaFilterListProvider call(
-    String sourceId, {
-    List<Filter>? filter,
-  }) {
-    return SourceMangaFilterListProvider(
-      sourceId,
-      filter: filter,
-    );
-  }
-
-  @override
-  SourceMangaFilterListProvider getProviderOverride(
-    covariant SourceMangaFilterListProvider provider,
-  ) {
-    return call(
-      provider.sourceId,
-      filter: provider.filter,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'sourceMangaFilterListProvider';
-}
-
-/// See also [SourceMangaFilterList].
-class SourceMangaFilterListProvider extends AutoDisposeNotifierProviderImpl<
-    SourceMangaFilterList, AsyncValue<List<Filter>?>> {
-  /// See also [SourceMangaFilterList].
-  SourceMangaFilterListProvider(
-    String sourceId, {
-    List<Filter>? filter,
-  }) : this._internal(
-          () => SourceMangaFilterList()
-            ..sourceId = sourceId
-            ..filter = filter,
-          from: sourceMangaFilterListProvider,
-          name: r'sourceMangaFilterListProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$sourceMangaFilterListHash,
-          dependencies: SourceMangaFilterListFamily._dependencies,
-          allTransitiveDependencies:
-              SourceMangaFilterListFamily._allTransitiveDependencies,
-          sourceId: sourceId,
-          filter: filter,
-        );
-
-  SourceMangaFilterListProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.sourceId,
-    required this.filter,
-  }) : super.internal();
-
-  final String sourceId;
-  final List<Filter>? filter;
-
-  @override
-  AsyncValue<List<Filter>?> runNotifierBuild(
-    covariant SourceMangaFilterList notifier,
-  ) {
-    return notifier.build(
-      sourceId,
-      filter: filter,
-    );
-  }
-
-  @override
-  Override overrideWith(SourceMangaFilterList Function() create) {
-    return ProviderOverride(
-      origin: this,
-      override: SourceMangaFilterListProvider._internal(
-        () => create()
-          ..sourceId = sourceId
-          ..filter = filter,
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        sourceId: sourceId,
-        filter: filter,
-      ),
-    );
-  }
-
-  @override
-  AutoDisposeNotifierProviderElement<SourceMangaFilterList,
-      AsyncValue<List<Filter>?>> createElement() {
-    return _SourceMangaFilterListProviderElement(this);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return other is SourceMangaFilterListProvider &&
-        other.sourceId == sourceId &&
-        other.filter == filter;
-  }
-
-  @override
-  int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, sourceId.hashCode);
-    hash = _SystemHash.combine(hash, filter.hashCode);
-
-    return _SystemHash.finish(hash);
-  }
-}
-
-mixin SourceMangaFilterListRef
-    on AutoDisposeNotifierProviderRef<AsyncValue<List<Filter>?>> {
-  /// The parameter `sourceId` of this provider.
-  String get sourceId;
-
-  /// The parameter `filter` of this provider.
-  List<Filter>? get filter;
-}
-
-class _SourceMangaFilterListProviderElement
-    extends AutoDisposeNotifierProviderElement<SourceMangaFilterList,
-        AsyncValue<List<Filter>?>> with SourceMangaFilterListRef {
-  _SourceMangaFilterListProviderElement(super.provider);
-
-  @override
-  String get sourceId => (origin as SourceMangaFilterListProvider).sourceId;
-  @override
-  List<Filter>? get filter => (origin as SourceMangaFilterListProvider).filter;
 }
 
 String _$sourceDisplayModeHash() => r'f386ba15fdc6025e0471b7ffc8066162d83ea083';
@@ -475,4 +310,4 @@ final sourceDisplayModeProvider =
 
 typedef _$SourceDisplayMode = AutoDisposeNotifier<DisplayMode?>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

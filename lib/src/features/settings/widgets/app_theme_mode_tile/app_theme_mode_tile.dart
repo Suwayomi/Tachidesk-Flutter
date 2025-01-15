@@ -11,7 +11,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../constants/db_keys.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/mixin/shared_preferences_client_mixin.dart';
-import '../../../../widgets/radio_list_popup.dart';
+import '../../../../widgets/popup_widgets/radio_list_popup.dart';
 
 part 'app_theme_mode_tile.g.dart';
 
@@ -27,9 +27,9 @@ class AppThemeMode extends _$AppThemeMode
 
 extension ThemeModeExtension on ThemeMode {
   String toLocale(BuildContext context) => switch (this) {
-        ThemeMode.system => context.l10n!.themeModeSystem,
-        ThemeMode.light => context.l10n!.themeModeLight,
-        ThemeMode.dark => context.l10n!.themeModeDark
+        ThemeMode.system => context.l10n.themeModeSystem,
+        ThemeMode.light => context.l10n.themeModeLight,
+        ThemeMode.dark => context.l10n.themeModeDark
       };
 }
 
@@ -44,11 +44,11 @@ class AppThemeModeTile extends ConsumerWidget {
         context.isDarkMode ? Icons.dark_mode_rounded : Icons.light_mode_rounded,
       ),
       subtitle: themeMode != null ? Text(themeMode.toLocale(context)) : null,
-      title: Text(context.l10n!.appTheme),
+      title: Text(context.l10n.appTheme),
       onTap: () => showDialog(
         context: context,
         builder: (context) => RadioListPopup<ThemeMode>(
-          title: context.l10n!.appTheme,
+          title: context.l10n.appTheme,
           optionList: ThemeMode.values,
           value: themeMode ?? ThemeMode.system,
           getOptionTitle: (value) => value.toLocale(context),

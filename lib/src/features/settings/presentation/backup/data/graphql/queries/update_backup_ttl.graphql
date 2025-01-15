@@ -1,0 +1,9 @@
+# import '/src/features/settings/domain/settings/graphql/settings_fragment.graphql'
+
+mutation UpdateBackupTTL($backupTTL: Int = 14) {
+  setSettings(input: {settings: {backupTTL: $backupTTL}}) {
+    settings {
+      ...SettingsFragment
+    }
+  }
+}

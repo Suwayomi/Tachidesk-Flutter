@@ -19,6 +19,6 @@ Future<void> launchUrlInWeb(BuildContext context, String url,
     webOnlyWindowName: "_blank",
   )) {
     await Clipboard.setData(ClipboardData(text: url));
-    if (context.mounted) toast?.showError(context.l10n!.errorLaunchURL(url));
+    if (context.mounted) toast?.showError(context.l10n.errorLaunchURL(url));
   }
 }

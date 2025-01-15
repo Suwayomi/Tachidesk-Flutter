@@ -1,0 +1,9 @@
+
+fragment SocksProxyFragment on SettingsType {
+  socksProxyEnabled
+  socksProxyHost
+  socksProxyPassword
+  socksProxyPort
+  socksProxyUsername
+  socksProxyVersion
+}

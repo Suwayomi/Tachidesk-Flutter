@@ -42,7 +42,7 @@ class PageNumberSlider extends StatelessWidget {
       Text("$maxValue"),
     ];
     return Card(
-      color: context.theme.appBarTheme.backgroundColor?.withOpacity(.7),
+      color: context.theme.appBarTheme.backgroundColor?.withValues(alpha: .7),
       shape: RoundedRectangleBorder(
         borderRadius: KBorderRadius.r32.radius,
       ),

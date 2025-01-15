@@ -1,0 +1,8 @@
+
+fragment LibrarySettingsFragment on SettingsType {
+  globalUpdateInterval
+  updateMangas
+  excludeCompleted
+  excludeNotStarted
+  excludeUnreadChapters
+}

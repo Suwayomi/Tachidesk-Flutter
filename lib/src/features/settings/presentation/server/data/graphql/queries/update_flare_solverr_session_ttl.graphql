@@ -1,0 +1,9 @@
+# import '/src/features/settings/domain/settings/graphql/settings_fragment.graphql'
+
+mutation UpdateFlareSolverrSessionTtl($flareSolverrSessionTtl: Int = 10) {
+  setSettings(input: {settings: {flareSolverrSessionTtl: $flareSolverrSessionTtl}}) {
+    settings {
+      ...SettingsFragment
+    }
+  }
+}

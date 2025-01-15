@@ -31,7 +31,7 @@ class MangaChipsRow extends ConsumerWidget {
         children: [
           if (!showCountBadges && (manga.inLibrary.ifNull()))
             MangaChip(
-              text: context.l10n!.inLibrary,
+              text: context.l10n.inLibrary,
               color: context.theme.colorScheme.primary,
               textColor: context.theme.colorScheme.onPrimary,
             ),
@@ -41,18 +41,18 @@ class MangaChipsRow extends ConsumerWidget {
               children: [
                 if (manga.unreadCount.isGreaterThan(0) && unreadBadge)
                   MangaChip(
-                    text: context.l10n!.nameCountDisplay(
+                    text: context.l10n.nameCountDisplay(
                       manga.unreadCount.getValueOnNullOrNegative(),
-                      context.l10n!.unread,
+                      context.l10n.unread,
                     ),
                     color: context.theme.colorScheme.primary,
                     textColor: context.theme.colorScheme.onPrimary,
                   ),
                 if (manga.downloadCount.isGreaterThan(0) && downloadedBadge)
                   MangaChip(
-                    text: context.l10n!.nameCountDisplay(
+                    text: context.l10n.nameCountDisplay(
                       manga.downloadCount.getValueOnNullOrNegative(),
-                      context.l10n!.downloaded,
+                      context.l10n.downloaded,
                     ),
                     color: context.theme.colorScheme.tertiary,
                     textColor: context.theme.colorScheme.onTertiary,

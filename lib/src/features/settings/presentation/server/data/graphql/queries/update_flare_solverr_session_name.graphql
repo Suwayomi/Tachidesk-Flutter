@@ -1,0 +1,9 @@
+# import '/src/features/settings/domain/settings/graphql/settings_fragment.graphql'
+
+mutation UpdateFlareSolverrSessionName($flareSolverrSessionName: String!) {
+  setSettings(input: {settings: {flareSolverrSessionName: $flareSolverrSessionName}}) {
+    settings {
+      ...SettingsFragment
+    }
+  }
+}

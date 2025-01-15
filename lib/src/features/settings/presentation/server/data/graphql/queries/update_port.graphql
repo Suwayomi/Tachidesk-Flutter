@@ -1,0 +1,9 @@
+# import '/src/features/settings/domain/settings/graphql/settings_fragment.graphql'
+
+mutation UpdatePort($port: Int = 4567) {
+  setSettings(input: {settings: {port: $port}}) {
+    settings {
+      ...SettingsFragment
+    }
+  }
+}

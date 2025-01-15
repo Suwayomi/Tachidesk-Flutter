@@ -11,7 +11,7 @@ _$ChapterPutImpl _$$ChapterPutImplFromJson(Map<String, dynamic> json) =>
       read: json['read'] as bool?,
       bookmarked: json['bookmarked'] as bool?,
       markPrevRead: json['markPrevRead'] as bool?,
-      lastPageRead: json['lastPageRead'] as int?,
+      lastPageRead: (json['lastPageRead'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$ChapterPutImplToJson(_$ChapterPutImpl instance) =>

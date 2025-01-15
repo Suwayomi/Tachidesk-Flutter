@@ -20,8 +20,8 @@ class MangaChapterOrganizer extends StatelessWidget {
       child: Scaffold(
         appBar: TabBar(
           tabs: [
-            Tab(text: context.l10n!.filter),
-            Tab(text: context.l10n!.sort),
+            Tab(text: context.l10n.filter),
+            Tab(text: context.l10n.sort),
           ],
         ),
         body: TabBarView(

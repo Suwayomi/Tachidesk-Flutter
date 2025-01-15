@@ -7,7 +7,7 @@ part of 'source_preference_controller.dart';
 // **************************************************************************
 
 String _$baseSourcePreferenceListHash() =>
-    r'5f48b999265f1507e80fbcee0caa4e8880d95a76';
+    r'68e89826f9ed0d7b6b0900523e2e331a612d1bb0';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -36,7 +36,7 @@ const baseSourcePreferenceListProvider = BaseSourcePreferenceListFamily();
 
 /// See also [baseSourcePreferenceList].
 class BaseSourcePreferenceListFamily
-    extends Family<AsyncValue<List<SourcePreference>?>> {
+    extends Family<AsyncValue<BuiltList<SourcePreference>?>> {
   /// See also [baseSourcePreferenceList].
   const BaseSourcePreferenceListFamily();
 
@@ -75,7 +75,7 @@ class BaseSourcePreferenceListFamily
 
 /// See also [baseSourcePreferenceList].
 class BaseSourcePreferenceListProvider
-    extends AutoDisposeFutureProvider<List<SourcePreference>?> {
+    extends AutoDisposeFutureProvider<BuiltList<SourcePreference>?> {
   /// See also [baseSourcePreferenceList].
   BaseSourcePreferenceListProvider(
     String sourceId,
@@ -110,7 +110,7 @@ class BaseSourcePreferenceListProvider
 
   @override
   Override overrideWith(
-    FutureOr<List<SourcePreference>?> Function(
+    FutureOr<BuiltList<SourcePreference>?> Function(
             BaseSourcePreferenceListRef provider)
         create,
   ) {
@@ -129,7 +129,8 @@ class BaseSourcePreferenceListProvider
   }
 
   @override
-  AutoDisposeFutureProviderElement<List<SourcePreference>?> createElement() {
+  AutoDisposeFutureProviderElement<BuiltList<SourcePreference>?>
+      createElement() {
     return _BaseSourcePreferenceListProviderElement(this);
   }
 
@@ -148,166 +149,21 @@ class BaseSourcePreferenceListProvider
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin BaseSourcePreferenceListRef
-    on AutoDisposeFutureProviderRef<List<SourcePreference>?> {
+    on AutoDisposeFutureProviderRef<BuiltList<SourcePreference>?> {
   /// The parameter `sourceId` of this provider.
   String get sourceId;
 }
 
 class _BaseSourcePreferenceListProviderElement
-    extends AutoDisposeFutureProviderElement<List<SourcePreference>?>
+    extends AutoDisposeFutureProviderElement<BuiltList<SourcePreference>?>
     with BaseSourcePreferenceListRef {
   _BaseSourcePreferenceListProviderElement(super.provider);
 
   @override
   String get sourceId => (origin as BaseSourcePreferenceListProvider).sourceId;
 }
-
-String _$sourcePreferenceListHash() =>
-    r'30c8dca8328a16872db111dcc9052178c9f3e60c';
-
-abstract class _$SourcePreferenceList
-    extends BuildlessAutoDisposeNotifier<AsyncValue<List<SourcePreference>?>> {
-  late final String sourceId;
-
-  AsyncValue<List<SourcePreference>?> build(
-    String sourceId,
-  );
-}
-
-/// See also [SourcePreferenceList].
-@ProviderFor(SourcePreferenceList)
-const sourcePreferenceListProvider = SourcePreferenceListFamily();
-
-/// See also [SourcePreferenceList].
-class SourcePreferenceListFamily
-    extends Family<AsyncValue<List<SourcePreference>?>> {
-  /// See also [SourcePreferenceList].
-  const SourcePreferenceListFamily();
-
-  /// See also [SourcePreferenceList].
-  SourcePreferenceListProvider call(
-    String sourceId,
-  ) {
-    return SourcePreferenceListProvider(
-      sourceId,
-    );
-  }
-
-  @override
-  SourcePreferenceListProvider getProviderOverride(
-    covariant SourcePreferenceListProvider provider,
-  ) {
-    return call(
-      provider.sourceId,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'sourcePreferenceListProvider';
-}
-
-/// See also [SourcePreferenceList].
-class SourcePreferenceListProvider extends AutoDisposeNotifierProviderImpl<
-    SourcePreferenceList, AsyncValue<List<SourcePreference>?>> {
-  /// See also [SourcePreferenceList].
-  SourcePreferenceListProvider(
-    String sourceId,
-  ) : this._internal(
-          () => SourcePreferenceList()..sourceId = sourceId,
-          from: sourcePreferenceListProvider,
-          name: r'sourcePreferenceListProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$sourcePreferenceListHash,
-          dependencies: SourcePreferenceListFamily._dependencies,
-          allTransitiveDependencies:
-              SourcePreferenceListFamily._allTransitiveDependencies,
-          sourceId: sourceId,
-        );
-
-  SourcePreferenceListProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.sourceId,
-  }) : super.internal();
-
-  final String sourceId;
-
-  @override
-  AsyncValue<List<SourcePreference>?> runNotifierBuild(
-    covariant SourcePreferenceList notifier,
-  ) {
-    return notifier.build(
-      sourceId,
-    );
-  }
-
-  @override
-  Override overrideWith(SourcePreferenceList Function() create) {
-    return ProviderOverride(
-      origin: this,
-      override: SourcePreferenceListProvider._internal(
-        () => create()..sourceId = sourceId,
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        sourceId: sourceId,
-      ),
-    );
-  }
-
-  @override
-  AutoDisposeNotifierProviderElement<SourcePreferenceList,
-      AsyncValue<List<SourcePreference>?>> createElement() {
-    return _SourcePreferenceListProviderElement(this);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return other is SourcePreferenceListProvider && other.sourceId == sourceId;
-  }
-
-  @override
-  int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, sourceId.hashCode);
-
-    return _SystemHash.finish(hash);
-  }
-}
-
-mixin SourcePreferenceListRef
-    on AutoDisposeNotifierProviderRef<AsyncValue<List<SourcePreference>?>> {
-  /// The parameter `sourceId` of this provider.
-  String get sourceId;
-}
-
-class _SourcePreferenceListProviderElement
-    extends AutoDisposeNotifierProviderElement<SourcePreferenceList,
-        AsyncValue<List<SourcePreference>?>> with SourcePreferenceListRef {
-  _SourcePreferenceListProviderElement(super.provider);
-
-  @override
-  String get sourceId => (origin as SourcePreferenceListProvider).sourceId;
-}
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

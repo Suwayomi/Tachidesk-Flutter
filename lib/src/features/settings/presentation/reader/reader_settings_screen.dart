@@ -31,7 +31,7 @@ class ReaderSettingsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isVolumeTapEnabled = ref.watch(volumeTapProvider).ifNull();
     return Scaffold(
-      appBar: AppBar(title: Text(context.l10n!.reader)),
+      appBar: AppBar(title: Text(context.l10n.reader)),
       body: ListView(
         children: [
           const ReaderModeTile(),

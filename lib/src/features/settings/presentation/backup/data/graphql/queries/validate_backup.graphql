@@ -1,0 +1,7 @@
+query ValidateBackup($backup: Upload!) {
+    validateBackup(input: { backup: $backup }) {
+        missingSources {
+            name
+        }
+    }
+}

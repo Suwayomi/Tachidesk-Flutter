@@ -1,0 +1,9 @@
+# import '/src/features/settings/domain/settings/graphql/settings_fragment.graphql'
+
+mutation ToggleDebugLogs($debugLogsEnabled: Boolean = false) {
+  setSettings(input: {settings: {debugLogsEnabled: $debugLogsEnabled}}) {
+    settings {
+      ...SettingsFragment
+    }
+  }
+}

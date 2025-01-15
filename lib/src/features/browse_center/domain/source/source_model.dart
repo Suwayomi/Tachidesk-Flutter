@@ -4,30 +4,41 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/material.dart';
 
+import '../../../../graphql/__generated__/schema.schema.gql.dart';
+import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/freezed_converters/language_json_converter.dart';
 import '../language/language_model.dart';
+import 'graphql/__generated__/source_fragment.data.gql.dart';
 
-part 'source_model.freezed.dart';
-part 'source_model.g.dart';
+typedef Source = GSourceFragment;
 
-@freezed
-class Source with _$Source {
-  factory Source({
-    String? displayName,
-    String? iconUrl,
-    String? id,
-    bool? isConfigurable,
-    bool? isNsfw,
-    @JsonKey(
-      fromJson: LanguageJsonConverter.fromJson,
-      toJson: LanguageJsonConverter.toJson,
-    )
-    Language? lang,
-    String? name,
-    bool? supportsLatest,
-  }) = _Source;
+typedef SourceType = GFetchSourceMangaType;
 
-  factory Source.fromJson(Map<String, dynamic> json) => _$SourceFromJson(json);
+extension SourceExtensions on GSourceFragment {
+  Language? get language => LanguageJsonConverter.fromJson(lang);
+}
+
+extension SourceMangaTypeExtension on GFetchSourceMangaType {
+  IconData get icon => switch (this) {
+        GFetchSourceMangaType.LATEST => Icons.new_releases_outlined,
+        GFetchSourceMangaType.POPULAR => Icons.favorite_border_rounded,
+        GFetchSourceMangaType.SEARCH => Icons.filter_list_outlined,
+        GFetchSourceMangaType() => throw UnimplementedError(),
+      };
+
+  IconData get selectedIcon => switch (this) {
+        GFetchSourceMangaType.LATEST => Icons.new_releases_rounded,
+        GFetchSourceMangaType.POPULAR => Icons.favorite_rounded,
+        GFetchSourceMangaType.SEARCH => Icons.filter_list_rounded,
+        GFetchSourceMangaType() => throw UnimplementedError(),
+      };
+
+  String toLocale(BuildContext context) => switch (this) {
+        GFetchSourceMangaType.LATEST => context.l10n.sourceTypeLatest,
+        GFetchSourceMangaType.POPULAR => context.l10n.sourceTypePopular,
+        GFetchSourceMangaType.SEARCH => context.l10n.sourceTypeFilter,
+        GFetchSourceMangaType() => throw UnimplementedError(),
+      };
 }

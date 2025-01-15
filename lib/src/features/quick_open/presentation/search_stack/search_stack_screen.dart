@@ -42,7 +42,7 @@ class SearchStackScreen extends HookConsumerWidget {
                 child: Container(
                   constraints: const BoxConstraints.expand(),
                   decoration: BoxDecoration(
-                    color: context.theme.canvasColor.withOpacity(.1),
+                    color: context.theme.canvasColor.withValues(alpha: .1),
                   ),
                   child: QuickSearchScreen(
                     afterClick: () => visible.value = (false),
