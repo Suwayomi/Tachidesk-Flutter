@@ -1,0 +1,920 @@
+{
+  "about": "Giới thiệu",
+  "@about": {
+    "description": "Screen title and Button text of About screen"
+  },
+  "addCategory": "Thêm danh mục",
+  "@addCategory": {
+    "description": "Popup title and Button text to add new category in Edit Category Screen"
+  },
+  "addToLibrary": "Thêm vào thư viện",
+  "@addToLibrary": {
+    "description": "Button text to add Manga to Library in Manga Details Screen"
+  },
+  "appLanguage": "Ngôn ngữ",
+  "@appLanguage": {
+    "description": "Popup title and Button text to change App Language"
+  },
+  "appTheme": "Chủ đề",
+  "@appTheme": {
+    "description": "Popup title and Button text to change App Theme Mode"
+  },
+  "appearance": "Giao diện",
+  "@appearance": {
+    "description": "Screen title and Button text of Appearance screen"
+  },
+  "authType": "Xác thực",
+  "@authType": {
+    "description": "Popup title and Button text to change App Authentication"
+  },
+  "authTypeBasic": "Xác thực cơ bản",
+  "@authTypeBasic": {
+    "description": "Radio button text for the Basic Authentication type"
+  },
+  "authTypeNone": "Không",
+  "@authTypeNone": {
+    "description": "Radio button text for no Authentication"
+  },
+  "backup": "Sao lưu & Khôi phục",
+  "@backup": {
+    "description": "Screen title and Button text of Backup & Restore screen"
+  },
+  "badges": "Nhãn",
+  "@badges": {
+    "description": "Checkbox Group title to enable Badges on manga Cover in Library Screen"
+  },
+  "bookmarked": "Đã đánh dấu",
+  "@bookmarked": {
+    "description": "Checkbox text to filter bookmarked manga chapters in Manga Details screen"
+  },
+  "browse": "Duyệt",
+  "@browse": {
+    "description": "Screen title, Navigation Bar text and Button text of both Browse screen and Browse Settings Screen"
+  },
+  "cacheCleared": "Đã xóa bộ nhớ đệm",
+  "@cacheCleared": {
+    "description": "Toast Text to show after clearing cache"
+  },
+  "cancel": "Hủy bỏ",
+  "@cancel": {
+    "description": "Text for Cancel button in a Popup"
+  },
+  "categories": "Danh mục",
+  "@categories": {
+    "description": "Button text of edit Categories screen in Library settings screen"
+  },
+  "categoryUpdate": "Cập nhật danh mục",
+  "@categoryUpdate": {
+    "description": "Button text to update the mangas in the Category"
+  },
+  "buildTime": "Phát hành",
+  "@buildTime": {
+    "description": "Text title to show build time of Server in About Screen"
+  },
+  "allScanlators": "Tất cả nhóm dịch",
+  "@allScanlators": {
+    "description": "Text for all Scanlators in manga description screen chapter filter"
+  },
+  "appTitle": "Tachidesk Sorayomi",
+  "@appTitle": {
+    "description": "Name of the app (Tachidesk Sorayomi in native script)"
+  },
+  "channel": "Kênh",
+  "@channel": {
+    "description": "Text title to show Channel of the Server (Stable, preview) in About Screen"
+  },
+  "chapterNumber": "Chương {number}",
+  "@chapterNumber": {
+    "description": "Text title for Chapter name in chapter list",
+    "placeholders": {
+      "number": {
+        "example": "12.5",
+        "type": "double"
+      }
+    }
+  },
+  "chapterSortSource": "Theo nguồn truyện",
+  "@chapterSortSource": {
+    "description": "Radio button text for sort by Source"
+  },
+  "chapterSortUploadDate": "Theo ngày đăng",
+  "@chapterSortUploadDate": {
+    "description": "Radio button text for sort by Upload Date"
+  },
+  "chapterSortFetchedDate": "Theo ngày tìm nạp",
+  "@chapterSortFetchedDate": {
+    "description": "Radio button text for sort by Fetched Date"
+  },
+  "checkForServerUpdates": "Kiểm tra cập nhật máy chủ",
+  "@checkForServerUpdates": {
+    "description": "Button text to check for Server updates"
+  },
+  "checkForUpdates": "Kiểm tra bản cập nhật",
+  "@checkForUpdates": {
+    "description": "Button text to check for App Updates"
+  },
+  "clearCache": "Xóa bộ nhớ đệm",
+  "@clearCache": {
+    "description": "Button text for clear cache in General Settings screen"
+  },
+  "client": "Khách",
+  "@client": {
+    "description": "Text title for the name of the client in About screen"
+  },
+  "clientVersion": "Phiên bản máy khách",
+  "@clientVersion": {
+    "description": "Text title for the current version of the client in About screen"
+  },
+  "close": "Đóng",
+  "@close": {
+    "description": "Text for close button"
+  },
+  "createBackupDescription": "Sao lưu thư viện bằng định dạng Tachiyomi",
+  "@createBackupDescription": {
+    "description": "Button text description to create backup"
+  },
+  "createBackupTitle": "Tạo bản sao lưu",
+  "@createBackupTitle": {
+    "description": "Button text to create backup"
+  },
+  "daysAgo": "{days} ngày trước",
+  "@daysAgo": {
+    "description": "Days ago text to show the release date of manga"
+  },
+  "defaultCategory": "Danh mục mặc định khi thêm manga mới vào thư viện",
+  "@defaultCategory": {
+    "description": "Checkbox description when creating a Category to add manga to the Category by Default"
+  },
+  "delete": "Xóa bỏ",
+  "@delete": {
+    "description": "Text for delete button"
+  },
+  "deleteCategoryDescription": "Điều này sẽ hợp nhất tất cả Manga trong Danh mục này thành Mặc định!",
+  "@deleteCategoryDescription": {
+    "description": "Popup description when deleting Category"
+  },
+  "deleteCategoryTitle": "Bạn có chắc không?",
+  "@deleteCategoryTitle": {
+    "description": "Popup title when deleting Category"
+  },
+  "display": "Hiển thị",
+  "@display": {
+    "description": "Text for Display tab in Library screen drawer"
+  },
+  "discord": "Discord",
+  "@discord": {
+    "description": "Discord app title"
+  },
+  "displayMode": "Chế độ hiển thị",
+  "@displayMode": {
+    "description": "Radio Group title to change manga Cover display in Library and Source Screens"
+  },
+  "displayModeGrid": "Lưới",
+  "@displayModeGrid": {
+    "description": "Radio button text for Manga Cover display mode - Grid"
+  },
+  "displayModeDescriptiveList": "Danh sách chi tiết",
+  "@displayModeDescriptiveList": {
+    "description": "Radio button text for Manga Cover display mode - Descriptive List"
+  },
+  "displayModeList": "Danh sách",
+  "@displayModeList": {
+    "description": "Radio button text for Manga Cover display mode - List"
+  },
+  "downloaded": "Đã tải xuống",
+  "@downloaded": {
+    "description": "Text to show downloaded chapters status in Filters  "
+  },
+  "downloads": "Tải xuống",
+  "@downloads": {
+    "description": "Screen title and Navigation text of Downloads screen"
+  },
+  "edit": "Chỉnh sửa",
+  "@edit": {
+    "description": "Popup button text to edit Category in Edit category screen"
+  },
+  "editCategory": "Chỉnh sửa danh mục",
+  "@editCategory": {
+    "description": "Screen title, Button text and  of Downloads screen"
+  },
+  "emptyCategory": "Tên danh mục không được để trống",
+  "@emptyCategory": {
+    "description": "Description to show that category list is empty in Edit Category screen"
+  },
+  "errorExtension": "Không thể tìm thấy tiện ích mở rộng đã chọn",
+  "@errorExtension": {
+    "description": "Error Description to show when user selected unknown extension from list"
+  },
+  "errorFilePick": "Tệp không được chọn!",
+  "@errorFilePick": {
+    "description": "Error Description to show when user does not selected an file"
+  },
+  "errorLaunchURL": "Không thể mở được!\nĐang sao chép \"{url}\" vào bảng nhớ tạm",
+  "@errorLaunchURL": {
+    "description": "Error Description to show when App failed to launch an URL and copied the URL to clipboard",
+    "placeholders": {
+      "url": {
+        "example": "http://sorayomi.suwayomi.org",
+        "type": "String"
+      }
+    }
+  },
+  "errorPassword": "Mật khẩu không thể trống",
+  "@errorPassword": {
+    "description": "Error Description to show that password cannot be empty"
+  },
+  "errorUserName": "Tên người dùng không được để trống",
+  "@errorUserName": {
+    "description": "Error Description to show that UserName cannot be empty"
+  },
+  "extensionInstalled": "Đã cài đặt tiện ích mở rộng!",
+  "@extensionInstalled": {
+    "description": "Toast text to show that the Extension Installed successfully"
+  },
+  "extensionListEmpty": "Danh sách tiện ích trống",
+  "@extensionListEmpty": {
+    "description": "Description to show that Extension list is empty in Extension list tab of Browse screen"
+  },
+  "extensions": "Tiện ích mở rộng",
+  "@extensions": {
+    "description": "Extension list Tab title in Browse Screen"
+  },
+  "failed": "Thất bại",
+  "@failed": {
+    "description": "Failed status Manga Group title in Update Summary Screen"
+  },
+  "filter": "Bộ lọc",
+  "@filter": {
+    "description": "title of filter Tab across the app"
+  },
+  "findServer": "Tìm",
+  "@findServer": {
+    "description": "Button text of Find Server"
+  },
+  "finished": "Hoàn thành",
+  "@finished": {
+    "description": "Text to show the Currently Finished reading chapter in Reader Screen"
+  },
+  "current": "Hiện hành",
+  "@current": {
+    "description": "Text to show the currently reading chapter in Reader Screen"
+  },
+  "general": "Tổng quan",
+  "@general": {
+    "description": "Screen title and Button text of General setting screen"
+  },
+  "gitHub": "GitHub",
+  "@gitHub": {
+    "description": "GitHub app title"
+  },
+  "globalSearch": "Tìm kiếm toàn cầu",
+  "@globalSearch": {
+    "description": "Screen title of Global Search screen"
+  },
+  "globalUpdate": "Cập nhật toàn cầu",
+  "@globalUpdate": {
+    "description": "Button text of Global Manga Update"
+  },
+  "help": "Trợ giúp",
+  "@help": {
+    "description": "Button text of help in about screen"
+  },
+  "install": "Cài đặt",
+  "@install": {
+    "description": "Button text to install the extension"
+  },
+  "installing": "Đang cài đặt",
+  "@installing": {
+    "description": "Button text to show that the extension is installing"
+  },
+  "installingExtension": "Cài đặt tiện ích mở rộng",
+  "@installingExtension": {
+    "description": "Toast text to show that the extension is installing"
+  },
+  "isTrueBlack": "Đen tuyền",
+  "@isTrueBlack": {
+    "description": "Switch title to enable {} black theme"
+  },
+  "languages": "Ngôn ngữ",
+  "@languages": {
+    "description": "Popup title to filter extensions based on language"
+  },
+  "latest": "Mới nhất",
+  "@latest": {
+    "description": "Button text to take user to the latest tab of Source manga screen"
+  },
+  "library": "Thư viện",
+  "@library": {
+    "description": "Screen title and Button text of Library and Library Settings screen"
+  },
+  "manga": "Truyện",
+  "@manga": {
+    "description": "Screen title and Button text of Manga details screen"
+  },
+  "mangaGridSize": "Kích thước lưới",
+  "@mangaGridSize": {
+    "description": "Popup title and Button text to change Manga Grid size"
+  },
+  "mangaMissingSources": "Truyện thiếu nguồn",
+  "@mangaMissingSources": {
+    "description": "Group title to show the Manga Missing Sources when restoring Backup"
+  },
+  "mangaSortAlphabetical": "Theo bảng chữ cái",
+  "@mangaSortAlphabetical": {
+    "description": "Radio button text for Manga sort Type - Alphabetical"
+  },
+  "mangaSortLastRead": "Đã đọc gần nhất",
+  "@mangaSortLastRead": {
+    "description": "Radio button text for Manga sort Type - Last Read"
+  },
+  "mangaSortUnread": "Chưa đọc",
+  "@mangaSortUnread": {
+    "description": "Radio button text for Manga sort Type - Unread"
+  },
+  "mangaStatusCancelled": "Đã hủy",
+  "@mangaStatusCancelled": {
+    "description": "Text to show Manga Status Cancelled in Manga details screen"
+  },
+  "mangaStatusCompleted": "Hoàn thành",
+  "@mangaStatusCompleted": {
+    "description": "Text to show Manga Status Completed in Manga details screen"
+  },
+  "mangaStatusLicensed": "Được cấp phép",
+  "@mangaStatusLicensed": {
+    "description": "Text to show Manga Status Licensed in Manga details screen"
+  },
+  "mangaStatusOnHiatus": "Tạm ngưng",
+  "@mangaStatusOnHiatus": {
+    "description": "Text to show Manga Status On Hiatus in Manga details screen"
+  },
+  "mangaStatusOngoing": "Đang tiến hành",
+  "@mangaStatusOngoing": {
+    "description": "Text to show Manga Status Ongoing in Manga details screen"
+  },
+  "mangaStatusPublishingFinished": "Đã hoàn thành xuất bản",
+  "@mangaStatusPublishingFinished": {
+    "description": "Text to show Manga Status Publishing Finished in Manga details screen"
+  },
+  "mangaStatusUnknown": "Không rõ",
+  "@mangaStatusUnknown": {
+    "description": "Text to show Manga Status Unknown in Manga details screen"
+  },
+  "missingExtension": "Thiếu tiện ích mở rộng",
+  "@missingExtension": {
+    "description": "Group title to show the Missing Extensions when restoring Backup"
+  },
+  "missingTrackers": "Thiếu trình theo dõi",
+  "@missingTrackers": {
+    "description": "Group title to show the Missing Trackers when restoring Backup"
+  },
+  "moveToBottom": "Di chuyển xuống dưới cùng",
+  "@moveToBottom": {
+    "description": "Button text to move download/category to the bottom of list"
+  },
+  "nameCountDisplay": "{name}: {count}",
+  "@nameCountDisplay": {
+    "description": "Text pattern to display an name and count in a string",
+    "placeholders": {
+      "count": {
+        "example": "22",
+        "type": "int"
+      },
+      "name": {
+        "example": "Downloaded",
+        "type": "String"
+      }
+    }
+  },
+  "newUpdateAvailable": "Đã có bản cập nhật mới",
+  "@newUpdateAvailable": {
+    "description": "Popup title to show that the App/Server has and update"
+  },
+  "nextChapter": "Chương kế tiếp:{chapterTitle}",
+  "@nextChapter": {
+    "description": "Text for Next Chapter button in Manga Reader Screen"
+  },
+  "noCategoriesFound": "Bạn không có bất kỳ Danh mục nào. \n(Mẹo: Nhấn vào nút Dấu cộng để tạo một nút để sắp xếp thư viện của bạn)",
+  "@noCategoriesFound": {
+    "description": "Hint text to add new Category when category list is empty"
+  },
+  "noCategoriesFoundAlt": "Bạn không có bất kỳ Danh mục nào.\nTạo một cái trong cài đặt để tổ chức thư viện của bạn",
+  "@noCategoriesFoundAlt": {
+    "description": "Hint text to add new Category in Settings when category list is empty"
+  },
+  "noCategoryMangaFound": "Không tìm thấy manga nào trong danh mục này.\n(Mẹo: Kiểm tra tìm kiếm và bộ lọc của bạn!)",
+  "@noCategoryMangaFound": {
+    "description": "Hint text to check filter when manga list is empty in Category tab in Library"
+  },
+  "noChaptersFound": "Không tìm thấy chương nào",
+  "@noChaptersFound": {
+    "description": "Text to show that the Chapter list is empty in Manga details Screen"
+  },
+  "noDownloads": "Không có",
+  "@noDownloads": {
+    "description": "Text to show that there is no active downloads in Downloads Screen"
+  },
+  "noMangaFound": "Không tìm thấy Manga nào",
+  "@noMangaFound": {
+    "description": "Text to show that the Manga list is empty"
+  },
+  "noOfChapters": "{count} Chương",
+  "@noOfChapters": {
+    "description": "Title text to show the number of chapters in the Manga details screen",
+    "placeholders": {
+      "count": {
+        "example": "23",
+        "type": "int"
+      }
+    }
+  },
+  "noResultFound": "Không tìm thấy kết quả nào",
+  "@noResultFound": {
+    "description": "Text to show that no results found for the given search query"
+  },
+  "noServerFound": "Không tìm thấy máy chủ nào trong mạng cục bộ của bạn",
+  "@noServerFound": {
+    "description": "Text to show that no Server found in locale network"
+  },
+  "noSourcesFound": "Không tìm thấy nguồn nào",
+  "@noSourcesFound": {
+    "description": "Text to show that the Source list is empty"
+  },
+  "noUpdatesAvailable": "Bạn đang sử dụng phiên bản mới nhất",
+  "@noUpdatesAvailable": {
+    "description": "Text to show that the user is using the latest version of the app"
+  },
+  "noUpdatesFound": "Không tìm thấy bản cập nhật nào",
+  "@noUpdatesFound": {
+    "description": "Toast Text to show that there are no Updates available"
+  },
+  "nsfw": "Hiển thị các phần mở rộng và nguồn NSFW",
+  "@nsfw": {
+    "description": "Switch text to show/hide the nsfw extensions"
+  },
+  "nsfw18": "18+",
+  "@nsfw18": {
+    "description": "18+ tag Text to show in extensions list"
+  },
+  "numSelected": "{num} Đã chọn",
+  "@numSelected": {
+    "description": "Title text to show the number of chapters selected in the Manga details screen and Updates screen",
+    "placeholders": {
+      "num": {
+        "example": "23",
+        "type": "int"
+      }
+    }
+  },
+  "obsolete": "Lỗi thời",
+  "@obsolete": {
+    "description": "Text to show that the extension has become Obsolete"
+  },
+  "page": "Trang: {number}",
+  "@page": {
+    "description": "Text to show the last read Page number of the chapter in Manga details screen",
+    "placeholders": {
+      "number": {
+        "example": "23",
+        "type": "int"
+      }
+    }
+  },
+  "password": "Mật khẩu",
+  "@password": {
+    "description": "Title text for password field"
+  },
+  "pause": "Tạm dừng",
+  "@pause": {
+    "description": "Button text to pause downloads"
+  },
+  "pending": "Chờ xử lý",
+  "@pending": {
+    "description": "Pending status Manga Group title in Update Summary Screen"
+  },
+  "previousChapter": "Chương trước đó: {chapterTitle}",
+  "@previousChapter": {
+    "description": "Text for Previous Chapter button in Manga Reader Screen"
+  },
+  "quickSearch": "Tìm kiếm nhanh",
+  "@quickSearch": {
+    "description": "Screen title and Button text of Quick Search screen"
+  },
+  "quickSearchCategory": "Chuyển đến Danh mục 'C'",
+  "@quickSearchCategory": {
+    "description": "Quick Open Hint text for Category C with prefill '#C'"
+  },
+  "quickSearchCategoryManga": "Đi đến Manga 'M' trong Danh mục 'C'",
+  "@quickSearchCategoryManga": {
+    "description": "Quick Open Hint text for searching Manga M in Category C with prefill '#C/M'"
+  },
+  "quickSearchCategoryMangaChapter": "Chuyển đến Tên chương 'CN' từ Manga 'M' trong Danh mục 'C'",
+  "@quickSearchCategoryMangaChapter": {
+    "description": "Quick Open Hint text for searching Chapter name CN from Manga M in Source S with prefill '#C/M:CN'"
+  },
+  "quickSearchContext": "Tìm kiếm truy vấn X (Kết quả dựa trên ngữ cảnh màn hình)",
+  "@quickSearchContext": {
+    "description": "Quick Open Hint text for query X"
+  },
+  "quickSearchSource": "Đi tới Nguồn 'S'",
+  "@quickSearchSource": {
+    "description": "Quick Open Hint text for Source S with prefill '@S'"
+  },
+  "reader": "Trình đọc",
+  "@reader": {
+    "description": "Screen title and Button text of Reader screen"
+  },
+  "readerMagnifierSize": "Kích thước kính lúp",
+  "@readerMagnifierSize": {
+    "description": "Slider title text for Reader Magnifier Size"
+  },
+  "readerMode": "Kiểu đọc",
+  "@readerMode": {
+    "description": "Popup title and Button text of Reader Mode popup"
+  },
+  "readerModeContinuousHorizontalLTR": "Ngang liên tục (LTR)",
+  "@readerModeContinuousHorizontalLTR": {
+    "description": "Radio button text for Reader Mode Type - Continuous Horizontal (LTR)"
+  },
+  "readerModeContinuousVertical": "Liên tục theo chiều dọc",
+  "@readerModeContinuousVertical": {
+    "description": "Radio button text for Reader Mode Type - Continuous Vertical"
+  },
+  "readerModeDefaultReader": "Mặc định",
+  "@readerModeDefaultReader": {
+    "description": "Radio button text for Reader Mode Type - Default"
+  },
+  "readerModeSingleHorizontalLTR": "Đơn ngang (LTR)",
+  "@readerModeSingleHorizontalLTR": {
+    "description": "Radio button text for Reader Mode Type - Single Horizontal (LTR)"
+  },
+  "readerModeSingleHorizontalRTL": "Ngang đơn (RTL)",
+  "@readerModeSingleHorizontalRTL": {
+    "description": "Radio button text for Reader Mode Type - Single Horizontal (RTL)"
+  },
+  "readerModeSingleVertical": "Dọc đơn",
+  "@readerModeSingleVertical": {
+    "description": "Radio button text for Reader Mode Type - Single Vertical"
+  },
+  "readerModeWebtoon": "Webtoon",
+  "@readerModeWebtoon": {
+    "description": "Radio button text for Reader Mode Type - Webtoon"
+  },
+  "readerNavigationLayout": "Bố cục điều hướng",
+  "@readerNavigationLayout": {
+    "description": "Popup title and Button text of Reader Navigation Layout popup"
+  },
+  "readerNavigationLayoutDefault": "Mặc định",
+  "@readerNavigationLayoutDefault": {
+    "description": "Radio button text for Reader Navigation Layout - Default"
+  },
+  "readerNavigationLayoutDisabled": "Tắt",
+  "@readerNavigationLayoutDisabled": {
+    "description": "Radio button text for Reader Navigation Layout - Disabled"
+  },
+  "readerNavigationLayoutEdge": "Dạng góc cạnh",
+  "@readerNavigationLayoutEdge": {
+    "description": "Radio button text for Reader Navigation Layout - Edge"
+  },
+  "readerNavigationLayoutInvert": "Đảo ngược khu vực nhấn",
+  "@readerNavigationLayoutInvert": {
+    "description": "Switch title to invert Tap to scroll in reader screen"
+  },
+  "readerNavigationLayoutKindlish": "Dạng Kindle",
+  "@readerNavigationLayoutKindlish": {
+    "description": "Radio button text for Reader Navigation Layout - Kindle-ish"
+  },
+  "readerNavigationLayoutLShaped": "Dạng chữ L",
+  "@readerNavigationLayoutLShaped": {
+    "description": "Radio button text for Reader Navigation Layout - L Shaped"
+  },
+  "readerNavigationLayoutRightAndLeft": "Phải và trái",
+  "@readerNavigationLayoutRightAndLeft": {
+    "description": "Radio button text for Reader Navigation Layout - Right And Left"
+  },
+  "readerOverlay": "Lớp phủ ban đầu của trình đọc",
+  "@readerOverlay": {
+    "description": "Toggle subtile text for Initial Reader Overlay"
+  },
+  "readerOverlaySubtitle": "Hiển thị tiêu đề và cài đặt nhanh khi mở một chương",
+  "@readerOverlaySubtitle": {},
+  "readerPadding": "Phần đệm đầu đọc",
+  "@readerPadding": {
+    "description": "Slider title text for Reader Padding"
+  },
+  "readerScrollAnimation": "Hoạt ảnh cuộn",
+  "@readerScrollAnimation": {
+    "description": "Switch title to Disable scroll animation in reader screen"
+  },
+  "readerSwipeChapterToggle": "Vuốt chuyển đổi",
+  "@readerSwipeChapterToggle": {
+    "description": "Switch title to toggle `swipe to change chapter` in reader screen"
+  },
+  "readerSwipeChapterToggleDescription": "Vuốt để thay đổi chương trong trình đọc",
+  "@readerSwipeChapterToggleDescription": {
+    "description": "Switch tile description for, toggle `swipe to change chapter` in reader screen"
+  },
+  "readerVolumeTap": "Phím âm lượng",
+  "@readerVolumeTap": {
+    "description": "Switch button text for Reader Page Navigation with Volume Tap"
+  },
+  "readerVolumeTapInvert": "Đảo ngược phím âm lượng",
+  "@readerVolumeTapInvert": {
+    "description": "Switch button text to invert Volume Tap "
+  },
+  "readerVolumeTapSubtitle": "Điều hướng bằng phím âm lượng",
+  "@readerVolumeTapSubtitle": {
+    "description": "Switch button Subtitle text for Reader Page Navigation with Volume Tap"
+  },
+  "reddit": "Reddit",
+  "@reddit": {
+    "description": "Reddit app title"
+  },
+  "refresh": "Làm mới",
+  "@refresh": {
+    "description": "Refresh button text"
+  },
+  "reload": "Tải lại",
+  "@reload": {
+    "description": "Reload button text"
+  },
+  "remove": "Xóa",
+  "@remove": {
+    "description": "Remove Button text"
+  },
+  "removeFromLibrary": "Xóa khỏi Thư viện?",
+  "@removeFromLibrary": {
+    "description": "Remove From Library Popup text"
+  },
+  "reset": "Đặt lại",
+  "@reset": {
+    "description": "Button text of reset button in source filters"
+  },
+  "restoreBackupDescription": "Khôi phục Tachidesk từ bản sao lưu",
+  "@restoreBackupDescription": {
+    "description": "Button text description to create backup"
+  },
+  "restoreBackupTitle": "Khôi phục bản sao lưu",
+  "@restoreBackupTitle": {
+    "description": "Button text to create backup"
+  },
+  "restored": "Đã khôi phục bản sao lưu!",
+  "@restored": {
+    "description": "Toast Text to show that the backup has been restored"
+  },
+  "restoring": "Khôi phục bản sao lưu",
+  "@restoring": {
+    "description": "Toast Text to show that the backup is restoring"
+  },
+  "resume": "Tiếp tục",
+  "@resume": {
+    "description": "Button Text to resume Chapter reading/downloading"
+  },
+  "retry": "Thử lại",
+  "@retry": {
+    "description": "Retry Button Text"
+  },
+  "running": "Đang chạy",
+  "@running": {
+    "description": "Running status Manga Group title in Update Summary Screen"
+  },
+  "save": "Lưu",
+  "@save": {
+    "description": "Save Button Text"
+  },
+  "scanlators": "Nhóm dịch",
+  "@scanlators": {
+    "description": "Title text for Scanlators"
+  },
+  "search": "Tìm kiếm",
+  "@search": {
+    "description": "Search field hint Text"
+  },
+  "searchingForUpdates": "Tìm kiếm thông tin cập nhật",
+  "@searchingForUpdates": {
+    "description": "Toast Text for searching for updates of the App/Server"
+  },
+  "selectInBetween": "Chọn ở giữa",
+  "@selectInBetween": {
+    "description": "Toast Text for selecting chapters in between first and last Chapters"
+  },
+  "selectNext10": "Chọn 10 chương tiếp theo",
+  "@selectNext10": {
+    "description": "Toast Text for selecting next 10 chapters"
+  },
+  "selectUnread": "Chọn Chưa đọc",
+  "@selectUnread": {
+    "description": "Popup Text for selecting unread chapters"
+  },
+  "serverPort": "Cổng máy chủ",
+  "@serverPort": {
+    "description": "Popup title and Button text to update Server Port"
+  },
+  "serverPortHintText": "Cổng máy chủ",
+  "@serverPortHintText": {
+    "description": "Text Filed hint text to update Server Port"
+  },
+  "serverUrl": "URL máy chủ",
+  "@serverUrl": {
+    "description": "Popup title and Button text to update Server Url"
+  },
+  "serverUrlHintText": "URL máy chủ",
+  "@serverUrlHintText": {
+    "description": "Text Filed hint text to update Server Url"
+  },
+  "serverVersion": "Phiên bản máy chủ",
+  "@serverVersion": {
+    "description": "Text title for the current version of the Server in About screen"
+  },
+  "settings": "Cài đặt",
+  "@settings": {
+    "description": "Screen title and Button text of Settings screen"
+  },
+  "sort": "Sắp xếp",
+  "@sort": {
+    "description": "title of sort Tab across the app"
+  },
+  "source": "Nguồn",
+  "@source": {
+    "description": "Screen title and Button text of source screen"
+  },
+  "sourceTypeFilter": "Bộ lọc",
+  "@sourceTypeFilter": {
+    "description": "Tab text Filter for source screen type"
+  },
+  "sourceTypeLatest": "Mới nhất",
+  "@sourceTypeLatest": {
+    "description": "Tab text Latest for source screen type"
+  },
+  "sourceTypePopular": "Phổ biến",
+  "@sourceTypePopular": {
+    "description": "Tab text Popular for source screen type"
+  },
+  "sources": "Nguồn",
+  "@sources": {
+    "description": "title of Sources Tab in Browse Screen"
+  },
+  "start": "Bắt đầu",
+  "@start": {
+    "description": "Button text start reading the manga"
+  },
+  "themeModeDark": "Tối",
+  "@themeModeDark": {
+    "description": "Radio button text for App theme - Dark"
+  },
+  "themeModeLight": "Sáng",
+  "@themeModeLight": {
+    "description": "Radio button text for App theme - Light"
+  },
+  "themeModeSystem": "Hệ thống",
+  "@themeModeSystem": {
+    "description": "Radio button text for App theme - System"
+  },
+  "today": "Hôm nay",
+  "@today": {
+    "description": "Today Text to show the release date of manga"
+  },
+  "uninstall": "Gỡ cài đặt",
+  "@uninstall": {
+    "description": "Button text to Uninstall the extension"
+  },
+  "updating": "Đang cập nhật",
+  "@updating": {
+    "description": "Button text to show that the extension is updating"
+  },
+  "userName": "Tên người dùng",
+  "@userName": {
+    "description": "Title text for User Name field"
+  },
+  "versionAvailable": "Đã có phiên bản {version} cho {app}!!",
+  "@versionAvailable": {
+    "description": "Text to show that there is an update to App/Server",
+    "placeholders": {
+      "app": {
+        "example": "Server",
+        "type": "String"
+      },
+      "version": {
+        "example": "v0.4.2",
+        "type": "String"
+      }
+    }
+  },
+  "webUI": "Mở trong WEB",
+  "@webUI": {
+    "description": "Button text to open in web UI"
+  },
+  "webView": "Xem trên web",
+  "@webView": {
+    "description": "Button text to open manga website"
+  },
+  "whatsNew": "Có gì mới?",
+  "@whatsNew": {
+    "description": "Button text to open whats new page of app in web"
+  },
+  "yesterday": "Hôm qua",
+  "@yesterday": {
+    "description": "Yesterday Text to show the release date of manga"
+  },
+  "credentials": "Thông tin xác thực",
+  "@credentials": {
+    "description": "Popup title and Button text to enter Authentication credentials"
+  },
+  "errorFilePickUnknownExtension": "Vui lòng chọn tệp có phần mở rộng {extensionName}",
+  "@errorFilePickUnknownExtension": {
+    "description": "Error Description to show when user selected unknown extension file"
+  },
+  "errorSomethingWentWrong": "Đã xảy ra lỗi!",
+  "@errorSomethingWentWrong": {
+    "description": "Error Description to show that Something went wrong!"
+  },
+  "inLibrary": "Trong thư viện",
+  "@inLibrary": {
+    "description": "Button and Chip text to show that the manga is in Library"
+  },
+  "mangaSortDateAdded": "Ngày thêm",
+  "@mangaSortDateAdded": {
+    "description": "Radio button text for Manga sort Type - Date Added"
+  },
+  "more": "Thêm",
+  "@more": {
+    "description": "Screen title and Navigation text of More screen"
+  },
+  "moveToTop": "Di chuyển lên trên cùng",
+  "@moveToTop": {
+    "description": "Button text to move download/category to the top of list"
+  },
+  "nsfwInfo": "Điều này không ngăn các tiện ích mở rộng không chính thức hoặc có khả năng bị gắn cờ không chính xác hiển thị nội dung NSFW(18+) trong ứng dụng",
+  "@nsfwInfo": {
+    "description": "Hint text to show that the nsfw switch cannot prevent incorrectly flagged extensions from surfacing"
+  },
+  "pinchToZoom": "Chụm để thu phóng",
+  "@pinchToZoom": {
+    "description": "Switch title to enable pinch to zoom in reader screen"
+  },
+  "completed": "Hoàn thành",
+  "@completed": {
+    "description": "Checkbox text to filter Completed mangas in Library screen and Manga Grouping text in Update Summary screen"
+  },
+  "copyMsg": "'{msg}' Đã sao chép!",
+  "@copyMsg": {
+    "description": "Toast text to show that the message has been copied",
+    "placeholders": {
+      "msg": {
+        "example": "Client : Tachidesk Sorayomi",
+        "type": "String"
+      }
+    }
+  },
+  "quickSearchShowAllCommandTip": "Mẹo: Nhập '?' để xem tất cả các lệnh",
+  "@quickSearchShowAllCommandTip": {
+    "description": "Quick Open Tip text for showing all commands by entering '?'"
+  },
+  "server": "Máy chủ",
+  "@server": {
+    "description": "Text title for the server in About screen"
+  },
+  "updates": "Cập nhật",
+  "@updates": {
+    "description": "Screen title and Button text of Updates screen"
+  },
+  "quickSearchSourceManga": "Tìm kiếm Manga 'M' trong Nguồn 'S'",
+  "@quickSearchSourceManga": {
+    "description": "Quick Open Hint text for searching Manga M in Source S with prefill '@S/M'"
+  },
+  "unknownManga": "Truyện tranh không xác định",
+  "@unknownManga": {
+    "description": "Text to show unknown manga in Manga details screen"
+  },
+  "unread": "Chưa đọc",
+  "@unread": {
+    "description": "Checkbox text to unread bookmarked manga/chapters across app"
+  },
+  "updatesSummary": "Tóm tắt cập nhật",
+  "@updatesSummary": {
+    "description": "Screen title and Button text of Updates Summary screen"
+  },
+  "uninstalling": "Gỡ cài đặt",
+  "@uninstalling": {
+    "description": "Button text to show that the extension is uninstalling"
+  },
+  "unknownAuthor": "Tác giả không xác định",
+  "@unknownAuthor": {
+    "description": "Text to show unknown author in Manga details screen"
+  },
+  "unknownSource": "Nguồn không xác định",
+  "@unknownSource": {
+    "description": "Text to show unknown Source in Manga details screen"
+  },
+  "update": "Cập nhật",
+  "@update": {
+    "description": "Button text to update the extension"
+  },
+  "readerModeContinuousHorizontalRTL": "Ngang liên tục (RTL)",
+  "@readerModeContinuousHorizontalRTL": {
+    "description": "Radio button text for Reader Mode Type - Continuous Horizontal (RTL)"
+  },
+  "updateCompleted": "Cập nhật đã hoàn tất",
+  "@updateCompleted": {
+    "description": "Button text to show that extension update is completed"
+  }
+}

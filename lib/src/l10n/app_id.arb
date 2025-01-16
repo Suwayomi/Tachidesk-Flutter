@@ -1,0 +1,376 @@
+{
+  "addToLibrary": "Tambahkan ke Pustaka",
+  "@addToLibrary": {
+    "description": "Button text to add Manga to Library in Manga Details Screen"
+  },
+  "allScanlators": "Semua Pemindai",
+  "@allScanlators": {
+    "description": "Text for all Scanlators in manga description screen chapter filter"
+  },
+  "appLanguage": "Bahasa Aplikasi",
+  "@appLanguage": {
+    "description": "Popup title and Button text to change App Language"
+  },
+  "appTheme": "Mode Tema Aplikasi",
+  "@appTheme": {
+    "description": "Popup title and Button text to change App Theme Mode"
+  },
+  "appearance": "Tampilan",
+  "@appearance": {
+    "description": "Screen title and Button text of Appearance screen"
+  },
+  "authType": "Tipe Autentikasi",
+  "@authType": {
+    "description": "Popup title and Button text to change App Authentication"
+  },
+  "authTypeBasic": "Autentikasi Dasar",
+  "@authTypeBasic": {
+    "description": "Radio button text for the Basic Authentication type"
+  },
+  "authTypeNone": "Tidak Ada",
+  "@authTypeNone": {
+    "description": "Radio button text for no Authentication"
+  },
+  "backup": "Cadangkan & Pulihkan",
+  "@backup": {
+    "description": "Screen title and Button text of Backup & Restore screen"
+  },
+  "badges": "Lencana",
+  "@badges": {
+    "description": "Checkbox Group title to enable Badges on manga Cover in Library Screen"
+  },
+  "bookmarked": "Ditandai",
+  "@bookmarked": {
+    "description": "Checkbox text to filter bookmarked manga chapters in Manga Details screen"
+  },
+  "buildTime": "Waktu build",
+  "@buildTime": {
+    "description": "Text title to show build time of Server in About Screen"
+  },
+  "cacheCleared": "Cache Dibershikan",
+  "@cacheCleared": {
+    "description": "Toast Text to show after clearing cache"
+  },
+  "cancel": "Batal",
+  "@cancel": {
+    "description": "Text for Cancel button in a Popup"
+  },
+  "categories": "Kategori",
+  "@categories": {
+    "description": "Button text of edit Categories screen in Library settings screen"
+  },
+  "categoryUpdate": "Perbarui Kategori",
+  "@categoryUpdate": {
+    "description": "Button text to update the mangas in the Category"
+  },
+  "channel": "Channel",
+  "@channel": {
+    "description": "Text title to show Channel of the Server (Stable, preview) in About Screen"
+  },
+  "chapterNumber": "Chapter{number}",
+  "@chapterNumber": {
+    "description": "Text title for Chapter name in chapter list",
+    "placeholders": {
+      "number": {
+        "example": "12.5",
+        "type": "double"
+      }
+    }
+  },
+  "chapterSortFetchedDate": "Berdasarkan Tanggal Diambil",
+  "@chapterSortFetchedDate": {
+    "description": "Radio button text for sort by Fetched Date"
+  },
+  "chapterSortSource": "Berdasarkan Sumber",
+  "@chapterSortSource": {
+    "description": "Radio button text for sort by Source"
+  },
+  "chapterSortUploadDate": "Berdasarkan Tanggal Diunggah",
+  "@chapterSortUploadDate": {
+    "description": "Radio button text for sort by Upload Date"
+  },
+  "checkForServerUpdates": "Periksa Update Server",
+  "@checkForServerUpdates": {
+    "description": "Button text to check for Server updates"
+  },
+  "checkForUpdates": "Periksa Update",
+  "@checkForUpdates": {
+    "description": "Button text to check for App Updates"
+  },
+  "clearCache": "Bersihkan Cache",
+  "@clearCache": {
+    "description": "Button text for clear cache in General Settings screen"
+  },
+  "client": "Client",
+  "@client": {
+    "description": "Text title for the name of the client in About screen"
+  },
+  "clientVersion": "Versi Client",
+  "@clientVersion": {
+    "description": "Text title for the current version of the client in About screen"
+  },
+  "close": "Tutup",
+  "@close": {
+    "description": "Text for close button"
+  },
+  "completed": "Tamat",
+  "@completed": {
+    "description": "Checkbox text to filter Completed mangas in Library screen and Manga Grouping text in Update Summary screen"
+  },
+  "copyMsg": "'{msg}' Disalin!",
+  "@copyMsg": {
+    "description": "Toast text to show that the message has been copied",
+    "placeholders": {
+      "msg": {
+        "example": "Client : Tachidesk Sorayomi",
+        "type": "String"
+      }
+    }
+  },
+  "createBackupDescription": "Cadangkan pustaka sebagai cadangan Tachidesk",
+  "@createBackupDescription": {
+    "description": "Button text description to create backup"
+  },
+  "credentials": "Kredensial",
+  "@credentials": {
+    "description": "Popup title and Button text to enter Authentication credentials"
+  },
+  "current": "Saat ini",
+  "@current": {
+    "description": "Text to show the currently reading chapter in Reader Screen"
+  },
+  "daysAgo": "{days} hari yang lalu",
+  "@daysAgo": {
+    "description": "Days ago text to show the release date of manga"
+  },
+  "defaultCategory": "Kategori default ketika menambahkan manga baru ke pustaka",
+  "@defaultCategory": {
+    "description": "Checkbox description when creating a Category to add manga to the Category by Default"
+  },
+  "delete": "Hapus",
+  "@delete": {
+    "description": "Text for delete button"
+  },
+  "deleteCategoryDescription": "Ini akan menggabungkan semua Manga di kategori ini ke Default!",
+  "@deleteCategoryDescription": {
+    "description": "Popup description when deleting Category"
+  },
+  "displayMode": "Mode Tampilan",
+  "@displayMode": {
+    "description": "Radio Group title to change manga Cover display in Library and Source Screens"
+  },
+  "displayModeDescriptiveList": "List Descriptive",
+  "@displayModeDescriptiveList": {
+    "description": "Radio button text for Manga Cover display mode - Descriptive List"
+  },
+  "displayModeGrid": "Grid",
+  "@displayModeGrid": {
+    "description": "Radio button text for Manga Cover display mode - Grid"
+  },
+  "displayModeList": "List",
+  "@displayModeList": {
+    "description": "Radio button text for Manga Cover display mode - List"
+  },
+  "downloaded": "Diunduh",
+  "@downloaded": {
+    "description": "Text to show downloaded chapters status in Filters  "
+  },
+  "downloads": "Unduhan",
+  "@downloads": {
+    "description": "Screen title and Navigation text of Downloads screen"
+  },
+  "about": "Tentang",
+  "@about": {
+    "description": "Screen title and Button text of About screen"
+  },
+  "addCategory": "Tambah Kategori",
+  "@addCategory": {
+    "description": "Popup title and Button text to add new category in Edit Category Screen"
+  },
+  "appTitle": "Tachidesk Sorayomi",
+  "@appTitle": {
+    "description": "Name of the app (Tachidesk Sorayomi in native script)"
+  },
+  "browse": "Jelajahi",
+  "@browse": {
+    "description": "Screen title, Navigation Bar text and Button text of both Browse screen and Browse Settings Screen"
+  },
+  "createBackupTitle": "Buat Cadangan",
+  "@createBackupTitle": {
+    "description": "Button text to create backup"
+  },
+  "deleteCategoryTitle": "Apakah kamu yakin?",
+  "@deleteCategoryTitle": {
+    "description": "Popup title when deleting Category"
+  },
+  "discord": "Discord",
+  "@discord": {
+    "description": "Discord app title"
+  },
+  "display": "Tampilan",
+  "@display": {
+    "description": "Text for Display tab in Library screen drawer"
+  },
+  "errorFilePickUnknownExtension": "Silahkan pilih file dengan ekstensi {extensionName}",
+  "@errorFilePickUnknownExtension": {
+    "description": "Error Description to show when user selected unknown extension file"
+  },
+  "errorLaunchURL": "Kegagalan untuk membuka!\nMenyalin \"{url}\" ke clipboard",
+  "@errorLaunchURL": {
+    "description": "Error Description to show when App failed to launch an URL and copied the URL to clipboard",
+    "placeholders": {
+      "url": {
+        "example": "http://sorayomi.suwayomi.org",
+        "type": "String"
+      }
+    }
+  },
+  "errorPassword": "Sandi tidak bisa kosong",
+  "@errorPassword": {
+    "description": "Error Description to show that password cannot be empty"
+  },
+  "errorSomethingWentWrong": "Sesuatu yang salah!",
+  "@errorSomethingWentWrong": {
+    "description": "Error Description to show that Something went wrong!"
+  },
+  "globalUpdate": "Pembaruan Global",
+  "@globalUpdate": {
+    "description": "Button text of Global Manga Update"
+  },
+  "edit": "Login",
+  "@edit": {
+    "description": "Popup button text to edit Category in Edit category screen"
+  },
+  "editCategory": "Ubah kategori",
+  "@editCategory": {
+    "description": "Screen title, Button text and  of Downloads screen"
+  },
+  "emptyCategory": "Nama kategori tidak bisa kosong",
+  "@emptyCategory": {
+    "description": "Description to show that category list is empty in Edit Category screen"
+  },
+  "errorExtension": "Tidak dapat menemukan ekstensi yang dipilih",
+  "@errorExtension": {
+    "description": "Error Description to show when user selected unknown extension from list"
+  },
+  "errorFilePick": "Tidak dipilih!",
+  "@errorFilePick": {
+    "description": "Error Description to show when user does not selected an file"
+  },
+  "errorUserName": "UserName tidak bisa kosong",
+  "@errorUserName": {
+    "description": "Error Description to show that UserName cannot be empty"
+  },
+  "extensionInstalled": "Ekstensi Diinstal!",
+  "@extensionInstalled": {
+    "description": "Toast text to show that the Extension Installed successfully"
+  },
+  "extensionListEmpty": "Daftar ekstensi kosong",
+  "@extensionListEmpty": {
+    "description": "Description to show that Extension list is empty in Extension list tab of Browse screen"
+  },
+  "extensions": "Login",
+  "@extensions": {
+    "description": "Extension list Tab title in Browse Screen"
+  },
+  "failed": "Gagal",
+  "@failed": {
+    "description": "Failed status Manga Group title in Update Summary Screen"
+  },
+  "filter": "Filter",
+  "@filter": {
+    "description": "title of filter Tab across the app"
+  },
+  "findServer": "Cari",
+  "@findServer": {
+    "description": "Button text of Find Server"
+  },
+  "finished": "Selesai",
+  "@finished": {
+    "description": "Text to show the Currently Finished reading chapter in Reader Screen"
+  },
+  "general": "Umum",
+  "@general": {
+    "description": "Screen title and Button text of General setting screen"
+  },
+  "gitHub": "Github",
+  "@gitHub": {
+    "description": "GitHub app title"
+  },
+  "globalSearch": "Pencarian Global",
+  "@globalSearch": {
+    "description": "Screen title of Global Search screen"
+  },
+  "help": "Bantuan",
+  "@help": {
+    "description": "Button text of help in about screen"
+  },
+  "inLibrary": "di Perpustakaan",
+  "@inLibrary": {
+    "description": "Button and Chip text to show that the manga is in Library"
+  },
+  "install": "Pasang",
+  "@install": {
+    "description": "Button text to install the extension"
+  },
+  "installing": "Sedang Memasang",
+  "@installing": {
+    "description": "Button text to show that the extension is installing"
+  },
+  "installingExtension": "Menginstal Ekstensi",
+  "@installingExtension": {
+    "description": "Toast text to show that the extension is installing"
+  },
+  "isTrueBlack": "Benar Hitam",
+  "@isTrueBlack": {
+    "description": "Switch title to enable {} black theme"
+  },
+  "languages": "Bahasa",
+  "@languages": {
+    "description": "Popup title to filter extensions based on language"
+  },
+  "mangaStatusOnHiatus": "Sedang Hiatus",
+  "@mangaStatusOnHiatus": {
+    "description": "Text to show Manga Status On Hiatus in Manga details screen"
+  },
+  "mangaStatusOngoing": "Berjalan",
+  "@mangaStatusOngoing": {
+    "description": "Text to show Manga Status Ongoing in Manga details screen"
+  },
+  "mangaStatusPublishingFinished": "Selesai Diterbitkan",
+  "@mangaStatusPublishingFinished": {
+    "description": "Text to show Manga Status Publishing Finished in Manga details screen"
+  },
+  "latest": "Terakhir",
+  "@latest": {
+    "description": "Button text to take user to the latest tab of Source manga screen"
+  },
+  "library": "Perpustakaan",
+  "@library": {
+    "description": "Screen title and Button text of Library and Library Settings screen"
+  },
+  "manga": "Manga",
+  "@manga": {
+    "description": "Screen title and Button text of Manga details screen"
+  },
+  "mangaStatusCompleted": "Selesai",
+  "@mangaStatusCompleted": {
+    "description": "Text to show Manga Status Completed in Manga details screen"
+  },
+  "mangaStatusLicensed": "Berlisensi",
+  "@mangaStatusLicensed": {
+    "description": "Text to show Manga Status Licensed in Manga details screen"
+  },
+  "mangaStatusUnknown": "Tidak diketahui",
+  "@mangaStatusUnknown": {
+    "description": "Text to show Manga Status Unknown in Manga details screen"
+  },
+  "missingExtension": "Ekstensi Hilang",
+  "@missingExtension": {
+    "description": "Group title to show the Missing Extensions when restoring Backup"
+  },
+  "missingTrackers": "Trackers Hilang",
+  "@missingTrackers": {
+    "description": "Group title to show the Missing Trackers when restoring Backup"
+  }
+}

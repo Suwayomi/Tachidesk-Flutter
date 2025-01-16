@@ -850,5 +850,71 @@
   "readerSwipeChapterToggleDescription": "Проведіть пальцем, щоб змінити розділ в читачу",
   "@readerSwipeChapterToggleDescription": {
     "description": "Switch tile description for, toggle `swipe to change chapter` in reader screen"
+  },
+  "nextChapter": "Далі: {chapterTitle}",
+  "@nextChapter": {
+    "description": "Text for Next Chapter button in Manga Reader Screen"
+  },
+  "previousChapter": "Попередній: {chapterTitle}",
+  "@previousChapter": {
+    "description": "Text for Previous Chapter button in Manga Reader Screen"
+  },
+  "reload": "Перезавантажити",
+  "@reload": {
+    "description": "Reload button text"
+  },
+  "quickSearchShowAllCommandTip": "Підказка: Введіть '?', щоб побачити всі команди",
+  "@quickSearchShowAllCommandTip": {
+    "description": "Quick Open Tip text for showing all commands by entering '?'"
+  },
+  "readerOverlay": "Оверлей",
+  "@readerOverlay": {
+    "description": "Toggle subtile text for Initial Reader Overlay"
+  },
+  "readerOverlaySubtitle": "Відображати назву та швидкі налаштування при відкритті розділу",
+  "@readerOverlaySubtitle": {},
+  "selectUnread": "Обрати Непрочитане",
+  "@selectUnread": {
+    "description": "Popup Text for selecting unread chapters"
+  },
+  "isTrueBlack": "Справжній чорний",
+  "@isTrueBlack": {
+    "description": "Switch title to enable {} black theme"
+  },
+  "pinchToZoom": "Збільшення стисканням",
+  "@pinchToZoom": {
+    "description": "Switch title to enable pinch to zoom in reader screen"
+  },
+  "quickSearch": "Швидкий пошук",
+  "@quickSearch": {
+    "description": "Screen title and Button text of Quick Search screen"
+  },
+  "readerVolumeTap": "Клавіші гучності",
+  "@readerVolumeTap": {
+    "description": "Switch button text for Reader Page Navigation with Volume Tap"
+  },
+  "readerVolumeTapInvert": "Інвертувати клавіші гучності",
+  "@readerVolumeTapInvert": {
+    "description": "Switch button text to invert Volume Tap "
+  },
+  "readerVolumeTapSubtitle": "Навігація за допомогою клавіш гучності",
+  "@readerVolumeTapSubtitle": {
+    "description": "Switch button Subtitle text for Reader Page Navigation with Volume Tap"
+  },
+  "remove": "Видалити",
+  "@remove": {
+    "description": "Remove Button text"
+  },
+  "removeFromLibrary": "Видалити з бібліотеки?",
+  "@removeFromLibrary": {
+    "description": "Remove From Library Popup text"
+  },
+  "selectInBetween": "Виберіть між",
+  "@selectInBetween": {
+    "description": "Toast Text for selecting chapters in between first and last Chapters"
+  },
+  "selectNext10": "Обрати наступні 10",
+  "@selectNext10": {
+    "description": "Toast Text for selecting next 10 chapters"
   }
 }

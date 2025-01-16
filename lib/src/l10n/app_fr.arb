@@ -61,7 +61,7 @@
       }
     }
   },
-  "chapterSortFetchedDate": "Par données récupérées",
+  "chapterSortFetchedDate": "Par date de récupération",
   "@chapterSortFetchedDate": {
     "description": "Radio button text for sort by Fetched Date"
   },
@@ -679,7 +679,7 @@
   "@server": {
     "description": "Text title for the server in About screen"
   },
-  "serverUrlHintText": "Saisissez l'URL du serveur",
+  "serverUrlHintText": "URL du serveur",
   "@serverUrlHintText": {
     "description": "Text Filed hint text to update Server Url"
   },
@@ -775,60 +775,146 @@
   "@update": {
     "description": "Button text to update the extension"
   },
-  "quickSearchSource": "",
+  "quickSearchSource": "Aller à la source 'S'",
   "@quickSearchSource": {
     "description": "Quick Open Hint text for Source S with prefill '@S'"
   },
-  "quickSearchSourceManga": "",
+  "quickSearchSourceManga": "Rechercher le manga 'M' dans la source 'S'",
   "@quickSearchSourceManga": {
     "description": "Quick Open Hint text for searching Manga M in Source S with prefill '@S/M'"
   },
-  "quickSearchCategoryMangaChapter": "",
+  "quickSearchCategoryMangaChapter": "Aller au chapitre 'CN' du manga 'M' dans la catégorie 'C'",
   "@quickSearchCategoryMangaChapter": {
     "description": "Quick Open Hint text for searching Chapter name CN from Manga M in Source S with prefill '#C/M:CN'"
   },
-  "readerNavigationLayoutEdge": "",
+  "readerNavigationLayoutEdge": "Bord",
   "@readerNavigationLayoutEdge": {
     "description": "Radio button text for Reader Navigation Layout - Edge"
   },
-  "readerNavigationLayoutInvert": "",
+  "readerNavigationLayoutInvert": "Inverser le toucher",
   "@readerNavigationLayoutInvert": {
     "description": "Switch title to invert Tap to scroll in reader screen"
   },
-  "serverPort": "",
+  "serverPort": "Port du serveur",
   "@serverPort": {
     "description": "Popup title and Button text to update Server Port"
   },
-  "serverPortHintText": "",
+  "serverPortHintText": "Port du serveur",
   "@serverPortHintText": {
     "description": "Text Filed hint text to update Server Port"
   },
-  "noServerFound": "",
+  "noServerFound": "Aucun serveur trouvé sur votre réseau local",
   "@noServerFound": {
     "description": "Text to show that no Server found in locale network"
   },
-  "findServer": "",
+  "findServer": "Trouver",
   "@findServer": {
     "description": "Button text of Find Server"
   },
-  "allScanlators": "",
+  "allScanlators": "Tous les Scanlators",
   "@allScanlators": {
     "description": "Text for all Scanlators in manga description screen chapter filter"
   },
-  "quickSearchCategory": "",
+  "quickSearchCategory": "Aller à la catégorie 'C'",
   "@quickSearchCategory": {
     "description": "Quick Open Hint text for Category C with prefill '#C'"
   },
-  "quickSearchContext": "",
+  "quickSearchContext": "Rechercher la requête X (Les résultats sont basés sur le contexte de l'écran)",
   "@quickSearchContext": {
     "description": "Quick Open Hint text for query X"
   },
-  "scanlators": "",
+  "scanlators": "Scanlators",
   "@scanlators": {
     "description": "Title text for Scanlators"
   },
-  "quickSearchCategoryManga": "",
+  "quickSearchCategoryManga": "Aller au Manga 'M' dans la catégorie 'C'",
   "@quickSearchCategoryManga": {
     "description": "Quick Open Hint text for searching Manga M in Category C with prefill '#C/M'"
+  },
+  "daysAgo": "Il y a {days} jours",
+  "@daysAgo": {
+    "description": "Days ago text to show the release date of manga"
+  },
+  "readerSwipeChapterToggle": "Activer/désactiver le défilement par balayage",
+  "@readerSwipeChapterToggle": {
+    "description": "Switch title to toggle `swipe to change chapter` in reader screen"
+  },
+  "today": "Aujourd'hui",
+  "@today": {
+    "description": "Today Text to show the release date of manga"
+  },
+  "previousChapter": "Précédent : {chapterTitle}",
+  "@previousChapter": {
+    "description": "Text for Previous Chapter button in Manga Reader Screen"
+  },
+  "readerSwipeChapterToggleDescription": "Activer/désactiver le changement de chapitre par balayage",
+  "@readerSwipeChapterToggleDescription": {
+    "description": "Switch tile description for, toggle `swipe to change chapter` in reader screen"
+  },
+  "reload": "Recharger",
+  "@reload": {
+    "description": "Reload button text"
+  },
+  "quickSearchShowAllCommandTip": "Astuce : Entrez '?' pour voir toutes les commandes",
+  "@quickSearchShowAllCommandTip": {
+    "description": "Quick Open Tip text for showing all commands by entering '?'"
+  },
+  "readerOverlay": "Superposition initiale du lecteur",
+  "@readerOverlay": {
+    "description": "Toggle subtile text for Initial Reader Overlay"
+  },
+  "isTrueBlack": "Noir véritable",
+  "@isTrueBlack": {
+    "description": "Switch title to enable {} black theme"
+  },
+  "nextChapter": "Suivant : {chapterTitle}",
+  "@nextChapter": {
+    "description": "Text for Next Chapter button in Manga Reader Screen"
+  },
+  "pinchToZoom": "Pincer pour zoomer",
+  "@pinchToZoom": {
+    "description": "Switch title to enable pinch to zoom in reader screen"
+  },
+  "quickSearch": "Recherche rapide",
+  "@quickSearch": {
+    "description": "Screen title and Button text of Quick Search screen"
+  },
+  "readerOverlaySubtitle": "Affiche le titre et les paramètres rapides lors de l'ouverture d'un chapitre",
+  "@readerOverlaySubtitle": {},
+  "readerVolumeTap": "Touches des boutons de volume",
+  "@readerVolumeTap": {
+    "description": "Switch button text for Reader Page Navigation with Volume Tap"
+  },
+  "readerVolumeTapInvert": "Inverser les touches de volume",
+  "@readerVolumeTapInvert": {
+    "description": "Switch button text to invert Volume Tap "
+  },
+  "readerVolumeTapSubtitle": "Naviguer avec les touches de volume",
+  "@readerVolumeTapSubtitle": {
+    "description": "Switch button Subtitle text for Reader Page Navigation with Volume Tap"
+  },
+  "remove": "Supprimer",
+  "@remove": {
+    "description": "Remove Button text"
+  },
+  "removeFromLibrary": "Supprimer de la bibliothèque ?",
+  "@removeFromLibrary": {
+    "description": "Remove From Library Popup text"
+  },
+  "selectInBetween": "Sélectionner entre les deux",
+  "@selectInBetween": {
+    "description": "Toast Text for selecting chapters in between first and last Chapters"
+  },
+  "selectNext10": "Sélectionner les 10 suivants",
+  "@selectNext10": {
+    "description": "Toast Text for selecting next 10 chapters"
+  },
+  "selectUnread": "Sélectionner les non lus",
+  "@selectUnread": {
+    "description": "Popup Text for selecting unread chapters"
+  },
+  "yesterday": "Hier",
+  "@yesterday": {
+    "description": "Yesterday Text to show the release date of manga"
   }
 }
