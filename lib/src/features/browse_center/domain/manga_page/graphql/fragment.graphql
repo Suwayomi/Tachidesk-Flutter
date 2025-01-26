@@ -1,0 +1,16 @@
+fragment SourceMangaPage on FetchSourceMangaPayload {
+  hasNextPage
+  mangas {
+    ...MangaDto
+  }
+}
+
+fragment MangaPageDto on MangaNodeList {
+    nodes {
+      ...MangaDto
+    }
+    pageInfo {
+      ...PageInfoDto
+    }
+    totalCount
+}

@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../constants/app_sizes.dart';
-
 import '../utils/extensions/custom_extensions.dart';
 
 class SearchField extends HookWidget {
@@ -20,6 +19,7 @@ class SearchField extends HookWidget {
     this.onSubmitted,
     this.hintText,
     this.autofocus = true,
+    this.actions,
   });
   final String? hintText;
   final String? initialText;
@@ -27,6 +27,7 @@ class SearchField extends HookWidget {
   final ValueChanged<String?>? onSubmitted;
   final VoidCallback? onClose;
   final bool autofocus;
+  final List<Widget>? actions;
 
   @override
   Widget build(BuildContext context) {
@@ -44,9 +45,9 @@ class SearchField extends HookWidget {
         : null;
 
     return SizedBox(
-      width: context.isLargeTablet ? context.widthScale(scale: .3) : null,
+      width: context.isLargeTablet ? context.widthScale(scale: .5) : null,
       child: Padding(
-        padding: KEdgeInsets.h16v8.size,
+        padding: KEdgeInsets.h16v4.size,
         child: TextField(
           onChanged: onChanged,
           autofocus: autofocus,
@@ -55,8 +56,14 @@ class SearchField extends HookWidget {
           decoration: InputDecoration(
             isDense: true,
             border: const OutlineInputBorder(),
-            labelText: hintText ?? context.l10n!.search,
-            suffixIcon: closeIcon,
+            labelText: hintText ?? context.l10n.search,
+            suffixIcon: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ...?actions,
+                if (closeIcon != null) closeIcon,
+              ],
+            ),
           ),
         ),
       ),

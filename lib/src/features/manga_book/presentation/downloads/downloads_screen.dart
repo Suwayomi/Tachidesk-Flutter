@@ -12,6 +12,8 @@ import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/misc/toast/toast.dart';
 import '../../../../widgets/emoticons.dart';
 import '../../data/downloads/downloads_repository.dart';
+import '../../domain/downloads/downloads_model.dart';
+import 'controller/downloads_controller.dart';
 import 'widgets/download_progress_list_tile.dart';
 import 'widgets/downloads_fab.dart';
 
@@ -20,13 +22,13 @@ class DownloadsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final toast = ref.watch(toastProvider(context));
+    final toast = ref.watch(toastProvider);
     final downloadsChapterIds = ref.watch(downloadsChapterIdsProvider);
-    final downloadsGlobalStatus = ref.watch(downloadsStatusProvider);
+    final downloadsGlobalStatus = ref.watch(downloaderStateProvider);
     final showDownloadsFAB = ref.watch(showDownloadsFABProvider);
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.l10n!.downloads),
+        title: Text(context.l10n.downloads),
         actions: [
           if ((downloadsChapterIds).isNotBlank)
             IconButton(
@@ -38,15 +40,17 @@ class DownloadsScreen extends ConsumerWidget {
         ],
       ),
       floatingActionButton: showDownloadsFAB
-          ? DownloadsFab(status: downloadsGlobalStatus.valueOrNull ?? "")
+          ? DownloadsFab(
+              status:
+                  downloadsGlobalStatus.valueOrNull ?? DownloaderState.STARTED)
           : null,
       body: downloadsGlobalStatus.showUiWhenData(
         context,
         (data) {
           if (data == null) {
-            return Emoticons(text: context.l10n!.errorSomethingWentWrong);
+            return Emoticons(title: context.l10n.errorSomethingWentWrong);
           } else if (downloadsChapterIds.isBlank) {
-            return Emoticons(text: context.l10n!.noDownloads);
+            return Emoticons(title: context.l10n.noDownloads);
           } else {
             final downloadsCount =
                 (downloadsChapterIds.length).getValueOnNullOrNegative();

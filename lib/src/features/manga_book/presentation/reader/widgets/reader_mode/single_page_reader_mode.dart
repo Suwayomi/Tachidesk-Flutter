@@ -35,8 +35,8 @@ class SinglePageReaderMode extends HookConsumerWidget {
     this.showReaderLayoutAnimation = false,
   });
 
-  final Manga manga;
-  final Chapter chapter;
+  final MangaDto manga;
+  final ChapterDto chapter;
   final ValueSetter<int>? onPageChanged;
   final bool reverse;
   final Axis scrollDirection;
@@ -45,7 +45,7 @@ class SinglePageReaderMode extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final cacheManager = useMemoized(() => DefaultCacheManager());
     final scrollController = usePageController(
-      initialPage: chapter.read.ifNull()
+      initialPage: chapter.isRead.ifNull()
           ? 0
           : chapter.lastPageRead.getValueOnNullOrNegative(),
     );
@@ -58,8 +58,8 @@ class SinglePageReaderMode extends HookConsumerWidget {
         cacheManager.getServerFile(
           ref,
           MangaUrl.chapterPageWithIndex(
-            chapterIndex: chapter.index!,
-            mangaId: manga.id!,
+            chapterIndex: chapter.index,
+            mangaId: manga.id,
             pageIndex: currentPage - 1,
           ),
         );
@@ -69,8 +69,8 @@ class SinglePageReaderMode extends HookConsumerWidget {
         cacheManager.getServerFile(
           ref,
           MangaUrl.chapterPageWithIndex(
-            chapterIndex: chapter.index!,
-            mangaId: manga.id!,
+            chapterIndex: chapter.index,
+            mangaId: manga.id,
             pageIndex: currentPage + 1,
           ),
         );
@@ -80,8 +80,8 @@ class SinglePageReaderMode extends HookConsumerWidget {
         cacheManager.getServerFile(
           ref,
           MangaUrl.chapterPageWithIndex(
-            chapterIndex: chapter.index!,
-            mangaId: manga.id!,
+            chapterIndex: chapter.index,
+            mangaId: manga.id,
             pageIndex: currentPage + 2,
           ),
         );
@@ -126,8 +126,8 @@ class SinglePageReaderMode extends HookConsumerWidget {
             size: Size.fromHeight(context.height),
             appendApiToUrl: true,
             imageUrl: MangaUrl.chapterPageWithIndex(
-              chapterIndex: chapter.index!,
-              mangaId: manga.id!,
+              chapterIndex: chapter.index,
+              mangaId: manga.id,
               pageIndex: index,
             ),
             progressIndicatorBuilder: (context, url, downloadProgress) =>
@@ -135,7 +135,7 @@ class SinglePageReaderMode extends HookConsumerWidget {
               value: downloadProgress.progress,
             ),
           );
-          return AppUtils.wrapIf(
+          return AppUtils.wrapOn(
             !kIsWeb && (Platform.isAndroid || Platform.isIOS)
                 ? (child) => InteractiveViewer(maxScale: 5, child: child)
                 : null,

@@ -5,7 +5,9 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
 import '../../../../../constants/quick_open_help_text.dart';
 import '../../../../../routes/router_config.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
@@ -14,9 +16,11 @@ import '../../../../browse_center/presentation/source/controller/source_controll
 import '../../../../library/domain/category/category_model.dart';
 import '../../../../library/presentation/category/controller/edit_category_controller.dart';
 import '../../../../library/presentation/library/controller/library_controller.dart';
+import '../../../../manga_book/domain/chapter/chapter_model.dart';
 import '../../../../manga_book/domain/manga/manga_model.dart';
 import '../../../../manga_book/presentation/manga_details/controller/manga_details_controller.dart';
 import '../../../domain/quick_search_result.dart';
+
 part 'quick_search_controller.g.dart';
 
 @riverpod
@@ -28,7 +32,7 @@ class QuickSearchQuery extends _$QuickSearchQuery
 
 @riverpod
 List<QuickSearchResult>? processesQuickSearch(
-  ProcessesQuickSearchRef ref, {
+  Ref ref, {
   required BuildContext context,
 }) {
   String query = ref.watch(quickSearchQueryProvider) ?? "";
@@ -56,10 +60,10 @@ List<QuickSearchResult>? processesQuickSearch(
     }
   }
   // Chapter Search with Manga
-  List<QuickSearchResult>? chapterSearch(Manga manga,
-      {Category? category, String? query}) {
+  List<QuickSearchResult>? chapterSearch(MangaDto manga,
+      {CategoryDto? category, String? query}) {
     final chapterList = ref
-        .watch(mangaChapterListProvider(mangaId: manga.id!))
+        .watch(mangaChapterListProvider(mangaId: manga.id))
         .valueOrNull
         ?.where(
           (chapter) => chapter.query(query),
@@ -90,13 +94,13 @@ List<QuickSearchResult>? processesQuickSearch(
 
       final mangaChapterQueryList = categoryMangaQueryList[1].split(':');
       final mangaList = ref
-          .watch(categoryMangaListProvider(firstCategory!.id!))
+          .watch(categoryMangaListProvider(firstCategory!.id))
           .valueOrNull
           ?.where((e) => e.query(mangaChapterQueryList.firstOrNull));
 
       if (mangaChapterQueryList.length > 1) {
         final firstManga = mangaList.firstOrNull;
-        if (firstManga != null && firstManga.id != null) {
+        if (firstManga != null) {
           return chapterSearch(
             firstManga,
             category: firstCategory,

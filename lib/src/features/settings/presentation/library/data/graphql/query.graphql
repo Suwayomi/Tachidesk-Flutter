@@ -1,0 +1,41 @@
+
+
+mutation UpdateMangaMetaData($updateMangas: Boolean = false) {
+  setSettings(input: {settings: {updateMangas: $updateMangas}}) {
+    settings {
+      ...SettingsDto
+    }
+  }
+}
+
+mutation UpdateGlobalUpdateInterval($globalUpdateInterval: Float = 12) {
+  setSettings(input: {settings: {globalUpdateInterval: $globalUpdateInterval}}) {
+    settings {
+      ...SettingsDto
+    }
+  }
+}
+
+mutation ToggleExcludeNotStarted($excludeNotStarted: Boolean = false) {
+  setSettings(input: {settings: {excludeNotStarted: $excludeNotStarted}}) {
+    settings {
+      ...SettingsDto
+    }
+  }
+}
+
+mutation ToggleExcludeUnreadChapters($excludeUnreadChapters: Boolean = false) {
+  setSettings(input: {settings: {excludeUnreadChapters: $excludeUnreadChapters}}) {
+    settings {
+      ...SettingsDto
+    }
+  }
+}
+
+mutation ToggleExcludeCompleted($excludeCompleted: Boolean = false) {
+  setSettings(input: {settings: {excludeCompleted: $excludeCompleted}}) {
+    settings {
+      ...SettingsDto
+    }
+  }
+}

@@ -4,64 +4,64 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'dart:convert';
+import '../../../../graphql/__generated__/schema.graphql.dart';
+import 'graphql/__generated__/fragment.graphql.dart';
 
-import 'package:freezed_annotation/freezed_annotation.dart';
+typedef Filter = Fragment$FilterDto;
 
-import '../../../../utils/extensions/custom_extensions.dart';
-import '../filter_state/filter_state_model.dart';
+typedef PrimitiveFilter = Fragment$PrimitiveFilterDto;
 
-part 'filter_model.freezed.dart';
-part 'filter_model.g.dart';
+typedef FilterHeader = Fragment$PrimitiveFilterDto$$HeaderFilter;
 
-@freezed
-class Filter with _$Filter {
-  factory Filter({
-    String? type,
-    @JsonKey(readValue: Filter.filterFromJson, name: 'filter')
-    FilterState? filterState,
-  }) = _Filter;
+typedef FilterSeparator = Fragment$PrimitiveFilterDto$$SeparatorFilter;
 
-  factory Filter.fromJson(Map<String, dynamic> json) => _$FilterFromJson(json);
+typedef FilterText = Fragment$PrimitiveFilterDto$$TextFilter;
 
-  static Map<String, dynamic> filterFromJson(
-      Map<dynamic, dynamic> json, String str) {
-    final filter = json['filter'];
-    return {
-      'type': json['type'],
-      if (filter is Map<String, dynamic>) ...filter,
-    };
-  }
+typedef FilterCheckBox = Fragment$PrimitiveFilterDto$$CheckBoxFilter;
 
-  static List<Map<String, dynamic>> filtersToJson(List<Filter> filters) {
-    final jsonFilter = <Map<String, dynamic>>[];
-    for (int i = 0; i < filters.length; i++) {
-      final map = Filter.customFilterToJson(filters[i], i);
-      if (map != null) jsonFilter.addAll(map);
-    }
-    return jsonFilter;
-  }
+typedef FilterTriState = Fragment$PrimitiveFilterDto$$TriStateFilter;
 
-  static List<Map<String, dynamic>>? customFilterToJson(
-      Filter filter, int position) {
-    return switch (filter.filterState) {
-      FilterGroup(
-        state: List<Filter>? state,
-      ) =>
-        [
-          for (int i = 0; i < (state?.length).getValueOnNullOrNegative(); i++)
-            {
-              "position": position,
-              "state": json.encode(customFilterToJson(state![i], i)?.first),
-            },
-        ],
-      null => null,
-      _ => [
-          {
-            "position": position,
-            "state": json.encode(filter.filterState?.toJson()["state"])
-          }
-        ],
-    };
-  }
+typedef FilterSort = Fragment$PrimitiveFilterDto$$SortFilter;
+
+typedef FilterSelect = Fragment$PrimitiveFilterDto$$SelectFilter;
+
+typedef FilterGroup = Fragment$FilterDto$$GroupFilter;
+
+typedef TriState = Enum$TriState;
+
+typedef FilterChange = Input$FilterChangeInput;
+
+typedef SortStateChange = Input$SortSelectionInput;
+
+typedef SortSelectionDto = Fragment$SortSelectionDto;
+
+typedef SortState = Enum$SortOrder;
+
+extension TriStateExtension on TriState {
+  bool? get toBool => switch (this) {
+        TriState.IGNORE => null,
+        Enum$TriState.INCLUDE => true,
+        Enum$TriState.EXCLUDE => false,
+        Enum$TriState.$unknown => throw UnimplementedError(),
+      };
+
+  static TriState fromBool(bool? value) => switch (value) {
+        true => TriState.INCLUDE,
+        false => TriState.EXCLUDE,
+        null => TriState.IGNORE,
+      };
+}
+
+extension SortStateExtension on SortState {
+  bool get ascending => switch (this) {
+        SortState.ASC ||
+        SortState.ASC_NULLS_FIRST ||
+        SortState.ASC_NULLS_LAST =>
+          true,
+        SortState.DESC ||
+        SortState.DESC_NULLS_FIRST ||
+        SortState.DESC_NULLS_LAST =>
+          false,
+        SortState.$unknown => throw UnimplementedError(),
+      };
 }

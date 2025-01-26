@@ -49,7 +49,7 @@ class QuickSearchScreen extends HookWidget {
               ),
               Material(
                 color: Colors.transparent,
-                child: Text(context.l10n!.quickSearchShowAllCommandTip),
+                child: Text(context.l10n.quickSearchShowAllCommandTip),
               )
             ],
           ),

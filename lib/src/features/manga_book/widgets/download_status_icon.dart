@@ -6,7 +6,6 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -15,9 +14,10 @@ import '../../../utils/extensions/custom_extensions.dart';
 import '../../../utils/misc/toast/toast.dart';
 import '../../../widgets/custom_circular_progress_indicator.dart';
 import '../data/downloads/downloads_repository.dart';
-import '../data/manga_book_repository.dart';
+import '../data/manga_book/manga_book_repository.dart';
 import '../domain/chapter/chapter_model.dart';
-import '../domain/chapter_batch/chapter_batch_model.dart';
+import '../domain/downloads/downloads_model.dart';
+import '../presentation/downloads/controller/downloads_controller.dart';
 
 class DownloadStatusIcon extends HookConsumerWidget {
   const DownloadStatusIcon({
@@ -28,7 +28,7 @@ class DownloadStatusIcon extends HookConsumerWidget {
     required this.isDownloaded,
   });
   final AsyncCallback updateData;
-  final Chapter chapter;
+  final ChapterDto chapter;
   final int mangaId;
   final bool isDownloaded;
 
@@ -44,21 +44,20 @@ class DownloadStatusIcon extends HookConsumerWidget {
   }
 
   Future toggleChapterToQueue(
-    Toast toast,
+    Toast? toast,
     WidgetRef ref, {
     bool isAdd = false,
     bool isRemove = false,
     bool isError = false,
   }) async {
     try {
-      if (chapter.index == null) return;
       (await AsyncValue.guard(() async {
         final repo = ref.read(downloadsRepositoryProvider);
         if (isRemove || isError) {
-          await repo.removeChapterFromDownloadQueue(mangaId, chapter.index!);
+          await repo.removeChapterFromDownloadQueue(chapter.id);
         }
         if (isAdd || isError) {
-          await repo.addChapterToDownloadQueue(mangaId, chapter.index!);
+          await repo.addChaptersBatchToDownloadQueue([chapter.id]);
         }
       }))
           .showToastOnError(toast);
@@ -71,15 +70,15 @@ class DownloadStatusIcon extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isLoading = useState(false);
 
-    final toast = ref.watch(toastProvider(context));
-    final download = ref.watch(downloadsFromIdProvider(chapter.id ?? -1));
+    final toast = ref.watch(toastProvider);
+    final downloadUpdate = ref.watch(downloadsFromIdProvider(chapter.id));
     useEffect(() {
-      if (download?.state == "Finished") {
+      if (downloadUpdate?.state == DownloadState.FINISHED) {
         Future.microtask(
             () => newUpdatePair(ref, (value) => isLoading.value = value));
       }
       return;
-    }, [download?.state]);
+    }, [downloadUpdate?.state]);
 
     if (isLoading.value) {
       return Padding(
@@ -87,8 +86,8 @@ class DownloadStatusIcon extends HookConsumerWidget {
         child: MiniCircularProgressIndicator(color: context.iconColor),
       );
     } else {
-      if (download != null) {
-        if (download.state == "Error") {
+      if (downloadUpdate != null) {
+        if (downloadUpdate.state == DownloadState.ERROR) {
           return IconButton(
             onPressed: () => toggleChapterToQueue(toast, ref, isError: true),
             icon: const Icon(Icons.replay_rounded),
@@ -97,7 +96,8 @@ class DownloadStatusIcon extends HookConsumerWidget {
           return IconButton(
             onPressed: () => toggleChapterToQueue(toast, ref, isRemove: true),
             icon: MiniCircularProgressIndicator(
-              value: download.progress == 0 ? null : download.progress,
+              value:
+                  downloadUpdate.progress == 0 ? null : downloadUpdate.progress,
               color: context.iconColor,
             ),
           );
@@ -108,12 +108,9 @@ class DownloadStatusIcon extends HookConsumerWidget {
             icon: const Icon(Icons.check_circle_rounded),
             onPressed: () async {
               (await AsyncValue.guard(
-                () => ref.read(mangaBookRepositoryProvider).modifyBulkChapters(
-                      batch: ChapterBatch(
-                        chapterIds: [chapter.id!],
-                        change: ChapterChange(delete: true),
-                      ),
-                    ),
+                () => ref
+                    .read(mangaBookRepositoryProvider)
+                    .deleteChapters([chapter.id]),
               ))
                   .showToastOnError(toast);
               await newUpdatePair(ref, (value) => isLoading.value = value);

@@ -11,6 +11,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../constants/app_sizes.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
+import '../../../../../utils/misc/app_utils.dart';
 import '../../../../../utils/misc/toast/toast.dart';
 import '../../../../../widgets/server_image.dart';
 import '../../../data/extension_repository/extension_repository.dart';
@@ -36,31 +37,29 @@ class ExtensionListTile extends HookConsumerWidget {
       leading: ClipRRect(
         borderRadius: KBorderRadius.r8.radius,
         child: ServerImageWithCpi(
-          url: extension.iconUrl ?? "",
+          url: extension.iconUrl,
           outerSize: const Size.square(48),
           innerSize: const Size.square(24),
           isLoading: isLoading.value,
         ),
       ),
       title: Text(
-        extension.name ?? "",
+        extension.name,
         overflow: TextOverflow.ellipsis,
       ),
       subtitle: Text.rich(
         TextSpan(
-          text: (extension.lang) != null
-              ? "${extension.lang?.displayName} "
-              : null,
+          text: "${extension.language?.displayName} ",
           style: const TextStyle(fontWeight: FontWeight.bold),
           children: [
             if (extension.versionName.isNotBlank)
               TextSpan(
-                text: "${extension.versionName ?? ""} ",
+                text: "${extension.versionName} ",
                 style: const TextStyle(fontWeight: FontWeight.normal),
               ),
             if (extension.isNsfw.ifNull())
               TextSpan(
-                text: context.l10n!.nsfw18,
+                text: context.l10n.nsfw18,
                 style: const TextStyle(
                   fontWeight: FontWeight.w400,
                   color: Colors.redAccent,
@@ -98,41 +97,39 @@ class ExtensionListTileTailing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (extension.obsolete.ifNull()) {
+    if (extension.isObsolete.ifNull()) {
       return OutlinedButton(
-        onPressed: extension.installed.ifNull()
-            ? () => repository.uninstallExtension(extension.pkgName!)
+        onPressed: extension.isInstalled.ifNull()
+            ? () => repository.uninstallExtension(extension.pkgName)
             : null,
         child: Text(
-          context.l10n!.obsolete,
+          context.l10n.obsolete,
           style: const TextStyle(color: Colors.redAccent),
         ),
       );
     } else {
-      if (extension.installed.ifNull()) {
+      if (extension.isInstalled.ifNull()) {
         return TextButton(
           onPressed: (!isLoading.value)
               ? () async {
                   try {
                     isLoading.value = (true);
-                    final result = (await AsyncValue.guard(
+                    await AppUtils.guard(
                       () async {
                         if (extension.pkgName.isBlank) {
-                          throw context.l10n!.errorExtension;
+                          throw context.l10n.errorExtension;
                         }
                         if (extension.hasUpdate.ifNull()) {
-                          await repository.updateExtension(extension.pkgName!);
+                          await repository.updateExtension(extension.pkgName);
                         } else {
                           await repository
-                              .uninstallExtension(extension.pkgName!);
+                              .uninstallExtension(extension.pkgName);
                         }
 
                         await refresh();
                       },
-                    ));
-                    if (context.mounted) {
-                      result.showToastOnError(ref.read(toastProvider(context)));
-                    }
+                      ref.read(toastProvider),
+                    );
                     isLoading.value = (false);
                   } catch (e) {
                     //
@@ -142,11 +139,11 @@ class ExtensionListTileTailing extends StatelessWidget {
           child: Text(
             extension.hasUpdate.ifNull()
                 ? isLoading.value
-                    ? context.l10n!.updating
-                    : context.l10n!.update
+                    ? context.l10n.updating
+                    : context.l10n.update
                 : isLoading.value
-                    ? context.l10n!.uninstalling
-                    : context.l10n!.uninstall,
+                    ? context.l10n.uninstalling
+                    : context.l10n.uninstall,
           ),
         );
       } else {
@@ -155,13 +152,13 @@ class ExtensionListTileTailing extends StatelessWidget {
               ? () async {
                   try {
                     isLoading.value = (true);
-                    final result = await AsyncValue.guard(() async {
+                    await AppUtils.guard(() async {
                       if (extension.pkgName.isBlank) {
-                        throw context.l10n!.errorExtension;
+                        throw context.l10n.errorExtension;
                       }
-                      await repository.installExtension(extension.pkgName!);
-                      if ((extension.lang?.code).isNotBlank) {
-                        final code = extension.lang!.code!;
+                      await repository.installExtension(extension.pkgName);
+                      if ((extension.language?.code).isNotBlank) {
+                        final code = extension.language!.code!;
                         final enabledLanguages =
                             ref.read(sourceLanguageFilterProvider);
                         if (enabledLanguages.isNotBlank &&
@@ -174,12 +171,7 @@ class ExtensionListTileTailing extends StatelessWidget {
                         }
                       }
                       await refresh();
-                    });
-                    if (context.mounted) {
-                      result.showToastOnError(
-                        ref.read(toastProvider(context)),
-                      );
-                    }
+                    }, ref.read(toastProvider));
                     isLoading.value = (false);
                   } catch (e) {
                     //
@@ -187,7 +179,7 @@ class ExtensionListTileTailing extends StatelessWidget {
                 }
               : null,
           child: Text(
-            isLoading.value ? context.l10n!.installing : context.l10n!.install,
+            isLoading.value ? context.l10n.installing : context.l10n.install,
           ),
         );
       }

@@ -10,7 +10,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/emoticons.dart';
-import '../../../data/manga_book_repository.dart';
+import '../../../data/manga_book/manga_book_repository.dart';
 import '../../../domain/chapter/chapter_model.dart';
 import '../../../domain/manga/manga_model.dart';
 import 'chapter_list_tile.dart';
@@ -28,10 +28,10 @@ class SmallScreenMangaDetails extends ConsumerWidget {
     required this.onListRefresh,
   });
   final int mangaId;
-  final Manga manga;
+  final MangaDto manga;
   final AsyncValueSetter<bool> onRefresh;
-  final ValueNotifier<Map<int, Chapter>> selectedChapters;
-  final AsyncValue<List<Chapter>?> chapterList;
+  final ValueNotifier<Map<int, ChapterDto>> selectedChapters;
+  final AsyncValue<List<ChapterDto>?> chapterList;
   final AsyncValueSetter<bool> onListRefresh;
   final AsyncValueSetter<bool> onDescriptionRefresh;
   @override
@@ -59,7 +59,7 @@ class SmallScreenMangaDetails extends ConsumerWidget {
           SliverToBoxAdapter(
             child: ListTile(
               title: Text(
-                context.l10n!.noOfChapters(filteredChapterList?.length ?? 0),
+                context.l10n.noOfChapters(filteredChapterList?.length ?? 0),
               ),
             ),
           ),
@@ -77,10 +77,10 @@ class SmallScreenMangaDetails extends ConsumerWidget {
                       isSelected: selectedChapters.value
                           .containsKey(filteredChapterList[index].id),
                       canTapSelect: selectedChapters.value.isNotEmpty,
-                      toggleSelect: (Chapter val) {
+                      toggleSelect: (ChapterDto val) {
                         if ((val.id).isNull) return;
                         selectedChapters.value =
-                            selectedChapters.value.toggleKey(val.id!, val);
+                            selectedChapters.value.toggleKey(val.id, val);
                       },
                     ),
                     childCount: filteredChapterList!.length,
@@ -89,10 +89,10 @@ class SmallScreenMangaDetails extends ConsumerWidget {
               } else {
                 return SliverToBoxAdapter(
                   child: Emoticons(
-                    text: context.l10n!.noChaptersFound,
+                    title: context.l10n.noChaptersFound,
                     button: TextButton(
                       onPressed: () => onDescriptionRefresh(true),
-                      child: Text(context.l10n!.refresh),
+                      child: Text(context.l10n.refresh),
                     ),
                   ),
                 );

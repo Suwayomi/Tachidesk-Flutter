@@ -4,39 +4,31 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:freezed_annotation/freezed_annotation.dart';
-
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../manga/manga_model.dart';
+import 'graphql/__generated__/fragment.graphql.dart';
 
-part 'update_status_model.freezed.dart';
-part 'update_status_model.g.dart';
+typedef UpdateStatusDto = Fragment$UpdateStatusDto;
 
-@freezed
-class UpdateStatus with _$UpdateStatus {
-  UpdateStatus._();
-  factory UpdateStatus({
-    @JsonKey(name: "PENDING") List<Manga>? pending,
-    @JsonKey(name: "RUNNING") List<Manga>? running,
-    @JsonKey(name: "COMPLETE") List<Manga>? completed,
-    @JsonKey(name: "FAILED") List<Manga>? failed,
-  }) = _UpdateStatus;
-
+extension UpdateStatusExt on UpdateStatusDto {
   int get total =>
-      (pending?.length).getValueOnNullOrNegative() +
-      (running?.length).getValueOnNullOrNegative() +
-      (completed?.length).getValueOnNullOrNegative() +
-      (failed?.length).getValueOnNullOrNegative();
+      (pendingJobs.mangas.totalCount.toInt()).getValueOnNullOrNegative() +
+      (runningJobs.mangas.totalCount.toInt()).getValueOnNullOrNegative() +
+      (completeJobs.mangas.totalCount.toInt()).getValueOnNullOrNegative() +
+      (failedJobs.mangas.totalCount.toInt()).getValueOnNullOrNegative();
 
   int get updateChecked =>
-      (completed?.length).getValueOnNullOrNegative() +
-      (failed?.length).getValueOnNullOrNegative();
+      (completeJobs.mangas.totalCount.toInt()).getValueOnNullOrNegative() +
+      (failedJobs.mangas.totalCount.toInt()).getValueOnNullOrNegative();
 
   bool get isUpdateCheckCompleted => total == updateChecked;
 
   bool get isUpdateChecking =>
       (total).isGreaterThan(0) && !(isUpdateCheckCompleted);
+}
 
-  factory UpdateStatus.fromJson(Map<String, dynamic> json) =>
-      _$UpdateStatusFromJson(json);
+extension U on Fragment$UpdateStatusJobDto {
+  bool get isNotBlank => mangas.nodes.isNotBlank;
+
+  List<MangaDto> get mangaList => mangas.nodes;
 }

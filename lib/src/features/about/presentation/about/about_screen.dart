@@ -14,13 +14,12 @@ import 'package:pub_semver/pub_semver.dart';
 import '../../../../constants/app_sizes.dart';
 import '../../../../constants/gen/assets.gen.dart';
 import '../../../../constants/urls.dart';
-
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/launch_url_in_web.dart';
 import '../../../../utils/misc/toast/toast.dart';
 import '../../data/about_repository.dart';
-import '../../domain/about/about_model.dart';
-import '../../domain/server_update/server_update_model.dart';
+import '../../domain/about/about_dto.dart';
+import '../../domain/server_update/server_update.dart';
 import 'controllers/about_controller.dart';
 import 'widget/app_update_dialog.dart';
 import 'widget/clipboard_list_tile.dart';
@@ -32,14 +31,14 @@ class AboutScreen extends HookConsumerWidget {
   void checkForServerUpdate({
     required BuildContext context,
     required String serverVer,
-    required About about,
+    required AboutDto about,
     required Future<List<ServerUpdate>?> Function() updateCallback,
-    required Toast toast,
+    required Toast? toast,
   }) {
-    toast.show(context.l10n!.searchingForUpdates);
+    toast?.show(context.l10n.searchingForUpdates);
     AsyncValue.guard(updateCallback).then(
       (value) {
-        toast.close();
+        toast?.close();
         try {
           value.whenOrNull(
             data: (data) {
@@ -52,7 +51,7 @@ class AboutScreen extends HookConsumerWidget {
               final newVer = Version.parse(newUpdate.tag?.substring(1) ?? "");
               if ((newVer.compareTo(currentVer)).isGreaterThan(0)) {
                 appUpdateDialog(
-                  title: about.name ?? context.l10n!.server,
+                  title: about.name,
                   newRelease: "${newVer.canonicalizedVersion}"
                       " (${newUpdate.channel})",
                   context: context,
@@ -60,15 +59,21 @@ class AboutScreen extends HookConsumerWidget {
                   url: newUpdate.url,
                 );
               } else {
-                toast.show(context.l10n!.noUpdatesAvailable);
+                toast?.show(context.l10n.noUpdatesAvailable);
               }
             },
-            error: (error, stackTrace) => value.showToastOnError(toast),
+            error: (error, stackTrace) {
+              if (toast != null) {
+                value.showToastOnError(toast);
+              }
+            },
           );
         } catch (e) {
-          toast.showError(
-            kDebugMode ? e.toString() : context.l10n!.errorSomethingWentWrong,
-          );
+          if (context.mounted) {
+            toast?.showError(
+              kDebugMode ? e.toString() : context.l10n.errorSomethingWentWrong,
+            );
+          }
         }
       },
     );
@@ -78,32 +83,36 @@ class AboutScreen extends HookConsumerWidget {
     required String? title,
     required BuildContext context,
     required Future<AsyncValue<Version?>> Function() updateCallback,
-    required Toast toast,
+    required Toast? toast,
   }) async {
-    toast.show(context.l10n!.searchingForUpdates);
+    toast?.show(context.l10n.searchingForUpdates);
     final result = await updateCallback();
-    if (context.mounted) return;
-    toast.close();
+    if (!context.mounted) return;
+    toast?.close();
     result.whenOrNull(
       data: (version) {
         if (version != null) {
           appUpdateDialog(
-            title: title ?? context.l10n!.appTitle,
+            title: title ?? context.l10n.appTitle,
             newRelease: "v${version.canonicalizedVersion}",
             context: context,
             toast: toast,
           );
         } else {
-          toast.show(context.l10n!.noUpdatesAvailable);
+          toast?.show(context.l10n.noUpdatesAvailable);
         }
       },
-      error: (error, stackTrace) => result.showToastOnError(toast),
+      error: (error, stackTrace) {
+        if (toast != null) {
+          result.showToastOnError(toast);
+        }
+      },
     );
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final toast = ref.watch(toastProvider(context));
+    final toast = ref.watch(toastProvider);
     final aboutAsync = ref.watch(aboutProvider);
     final about = aboutAsync.valueOrNull;
     final serverVer = about?.buildType == "Stable"
@@ -112,12 +121,14 @@ class AboutScreen extends HookConsumerWidget {
     final packageInfo = ref.watch(packageInfoProvider);
 
     useEffect(() {
-      aboutAsync.showToastOnError(toast, withMicrotask: true);
+      if (toast != null) {
+        aboutAsync.showToastOnError(toast, withMicrotask: true);
+      }
       return;
     }, [aboutAsync.valueOrNull]);
 
     return Scaffold(
-      appBar: AppBar(title: Text(context.l10n!.about)),
+      appBar: AppBar(title: Text(context.l10n.about)),
       body: RefreshIndicator(
         onRefresh: () => ref.refresh(aboutProvider.future),
         child: ListView(
@@ -128,22 +139,22 @@ class AboutScreen extends HookConsumerWidget {
             ),
             const Divider(),
             ClipboardListTile(
-              title: context.l10n!.client,
+              title: context.l10n.client,
               value: packageInfo.appName,
             ),
             ClipboardListTile(
-              title: context.l10n!.clientVersion,
+              title: context.l10n.clientVersion,
               value: "v${packageInfo.version}",
             ),
             ListTile(
-              title: Text(context.l10n!.whatsNew),
+              title: Text(context.l10n.whatsNew),
               onTap: () async {
                 final url = AppUrls.sorayomiWhatsNew.url + packageInfo.version;
                 await launchUrlInWeb(context, url, toast);
               },
             ),
             ListTile(
-              title: Text(context.l10n!.checkForUpdates),
+              title: Text(context.l10n.checkForUpdates),
               onTap: () => checkForUpdate(
                 title: packageInfo.appName,
                 context: context,
@@ -154,29 +165,25 @@ class AboutScreen extends HookConsumerWidget {
             if (about != null) ...[
               const Divider(),
               ClipboardListTile(
-                title: context.l10n!.server,
+                title: context.l10n.server,
                 value: about.name,
               ),
               ClipboardListTile(
-                title: context.l10n!.channel,
+                title: context.l10n.channel,
                 value: about.buildType,
               ),
               if (serverVer.isNotBlank)
                 ClipboardListTile(
-                  title: context.l10n!.serverVersion,
+                  title: context.l10n.serverVersion,
                   value: serverVer,
                 ),
               ClipboardListTile(
-                title: context.l10n!.buildTime,
-                value: (about.buildTime).isNull
-                    ? null
-                    : DateTime.fromMillisecondsSinceEpoch(
-                        (about.buildTime.getValueOnNullOrNegative()) * 1000,
-                      ).toDateString,
+                title: context.l10n.buildTime,
+                value: about.buildTime.toDateString,
               ),
               if (serverVer.isNotBlank)
                 ListTile(
-                  title: Text(context.l10n!.checkForServerUpdates),
+                  title: Text(context.l10n.checkForServerUpdates),
                   onTap: () => checkForServerUpdate(
                     context: context,
                     serverVer: serverVer ?? "",
@@ -193,20 +200,20 @@ class AboutScreen extends HookConsumerWidget {
                 alignment: WrapAlignment.spaceEvenly,
                 children: [
                   MediaLaunchButton(
-                    title: "${context.l10n!.gitHub} ",
+                    title: "${context.l10n.gitHub} ",
                     iconData: FontAwesomeIcons.github,
                     url: AppUrls.sorayomiGithubUrl.url,
                     toast: toast,
                   ),
                   if ((about?.discord).isNotBlank)
                     MediaLaunchButton(
-                      title: context.l10n!.discord,
+                      title: context.l10n.discord,
                       iconData: FontAwesomeIcons.discord,
-                      url: about!.discord!,
+                      url: about!.discord,
                       toast: toast,
                     ),
                   MediaLaunchButton(
-                    title: context.l10n!.reddit,
+                    title: context.l10n.reddit,
                     iconData: FontAwesomeIcons.reddit,
                     url: AppUrls.tachideskReddit.url,
                     toast: toast,

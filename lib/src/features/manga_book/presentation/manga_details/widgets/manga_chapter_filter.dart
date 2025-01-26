@@ -24,18 +24,18 @@ class MangaChapterFilter extends ConsumerWidget {
     return ListView(
       children: [
         CustomCheckboxListTile(
-          title: context.l10n!.unread,
+          title: context.l10n.unread,
           provider: mangaChapterFilterUnreadProvider,
           onChanged: ref.read(mangaChapterFilterUnreadProvider.notifier).update,
         ),
         CustomCheckboxListTile(
-          title: context.l10n!.bookmarked,
+          title: context.l10n.bookmarked,
           provider: mangaChapterFilterBookmarkedProvider,
           onChanged:
               ref.read(mangaChapterFilterBookmarkedProvider.notifier).update,
         ),
         CustomCheckboxListTile(
-          title: context.l10n!.downloaded,
+          title: context.l10n.downloaded,
           provider: mangaChapterFilterDownloadedProvider,
           onChanged:
               ref.read(mangaChapterFilterDownloadedProvider.notifier).update,
@@ -43,13 +43,13 @@ class MangaChapterFilter extends ConsumerWidget {
         if (scanlatorList.isNotBlank && scanlatorList.length > 1) ...[
           ListTile(
             title: Text(
-              context.l10n!.scanlators,
+              context.l10n.scanlators,
               style: context.textTheme.labelLarge,
             ),
             dense: true,
           ),
           RadioListTile(
-            title: Text(context.l10n!.allScanlators),
+            title: Text(context.l10n.allScanlators),
             value: MangaMetaKeys.scanlator.key,
             groupValue: selectedScanlator,
             onChanged: (val) => ref

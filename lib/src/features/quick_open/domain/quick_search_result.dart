@@ -6,15 +6,15 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../browse_center/domain/source/source_model.dart';
-import '../../library/domain/category/category_model.dart';
-import '../../manga_book/domain/chapter/chapter_model.dart';
-import '../../manga_book/domain/manga/manga_model.dart';
+import '../../browse_center/domain/source/graphql/__generated__/fragment.graphql.dart';
+import '../../library/domain/category/graphql/__generated__/fragment.graphql.dart';
+import '../../manga_book/domain/chapter/graphql/__generated__/fragment.graphql.dart';
+import '../../manga_book/domain/manga/graphql/__generated__/fragment.graphql.dart';
 
 part 'quick_search_result.freezed.dart';
 
 @freezed
-class QuickSearchResult with _$QuickSearchResult {
+sealed class QuickSearchResult with _$QuickSearchResult {
   const factory QuickSearchResult.helpText({
     required String prefill,
     String? pattern,
@@ -22,38 +22,38 @@ class QuickSearchResult with _$QuickSearchResult {
   }) = HelpTextQuickSearchResult;
 
   const factory QuickSearchResult.source({
-    required Source source,
+    required Fragment$SourceDto source,
   }) = SourceQuickSearchResult;
 
   const factory QuickSearchResult.sourceSearch({
-    required Source source,
+    required Fragment$SourceDto source,
     required String query,
   }) = SourceSearchQuickSearchResult;
 
   const factory QuickSearchResult.category({
-    required Category category,
+    required Fragment$CategoryDto category,
   }) = CategoryQuickSearchResult;
 
   const factory QuickSearchResult.categoryManga({
-    required Category category,
-    required Manga manga,
+    required Fragment$CategoryDto category,
+    required Fragment$MangaDto manga,
   }) = CategoryMangaQuickSearchResult;
 
   const factory QuickSearchResult.categoryMangaChapter({
-    Category? category,
-    required Manga manga,
-    required Chapter chapter,
+    Fragment$CategoryDto? category,
+    required Fragment$MangaDto manga,
+    required Fragment$ChapterDto chapter,
   }) = CategoryMangaChapterQuickSearchResult;
 
   const factory QuickSearchResult.manga({
-    Source? source,
-    required Manga manga,
+    Fragment$SourceDto? source,
+    required Fragment$MangaDto manga,
   }) = MangaQuickSearchResult;
 
   const factory QuickSearchResult.chapter({
-    Source? source,
-    required Manga manga,
-    required Chapter chapter,
+    Fragment$SourceDto? source,
+    required Fragment$MangaDto manga,
+    required Fragment$ChapterDto chapter,
   }) = ChapterQuickSearchResult;
 
   const factory QuickSearchResult.globalSearch() =

@@ -1,0 +1,66 @@
+
+
+
+query AllCategories($condition: CategoryConditionInput, $filter: CategoryFilterInput, $first: Int, $offset: Int) {
+  categories(
+    condition: $condition
+    filter: $filter
+    first: $first
+    orderBy: ORDER
+    orderByType: ASC
+    offset: $offset
+  ) {
+    nodes {
+      ...CategoryDto
+    }
+    pageInfo {
+      ...PageInfoDto
+    }
+    totalCount
+  }
+}
+
+mutation CreateCategory($input: CreateCategoryInput!) {
+  createCategory(input: $input) {
+    __typename
+  }
+}
+
+mutation UpdateCategory($input: UpdateCategoryInput!) {
+  updateCategory(input: $input) {
+    __typename
+  }
+}
+
+mutation DeleteCategory($input: DeleteCategoryInput!) {
+  deleteCategory(input: $input) {
+    __typename
+  }
+}
+
+mutation UpdateCategoryOrder($input: UpdateCategoryOrderInput!) {
+  updateCategoryOrder(input: $input) {
+    categories {
+      ...CategoryDto
+    }
+  }
+}
+
+query GetCategoryMangas($id: Int!) {
+  category(id: $id) {
+    id
+    mangas {
+      nodes {
+        ...MangaDto
+        __typename
+      }
+      pageInfo {
+        ...PageInfoDto
+        __typename
+      }
+      totalCount
+      __typename
+    }
+    __typename
+  }
+}

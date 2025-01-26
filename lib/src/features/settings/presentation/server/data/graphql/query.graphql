@@ -1,0 +1,121 @@
+
+
+mutation UpdateSocksVersion($socksProxyVersion: Int = 10) {
+  setSettings(input: {settings: {socksProxyVersion: $socksProxyVersion}}){
+    settings {
+      ...SettingsDto
+    }
+  }
+}
+
+mutation UpdateSocksUserName($socksProxyUsername: String!) {
+  setSettings(input: {settings: {socksProxyUsername: $socksProxyUsername}}){
+    settings {
+      ...SettingsDto
+    }
+  }
+}
+
+mutation UpdateSocksPort($socksProxyPort: String!) {
+  setSettings(input: {settings: {socksProxyPort: $socksProxyPort}}){
+    settings {
+      ...SettingsDto
+    }
+  }
+}
+
+mutation UpdateSocksPassword($socksProxyPassword: String!) {
+  setSettings(input: {settings: {socksProxyPassword: $socksProxyPassword}}){
+    settings {
+      ...SettingsDto
+    }
+  }
+}
+
+mutation UpdateSocksHost($socksProxyHost: String!) {
+  setSettings(input: {settings: {socksProxyHost: $socksProxyHost}}) {
+    settings {
+      ...SettingsDto
+    }
+  }
+}
+
+mutation UpdateServerIp($ip: String) {
+  setSettings(input: {settings: {ip: $ip}}) {
+    settings {
+      ...SettingsDto
+    }
+  }
+}
+
+mutation UpdatePort($port: Int = 4567) {
+  setSettings(input: {settings: {port: $port}}) {
+    settings {
+      ...SettingsDto
+    }
+  }
+}
+
+mutation UpdateFlareSolverrUrl($flareSolverrUrl: String!) {
+  setSettings(input: {settings: {flareSolverrUrl: $flareSolverrUrl}}) {
+    settings {
+      ...SettingsDto
+    }
+  }
+}
+
+mutation UpdateFlareSolverrTimeout($flareSolverrTimeout: Int = 10) {
+  setSettings(input: {settings: {flareSolverrTimeout: $flareSolverrTimeout}}) {
+    settings {
+      ...SettingsDto
+    }
+  }
+}
+
+mutation UpdateFlareSolverrSessionTtl($flareSolverrSessionTtl: Int = 10) {
+  setSettings(input: {settings: {flareSolverrSessionTtl: $flareSolverrSessionTtl}}) {
+    settings {
+      ...SettingsDto
+    }
+  }
+}
+
+mutation UpdateFlareSolverrSessionName($flareSolverrSessionName: String!) {
+  setSettings(input: {settings: {flareSolverrSessionName: $flareSolverrSessionName}}) {
+    settings {
+      ...SettingsDto
+    }
+  }
+}
+
+mutation ToggleSystemTrayEnabled($systemTrayEnabled: Boolean = false) {
+  setSettings(input: {settings: {systemTrayEnabled: $systemTrayEnabled}}) {
+    settings {
+      ...SettingsDto
+    }
+  }
+}
+
+mutation ToggleSocksProxy($socksProxyEnabled: Boolean = false) {
+  setSettings(input: {settings: {socksProxyEnabled: $socksProxyEnabled}}) {
+    settings {
+      ...SettingsDto
+    }
+  }
+}
+
+mutation ToggleFlareSolverr($flareSolverrEnabled: Boolean = false) {
+  setSettings(input: {settings: {flareSolverrEnabled: $flareSolverrEnabled}}) {
+    settings {
+      ...SettingsDto
+    }
+  }
+}
+
+mutation ToggleDebugLogs($debugLogsEnabled: Boolean = false) {
+  setSettings(input: {settings: {debugLogsEnabled: $debugLogsEnabled}}) {
+    settings {
+      ...SettingsDto
+    }
+  }
+}

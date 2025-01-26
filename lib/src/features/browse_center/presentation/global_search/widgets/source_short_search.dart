@@ -8,8 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../constants/app_sizes.dart';
-import '../../../../../constants/enum.dart';
-
 import '../../../../../routes/router_config.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/manga_cover/grid/manga_cover_grid_tile.dart';
@@ -23,8 +21,8 @@ class SourceShortSearch extends StatelessWidget {
     required this.mangaList,
     this.query,
   });
-  final Source source;
-  final AsyncValue<List<Manga>> mangaList;
+  final SourceDto source;
+  final AsyncValue<List<MangaDto>> mangaList;
   final String? query;
 
   @override
@@ -34,11 +32,11 @@ class SourceShortSearch extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         ListTile(
-          title: Text(source.displayName ?? source.name ?? ""),
+          title: Text(source.displayName),
           trailing: const Icon(Icons.arrow_forward_rounded),
-          onTap: () => SourceMangaRoute(
-            sourceId: source.id!,
-            sourceType: SourceType.filter,
+          onTap: () => SourceTypeRoute(
+            sourceId: source.id,
+            sourceType: SourceType.SEARCH,
             query: query,
           ).push(context),
         ),
@@ -47,7 +45,7 @@ class SourceShortSearch extends StatelessWidget {
           (data) => data.isEmpty
               ? Padding(
                   padding: KEdgeInsets.h16v4.size,
-                  child: Text(context.l10n!.noResultFound),
+                  child: Text(context.l10n.noResultFound),
                 )
               : SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
@@ -60,9 +58,8 @@ class SourceShortSearch extends StatelessWidget {
                           child: MangaCoverGridTile(
                             manga: i,
                             showDarkOverlay: i.inLibrary.ifNull(),
-                            onPressed: i.id != null
-                                ? () => MangaRoute(mangaId: i.id!).push(context)
-                                : null,
+                            onPressed: () =>
+                                MangaRoute(mangaId: i.id).push(context),
                           ),
                         ),
                     ],

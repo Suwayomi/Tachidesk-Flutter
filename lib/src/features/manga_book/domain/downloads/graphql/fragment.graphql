@@ -1,0 +1,37 @@
+fragment DownloadDto on DownloadType {
+    chapter {
+        id
+        name
+        sourceOrder
+        isDownloaded
+    }
+
+    manga {
+        id
+        title
+        downloadCount
+        thumbnailUrl
+    }
+    progress
+    state
+    tries
+    position
+}
+
+fragment DownloadUpdateDto on DownloadUpdate {
+    type
+    download {
+        ...DownloadDto
+    }
+}
+
+fragment DownloadUpdatesDto on DownloadUpdates {
+    state
+    omittedUpdates
+    updates {
+        ...DownloadUpdateDto
+    }
+    initial {
+        ...DownloadDto
+    }
+}

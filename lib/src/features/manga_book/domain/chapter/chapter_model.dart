@@ -4,49 +4,20 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-
 import '../../../../utils/extensions/custom_extensions.dart';
+import 'graphql/__generated__/fragment.graphql.dart';
 
-part 'chapter_model.freezed.dart';
-part 'chapter_model.g.dart';
+typedef ChapterDto = Fragment$ChapterDto;
 
-@freezed
-class Chapter with _$Chapter {
-  Chapter._();
-  factory Chapter({
-    int? id,
-    bool? bookmarked,
-    int? chapterCount,
-    double? chapterNumber,
-    bool? downloaded,
-    int? fetchedAt,
-    int? index,
-    int? lastPageRead,
-    int? lastReadAt,
-    int? mangaId,
-    String? name,
-    int? pageCount,
-    bool? read,
-    String? realUrl,
-    String? scanlator,
-    int? uploadDate,
-    String? url,
-    Map<String, String>? meta,
-  }) = _Chapter;
+typedef ChapterWithMangaDto = Fragment$ChapterWithMangaDto;
 
-  factory Chapter.fromJson(Map<String, dynamic> json) =>
-      _$ChapterFromJson(json);
-
+extension ChapterExtension on Fragment$ChapterDto {
   bool query([String? query]) {
     return name.query(query) || index == int.tryParse(query ?? '');
   }
 
-  String getDisplayName(BuildContext context) {
-    return name ??
-        context.l10n!.chapterNumber(
-          chapterNumber ?? index?.toDouble() ?? 0,
-        );
-  }
+  int get index => sourceOrder;
+
+  Map<String, String> get metaData =>
+      {for (final metaItem in meta) metaItem.key: metaItem.value};
 }

@@ -14,8 +14,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../constants/enum.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../settings/presentation/reader/widgets/reader_mode_tile/reader_mode_tile.dart';
-import '../../data/manga_book_repository.dart';
-import '../../domain/chapter_patch/chapter_put_model.dart';
+import '../../data/manga_book/manga_book_repository.dart';
+import '../../domain/chapter_batch/chapter_batch_model.dart';
+import '../../domain/manga/manga_model.dart';
 import '../manga_details/controller/manga_details_controller.dart';
 import 'controller/reader_controller.dart';
 import 'widgets/reader_mode/continuous_reader_mode.dart';
@@ -42,19 +43,20 @@ class ReaderScreen extends HookConsumerWidget {
     final defaultReaderMode = ref.watch(readerModeKeyProvider);
 
     final debounce = useRef<Timer?>(null);
+
     final updateLastRead = useCallback((int currentPage) async {
       final chapterValue = chapter.valueOrNull;
-      final isReadingCompeted = chapterValue != null &&
-          ((chapterValue.read).ifNull() ||
-              (currentPage >=
-                  ((chapterValue.pageCount).getValueOnNullOrNegative() - 1)));
+      if (chapterValue == null) return;
+
+      final isReadingCompeted = ((chapterValue.isRead).ifNull() ||
+          (currentPage >=
+              ((chapterValue.pageCount).getValueOnNullOrNegative() - 1)));
       await AsyncValue.guard(
         () => ref.read(mangaBookRepositoryProvider).putChapter(
-              mangaId: mangaId,
-              chapterIndex: chapterIndex,
-              patch: ChapterPut(
+              chapterId: chapterValue.id,
+              patch: ChapterChange(
                 lastPageRead: isReadingCompeted ? 0 : currentPage,
-                read: isReadingCompeted,
+                isRead: isReadingCompeted,
               ),
             ),
       );
@@ -63,7 +65,7 @@ class ReaderScreen extends HookConsumerWidget {
     final onPageChanged = useCallback<AsyncValueSetter<int>>(
       (int index) async {
         final chapterValue = chapter.valueOrNull;
-        if ((chapterValue?.read).ifNull() ||
+        if ((chapterValue?.isRead).ifNull() ||
             (chapterValue?.lastPageRead).getValueOnNullOrNegative() >= index) {
           return;
         }
@@ -97,7 +99,7 @@ class ReaderScreen extends HookConsumerWidget {
     }, []);
 
     return PopScope(
-      onPopInvoked: (didPop) async {
+      onPopInvokedWithResult: (didPop, _) async {
         if (didPop) {
           ref.invalidate(chapterProviderWithIndex);
           ref.invalidate(mangaChapterListProvider(mangaId: mangaId));
@@ -114,7 +116,8 @@ class ReaderScreen extends HookConsumerWidget {
                 context,
                 (chapterData) {
                   if (chapterData == null) return const SizedBox.shrink();
-                  return switch (data.meta?.readerMode ?? defaultReaderMode) {
+                  return switch (
+                      data.metaData.readerMode ?? defaultReaderMode) {
                     ReaderMode.singleVertical => SinglePageReaderMode(
                         chapter: chapterData,
                         manga: data,
@@ -170,12 +173,12 @@ class ReaderScreen extends HookConsumerWidget {
                       )
                   };
                 },
-                refresh: () => ref.refresh(chapterProviderWithIndex),
+                refresh: () => ref.refresh(chapterProviderWithIndex.future),
                 addScaffoldWrapper: true,
               );
             },
             addScaffoldWrapper: true,
-            refresh: () => ref.refresh(mangaProvider),
+            refresh: () => ref.refresh(mangaProvider.future),
           ),
         ),
       ),

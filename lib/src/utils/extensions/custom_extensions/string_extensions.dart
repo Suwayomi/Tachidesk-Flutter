@@ -19,6 +19,15 @@ extension StringExtensions on String? {
 
   double? get tryParseInt => isNull ? null : double.tryParse(this!);
 
+  String ifNull([String value = '']) => isNull ? value : this!;
+
+  String ifBlank([String value = '']) => isBlank ? value : this!;
+
+  String? wrap({String? prefix = " (", String? suffix = ")"}) {
+    if (isBlank) return null;
+    return "${prefix.ifNull()}$this${suffix.ifNull()}";
+  }
+
   bool hasMatch(String pattern) =>
       (isNull) ? false : RegExp(pattern).hasMatch(this!);
 
@@ -66,6 +75,12 @@ extension StringExtensions on String? {
         r'^(([^<>[\]\\.,;:\s@\"]+(\.[^<>[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
   }
 
+  bool get isUrl {
+    if (isNull) return false;
+    return this!.hasMatch(
+        r'https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)');
+  }
+
   bool query([String? query]) {
     if (isNull) return false;
     if (query.isBlank) return true;
@@ -100,4 +115,23 @@ extension StringExtensions on String? {
     if (isBlank) return null;
     return this!.replaceFirst(RegExp('http', caseSensitive: false), 'ws');
   }
+
+  TimeOfDay? get toTimeOfDay {
+    if (isBlank) return null;
+    final timeList = this!.split(':').map(int.tryParse).filterOutNulls!;
+    if (timeList.length != 2) {
+      return null;
+    }
+    return TimeOfDay(hour: timeList.first!, minute: timeList.last!);
+  }
+
+  String get toDateString {
+    if (isBlank) return "";
+    return DateTime.fromMillisecondsSinceEpoch(
+      (int.tryParse(this!).getValueOnNullOrNegative()) * 1000,
+    ).toDateString;
+  }
+
+  int getValueOnNullOrNegative([int i = 0]) =>
+      int.tryParse(this ?? '')?.getValueOnNullOrNegative(i) ?? i;
 }

@@ -4,11 +4,11 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:dio/dio.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../utils/extensions/custom_extensions.dart';
-import '../../../data/category/category_repository.dart';
+import '../../../data/category_repository.dart';
 import '../../../domain/category/category_model.dart';
 
 part 'edit_category_controller.g.dart';
@@ -16,55 +16,50 @@ part 'edit_category_controller.g.dart';
 @riverpod
 class CategoryController extends _$CategoryController {
   @override
-  Future<List<Category>?> build() async => loadCategories(ref);
+  Future<List<CategoryDto>?> build() =>
+      ref.watch(categoryRepositoryProvider).getCategoryList();
 
-  Future<List<Category>?> loadCategories(
-    AutoDisposeAsyncNotifierProviderRef<List<Category>?> ref,
-  ) async {
-    final token = CancelToken();
-    ref.onDispose(token.cancel);
-    final result = await ref
-        .watch(categoryRepositoryProvider)
-        .getCategoryList(cancelToken: token);
-    ref.keepAlive();
-    return result;
+  Future<AsyncValue<void>> deleteCategory(int categoryId) async {
+    final response = await AsyncValue.guard(() => ref
+        .read(categoryRepositoryProvider)
+        .deleteCategory(categoryId: categoryId));
+    ref.invalidateSelf();
+    return response;
   }
 
-  Future<void> deleteCategory(Category category) async {
-    state = await AsyncValue.guard(() async {
-      await ref
-          .read(categoryRepositoryProvider)
-          .deleteCategory(category: category);
-      return loadCategories(ref);
-    });
-  }
-
-  Future<void> editCategory(Category category) async {
+  Future<AsyncValue<void>> editCategory(
+      int categoryId, CategoryUpdate category) async {
     final categoryRepository = ref.read(categoryRepositoryProvider);
-    state = await AsyncValue.guard(() async {
-      if (category.id == null) {
-        await categoryRepository.createCategory(category: category);
-      } else {
-        await categoryRepository.editCategory(category: category);
-      }
-      return loadCategories(ref);
-    });
+    final response = await AsyncValue.guard(() => categoryRepository
+        .editCategory(categoryId: categoryId, category: category));
+    ref.invalidateSelf();
+    return response;
   }
 
-  Future<void> reorderCategory(int from, int to) async {
+  Future<AsyncValue<void>> createCategory(CategoryCreate category) async {
     final categoryRepository = ref.read(categoryRepositoryProvider);
-    state = await AsyncValue.guard(() async {
-      await categoryRepository.reorderCategory(from: from, to: to);
-      return loadCategories(ref);
-    });
+    final response = await AsyncValue.guard(
+        () => categoryRepository.createCategory(category: category));
+    ref.invalidateSelf();
+    return response;
+  }
+
+  Future<AsyncValue<void>> reorderCategory(int categoryId, int position) async {
+    final response = await AsyncValue.guard(() => ref
+        .read(categoryRepositoryProvider)
+        .reorderCategory(categoryId: categoryId, position: position));
+    ref.invalidateSelf();
+    return response;
   }
 }
 
 @riverpod
-List<Category>? categoryListQuery(
-  CategoryListQueryRef ref, {
+List<CategoryDto>? categoryListQuery(
+  Ref ref, {
   required String query,
 }) {
   final categoryList = ref.watch(categoryControllerProvider).valueOrNull;
-  return categoryList?.where((element) => element.name.query(query)).toList();
+  return categoryList
+      ?.where((element) => (element.name.query(query)).ifNull())
+      .toList();
 }

@@ -12,9 +12,13 @@ import '../../routes/router_config.dart';
 import '../../utils/extensions/custom_extensions.dart';
 
 class BigScreenNavigationBar extends StatelessWidget {
-  const BigScreenNavigationBar({super.key, required this.selectedScreen});
+  const BigScreenNavigationBar(
+      {super.key,
+      required this.selectedIndex,
+      required this.onDestinationSelected});
 
-  final String selectedScreen;
+  final int selectedIndex;
+  final ValueChanged<int> onDestinationSelected;
 
   NavigationRailDestination getNavigationRailDestination(
       BuildContext context, NavigationBarData data) {
@@ -30,19 +34,19 @@ class BigScreenNavigationBar extends StatelessWidget {
     final Widget leadingIcon;
     if (context.isDesktop) {
       leadingIcon = TextButton.icon(
-        onPressed: () => const AboutRoute().push(context),
+        onPressed: () => const AboutRoute().go(context),
         icon: ImageIcon(
           AssetImage(Assets.icons.darkIcon.path),
           size: 48,
         ),
-        label: Text(context.l10n!.appTitle),
+        label: Text(context.l10n.appTitle),
         style: TextButton.styleFrom(
           foregroundColor: context.textTheme.bodyLarge?.color,
         ),
       );
     } else {
       leadingIcon = IconButton(
-        onPressed: () => const AboutRoute().push(context),
+        onPressed: () => const AboutRoute().go(context),
         icon: ImageIcon(
           AssetImage(Assets.icons.darkIcon.path),
           size: 48,
@@ -62,9 +66,8 @@ class BigScreenNavigationBar extends StatelessWidget {
           .map<NavigationRailDestination>(
               (e) => getNavigationRailDestination(context, e))
           .toList(),
-      selectedIndex: NavigationBarData.indexWherePathOrZero(selectedScreen),
-      onDestinationSelected: (value) =>
-          NavigationBarData.navList[value].go(context),
+      selectedIndex: selectedIndex,
+      onDestinationSelected: onDestinationSelected,
     );
   }
 }

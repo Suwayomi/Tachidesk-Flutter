@@ -6,12 +6,12 @@
 
 import 'package:flutter/material.dart';
 
+import '../../../../../constants/app_constants.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
-import '../../../../../widgets/multi_select_popup.dart';
-import '../../../../../widgets/radio_list_popup.dart';
-import '../../../../../widgets/text_field_popup.dart';
+import '../../../../../widgets/popup_widgets/multi_select_popup.dart';
+import '../../../../../widgets/popup_widgets/radio_list_popup.dart';
+import '../../../../../widgets/popup_widgets/text_field_popup.dart';
 import '../../../domain/source_preference/source_preference.dart';
-import '../../../domain/source_preference_prop/source_preference_prop.dart';
 
 class SourcePreferenceToWidget extends StatelessWidget {
   const SourcePreferenceToWidget({
@@ -21,108 +21,118 @@ class SourcePreferenceToWidget extends StatelessWidget {
   });
 
   final SourcePreference sourcePreference;
-  final ValueChanged<SourcePreference> onChanged;
-
-  void onChangedPreferenceCopyWith<T extends SourcePreferenceProp>(T prop,
-      [BuildContext? context]) {
-    onChanged(sourcePreference.copyWith(sourcePreferenceProp: prop));
-    if (context != null) Navigator.pop(context);
-  }
+  final ValueChanged<SourcePreferenceChange> onChanged;
 
   @override
   Widget build(BuildContext context) {
-    SourcePreferenceProp? prop = sourcePreference.sourcePreferenceProp;
+    SourcePreference? prop = sourcePreference;
     return switch (prop) {
       CheckBoxPreference(
-        key: String? key,
-        title: String? title,
+        key: String key,
+        checkBoxTitle: String title,
         summary: String? summary,
-        defaultValue: bool? defaultValue,
-        currentValue: bool? currentValue,
+        checkBoxDefaultValue: bool defaultValue,
+        checkBoxValue: bool? currentValue,
       ) =>
         CheckboxListTile(
-          key: Key(key ?? ""),
-          title: Text(title ?? ""),
+          key: Key(key),
+          title: Text(title),
           subtitle: summary.isNotBlank ? Text(summary!) : null,
           value: currentValue.ifNull(defaultValue.ifNull()),
-          onChanged: (value) =>
-              onChangedPreferenceCopyWith(prop.copyWith(currentValue: value)),
+          onChanged: (value) => onChanged(SourcePreferenceChange(
+            checkBoxState: value,
+            position: kPositionPlaceholder,
+          )),
           controlAffinity: ListTileControlAffinity.trailing,
         ),
       SwitchPreferenceCompat(
-        key: String? key,
-        title: String? title,
+        key: String key,
+        switchTitle: String title,
         summary: String? summary,
-        defaultValue: bool? defaultValue,
-        currentValue: bool? currentValue,
+        switchDefaultValue: bool defaultValue,
+        switchValue: bool? currentValue,
       ) =>
         SwitchListTile(
-          key: Key(key ?? ""),
-          title: Text(title ?? ""),
+          key: Key(key),
+          title: Text(title),
           subtitle: summary.isNotBlank ? Text(summary!) : null,
           value: currentValue.ifNull(defaultValue.ifNull()),
-          onChanged: (value) =>
-              onChangedPreferenceCopyWith(prop.copyWith(currentValue: value)),
+          onChanged: (value) => onChanged(SourcePreferenceChange(
+            switchState: value,
+            position: kPositionPlaceholder,
+          )),
           controlAffinity: ListTileControlAffinity.trailing,
         ),
       ListPreference(
-        key: String? key,
-        title: String? title,
-        defaultValue: String? defaultValue,
-        currentValue: String? currentValue,
-        entries: Map<String, String>? entries,
+        key: String key,
+        listTitle: String? title,
+        listDefaultValue: String? defaultValue,
+        listValue: String? currentValue,
+        entries: List<String> entries,
+        entryValues: List<String> entryValues,
       ) =>
         ListTile(
-          key: Key(key ?? ""),
+          key: Key(key),
           title: Text(title ?? ""),
           subtitle: currentValue.isNotBlank ? Text(currentValue!) : null,
           onTap: () => showDialog(
             context: context,
             builder: (context) => RadioListPopup<String>(
               title: title ?? "",
-              optionList: entries?.keys.toList() ?? [],
+              optionList: entryValues.toList(),
               value: currentValue ?? defaultValue ?? "",
-              onChange: (value) => onChangedPreferenceCopyWith(
-                  prop.copyWith(currentValue: value), context),
-              getOptionTitle: (entry) => entries?[entry] ?? entry,
+              onChange: (value) {
+                onChanged(SourcePreferenceChange(
+                  listState: value,
+                  position: kPositionPlaceholder,
+                ));
+                Navigator.pop(context);
+              },
+              getOptionTitle: (entry) => entries[entryValues.indexOf(entry)],
             ),
           ),
         ),
       MultiSelectListPreference(
-        key: String? key,
-        title: String? title,
+        key: String key,
+        multiSelectTitle: String? title,
         summary: String? summary,
-        defaultValue: List<String>? defaultValue,
-        currentValue: List<String>? currentValue,
-        entries: Map<String, String>? entries,
+        multiSelectDefaultValue: List<String>? defaultValue,
+        multiSelectValue: List<String>? currentValue,
+        entries: List<String> entries,
+        entryValues: List<String> entryValues,
       ) =>
         ListTile(
-          key: Key(key ?? ""),
+          key: Key(key),
           title: Text(title ?? ""),
           subtitle: summary.isNotBlank ? Text(summary!) : null,
           onTap: () => showDialog(
             context: context,
             builder: (context) => MultiSelectPopup<String>(
               title: title ?? "",
-              optionList: entries?.keys.toList() ?? [],
-              values: currentValue ?? defaultValue ?? [],
-              onChange: (value) => onChangedPreferenceCopyWith(
-                  prop.copyWith(currentValue: value), context),
-              getOptionTitle: (entry) => entries?[entry] ?? entry,
+              optionList: entryValues.toList(),
+              values: currentValue?.toList() ?? defaultValue?.toList() ?? [],
+              onChange: (value) {
+                onChanged(SourcePreferenceChange(
+                  multiSelectState: value,
+                  position: kPositionPlaceholder,
+                ));
+                Navigator.pop(context);
+              },
+              getOptionTitle: (entry) => entries[entryValues.indexOf(entry)],
             ),
           ),
         ),
       EditTextPreference(
-        key: String? key,
-        title: String? title,
+        key: String key,
+        editTextTitle: String? title,
         summary: String? summary,
-        defaultValue: String? defaultValue,
-        currentValue: String? currentValue,
+        EditTextDefaultValue: String? defaultValue,
+        editTextValue: String? currentValue,
         dialogTitle: String? dialogTitle,
         dialogMessage: String? dialogMessage,
       ) =>
         ListTile(
-          key: Key(key ?? ""),
+          key: Key(key),
           title: Text(title ?? ""),
           subtitle: summary.isNotBlank ? Text(summary!) : null,
           onTap: () => showDialog(
@@ -130,13 +140,19 @@ class SourcePreferenceToWidget extends StatelessWidget {
             builder: (context) => TextFieldPopup(
               title: dialogTitle ?? title ?? "",
               subtitle: dialogMessage ?? summary ?? "",
-              onChange: (value) => onChangedPreferenceCopyWith(
-                  prop.copyWith(currentValue: value), context),
+              onChange: (value) async {
+                onChanged(SourcePreferenceChange(
+                  editTextState: value,
+                  position: kPositionPlaceholder,
+                ));
+                Navigator.pop(context);
+              },
               initialValue: currentValue ?? defaultValue,
             ),
           ),
         ),
-      null || Fallback() => const SizedBox.shrink(),
+      SourcePreference() => throw UnimplementedError(
+          'Unhandled preference type: ${prop.runtimeType}'),
     };
   }
 }

@@ -12,7 +12,7 @@ import '../../../../../../constants/db_keys.dart';
 import '../../../../../../constants/enum.dart';
 import '../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../utils/mixin/shared_preferences_client_mixin.dart';
-import '../../../../../../widgets/radio_list_popup.dart';
+import '../../../../../../widgets/popup_widgets/radio_list_popup.dart';
 
 part 'reader_navigation_layout_tile.g.dart';
 
@@ -37,11 +37,11 @@ class ReaderNavigationLayoutTile extends ConsumerWidget {
       subtitle: readerNavigationLayout != null
           ? Text(readerNavigationLayout.toLocale(context))
           : null,
-      title: Text(context.l10n!.readerNavigationLayout),
+      title: Text(context.l10n.readerNavigationLayout),
       onTap: () => showDialog(
         context: context,
         builder: (context) => RadioListPopup<ReaderNavigationLayout>(
-          title: context.l10n!.readerNavigationLayout,
+          title: context.l10n.readerNavigationLayout,
           optionList: ReaderNavigationLayout.values.sublist(1),
           getOptionTitle: (value) => value.toLocale(context),
           value: readerNavigationLayout ?? ReaderNavigationLayout.disabled,

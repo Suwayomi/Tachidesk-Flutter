@@ -8,6 +8,7 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'features/settings/presentation/appearance/widgets/app_theme_selector/app_theme_selector.dart';
@@ -27,30 +28,34 @@ class Sorayomi extends ConsumerWidget {
     final appLocale = ref.watch(l10nProvider);
     final appScheme = ref.watch(appSchemeProvider);
     final isTrueBlack = ref.watch(isTrueBlackProvider);
-    return MaterialApp.router(
-      builder: FToastBuilder(),
-      onGenerateTitle: (context) => context.l10n!.appTitle,
-      debugShowCheckedModeBanner: false,
-      theme: FlexThemeData.light(
-        scheme: appScheme,
-        useMaterial3: true,
-        useMaterial3ErrorColors: true,
-      ).copyWith(
-        tabBarTheme: const TabBarTheme(tabAlignment: TabAlignment.center),
+    final client = ref.watch(graphQlClientNotifierProvider);
+    return GraphQLProvider(
+      client: client,
+      child: MaterialApp.router(
+        builder: FToastBuilder(),
+        onGenerateTitle: (context) => context.l10n.appTitle,
+        debugShowCheckedModeBanner: false,
+        theme: FlexThemeData.light(
+          scheme: appScheme,
+          useMaterial3: true,
+          useMaterial3ErrorColors: true,
+        ).copyWith(
+          tabBarTheme: const TabBarTheme(tabAlignment: TabAlignment.center),
+        ),
+        darkTheme: FlexThemeData.dark(
+          scheme: appScheme,
+          useMaterial3: true,
+          useMaterial3ErrorColors: true,
+          darkIsTrueBlack: isTrueBlack.ifNull(),
+        ).copyWith(
+          tabBarTheme: const TabBarTheme(tabAlignment: TabAlignment.center),
+        ),
+        themeMode: themeMode ?? ThemeMode.system,
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        locale: appLocale,
+        routerConfig: routes,
       ),
-      darkTheme: FlexThemeData.dark(
-        scheme: appScheme,
-        useMaterial3: true,
-        useMaterial3ErrorColors: true,
-        darkIsTrueBlack: isTrueBlack.ifNull(),
-      ).copyWith(
-        tabBarTheme: const TabBarTheme(tabAlignment: TabAlignment.center),
-      ),
-      themeMode: themeMode ?? ThemeMode.system,
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      locale: appLocale,
-      routerConfig: routes,
     );
   }
 }

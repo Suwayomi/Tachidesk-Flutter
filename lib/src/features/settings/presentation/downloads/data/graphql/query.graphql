@@ -1,0 +1,41 @@
+
+
+mutation UpdateDownloadsLocation($downloadsPath: String!) {
+  setSettings(input: {settings: {downloadsPath: $downloadsPath}}) {
+    settings {
+      ...SettingsDto
+    }
+  }
+}
+
+mutation UpdateDownloadAsCbz($downloadAsCbz: Boolean = false) {
+  setSettings(input: {settings: {downloadAsCbz: $downloadAsCbz}}) {
+    settings {
+      ...SettingsDto
+    }
+  }
+}
+
+mutation UpdateAutoDownloadNewChaptersLimit($autoDownloadNewChaptersLimit: Int = 3) {
+  setSettings(input: {settings: {autoDownloadNewChaptersLimit: $autoDownloadNewChaptersLimit}}) {
+    settings {
+      ...SettingsDto
+    }
+  }
+}
+
+mutation ToggleExcludeEntryWithUnreadChapters($excludeEntryWithUnreadChapters: Boolean = false) {
+  setSettings(input: {settings: {excludeEntryWithUnreadChapters: $excludeEntryWithUnreadChapters}}) {
+    settings {
+      ...SettingsDto
+    }
+  }
+}
+
+mutation ToggleAutoDownloadNewChapters($autoDownloadNewChapters: Boolean = false) {
+  setSettings(input: {settings: {autoDownloadNewChapters: $autoDownloadNewChapters}}) {
+    settings {
+      ...SettingsDto
+    }
+  }
+}

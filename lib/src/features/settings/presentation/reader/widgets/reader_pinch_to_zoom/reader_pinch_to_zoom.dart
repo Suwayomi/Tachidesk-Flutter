@@ -26,7 +26,7 @@ class ReaderPinchToZoom extends HookConsumerWidget {
     return SwitchListTile(
       controlAffinity: ListTileControlAffinity.trailing,
       secondary: const Icon(Icons.pinch_rounded),
-      title: Text(context.l10n!.pinchToZoom),
+      title: Text(context.l10n.pinchToZoom),
       onChanged: ref.read(pinchToZoomProvider.notifier).update,
       value: ref.watch(pinchToZoomProvider).ifNull(),
     );

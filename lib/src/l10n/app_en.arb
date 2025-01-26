@@ -9,6 +9,9 @@
     "@addToLibrary": {
         "description": "Button text to add Manga to Library in Manga Details Screen"
     },
+    "@advanced": {
+        "description": "Section title Text for Advanced Section"
+    },
     "@allScanlators": {
         "description": "Text for all Scanlators in manga description screen chapter filter"
     },
@@ -19,7 +22,7 @@
         "description": "Popup title and Button text to change App Theme Mode"
     },
     "@appTitle": {
-        "description": "Name of the app (Tachidesk Sorayomi in native script)"
+        "description": "Name of the app (Sorayomi in native script)"
     },
     "@appearance": {
         "description": "Screen title and Button text of Appearance screen"
@@ -33,8 +36,47 @@
     "@authTypeNone": {
         "description": "Radio button text for no Authentication"
     },
+    "@authentication": {
+        "description": "Section title for server authentication"
+    },
+    "@autoDownload": {
+        "description": "Title for Auto-download Section in downloads settings"
+    },
+    "@autoDownloadNewChapters": {
+        "description": "Toggle's title to change Auto Download New Chapters settings"
+    },
+    "@automaticBackup": {
+        "description": "Settings group title for automatic backup settings"
+    },
+    "@automaticUpdate": {
+        "description": "Popup title and Settings text to update Automatic Global Update interval"
+    },
+    "@automaticallyRefreshMetadata": {
+        "description": "Settings text to update Automatically refresh metadata"
+    },
+    "@automaticallyRefreshMetadataSubtitle": {
+        "description": "Settings sub title text to update Automatically refresh metadata"
+    },
     "@backup": {
         "description": "Screen title and Button text of Backup & Restore screen"
+    },
+    "@backupAndRestore": {
+        "description": "Title for Backup and Restore section in settings"
+    },
+    "@backupCleanup": {
+        "description": "Title for file backup cleanup edit tile"
+    },
+    "@backupInterval": {
+        "description": "Title for file backup interval edit tile"
+    },
+    "@backupLocation": {
+        "description": "Title for backup file storage location edit tile"
+    },
+    "@backupLocationDescription": {
+        "description": "description for editing backup location"
+    },
+    "@backupTime": {
+        "description": "Title for file backup time edit tile"
     },
     "@badges": {
         "description": "Checkbox Group title to enable Badges on manga Cover in Library Screen"
@@ -62,6 +104,12 @@
     },
     "@channel": {
         "description": "Text title to show Channel of the Server (Stable, preview) in About Screen"
+    },
+    "@chapterDownloadLimit": {
+        "description": "Title Text for changing Chapter download limit settings"
+    },
+    "@chapterDownloadLimitDesc": {
+        "description": "Sub Title Text for changing Chapter download limit settings"
     },
     "@chapterNumber": {
         "description": "Text title for Chapter name in chapter list",
@@ -99,14 +147,20 @@
     "@close": {
         "description": "Text for close button"
     },
+    "@cloudflareBypass": {
+        "description": "Section title for Cloudflare Bypass"
+    },
     "@completed": {
         "description": "Checkbox text to filter Completed mangas in Library screen and Manga Grouping text in Update Summary screen"
+    },
+    "@copied": {
+        "description": "Copied Text"
     },
     "@copyMsg": {
         "description": "Toast text to show that the message has been copied",
         "placeholders": {
             "msg": {
-                "example": "Client : Tachidesk Sorayomi",
+                "example": "Client : Sorayomi",
                 "type": "String"
             }
         }
@@ -125,6 +179,9 @@
     },
     "@daysAgo": {
         "description": "Days ago text to show the release date of manga"
+    },
+    "@debugLogs": {
+        "description": "Switch title for Debug logs in settings"
     },
     "@defaultCategory": {
         "description": "Checkbox description when creating a Category to add manga to the Category by Default"
@@ -156,8 +213,17 @@
     "@displayModeList": {
         "description": "Radio button text for Manga Cover display mode - List"
     },
+    "@downloadLocation": {
+        "description": "Settings label Text to update Download location"
+    },
+    "@downloadLocationHint": {
+        "description": "Hint text for updating downloads location"
+    },
     "@downloaded": {
         "description": "Text to show downloaded chapters status in Filters  "
+    },
+    "@downloading": {
+        "description": "Text to show chapters downloading"
     },
     "@downloads": {
         "description": "Screen title and Navigation text of Downloads screen"
@@ -170,6 +236,21 @@
     },
     "@emptyCategory": {
         "description": "Description to show that category list is empty in Edit Category screen"
+    },
+    "@enableSocksProxy": {
+        "description": "Switch title to enable SOCKS Proxy"
+    },
+    "@enterProp": {
+        "description": "Hint text for text field to enter value of Property"
+    },
+    "@error": {
+        "description": "Text to show error downloading chapters"
+    },
+    "@errorBackupCreate": {
+        "description": "Error Text to show that backup creating failed"
+    },
+    "@errorBackupRestore": {
+        "description": "toast to show that backup restoration failed"
     },
     "@errorExtension": {
         "description": "Error Description to show when user selected unknown extension from list"
@@ -198,11 +279,20 @@
     "@errorUserName": {
         "description": "Error Description to show that UserName cannot be empty"
     },
+    "@excludeEntryWithUnreadChapters": {
+        "description": "Toggle's title to change Toggle Exclude Entry With Unread Chapters setting"
+    },
     "@extensionInstalled": {
         "description": "Toast text to show that the Extension Installed successfully"
     },
     "@extensionListEmpty": {
         "description": "Description to show that Extension list is empty in Extension list tab of Browse screen"
+    },
+    "@extensionRepository": {
+        "description": "Screen title text for Extension repository settings screen"
+    },
+    "@extensionRepositoryDescription": {
+        "description": "Subtitle text for Extension repository settings property"
     },
     "@extensions": {
         "description": "Extension list Tab title in Browse Screen"
@@ -219,6 +309,21 @@
     "@finished": {
         "description": "Text to show the Currently Finished reading chapter in Reader Screen"
     },
+    "@flareSolverr": {
+        "description": "Toggle title to enable FlareSolverr"
+    },
+    "@flareSolverrRequestTimeout": {
+        "description": "Title text for FlareSolverr Request Timeout property"
+    },
+    "@flareSolverrServerUrl": {
+        "description": "Title text for FlareSolverr Server Url property"
+    },
+    "@flareSolverrSessionName": {
+        "description": "Title text for FlareSolverr Session Name property"
+    },
+    "@flareSolverrSessionTTL": {
+        "description": "Title text for FlareSolverr Session TTL property"
+    },
     "@general": {
         "description": "Screen title and Button text of General setting screen"
     },
@@ -231,11 +336,23 @@
     "@globalUpdate": {
         "description": "Button text of Global Manga Update"
     },
+    "@gqlDebugLogs": {
+        "description": "Switch title for Graphql Debug logs in settings"
+    },
+    "@gqlDebugLogsHint": {
+        "description": "Switch subTitle for Graphql Debug logs in settings"
+    },
     "@help": {
         "description": "Button text of help in about screen"
     },
     "@inLibrary": {
         "description": "Button and Chip text to show that the manga is in Library"
+    },
+    "@includeCategories": {
+        "description": "Check box text to include categories during create backup"
+    },
+    "@includeChapters": {
+        "description": "Check box text to include chapters during create backup"
     },
     "@install": {
         "description": "Button text to install the extension"
@@ -245,6 +362,15 @@
     },
     "@installingExtension": {
         "description": "Toast text to show that the extension is installing"
+    },
+    "@invalidPort": {
+        "description": "Error when Submitted invalid Port Number"
+    },
+    "@invalidProp": {
+        "description": "Toast text for select invalid property value"
+    },
+    "@ip": {
+        "description": "Option title for Server IP Address in Server settings"
     },
     "@isTrueBlack": {
         "description": "Switch title to enable {} black theme"
@@ -257,6 +383,12 @@
     },
     "@library": {
         "description": "Screen title and Button text of Library and Library Settings screen"
+    },
+    "@localSourceLocation": {
+        "description": "Text for Local Source Location settings property"
+    },
+    "@localSourceLocationDescription": {
+        "description": "Description text for Local Source Location property"
     },
     "@manga": {
         "description": "Screen title and Button text of Manga details screen"
@@ -300,6 +432,9 @@
     "@mangaStatusUnknown": {
         "description": "Text to show Manga Status Unknown in Manga details screen"
     },
+    "@misc": {
+        "description": "Section title for misc settings"
+    },
     "@missingExtension": {
         "description": "Group title to show the Missing Extensions when restoring Backup"
     },
@@ -314,6 +449,27 @@
     },
     "@moveToTop": {
         "description": "Button text to move download/category to the top of list"
+    },
+    "@nChapters": {
+        "description": "Text for showing N chapters"
+    },
+    "@nDays": {
+        "description": "to show Number of days with plural"
+    },
+    "@nHours": {
+        "description": "Text to represent 'n' hours"
+    },
+    "@nMinutes": {
+        "description": "Text to represent 'n' Minutes"
+    },
+    "@nRepo": {
+        "description": "Text to show n repo as subtitle"
+    },
+    "@nSeconds": {
+        "description": "Text to represent 'n' seconds"
+    },
+    "@nSources": {
+        "description": "Text to represent n number Parallel source requests"
     },
     "@nameCountDisplay": {
         "description": "Text pattern to display an name and count in a string",
@@ -361,6 +517,9 @@
             }
         }
     },
+    "@noPropFound": {
+        "description": "Template text to say No value for property found"
+    },
     "@noResultFound": {
         "description": "Text to show that no results found for the given search query"
     },
@@ -375,6 +534,9 @@
     },
     "@noUpdatesFound": {
         "description": "Toast Text to show that there are no Updates available"
+    },
+    "@none": {
+        "description": "Text for None"
     },
     "@nsfw": {
         "description": "Switch text to show/hide the nsfw extensions"
@@ -397,6 +559,15 @@
     "@obsolete": {
         "description": "Text to show that the extension has become Obsolete"
     },
+    "@openFlareSolverr": {
+        "description": "Text for link to Open Flare Solverr setup documentation"
+    },
+    "@openInWeb": {
+        "description": "Button title text for open the url in web"
+    },
+    "@or": {
+        "description": "text literal for word or"
+    },
     "@page": {
         "description": "Text to show the last read Page number of the chapter in Manga details screen",
         "placeholders": {
@@ -405,6 +576,9 @@
                 "type": "int"
             }
         }
+    },
+    "@parallelSourceRequest": {
+        "description": "Text for Parallel source requests property"
     },
     "@password": {
         "description": "Title text for password field"
@@ -420,6 +594,9 @@
     },
     "@previousChapter": {
         "description": "Text for Previous Chapter button in Manga Reader Screen"
+    },
+    "@queued": {
+        "description": "Text to show chapters are queued for downloading"
     },
     "@quickSearch": {
         "description": "Screen title and Button text of Quick Search screen"
@@ -544,6 +721,9 @@
     "@reset": {
         "description": "Button text of reset button in source filters"
     },
+    "@restore": {
+        "description": "Button Text to create backup"
+    },
     "@restoreBackupDescription": {
         "description": "Button text description to create backup"
     },
@@ -568,6 +748,9 @@
     "@save": {
         "description": "Save Button Text"
     },
+    "@saveAsCBZArchive": {
+        "description": "Settings toggle label for Save as CBZ archive"
+    },
     "@scanlators": {
         "description": "Title text for Scanlators"
     },
@@ -589,6 +772,9 @@
     "@server": {
         "description": "Text title for the server in About screen"
     },
+    "@serverBindings": {
+        "description": "Title for server bindings settings"
+    },
     "@serverPort": {
         "description": "Popup title and Button text to update Server Port"
     },
@@ -606,6 +792,15 @@
     },
     "@settings": {
         "description": "Screen title and Button text of Settings screen"
+    },
+    "@skipUpdatingEntries": {
+        "description": "Settings Text to update skip Updating Entries"
+    },
+    "@socksProxy": {
+        "description": "Section title for SOCKS Proxy settings"
+    },
+    "@socksVersion": {
+        "description": "Title for Socks version picker"
     },
     "@sort": {
         "description": "title of sort Tab across the app"
@@ -627,6 +822,12 @@
     },
     "@start": {
         "description": "Button text start reading the manga"
+    },
+    "@systemTrayIcon": {
+        "description": "Switch title to Show icon in system tray in settings"
+    },
+    "@thatHaventBeenStarted": {
+        "description": "Setting option Text for Skip updating entries to toggle That haven't been started"
     },
     "@themeModeDark": {
         "description": "Radio button text for App theme - Dark"
@@ -664,6 +865,9 @@
     "@updateCompleted": {
         "description": "Button text to show that extension update is completed"
     },
+    "@updateFailed": {
+        "description": "Failed to update Text"
+    },
     "@updates": {
         "description": "Screen title and Button text of Updates screen"
     },
@@ -675,6 +879,9 @@
     },
     "@userName": {
         "description": "Title text for User Name field"
+    },
+    "@validating": {
+        "description": "toast to show backup validation is in progress"
     },
     "@versionAvailable": {
         "description": "Text to show that there is an update to App/Server",
@@ -698,21 +905,42 @@
     "@whatsNew": {
         "description": "Button text to open whats new page of app in web"
     },
+    "@withCompletedStatus": {
+        "description": "Setting option Text for Skip updating entries to toggle With Completed status"
+    },
+    "@withUnreadChapter": {
+        "description": "Setting option Text for Skip updating entries to toggle With unread chapter(s)"
+    },
     "@yesterday": {
         "description": "Yesterday Text to show the release date of manga"
     },
     "about": "About",
     "addCategory": "Add Category",
     "addToLibrary": "Add to Library",
+    "advanced": "Advanced",
     "allScanlators": "All Scanlators",
     "appLanguage": "App Language",
     "appTheme": "App Theme Mode",
-    "appTitle": "Tachidesk Sorayomi",
+    "appTitle": "Sorayomi",
     "appearance": "Appearance",
     "authType": "Authentication Type",
     "authTypeBasic": "Basic Auth",
     "authTypeNone": "None",
+    "authentication": "Authentication",
+    "autoDownload": "Auto-download",
+    "autoDownloadNewChapters": "Download new chapters",
+    "automaticBackup": "Automatic Backup",
+    "automaticUpdate": "Automatic Update",
+    "automaticallyRefreshMetadata": "Automatically refresh metadata",
+    "automaticallyRefreshMetadataSubtitle": "Check for new cover and details when updating library",
     "backup": "Backup & Restore",
+    "backupAndRestore": "Backup and Restore",
+    "backupCleanup": "Backup Cleanup",
+    "backupCleanupDescription": "{count, select, 0{Never} 01{Delete Backups that are older 1 day} other{Delete Backups that are older {count} days}}",
+    "backupInterval": "Backup Interval",
+    "backupLocation": "Backup Location",
+    "backupLocationDescription": "The path to the directory on the server where automated backups should get saved in",
+    "backupTime": "Backup Time",
     "badges": "Badges",
     "bookmarked": "Bookmarked",
     "browse": "Browse",
@@ -722,6 +950,8 @@
     "categories": "Categories",
     "categoryUpdate": "Category Update",
     "channel": "Channel",
+    "chapterDownloadLimit": "Chapter download limit",
+    "chapterDownloadLimitDesc": "Limit the amount of new chapters that are going to get downloaded.",
     "chapterNumber": "Chapter {number}",
     "chapterSortFetchedDate": "By Fetched Date",
     "chapterSortSource": "By Source",
@@ -732,13 +962,16 @@
     "client": "Client",
     "clientVersion": "Client version",
     "close": "Close",
+    "cloudflareBypass": "Cloudflare Bypass",
     "completed": "Completed",
+    "copied": "Copied!",
     "copyMsg": "'{msg}' Copied!",
     "createBackupDescription": "Backup library as a Tachidesk backup",
     "createBackupTitle": "Create Backup",
     "credentials": "Credentials",
     "current": "Current",
     "daysAgo": "{days} days ago",
+    "debugLogs": "Debug logs",
     "defaultCategory": "Default category when adding new manga to library",
     "delete": "Delete",
     "deleteCategoryDescription": "This will merge all Mangas in this Category to Default!",
@@ -749,11 +982,19 @@
     "displayModeDescriptiveList": "Descriptive List",
     "displayModeGrid": "Grid",
     "displayModeList": "List",
+    "downloadLocation": "Download location",
+    "downloadLocationHint": "The path to the directory on the server where downloaded files should get saved in",
     "downloaded": "Downloaded",
+    "downloading": "Downloading",
     "downloads": "Downloads",
     "edit": "Edit",
     "editCategory": "Edit Category",
     "emptyCategory": "Category name can't be Empty",
+    "enableSocksProxy": "Use SOCKS Proxy",
+    "enterProp": "Enter {prop}",
+    "error": "Error",
+    "errorBackupCreate": "Failed to create Backup",
+    "errorBackupRestore": "Failed to restore backup!",
     "errorExtension": "Can't find the selected extension",
     "errorFilePick": "File not selected!",
     "errorFilePickUnknownExtension": "Please select a file with {extensionName} extension",
@@ -761,26 +1002,44 @@
     "errorPassword": "Password can't be empty",
     "errorSomethingWentWrong": "Something went wrong!",
     "errorUserName": "UserName can't be empty",
+    "excludeEntryWithUnreadChapters": "Ignore automatic chapter downloads for entries with unread chapters",
     "extensionInstalled": "Extension Installed!",
     "extensionListEmpty": "Extension list is Empty",
+    "extensionRepository": "Extension Repository",
+    "extensionRepositoryDescription": "Add repositories from which extensions can be installed",
     "extensions": "Extensions",
     "failed": "Failed",
     "filter": "Filter",
     "findServer": "Find",
     "finished": "Finished",
+    "flareSolverr": "FlareSolverr",
+    "flareSolverrRequestTimeout": "FlareSolverr Request Timeout",
+    "flareSolverrServerUrl": "FlareSolverr Server Url",
+    "flareSolverrSessionName": "FlareSolverr session name",
+    "flareSolverrSessionTTL": "FlareSolverr session TTL",
     "general": "General",
     "gitHub": "GitHub",
     "globalSearch": "Global Search",
     "globalUpdate": "Global Update",
+    "gqlDebugLogs": "Graphql debug logs",
+    "gqlDebugLogsHint": "This includes logs with non privacy safe information",
     "help": "Help",
     "inLibrary": "In library",
+    "includeCategories": "Categories",
+    "includeChapters": "Chapters",
     "install": "Install",
     "installing": "Installing",
     "installingExtension": "Installing Extension",
+    "invalidPort": "Invalid Port",
+    "invalidProp": "Invalid {property}",
+    "ip": "IP Address",
+    "ipHintText": "Enter server binding IP address",
     "isTrueBlack": "True Black",
     "languages": "Languages",
     "latest": "Latest",
     "library": "Library",
+    "localSourceLocation": "Local source location",
+    "localSourceLocationDescription": "The path to the directory on the server where local source files are saved in",
     "manga": "Manga",
     "mangaGridSize": "Manga Grid Size",
     "mangaMissingSources": "Manga Missing Sources",
@@ -795,11 +1054,19 @@
     "mangaStatusOngoing": "Ongoing",
     "mangaStatusPublishingFinished": "Publishing Finished",
     "mangaStatusUnknown": "Unknown",
+    "misc": "Misc",
     "missingExtension": "Missing Extensions",
     "missingTrackers": "Missing Trackers",
     "more": "More",
     "moveToBottom": "Move to Bottom",
     "moveToTop": "Move to top",
+    "nChapters": "{n, plural, =0{None} =1{1 Chapter} other{{n} Chapters}}",
+    "nDays": "{count, select, 01{01 Day} other{{count} Days}}",
+    "nHours": "{n, plural, =1{1 hour} other{{n} hours}}",
+    "nMinutes": "{n, plural, =1{1 Minute} other{{n} Minutes}}",
+    "nRepo": "{n, plural, =1{1 Repo} other{{n} Repos}}",
+    "nSeconds": "{n, plural, =1{1 second} other{{n} seconds}}",
+    "nSources": "{n, plural, =1{1 Source} other{{n} Sources}}",
     "nameCountDisplay": "{name}: {count}",
     "newUpdateAvailable": "New update available",
     "nextChapter": "Next: {chapterTitle}",
@@ -810,22 +1077,29 @@
     "noDownloads": "No Downloads",
     "noMangaFound": "No Mangas Found",
     "noOfChapters": "{count} Chapters",
+    "noPropFound": "No {prop} Found",
     "noResultFound": "No results found",
     "noServerFound": "No Server found in your local network",
     "noSourcesFound": "No sources found",
     "noUpdatesAvailable": "You're using the latest version",
     "noUpdatesFound": "No updates found",
+    "none": "None",
     "nsfw": "Show NSFW extensions and sources",
     "nsfw18": "18+",
     "nsfwInfo": "This does not prevent unofficial or potentially incorrectly flagged extensions from surfacing NSFW(18+) content within app",
     "numSelected": "{num} Selected",
     "obsolete": "Obsolete",
+    "openFlareSolverr": "Checkout FlareSolverr for information on how to set it up",
+    "openInWeb": "Open In Web",
+    "or": "or",
     "page": "Page: {number}",
+    "parallelSourceRequest": "Parallel source requests",
     "password": "Password",
     "pause": "Pause",
     "pending": "Pending",
     "pinchToZoom": "Pinch to Zoom",
     "previousChapter": "Previous: {chapterTitle}",
+    "queued": "Queued",
     "quickSearch": "Quick Search",
     "quickSearchCategory": "Go to Category 'C'",
     "quickSearchCategoryManga": "Go to Manga 'M' in Category 'C'",
@@ -868,6 +1142,7 @@
     "remove": "Remove",
     "removeFromLibrary": "Remove from Library?",
     "reset": "Reset",
+    "restore": "Restore",
     "restoreBackupDescription": "Restore Tachidesk from backup",
     "restoreBackupTitle": "Restore Backup",
     "restored": "Backup restored!",
@@ -876,6 +1151,7 @@
     "retry": "Retry",
     "running": "Running",
     "save": "Save",
+    "saveAsCBZArchive": "Save as CBZ archive",
     "scanlators": "Scanlators",
     "search": "Search",
     "searchingForUpdates": "Searching for updates",
@@ -883,12 +1159,20 @@
     "selectNext10": "Select next 10",
     "selectUnread": "Select Unread",
     "server": "Server",
+    "serverBindings": "Server Bindings",
     "serverPort": "Server Port",
     "serverPortHintText": "Server port",
     "serverUrl": "Server URL",
     "serverUrlHintText": "Server url",
     "serverVersion": "Server version",
     "settings": "Settings",
+    "skipUpdatingEntries": "Skip updating entries",
+    "socksHost": "SOCKS Host",
+    "socksPassword": "SOCKS Password",
+    "socksPort": "SOCKS Port",
+    "socksProxy": "SOCKS Proxy",
+    "socksUserName": "SOCKS UserName",
+    "socksVersion": "SOCKS Version",
     "sort": "Sort",
     "source": "Source",
     "sourceTypeFilter": "Filter",
@@ -896,6 +1180,8 @@
     "sourceTypePopular": "Popular",
     "sources": "Sources",
     "start": "Start",
+    "systemTrayIcon": "Show icon in system tray",
+    "thatHaventBeenStarted": "That haven't been started",
     "themeModeDark": "Dark",
     "themeModeLight": "Light",
     "themeModeSystem": "System",
@@ -908,13 +1194,17 @@
     "unread": "Unread",
     "update": "Update",
     "updateCompleted": "Update Completed",
+    "updateFailed": "Failed to update {property}",
     "updates": "Updates",
     "updatesSummary": "Updates Summary",
     "updating": "Updating",
     "userName": "User Name",
+    "validating": "Validating",
     "versionAvailable": "Version {version} available for {app}!!",
     "webUI": "Open in WEB",
     "webView": "Web View",
     "whatsNew": "What's New?",
+    "withCompletedStatus": "With Completed status",
+    "withUnreadChapter": "With unread chapter(s)",
     "yesterday": "Yesterday"
 }

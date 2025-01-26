@@ -1,0 +1,14 @@
+
+
+
+query GetServerUpdate {
+  checkForServerUpdates {
+    ...ServerUpdateDto
+  }
+}
+
+query GetAbout {
+  aboutServer {
+    ...AboutDto
+  }
+}

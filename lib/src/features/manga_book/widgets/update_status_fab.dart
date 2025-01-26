@@ -10,6 +10,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../routes/router_config.dart';
 import '../../../utils/extensions/custom_extensions.dart';
 import '../data/updates/updates_repository.dart';
+import '../domain/update_status/update_status_model.dart';
 
 class UpdateStatusFab extends ConsumerWidget {
   const UpdateStatusFab({super.key});
@@ -19,14 +20,14 @@ class UpdateStatusFab extends ConsumerWidget {
     final updateStatus = ref.watch(updatesSocketProvider);
     final showStatus = (updateStatus.valueOrNull?.isUpdateChecking).ifNull();
     return FloatingActionButton.extended(
-      icon: showStatus ? null : const Icon(Icons.refresh),
+      icon: showStatus ? null : const Icon(Icons.refresh_rounded),
       onPressed: () => showStatus
           ? const UpdateStatusRoute().push(context)
           : ref.read(updatesRepositoryProvider).fetchUpdates(),
       label: showStatus
           ? Text("${updateStatus.valueOrNull?.updateChecked.padLeft()}"
               "/${updateStatus.valueOrNull?.total.padLeft()}")
-          : Text(context.l10n!.update),
+          : Text(context.l10n.update),
     );
   }
 }

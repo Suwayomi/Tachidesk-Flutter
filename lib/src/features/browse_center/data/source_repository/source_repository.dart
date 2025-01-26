@@ -4,116 +4,84 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:dio/dio.dart';
+import 'package:graphql/client.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../../constants/endpoints.dart';
-import '../../../../constants/enum.dart';
 import '../../../../global_providers/global_providers.dart';
-import '../../../../utils/storage/dio/dio_client.dart';
+import '../../../../graphql/__generated__/schema.graphql.dart';
+import '../../../../utils/extensions/custom_extensions.dart';
 import '../../domain/filter/filter_model.dart';
 import '../../domain/manga_page/manga_page.dart';
 import '../../domain/source/source_model.dart';
 import '../../domain/source_preference/source_preference.dart';
+import 'graphql/__generated__/query.graphql.dart';
 
 part 'source_repository.g.dart';
 
 class SourceRepository {
-  final DioClient dioClient;
+  final GraphQLClient ferryClient;
 
-  SourceRepository(this.dioClient);
+  SourceRepository(this.ferryClient);
 
-  Future<List<Source>?> getSourceList({CancelToken? cancelToken}) async =>
-      (await dioClient.get<List<Source>, Source>(
-        SourceUrl.sourceList,
-        decoder: (e) =>
-            e is Map<String, dynamic> ? Source.fromJson(e) : Source(),
-        cancelToken: cancelToken,
-      ))
-          .data;
+  Future<List<SourceDto>?> getSourceList() =>
+      ferryClient.query$SourceList().getData((data) => data.sources.nodes);
 
-  Future<MangaPage?> getMangaList({
+  Future<MangaPage?> fetchSourceManga({
     required String sourceId,
     required SourceType sourceType,
-    required int pageNum,
+    required int page,
     String? query,
-    List<Map<String, dynamic>>? filter,
-    CancelToken? cancelToken,
-  }) async {
-    if (sourceType != SourceType.filter) {
-      return (await dioClient.get<MangaPage, MangaPage?>(
-        SourceUrl.getMangaList(sourceId, sourceType.name, pageNum),
-        decoder: (e) =>
-            e is Map<String, dynamic> ? MangaPage.fromJson(e) : null,
-        cancelToken: cancelToken,
-      ))
-          .data;
-    } else {
-      return (await dioClient.post<MangaPage, MangaPage?>(
-        SourceUrl.quickSearch(sourceId),
-        queryParameters: {
-          "pageNum": pageNum,
-        },
-        data: {
-          "searchTerm": query ?? "",
-          "filter": [...?filter],
-        },
-        decoder: (e) =>
-            e is Map<String, dynamic> ? MangaPage.fromJson(e) : null,
-        cancelToken: cancelToken,
-      ))
-          .data;
-    }
-  }
+    List<FilterChange>? filters,
+  }) =>
+      ferryClient
+          .mutate$FetchSourceManga(
+            Options$Mutation$FetchSourceManga(
+              variables: Variables$Mutation$FetchSourceManga(
+                input: Input$FetchSourceMangaInput(
+                  query: query,
+                  page: page,
+                  source: sourceId,
+                  type: sourceType,
+                  filters: filters,
+                ),
+              ),
+            ),
+          )
+          .getData((data) => data.fetchSourceManga);
 
-  Future<List<Filter>?> getFilterList({
-    required String sourceId,
-    CancelToken? cancelToken,
-  }) async =>
-      (await dioClient.get<List<Filter>, Filter>(
-        SourceUrl.filters(sourceId),
-        decoder: (e) =>
-            e is Map<String, dynamic> ? Filter.fromJson(e) : Filter(),
-        cancelToken: cancelToken,
-      ))
-          .data;
+  Future<SourceDto?> getSource(String sourceId) => ferryClient
+      .query$SourceById(Options$Query$SourceById(
+          variables: Variables$Query$SourceById(id: sourceId)))
+      .getData((data) => data.source);
 
-  Future<Source?> getSource(
-          {required String sourceId, CancelToken? cancelToken}) async =>
-      (await dioClient.get<Source, Source>(
-        SourceUrl.withId(sourceId),
-        decoder: (e) =>
-            e is Map<String, dynamic> ? Source.fromJson(e) : Source(),
-        cancelToken: cancelToken,
-      ))
-          .data;
+  Future<List<SourcePreference>?> getSourcePreference(String sourceId) =>
+      ferryClient
+          .query$SourcePreferenceById(Options$Query$SourcePreferenceById(
+              variables: Variables$Query$SourcePreferenceById(id: sourceId),
+              fetchPolicy: FetchPolicy.noCache))
+          .getData((data) => data.source.preferences);
 
-  Future<List<SourcePreference>?> getPreferenceList({
-    required String sourceId,
-    CancelToken? cancelToken,
-  }) async =>
-      (await dioClient.get<List<SourcePreference>, SourcePreference>(
-        SourceUrl.preferences(sourceId),
-        decoder: (e) => e is Map<String, dynamic>
-            ? SourcePreference.fromJson(e)
-            : SourcePreference(),
-        cancelToken: cancelToken,
-      ))
-          .data;
+  Future<List<Filter>?> getSourceFilter(String sourceId) => ferryClient
+      .query$SourceFilterById(Options$Query$SourceFilterById(
+          variables: Variables$Query$SourceFilterById(id: sourceId)))
+      .getData((data) => data.source.filters);
 
-  Future<void> updatePreferenceList({
-    required String sourceId,
-    CancelToken? cancelToken,
-    Map<String, dynamic>? preference,
-  }) async =>
-      (await dioClient.post(
-        SourceUrl.preferences(sourceId),
-        data: preference,
-        cancelToken: cancelToken,
-      ))
-          .data;
+  Future<void> updateSourcePreferenceById(
+          String sourceId, SourcePreferenceChange change) =>
+      ferryClient
+          .mutate$UpdateSourcePreference(
+            Options$Mutation$UpdateSourcePreference(
+              variables: Variables$Mutation$UpdateSourcePreference(
+                input: Input$UpdateSourcePreferenceInput(
+                  change: change,
+                  source: sourceId,
+                ),
+              ),
+            ),
+          )
+          .getData((data) => data.updateSourcePreference?.preferences);
 }
 
 @riverpod
 SourceRepository sourceRepository(ref) =>
-    SourceRepository(ref.watch(dioClientKeyProvider));
+    SourceRepository(ref.watch(graphQlClientProvider));

@@ -1,0 +1,77 @@
+fragment MangaDto on MangaType {
+  age
+  artist
+  author
+  chaptersAge
+  chaptersLastFetchedAt
+  description
+  downloadCount
+  genre
+  id
+  inLibrary
+  inLibraryAt
+  initialized
+  lastFetchedAt
+  lastReadChapter {
+    ...ChapterDto
+  }
+  latestFetchedChapter {
+    ...ChapterDto
+  }
+  latestReadChapter {
+    ...ChapterDto
+  }
+  latestUploadedChapter {
+    ...ChapterDto
+  }
+  meta {
+    key
+    value
+  }
+  realUrl
+  source {
+    ...SourceDto
+  }
+  sourceId
+  status
+  thumbnailUrl
+  thumbnailUrlLastFetched
+  title
+  unreadCount
+  updateStrategy
+  url
+}
+
+fragment MangaMetaDto on MangaMetaType {
+  key,
+  value,
+  mangaId,
+}
+
+
+fragment MangaBaseDto on MangaType {
+  age
+  artist
+  author
+  chaptersLastFetchedAt
+  description
+  genre
+  id
+  inLibrary
+  inLibraryAt
+  initialized
+  lastFetchedAt
+  meta {
+    key
+    value
+  }
+  realUrl
+  sourceId
+  status
+  thumbnailUrl
+  thumbnailUrlLastFetched
+  title
+  unreadCount
+  updateStrategy
+  url
+}

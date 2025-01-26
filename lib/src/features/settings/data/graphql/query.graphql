@@ -1,0 +1,7 @@
+
+
+query ServerSettings {
+    settings {
+        ...SettingsDto
+    }
+}

@@ -27,7 +27,7 @@ class ReaderInvertTapTile extends HookConsumerWidget {
     return SwitchListTile(
       controlAffinity: ListTileControlAffinity.trailing,
       secondary: const Icon(Icons.switch_left_rounded),
-      title: Text(context.l10n!.readerNavigationLayoutInvert),
+      title: Text(context.l10n.readerNavigationLayoutInvert),
       onChanged: ref.read(invertTapProvider.notifier).update,
       value: ref.watch(invertTapProvider).ifNull(),
     );

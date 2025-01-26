@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../constants/app_sizes.dart';
-
 import '../../../routes/router_config.dart';
 import '../../../utils/extensions/custom_extensions.dart';
 import '../../library/domain/category/category_model.dart';
@@ -20,7 +19,7 @@ class UpdateStatusPopupMenu extends ConsumerWidget {
     this.getCategory,
     this.showSummaryButton = true,
   });
-  final Category? Function()? getCategory;
+  final CategoryDto? Function()? getCategory;
   final bool showSummaryButton;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -30,22 +29,22 @@ class UpdateStatusPopupMenu extends ConsumerWidget {
       itemBuilder: (context) {
         final category = getCategory?.call();
         return [
-          if (category != null && category.id != null && category.id != 0)
+          if (category != null && category.id != 0)
             PopupMenuItem(
-              child: Text(context.l10n!.categoryUpdate),
+              child: Text(context.l10n.categoryUpdate),
               onTap: () => ref
                   .read(updatesRepositoryProvider)
                   .fetchUpdates(categoryId: category.id),
             ),
           PopupMenuItem(
             onTap: () => ref.read(updatesRepositoryProvider).fetchUpdates(),
-            child: Text(context.l10n!.globalUpdate),
+            child: Text(context.l10n.globalUpdate),
           ),
           if (showSummaryButton)
             PopupMenuItem(
               onTap: () => const UpdateStatusRoute().push(context),
               child: Text(
-                context.l10n!.updatesSummary,
+                context.l10n.updatesSummary,
               ),
             ),
         ];

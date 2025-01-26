@@ -1,0 +1,38 @@
+
+fragment UpdateStatusBaseDto on UpdateStatus {
+  isRunning
+}
+fragment UpdateStatusJobDto on UpdateStatusType {
+  mangas {
+    ...MangaPageDto
+  }
+}
+
+fragment UpdateStatusDto on UpdateStatus {
+  ...UpdateStatusBaseDto
+  completeJobs {
+    ...UpdateStatusJobDto
+  }
+  failedJobs {
+    ...UpdateStatusJobDto
+  }
+  pendingJobs {
+    ...UpdateStatusJobDto
+  }
+  runningJobs {
+    ...UpdateStatusJobDto
+  }
+  skippedCategories {
+    categories {
+      ...CategoryPageDto
+    }
+  }
+  skippedJobs {
+    ...UpdateStatusJobDto
+  }
+  updatingCategories {
+    categories {
+      ...CategoryPageDto
+    }
+  }
+}

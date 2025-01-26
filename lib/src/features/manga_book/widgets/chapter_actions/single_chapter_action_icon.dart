@@ -10,22 +10,20 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/misc/toast/toast.dart';
-import '../../data/manga_book_repository.dart';
-import '../../domain/chapter_patch/chapter_put_model.dart';
+import '../../data/manga_book/manga_book_repository.dart';
+import '../../domain/chapter_batch/chapter_batch_model.dart';
 
 class SingleChapterActionIcon extends ConsumerWidget {
   const SingleChapterActionIcon({
-    required this.chapterIndex,
-    required this.mangaId,
+    required this.chapterId,
     this.icon,
     this.imageIcon,
-    required this.chapterPut,
+    required this.change,
     required this.refresh,
     super.key,
   }) : assert(imageIcon != null || icon != null);
-  final int chapterIndex;
-  final int mangaId;
-  final ChapterPut chapterPut;
+  final int chapterId;
+  final ChapterChange change;
   final AsyncCallback refresh;
   final IconData? icon;
   final ImageIcon? imageIcon;
@@ -36,13 +34,12 @@ class SingleChapterActionIcon extends ConsumerWidget {
       onPressed: () async {
         final result = (await AsyncValue.guard(
           () => ref.read(mangaBookRepositoryProvider).putChapter(
-                mangaId: mangaId,
-                chapterIndex: chapterIndex,
-                patch: chapterPut,
+                chapterId: chapterId,
+                patch: change,
               ),
         ));
         if (context.mounted) {
-          result.showToastOnError(ref.read(toastProvider(context)));
+          result.showToastOnError(ref.read(toastProvider));
         }
         await refresh();
       },

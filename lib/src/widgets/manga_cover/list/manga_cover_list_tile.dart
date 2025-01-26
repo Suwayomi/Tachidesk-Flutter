@@ -21,7 +21,7 @@ class MangaCoverListTile extends StatelessWidget {
     this.showCountBadges = false,
   });
 
-  final Manga manga;
+  final MangaDto manga;
   final VoidCallback? onPressed;
   final VoidCallback? onLongPress;
   final bool showCountBadges;
@@ -47,7 +47,7 @@ class MangaCoverListTile extends StatelessWidget {
             child: Padding(
               padding: KEdgeInsets.h8.size,
               child: Text(
-                (manga.title ?? manga.author ?? ""),
+                manga.title,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 3,
               ),

@@ -24,24 +24,24 @@ class ChapterSeparator extends ConsumerWidget {
     required this.chapter,
     required this.isPreviousChapterSeparator,
   });
-  final Manga manga;
-  final Chapter chapter;
+  final MangaDto manga;
+  final ChapterDto chapter;
   final bool isPreviousChapterSeparator;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final nextPrevChapterPair = ref.watch(
       getNextAndPreviousChaptersProvider(
-        mangaId: manga.id!,
+        mangaId: manga.id,
         chapterIndex: "${chapter.index}",
       ),
     );
     final navigationLayout = ref.watch(readerNavigationLayoutKeyProvider);
-    final showPrevNextButtons =
-        manga.meta?.readerNavigationLayout == ReaderNavigationLayout.disabled ||
-            ((manga.meta?.readerNavigationLayout == null ||
-                    manga.meta?.readerNavigationLayout ==
-                        ReaderNavigationLayout.defaultNavigation) &&
-                navigationLayout == ReaderNavigationLayout.disabled);
+    final showPrevNextButtons = manga.metaData.readerNavigationLayout ==
+            ReaderNavigationLayout.disabled ||
+        ((manga.metaData.readerNavigationLayout == null ||
+                manga.metaData.readerNavigationLayout ==
+                    ReaderNavigationLayout.defaultNavigation) &&
+            navigationLayout == ReaderNavigationLayout.disabled);
     return Center(
       child: SingleChildScrollView(
         child: Column(
@@ -56,27 +56,26 @@ class ChapterSeparator extends ConsumerWidget {
                 padding: KEdgeInsets.v16.size,
                 child: FilledButton(
                   onPressed: () => ReaderRoute(
-                    mangaId: nextPrevChapterPair!.second!.mangaId!,
-                    chapterIndex: nextPrevChapterPair.second!.index!,
+                    mangaId: nextPrevChapterPair!.second!.mangaId,
+                    chapterIndex: nextPrevChapterPair.second!.index,
                   ).pushReplacement(context),
                   child: Text(
-                    context.l10n!.previousChapter(
-                      nextPrevChapterPair?.second?.getDisplayName(context) ??
-                          "",
+                    context.l10n.previousChapter(
+                      nextPrevChapterPair?.second?.name ?? "",
                     ),
                   ),
                 ),
               ),
             Text(
               isPreviousChapterSeparator
-                  ? context.l10n!.start
-                  : context.l10n!.finished,
+                  ? context.l10n.start
+                  : context.l10n.finished,
               style: context.textTheme.titleMedium
                   ?.copyWith(fontWeight: FontWeight.bold),
               overflow: TextOverflow.ellipsis,
             ),
             Text(
-              chapter.getDisplayName(context),
+              chapter.name,
               style: context.textTheme.bodyMedium
                   ?.copyWith(fontWeight: FontWeight.bold),
               overflow: TextOverflow.ellipsis,
@@ -88,12 +87,12 @@ class ChapterSeparator extends ConsumerWidget {
                 padding: KEdgeInsets.v16.size,
                 child: FilledButton(
                   onPressed: () => ReaderRoute(
-                    mangaId: nextPrevChapterPair!.first!.mangaId!,
-                    chapterIndex: nextPrevChapterPair.first!.index!,
+                    mangaId: nextPrevChapterPair!.first!.mangaId,
+                    chapterIndex: nextPrevChapterPair.first!.index,
                   ).pushReplacement(context),
                   child: Text(
-                    context.l10n!.nextChapter(
-                      nextPrevChapterPair?.first?.getDisplayName(context) ?? "",
+                    context.l10n.nextChapter(
+                      nextPrevChapterPair?.first?.name ?? "",
                     ),
                   ),
                 ),

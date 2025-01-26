@@ -10,7 +10,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../../constants/db_keys.dart';
 import '../../../../../constants/enum.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
-import '../../../../../widgets/radio_list_popup.dart';
+import '../../../../../widgets/popup_widgets/radio_list_popup.dart';
 import '../controller/source_manga_controller.dart';
 
 class SourceMangaDisplayIconPopup extends ConsumerWidget {
@@ -27,7 +27,7 @@ class SourceMangaDisplayIconPopup extends ConsumerWidget {
         builder: (context) => RadioListPopup<DisplayMode>(
           optionList: DisplayMode.sourceDisplayList,
           getOptionTitle: (value) => value.toLocale(context),
-          title: context.l10n!.displayMode,
+          title: context.l10n.displayMode,
           value: displayMode,
           onChange: (enumValue) async {
             ref.read(sourceDisplayModeProvider.notifier).update(enumValue);

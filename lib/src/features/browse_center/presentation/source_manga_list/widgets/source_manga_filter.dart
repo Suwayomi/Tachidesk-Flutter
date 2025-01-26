@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../../../../constants/app_sizes.dart';
-
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../domain/filter/filter_model.dart';
 import 'filter_to_widget.dart';
@@ -16,18 +15,18 @@ import 'filter_to_widget.dart';
 class SourceMangaFilter extends HookWidget {
   const SourceMangaFilter({
     super.key,
-    required this.initialFilters,
+    required this.filters,
     required this.sourceId,
     required this.onSubmitted,
     required this.onReset,
   });
-  final List<Filter> initialFilters;
+  final List<Filter> filters;
   final String sourceId;
-  final ValueChanged<List<Filter>?> onSubmitted;
+  final ValueChanged<List<FilterChange>?> onSubmitted;
   final VoidCallback onReset;
   @override
   Widget build(BuildContext context) {
-    final filters = useState(initialFilters);
+    final filterChangeMap = useState<Map<int, List<FilterChange>>>({});
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(kAppBarBottomHeight),
@@ -38,14 +37,23 @@ class SourceMangaFilter extends HookWidget {
               TextButton(
                 onPressed: () {
                   onReset();
-                  filters.value = (initialFilters);
+                  filterChangeMap.value = {};
                 },
-                child: Text(context.l10n!.reset),
+                child: Text(context.l10n.reset),
               ),
               const Spacer(),
               FilledButton(
-                onPressed: () => onSubmitted(filters.value),
-                child: Text(context.l10n!.filter),
+                onPressed: () {
+                  final filterChanges = filterChangeMap.value.values.fold(
+                    <FilterChange>[],
+                    (prev, curr) {
+                      prev.addAll(curr);
+                      return prev;
+                    },
+                  );
+                  onSubmitted(filterChanges);
+                },
+                child: Text(context.l10n.filter),
               ),
             ],
           ),
@@ -55,20 +63,25 @@ class SourceMangaFilter extends HookWidget {
         behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
         child: ListView.builder(
           itemBuilder: (context, index) {
-            final filter = filters.value[index];
+            final Filter filter = filters[index];
             return FilterToWidget(
-              key: ValueKey("Filter-${filter.filterState?.name}"),
+              key: ValueKey("BaseFilter-$index"),
               filter: filter,
-              onChanged: (value) {
-                filters.value = ([...initialFilters]..replaceRange(
-                    index,
-                    index + 1,
-                    [value],
-                  ));
+              currentChanges: filterChangeMap.value[index] ?? [],
+              onChanged: (filters) {
+                final filterChanges = <FilterChange>[];
+                for (var filter in filters) {
+                  filterChanges.add(filter.copyWith(position: index));
+                }
+                final newFilterChangeMap = <int, List<FilterChange>>{
+                  ...filterChangeMap.value,
+                  index: filterChanges,
+                };
+                filterChangeMap.value = newFilterChangeMap;
               },
             );
           },
-          itemCount: filters.value.length,
+          itemCount: filters.length,
         ),
       ),
     );

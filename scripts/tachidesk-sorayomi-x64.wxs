@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-    <Product Id="*" UpgradeCode="$(var.UpgradeCode)" Version="$(var.Version)" Language="1033" Name="Tachidesk Sorayomi" Manufacturer="Suwayomi">
+    <Product Id="*" UpgradeCode="$(var.UpgradeCode)" Version="$(var.Version)" Language="1033" Name="Sorayomi" Manufacturer="Suwayomi">
         <Package InstallerVersion="300" Compressed="yes" />
         <Media Id="1" Cabinet="Tachidesk_Sorayomi.cab" EmbedCab="yes" />
 
@@ -30,8 +30,8 @@
         <DirectoryRef Id="INSTALLDIR">
             <Component Id="tachidesk_sorayomi.exe" Guid="*" Win64="yes">
                 <File Id="tachidesk_sorayomi.exe" Source="tachidesk_sorayomi.exe" KeyPath="yes">
-                    <Shortcut Id="tachidesk_sorayom_desktop.lnk" Name="Tachidesk Sorayomi" Directory="DesktopFolder" WorkingDirectory="INSTALLDIR" Icon="tachidesk_sorayomi.ico" IconIndex="0" Advertise="yes" />
-                    <Shortcut Id="tachidesk_sorayom_program_menu.lnk" Name="Tachidesk Sorayomi" Directory="ProgramMenuDir" WorkingDirectory="INSTALLDIR" Icon="tachidesk_sorayomi.ico" IconIndex="0" Advertise="yes" Description="A free and open source manga reader to read manga from a Tachidesk-Server instance." />
+                    <Shortcut Id="tachidesk_sorayom_desktop.lnk" Name="Sorayomi" Directory="DesktopFolder" WorkingDirectory="INSTALLDIR" Icon="tachidesk_sorayomi.ico" IconIndex="0" Advertise="yes" />
+                    <Shortcut Id="tachidesk_sorayom_program_menu.lnk" Name="Sorayomi" Directory="ProgramMenuDir" WorkingDirectory="INSTALLDIR" Icon="tachidesk_sorayomi.ico" IconIndex="0" Advertise="yes" Description="A free and open source manga reader to read manga from a Tachidesk-Server instance." />
                 </File>
             </Component>
 

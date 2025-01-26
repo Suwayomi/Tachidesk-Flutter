@@ -28,8 +28,8 @@ class SwipeChapterToggleTile extends HookConsumerWidget {
     return SwitchListTile(
       controlAffinity: ListTileControlAffinity.trailing,
       secondary: const Icon(Icons.swipe_rounded),
-      title: Text(context.l10n!.readerSwipeChapterToggle),
-      subtitle: Text(context.l10n!.readerSwipeChapterToggleDescription),
+      title: Text(context.l10n.readerSwipeChapterToggle),
+      subtitle: Text(context.l10n.readerSwipeChapterToggleDescription),
       onChanged: ref.read(swipeChapterToggleProvider.notifier).update,
       value: ref.watch(swipeChapterToggleProvider).ifNull(),
     );

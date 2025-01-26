@@ -9,7 +9,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../constants/language_list.dart';
-
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/misc/toast/toast.dart';
 import '../../../../widgets/emoticons.dart';
@@ -36,7 +35,7 @@ class SourceScreen extends HookConsumerWidget {
 
     useEffect(() {
       sourceMapData.showToastOnError(
-        ref.read(toastProvider(context)),
+        ref.read(toastProvider),
         withMicrotask: true,
       );
       return;
@@ -47,10 +46,10 @@ class SourceScreen extends HookConsumerWidget {
       (data) {
         if ((sourceMap.isEmpty && localSource.isBlank && lastUsed.isBlank)) {
           return Emoticons(
-            text: context.l10n!.noSourcesFound,
+            title: context.l10n.noSourcesFound,
             button: TextButton(
               onPressed: refresh,
-              child: Text(context.l10n!.refresh),
+              child: Text(context.l10n.refresh),
             ),
           );
         }

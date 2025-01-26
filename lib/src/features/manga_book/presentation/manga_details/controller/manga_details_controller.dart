@@ -4,7 +4,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:dio/dio.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../constants/db_keys.dart';
@@ -12,7 +12,7 @@ import '../../../../../constants/enum.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/mixin/shared_preferences_client_mixin.dart';
 import '../../../../library/domain/category/category_model.dart';
-import '../../../data/manga_book_repository.dart';
+import '../../../data/manga_book/manga_book_repository.dart';
 import '../../../domain/chapter/chapter_model.dart';
 import '../../../domain/manga/manga_model.dart';
 
@@ -21,60 +21,27 @@ part 'manga_details_controller.g.dart';
 @riverpod
 class MangaWithId extends _$MangaWithId {
   @override
-  Future<Manga?> build({required int mangaId}) async {
-    final token = CancelToken();
-    ref.onDispose(token.cancel);
-    final result = await ref
-        .watch(mangaBookRepositoryProvider)
-        .getManga(mangaId: mangaId, cancelToken: token);
-    ref.keepAlive();
-    return result;
-  }
+  Future<MangaDto?> build({required int mangaId}) =>
+      ref.watch(mangaBookRepositoryProvider).getManga(mangaId: mangaId);
 
-  Future<void> refresh([bool onlineFetch = false]) async {
-    final token = CancelToken();
-    ref.onDispose(token.cancel);
-    final result = await AsyncValue.guard(
-      () => ref.watch(mangaBookRepositoryProvider).getManga(
-            mangaId: mangaId,
-            cancelToken: token,
-            onlineFetch: onlineFetch,
-          ),
-    );
-    ref.keepAlive();
-    if (result.hasError) {
-      state = result.copyWithPrevious(state);
-    } else {
-      state = result;
-    }
+  Future<void> refresh() async {
+    ref.invalidateSelf();
   }
 }
 
 @riverpod
 class MangaChapterList extends _$MangaChapterList {
   @override
-  Future<List<Chapter>?> build({required int mangaId}) async {
-    final token = CancelToken();
-    ref.onDispose(token.cancel);
-    final result = await ref.watch(mangaBookRepositoryProvider).getChapterList(
-          mangaId: mangaId,
-          cancelToken: token,
-          onlineFetch: false,
-        );
+  Future<List<ChapterDto>?> build({required int mangaId}) async {
+    final result =
+        await ref.watch(mangaBookRepositoryProvider).getChapterList(mangaId);
     ref.keepAlive();
     return result;
   }
 
   Future<void> refresh([bool onlineFetch = false]) async {
-    final token = CancelToken();
-    ref.onDispose(token.cancel);
     final result = await AsyncValue.guard(
-      () => ref.read(mangaBookRepositoryProvider).getChapterList(
-            mangaId: mangaId,
-            cancelToken: token,
-            onlineFetch: onlineFetch,
-          ),
-    );
+        () => ref.read(mangaBookRepositoryProvider).getChapterList(mangaId));
     ref.keepAlive();
     if (result.hasError) {
       state = result.copyWithPrevious(state);
@@ -83,11 +50,11 @@ class MangaChapterList extends _$MangaChapterList {
     }
   }
 
-  void updateChapter(int index, Chapter chapter) {
+  void updateChapter(int index, ChapterDto chapter) {
     try {
       final newList = [...?state.valueOrNull];
       newList[index] = chapter;
-      state = AsyncData<List<Chapter>?>(newList).copyWithPrevious(state);
+      state = AsyncData<List<ChapterDto>?>(newList).copyWithPrevious(state);
     } catch (e) {
       //
     }
@@ -95,8 +62,7 @@ class MangaChapterList extends _$MangaChapterList {
 }
 
 @riverpod
-Set<String> mangaScanlatorList(MangaScanlatorListRef ref,
-    {required int mangaId}) {
+Set<String> mangaScanlatorList(Ref ref, {required int mangaId}) {
   final chapterList = ref.watch(mangaChapterListProvider(mangaId: mangaId));
   final scanlatorList = <String>{};
   chapterList.whenData((data) {
@@ -115,7 +81,7 @@ class MangaChapterFilterScanlator extends _$MangaChapterFilterScanlator {
   @override
   String build({required int mangaId}) {
     final manga = ref.watch(mangaWithIdProvider(mangaId: mangaId));
-    return manga.valueOrNull?.meta?.scanlator ?? MangaMetaKeys.scanlator.key;
+    return manga.valueOrNull?.metaData.scanlator ?? MangaMetaKeys.scanlator.key;
   }
 
   void update(String? scanlator) async {
@@ -132,8 +98,8 @@ class MangaChapterFilterScanlator extends _$MangaChapterFilterScanlator {
 }
 
 @riverpod
-AsyncValue<List<Chapter>?> mangaChapterListWithFilter(
-  MangaChapterListWithFilterRef ref, {
+AsyncValue<List<ChapterDto>?> mangaChapterListWithFilter(
+  Ref ref, {
   required int mangaId,
 }) {
   final chapterList = ref.watch(mangaChapterListProvider(mangaId: mangaId));
@@ -149,19 +115,19 @@ AsyncValue<List<Chapter>?> mangaChapterListWithFilter(
   final chapterFilterScanlator =
       ref.watch(mangaChapterFilterScanlatorProvider(mangaId: mangaId));
 
-  bool applyChapterFilter(Chapter chapter) {
+  bool applyChapterFilter(ChapterDto chapter) {
     if (chapterFilterUnread != null &&
-        (chapterFilterUnread ^ !(chapter.read.ifNull()))) {
+        (chapterFilterUnread ^ !(chapter.isRead.ifNull()))) {
       return false;
     }
 
     if (chapterFilterDownloaded != null &&
-        (chapterFilterDownloaded ^ (chapter.downloaded.ifNull()))) {
+        (chapterFilterDownloaded ^ (chapter.isDownloaded.ifNull()))) {
       return false;
     }
 
     if (chapterFilterBookmark != null &&
-        (chapterFilterBookmark ^ (chapter.bookmarked.ifNull()))) {
+        (chapterFilterBookmark ^ (chapter.isBookmarked.ifNull()))) {
       return false;
     }
 
@@ -172,14 +138,14 @@ AsyncValue<List<Chapter>?> mangaChapterListWithFilter(
     return true;
   }
 
-  int applyChapterSort(Chapter m1, Chapter m2) {
+  int applyChapterSort(ChapterDto m1, ChapterDto m2) {
     final sortDirToggle = (sortedDirection ? 1 : -1);
     return (switch (sortedBy) {
-          ChapterSort.fetchedDate =>
-            (m1.fetchedAt ?? 0).compareTo(m2.fetchedAt ?? 0),
-          ChapterSort.source => (m1.index ?? 0).compareTo(m2.index ?? 0),
-          ChapterSort.uploadDate =>
-            (m1.uploadDate ?? 0).compareTo(m2.uploadDate ?? 0),
+          ChapterSort.fetchedDate => (int.tryParse(m1.fetchedAt) ?? 0)
+              .compareTo(int.tryParse(m2.fetchedAt) ?? 0),
+          ChapterSort.source => (m1.index).compareTo(m2.index),
+          ChapterSort.uploadDate => (int.tryParse(m1.uploadDate) ?? 0)
+              .compareTo(int.tryParse(m2.uploadDate) ?? 0),
         }) *
         sortDirToggle;
   }
@@ -190,8 +156,8 @@ AsyncValue<List<Chapter>?> mangaChapterListWithFilter(
 }
 
 @riverpod
-Chapter? firstUnreadInFilteredChapterList(
-  FirstUnreadInFilteredChapterListRef ref, {
+ChapterDto? firstUnreadInFilteredChapterList(
+  Ref ref, {
   required int mangaId,
 }) {
   final isAscSorted = ref.watch(mangaChapterSortDirectionProvider) ??
@@ -204,17 +170,17 @@ Chapter? firstUnreadInFilteredChapterList(
   } else {
     if (isAscSorted) {
       return filteredList
-          .firstWhereOrNull((element) => !element.read.ifNull(true));
+          .firstWhereOrNull((element) => !element.isRead.ifNull(true));
     } else {
       return filteredList
-          .lastWhereOrNull((element) => !element.read.ifNull(true));
+          .lastWhereOrNull((element) => !element.isRead.ifNull(true));
     }
   }
 }
 
 @riverpod
-({Chapter? first, Chapter? second})? getNextAndPreviousChapters(
-  GetNextAndPreviousChaptersRef ref, {
+({ChapterDto? first, ChapterDto? second})? getNextAndPreviousChapters(
+  Ref ref, {
   required int mangaId,
   required String chapterIndex,
   bool shouldAscSort = true,
@@ -282,21 +248,21 @@ class MangaChapterFilterBookmarked extends _$MangaChapterFilterBookmarked
 @riverpod
 class MangaCategoryList extends _$MangaCategoryList {
   @override
-  FutureOr<Map<String, Category>?> build(int mangaId) async {
+  FutureOr<Map<String, CategoryDto>?> build(int mangaId) async {
     final result = await ref
         .watch(mangaBookRepositoryProvider)
         .getMangaCategoryList(mangaId: mangaId);
     return {
-      for (Category i in (result ?? <Category>[])) "${i.id ?? ''}": i,
+      for (CategoryDto i in (result ?? <CategoryDto>[])) "${i.id}": i,
     };
   }
 
   Future<void> refresh() async {
     final result = await AsyncValue.guard(() => ref
-        .watch(mangaBookRepositoryProvider)
+        .read(mangaBookRepositoryProvider)
         .getMangaCategoryList(mangaId: mangaId));
     state = result.copyWithData((data) => {
-          for (Category i in (data ?? <Category>[])) "${i.id ?? ''}": i,
+          for (CategoryDto i in (data ?? <CategoryDto>[])) "${i.id}": i,
         });
   }
 }

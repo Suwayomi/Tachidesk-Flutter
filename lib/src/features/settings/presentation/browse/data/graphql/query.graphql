@@ -1,0 +1,25 @@
+
+
+mutation UpdateSourceInParallel($maxSourcesInParallel: Int = 6) {
+  setSettings(input: {settings: {maxSourcesInParallel: $maxSourcesInParallel}}) {
+    settings {
+      ...SettingsDto
+    }
+  }
+}
+
+mutation UpdateLocalSourcePath($localSourcePath: String!) {
+  setSettings(input: {settings: {localSourcePath: $localSourcePath}}) {
+    settings {
+      ...SettingsDto
+    }
+  }
+}
+
+mutation UpdateExtensionRepos($extensionRepos: [String!]!) {
+  setSettings(input: {settings: {extensionRepos: $extensionRepos}}) {
+    settings {
+      ...SettingsDto
+    }
+  }
+}

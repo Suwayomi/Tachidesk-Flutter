@@ -4,20 +4,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'graphql/__generated__/fragment.graphql.dart';
 
-import '../../../manga_book/domain/manga/manga_model.dart';
-
-part 'manga_page.freezed.dart';
-part 'manga_page.g.dart';
-
-@freezed
-class MangaPage with _$MangaPage {
-  factory MangaPage({
-    List<Manga>? mangaList,
-    bool? hasNextPage,
-  }) = _MangaPage;
-
-  factory MangaPage.fromJson(Map<String, dynamic> json) =>
-      _$MangaPageFromJson(json);
-}
+typedef MangaPage = Fragment$SourceMangaPage;

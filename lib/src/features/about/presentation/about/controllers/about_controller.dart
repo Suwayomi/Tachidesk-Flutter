@@ -4,24 +4,20 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:dio/dio.dart';
+import 'dart:async';
+
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../data/about_repository.dart';
-import '../../../domain/about/about_model.dart';
+import '../../../domain/about/about_dto.dart';
 
 part 'about_controller.g.dart';
 
 @riverpod
-Future<About?> about(AboutRef ref) async {
-  final token = CancelToken();
-  ref.onDispose(token.cancel);
-  final result =
-      await ref.watch(aboutRepositoryProvider).getAbout(cancelToken: token);
-  ref.keepAlive();
-  return result;
-}
+Future<AboutDto?> about(Ref ref) =>
+    ref.watch(aboutRepositoryProvider).getAbout();
 
 @riverpod
 PackageInfo packageInfo(ref) => throw UnimplementedError();

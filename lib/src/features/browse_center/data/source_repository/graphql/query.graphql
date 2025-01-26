@@ -1,0 +1,44 @@
+query SourceList {
+  sources {
+    nodes {
+      ...SourceDto
+    }
+  }
+}
+
+query SourceFilterById($id: LongString!) {
+    source(id: $id) {
+        filters {
+            ...FilterDto
+        }
+    }
+}
+
+query SourceById($id: LongString!) {
+  source(id: $id) {
+    ...SourceDto
+  }
+}
+
+mutation FetchSourceManga($input: FetchSourceMangaInput!) {
+  fetchSourceManga(input: $input) {
+    ...SourceMangaPage
+  }
+}
+
+query SourcePreferenceById($id: LongString!) {
+    source(id: $id) {
+        preferences {
+            ...SourcePreference
+        }
+    }
+}
+
+mutation UpdateSourcePreference($input: UpdateSourcePreferenceInput!) {
+    updateSourcePreference(input: $input) {
+        __typename
+        preferences {
+            ...SourcePreference
+        }
+    }
+}

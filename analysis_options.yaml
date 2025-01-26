@@ -31,9 +31,8 @@ linter:
 # https://dart.dev/guides/language/analysis-options
 analyzer:
   exclude:
-    - "**/*.gform.dart"
     - "**/*.g.dart"
     - "**/*.freezed.dart"
-
+    - "**/*.graphql.dart"
   errors:
     invalid_annotation_target: ignore

@@ -23,11 +23,13 @@ const errorFaces = [
 class Emoticons extends HookWidget {
   const Emoticons({
     super.key,
-    this.text,
+    this.title,
+    this.subTitle,
     this.button,
     this.iconData,
   });
-  final String? text;
+  final String? title;
+  final String? subTitle;
   final IconData? iconData;
   final Widget? button;
 
@@ -49,13 +51,21 @@ class Emoticons extends HookWidget {
                     style: context.textTheme.displayMedium,
                   ),
             const Gap(16),
-            if (text.isNotBlank)
+            if (title.isNotBlank)
               Text(
-                text!,
+                title!,
                 textAlign: TextAlign.center,
                 style: context.textTheme.titleMedium,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 3,
+              ),
+            if (subTitle.isNotBlank)
+              Text(
+                subTitle!,
+                textAlign: TextAlign.center,
+                style: context.textTheme.bodySmall,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
               ),
             if (button != null) button!,
           ],

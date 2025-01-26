@@ -9,7 +9,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../constants/app_sizes.dart';
 import '../../../features/manga_book/domain/manga/manga_model.dart';
-
 import '../../../utils/extensions/custom_extensions.dart';
 import '../providers/manga_cover_providers.dart';
 
@@ -21,7 +20,7 @@ class MangaBadgesRow extends ConsumerWidget {
     this.showCountBadges = false,
     this.padding,
   });
-  final Manga manga;
+  final MangaDto manga;
   final bool needSpacer;
   final bool showCountBadges;
   final EdgeInsetsGeometry? padding;

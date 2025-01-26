@@ -1,13 +1,18 @@
 {
     "cSpell.words": [
+        "behaviour",
         "canonicalized",
         "Compat",
         "dattatreya",
+        "Gdefault",
+        "Gupdate",
+        "Gvalues",
         "horiz",
         "keydown",
         "kindlish",
         "localsourcelang",
         "Mangas",
+        "metas",
         "microtask",
         "phonelink",
         "proto",
@@ -16,6 +21,7 @@
         "reddy",
         "Scanlator",
         "scanlators",
+        "Solverr",
         "sublist",
         "suwayomi",
         "tachidesk",
@@ -23,9 +29,17 @@
         "tekartik",
         "vals",
         "Webtoon",
-        "webtoons"
+        "webtoons",
+        "WEBUI"
     ],
     "licenser.license": "MPLv2",
     "licenser.projectName": "Tachidesk-Sorayomi",
-    "licenser.author": "Contributors to the Suwayomi project"
+    "licenser.author": "Contributors to the Suwayomi project",
+    "editor.wordSeparators": "`~!@#%^&*()-=+[{]}\\|;:'\",.<>/?",
+    "files.exclude": {
+        // "**/__generated__": true,
+        // "**/*.graphql.dart": true,
+        // "**/*.freezed.dart": true,
+        "**/*.g.dart": true,
+    }
 }

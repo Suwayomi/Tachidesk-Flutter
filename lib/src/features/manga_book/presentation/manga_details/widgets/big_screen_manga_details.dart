@@ -10,7 +10,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/emoticons.dart';
-import '../../../data/manga_book_repository.dart';
+import '../../../data/manga_book/manga_book_repository.dart';
 import '../../../domain/chapter/chapter_model.dart';
 import '../../../domain/manga/manga_model.dart';
 import 'chapter_list_tile.dart';
@@ -27,13 +27,13 @@ class BigScreenMangaDetails extends ConsumerWidget {
     required this.onRefresh,
     required this.onDescriptionRefresh,
   });
-  final Manga manga;
+  final MangaDto manga;
   final int mangaId;
   final AsyncValueSetter<bool> onListRefresh;
   final AsyncValueSetter<bool> onDescriptionRefresh;
   final AsyncValueSetter<bool> onRefresh;
-  final ValueNotifier<Map<int, Chapter>> selectedChapters;
-  final AsyncValue<List<Chapter>?> chapterList;
+  final ValueNotifier<Map<int, ChapterDto>> selectedChapters;
+  final AsyncValue<List<ChapterDto>?> chapterList;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final filteredChapterList = chapterList.valueOrNull;
@@ -65,7 +65,7 @@ class BigScreenMangaDetails extends ConsumerWidget {
                   return Column(
                     children: [
                       ListTile(
-                        title: Text(context.l10n!.noOfChapters(
+                        title: Text(context.l10n.noOfChapters(
                           filteredChapterList?.length ?? 0,
                         )),
                       ),
@@ -87,10 +87,10 @@ class BigScreenMangaDetails extends ConsumerWidget {
                               isSelected: selectedChapters.value
                                   .containsKey(chapter.id),
                               canTapSelect: selectedChapters.value.isNotEmpty,
-                              toggleSelect: (Chapter val) {
+                              toggleSelect: (ChapterDto val) {
                                 if ((val.id).isNull) return;
                                 selectedChapters.value = selectedChapters.value
-                                    .toggleKey(val.id!, val);
+                                    .toggleKey(val.id, val);
                               },
                             );
                           },
@@ -101,10 +101,10 @@ class BigScreenMangaDetails extends ConsumerWidget {
                   );
                 } else {
                   return Emoticons(
-                    text: context.l10n!.noChaptersFound,
+                    title: context.l10n.noChaptersFound,
                     button: TextButton(
                       onPressed: () => onListRefresh(true),
-                      child: Text(context.l10n!.refresh),
+                      child: Text(context.l10n.refresh),
                     ),
                   );
                 }

@@ -7,6 +7,10 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../utils/extensions/custom_extensions.dart';
+import '../../../../browse_center/domain/source/source_model.dart';
+import '../../../../library/domain/category/category_model.dart';
+import '../../../../manga_book/domain/chapter/chapter_model.dart';
+import '../../../../manga_book/domain/manga/manga_model.dart';
 import '../../../domain/quick_search_result.dart';
 import 'category_query_list_tile.dart';
 import 'source_query_list_tile.dart';
@@ -23,43 +27,64 @@ class SearchResultToWidget extends StatelessWidget {
   final TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
-    return result.when(
-      // helpText: ,
-      helpText: (prefill, pattern, hintText) => ListTile(
-        leading: Text(prefill),
-        title: Text(
-          hintText,
-          style: TextStyle(color: context.theme.hintColor),
+    return switch (result) {
+      HelpTextQuickSearchResult(
+        prefill: String prefill,
+        hintText: String hintText,
+        pattern: String? pattern,
+      ) =>
+        ListTile(
+          leading: Text(prefill),
+          title: Text(
+            hintText,
+            style: TextStyle(color: context.theme.hintColor),
+          ),
+          onTap: () => pattern.isNotBlank ? controller?.text = pattern! : null,
         ),
-        onTap: () => pattern.isNotBlank ? controller?.text = pattern! : null,
-      ),
-      source: (source) => SourceQueryListTile(
-        source: source,
-        afterClick: afterClick,
-      ),
-      sourceSearch: (source, query) => SourceQueryListTile(
-        source: source,
-        query: query,
-        afterClick: afterClick,
-      ),
-      category: (category) => CategoryQueryListTile(
-        category: category,
-        afterClick: afterClick,
-      ),
-      categoryManga: (category, manga) => CategoryQueryListTile(
-        category: category,
-        manga: manga,
-        afterClick: afterClick,
-      ),
-      categoryMangaChapter: (category, manga, chapter) => CategoryQueryListTile(
-        category: category,
-        manga: manga,
-        chapter: chapter,
-        afterClick: afterClick,
-      ),
-      manga: (source, manga) => const SizedBox.shrink(),
-      chapter: (source, manga, chapter) => const SizedBox.shrink(),
-      globalSearch: () => const SizedBox.shrink(),
-    );
+      SourceQuickSearchResult(
+        source: SourceDto source,
+      ) =>
+        SourceQueryListTile(
+          source: source,
+          afterClick: afterClick,
+        ),
+      SourceSearchQuickSearchResult(
+        source: SourceDto source,
+        query: String query
+      ) =>
+        SourceQueryListTile(
+          source: source,
+          query: query,
+          afterClick: afterClick,
+        ),
+      CategoryQuickSearchResult(category: CategoryDto category) =>
+        CategoryQueryListTile(
+          category: category,
+          afterClick: afterClick,
+        ),
+      CategoryMangaQuickSearchResult(
+        category: CategoryDto category,
+        manga: MangaDto manga
+      ) =>
+        CategoryQueryListTile(
+          category: category,
+          manga: manga,
+          afterClick: afterClick,
+        ),
+      CategoryMangaChapterQuickSearchResult(
+        category: CategoryDto? category,
+        manga: MangaDto manga,
+        chapter: ChapterDto chapter,
+      ) =>
+        CategoryQueryListTile(
+          category: category,
+          manga: manga,
+          chapter: chapter,
+          afterClick: afterClick,
+        ),
+      MangaQuickSearchResult() => const SizedBox.shrink(),
+      ChapterQuickSearchResult() => const SizedBox.shrink(),
+      GlobalSearchQuickSearchResult() => const SizedBox.shrink(),
+    };
   }
 }

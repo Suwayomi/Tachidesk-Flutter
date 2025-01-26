@@ -15,6 +15,7 @@ import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/custom_circular_progress_indicator.dart';
 import '../../../../../widgets/emoticons.dart';
 import '../../../../../widgets/manga_cover/list/manga_cover_list_tile.dart';
+import '../../../../manga_book/domain/manga/graphql/__generated__/fragment.graphql.dart';
 import '../../../../manga_book/domain/manga/manga_model.dart';
 import '../../../domain/source/source_model.dart';
 
@@ -25,15 +26,15 @@ class SourceMangaListView extends ConsumerWidget {
     required this.controller,
     this.source,
   });
-  final Future<AsyncValue?> Function(Manga) toggleFavorite;
-  final PagingController<int, Manga> controller;
-  final Source? source;
+  final Future<AsyncValue?> Function(MangaDto) toggleFavorite;
+  final PagingController<int, MangaDto> controller;
+  final SourceDto? source;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return PagedListView(
       pagingController: controller,
-      builderDelegate: PagedChildBuilderDelegate<Manga>(
+      builderDelegate: PagedChildBuilderDelegate<MangaDto>(
         firstPageProgressIndicatorBuilder: (context) =>
             const CenterSorayomiShimmerIndicator(),
         newPageProgressIndicatorBuilder: (context) => Row(
@@ -49,7 +50,7 @@ class SourceMangaListView extends ConsumerWidget {
             Padding(
               padding: KEdgeInsets.h8.size,
               child: Shimmer.fromColors(
-                baseColor: context.colorScheme.background,
+                baseColor: context.colorScheme.surface,
                 highlightColor: context.theme.indicatorColor,
                 child: Container(
                   width: context.width * .3,
@@ -65,21 +66,21 @@ class SourceMangaListView extends ConsumerWidget {
           ],
         ),
         firstPageErrorIndicatorBuilder: (context) => Emoticons(
-          text: controller.error.toString(),
+          title: controller.error.toString(),
           button: TextButton(
             onPressed: () => controller.refresh(),
-            child: Text(context.l10n!.retry),
+            child: Text(context.l10n.retry),
           ),
         ),
         noItemsFoundIndicatorBuilder: (context) => Emoticons(
-          text: context.l10n!.noMangaFound,
+          title: context.l10n.noMangaFound,
           button: TextButton(
             onPressed: () => controller.refresh(),
-            child: Text(context.l10n!.refresh),
+            child: Text(context.l10n.refresh),
           ),
         ),
         itemBuilder: (context, item, index) => MangaCoverListTile(
-          manga: item.copyWith(source: source),
+          manga: item,
           onLongPress: () async {
             final value = await toggleFavorite(item);
             if (value == null) return;
@@ -90,9 +91,7 @@ class SourceMangaListView extends ConsumerWidget {
             }
           },
           onPressed: () {
-            if (item.id != null) {
-              MangaRoute(mangaId: item.id!).push(context);
-            }
+            MangaRoute(mangaId: item.id).push(context);
           },
         ),
       ),

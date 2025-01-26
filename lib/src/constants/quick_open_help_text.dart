@@ -14,31 +14,31 @@ List<QuickSearchResult> getQuickShowHintTextList(BuildContext context) {
     QuickSearchResult.helpText(
       prefill: '@S',
       pattern: '@',
-      hintText: context.l10n!.quickSearchSource,
+      hintText: context.l10n.quickSearchSource,
     ),
     QuickSearchResult.helpText(
       prefill: '@S/M',
       pattern: '@/',
-      hintText: context.l10n!.quickSearchSourceManga,
+      hintText: context.l10n.quickSearchSourceManga,
     ),
     QuickSearchResult.helpText(
       prefill: '#C',
       pattern: '#',
-      hintText: context.l10n!.quickSearchCategory,
+      hintText: context.l10n.quickSearchCategory,
     ),
     QuickSearchResult.helpText(
       prefill: '#C/M',
       pattern: '#/',
-      hintText: context.l10n!.quickSearchCategoryManga,
+      hintText: context.l10n.quickSearchCategoryManga,
     ),
     QuickSearchResult.helpText(
       prefill: '#C/M:CN',
       pattern: '#/:',
-      hintText: context.l10n!.quickSearchCategoryMangaChapter,
+      hintText: context.l10n.quickSearchCategoryMangaChapter,
     ),
     QuickSearchResult.helpText(
       prefill: 'X',
-      hintText: context.l10n!.quickSearchContext,
+      hintText: context.l10n.quickSearchContext,
     ),
   ];
 }

@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../utils/extensions/custom_extensions.dart';
+import '../../data/source_repository/source_repository.dart';
 import '../source_manga_list/controller/source_manga_controller.dart';
 import 'controller/source_preference_controller.dart';
 import 'widgets/source_preference_to_widget.dart';
@@ -20,7 +21,7 @@ class SourcePreferenceScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final source = ref.watch(sourceProvider(sourceId));
-    final preferenceProvider = sourcePreferenceListProvider(sourceId);
+    final preferenceProvider = baseSourcePreferenceListProvider(sourceId);
     final networkPreferences = ref.watch(preferenceProvider);
     final preferences = networkPreferences.valueOrNull;
     return Scaffold(
@@ -38,13 +39,17 @@ class SourcePreferenceScreen extends HookConsumerWidget {
             if (sourcePreference == null) return const SizedBox.shrink();
             return SourcePreferenceToWidget(
               key: ValueKey(
-                "Source-preference-${sourcePreference.sourcePreferenceProp?.key}",
+                "Source-preference-$index",
               ),
               sourcePreference: sourcePreference,
-              onChanged: (value) {
-                ref
-                    .read(preferenceProvider.notifier)
-                    .updatePreference(index, value);
+              onChanged: (value) async {
+                await ref
+                    .read(sourceRepositoryProvider)
+                    .updateSourcePreferenceById(
+                      sourceId,
+                      value.copyWith(position: index),
+                    );
+                ref.invalidate(preferenceProvider);
               },
             );
           },

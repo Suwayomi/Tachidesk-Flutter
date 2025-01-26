@@ -1,8 +1,8 @@
 <p align="center">
- <img width=200px height=200px src="assets/icons/launcher/sorayomi_icon.png" alt="Tachidesk Sorayomi logo"/>
+ <img width=200px height=200px src="assets/icons/launcher/sorayomi_icon.png" alt="Sorayomi logo"/>
 </p>
 
-<h1 align="center"> Tachidesk Sorayomi </h1>
+<h1 align="center"> Sorayomi </h1>
 
 <div align="center">
 
@@ -23,16 +23,16 @@
 
 
 <p align="center">
-A free and open source manga reader based on <a href="https://flutter.dev/">Flutter</a> to read manga from a <a href="https://github.com/Suwayomi/Tachidesk-Server">Tachidesk-Server</a> instance.</br></br>
-Tachidesk-Sorayomi need to connect with an already hosted server.</br></br>
-Tachidesk-Sorayomi supports Linux, Windows, MacOS, Web, iOS and Android.
+A free and open source manga reader based on <a href="https://flutter.dev/">Flutter</a> to read manga from a <a href="https://github.com/Suwayomi/Tachidesk-Server">Suwayomi-Server</a> instance.</br></br>
+Sorayomi need to connect with an already hosted server.</br></br>
+Sorayomi supports Linux, Windows, MacOS, Web, iOS and Android.
 </p>
 
 ---
 
 ## Is this application usable? Should I test it?
 
-Here is a list of current features for interaction with Tachidesk-Sorayomi:
+Here is a list of current features for interaction with Sorayomi:
 
 - Managing installed Extensions.
 - Interaction with your library.
@@ -41,16 +41,16 @@ Here is a list of current features for interaction with Tachidesk-Sorayomi:
 - Reading, downloading, and managing chapters.
 - Viewing chapter updates
 
-**Note:** Keep in mind that Tachidesk-Sorayomi and Tachidesk-Server are alpha software, so it can have issues. See [Support and help](#support-and-help) if it happens.
+**Note:** Keep in mind that Sorayomi and Suwayomi-Server are alpha software, so it can have issues. See [Support and help](#support-and-help) if it happens.
 
 
-### Supported Tachidesk versions
+### Supported Suwayomi versions
 
-These are the versions of [Tachidesk-Server][tachidesk-server] that Tachidesk-Sorayomi supports.
+These are the versions of [Suwayomi-Server][suwayomi-server] that Sorayomi supports.
 
 #### [Release build][release]
 
-- [Tachidesk-Server][tachidesk-server] v0.6.6+
+- [Suwayomi-Server][suwayomi-server] v0.6.6+
 
 
 ## Downloading and Running the app
@@ -151,7 +151,7 @@ You can install Flutter & Dart from [Official website](https://docs.flutter.dev/
 
 ## Support and help
 
--   Join Tachidesk's [discord server](https://discord.gg/DDZdqZWaHA) to hang out with the community and receive support and help.
+-   Join Suwayomi's [discord server](https://discord.gg/DDZdqZWaHA) to hang out with the community and receive support and help.
 
 
 ## Built Using
@@ -166,7 +166,7 @@ Find other dependencies in [pubspec.yaml](pubspec.yaml)
 
 ## Credit
 
-- The `Tachidesk-server` project is developed by [@AriaMoradi](https://github.com/AriaMoradi) and contributors,
+- The `Suwayomi-server` project is developed by [@AriaMoradi](https://github.com/AriaMoradi) and contributors,
 
 - The `Tachidesk-Sorayomi` project is developed by [@DattatreyaReddy](https://github.com/DattatreyaReddy) and contributors,
 
@@ -196,5 +196,5 @@ You can obtain a copy of `Mozilla Public License v2.0` from https://mozilla.org/
 
 
 [release]: https://github.com/Suwayomi/Tachidesk-Sorayomi/releases
-[tachidesk-server]: https://github.com/Suwayomi/Tachidesk-Server
-[tachidesk-server-preview]: https://github.com/Suwayomi/Tachidesk-Server-preview/releases
+[suwayomi-server]: https://github.com/Suwayomi/Suwayomi-Server
+[suwayomi-server-preview]: https://github.com/Suwayomi/Suwayomi-Server-preview/releases

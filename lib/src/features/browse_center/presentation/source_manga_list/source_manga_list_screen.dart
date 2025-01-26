@@ -10,7 +10,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../../../../constants/app_sizes.dart';
-import '../../../../constants/enum.dart';
 import '../../../../routes/router_config.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/hooks/paging_controller_hook.dart';
@@ -18,6 +17,7 @@ import '../../../../widgets/search_field.dart';
 import '../../../manga_book/domain/manga/manga_model.dart';
 import '../../data/source_repository/source_repository.dart';
 import '../../domain/filter/filter_model.dart';
+import '../../domain/source/source_model.dart';
 import 'controller/source_manga_controller.dart';
 import 'widgets/source_manga_display_icon_popup.dart';
 import 'widgets/source_manga_display_view.dart';
@@ -30,40 +30,38 @@ class SourceMangaListScreen extends HookConsumerWidget {
     required this.sourceId,
     required this.sourceType,
     this.initialQuery,
-    this.initialFilter,
   });
   final String sourceId;
   final SourceType sourceType;
   final String? initialQuery;
-  final List<Filter>? initialFilter;
 
   void _fetchPage(
     SourceRepository repository,
-    PagingController<int, Manga> controller,
+    PagingController<int, MangaDto> controller,
     int pageKey, {
     ValueNotifier<String?>? query,
-    List<Map<String, dynamic>>? filter,
+    List<FilterChange>? filter,
   }) {
     AsyncValue.guard(
-      () => repository.getMangaList(
+      () => repository.fetchSourceManga(
         sourceId: sourceId,
         sourceType: sourceType,
-        pageNum: pageKey,
+        page: pageKey,
         query: query?.value,
-        filter: filter,
+        filters: filter,
       ),
     ).then(
       (value) => value.whenOrNull(
-        data: (recentChaptersPage) {
+        data: (recentMangaPage) {
           try {
-            if (recentChaptersPage != null) {
-              if (recentChaptersPage.hasNextPage.ifNull()) {
+            if (recentMangaPage != null) {
+              if (recentMangaPage.hasNextPage.ifNull()) {
                 controller.appendPage(
-                  [...?recentChaptersPage.mangaList],
+                  [...recentMangaPage.mangas],
                   pageKey + 1,
                 );
               } else {
-                controller.appendLastPage([...?recentChaptersPage.mangaList]);
+                controller.appendLastPage([...recentMangaPage.mangas]);
               }
             }
           } catch (e) {
@@ -75,47 +73,17 @@ class SourceMangaListScreen extends HookConsumerWidget {
     );
   }
 
-  Widget filterWidget(
-    WidgetRef ref,
-    SourceMangaFilterListProvider provider,
-    List<Filter>? filterList,
-    PagingController<int, Manga> controller,
-    BuildContext context,
-  ) {
-    return filterList == null
-        ? const SizedBox.shrink()
-        : SourceMangaFilter(
-            initialFilters: filterList,
-            sourceId: sourceId,
-            onReset: () => ref.read(provider.notifier).reset(),
-            onSubmitted: (value) {
-              if (sourceType == SourceType.filter) {
-                Navigator.pop(context);
-                ref.read(provider.notifier).updateFilter(value);
-                controller.refresh();
-              } else {
-                SourceMangaRoute(
-                  sourceId: sourceId,
-                  sourceType: SourceType.filter,
-                  $extra: value,
-                ).pushReplacement(context);
-              }
-            },
-          );
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final filtersProvider =
-        sourceMangaFilterListProvider(sourceId, filter: initialFilter);
-
     final sourceRepository = ref.watch(sourceRepositoryProvider);
-    final filterList = ref.watch(filtersProvider);
+    final appliedFilter = useState<List<FilterChange>>([]);
+    final filterList =
+        ref.watch(baseSourceMangaFilterListProvider(sourceId)).valueOrNull;
     final source = ref.watch(sourceProvider(sourceId));
 
     final query = useState(initialQuery);
     final showSearch = useState(initialQuery.isNotBlank);
-    final controller = usePagingController<int, Manga>(firstPageKey: 1);
+    final controller = usePagingController<int, MangaDto>(firstPageKey: 1);
 
     useEffect(() {
       controller.addPageRequestListener(
@@ -124,7 +92,7 @@ class SourceMangaListScreen extends HookConsumerWidget {
           controller,
           pageKey,
           query: query,
-          filter: ref.read(filtersProvider.notifier).getAppliedFilter,
+          filter: appliedFilter.value,
         ),
       );
       return;
@@ -133,7 +101,7 @@ class SourceMangaListScreen extends HookConsumerWidget {
       context,
       (data) => Scaffold(
         appBar: AppBar(
-          title: Text(data?.displayName ?? context.l10n!.source),
+          title: Text(data?.displayName ?? context.l10n.source),
           actions: [
             IconButton(
               onPressed: () => showSearch.value = true,
@@ -142,8 +110,9 @@ class SourceMangaListScreen extends HookConsumerWidget {
             const SourceMangaDisplayIconPopup(),
             if ((data?.isConfigurable).ifNull())
               IconButton(
-                onPressed: () =>
-                    SourcePreferenceRoute(sourceId: sourceId).push(context),
+                onPressed: () => SourcePreferenceRoute(
+                  sourceId: sourceId,
+                ).go(context),
                 icon: const Icon(Icons.settings_rounded),
               ),
           ],
@@ -154,46 +123,36 @@ class SourceMangaListScreen extends HookConsumerWidget {
                 Row(
                   children: [
                     SourceTypeSelectableChip(
-                      value: SourceType.popular,
+                      value: SourceType.POPULAR,
                       groupValue: sourceType,
                       onSelected: (val) {
-                        if (sourceType == SourceType.popular) return;
-                        SourceMangaRoute(
+                        if (sourceType == SourceType.POPULAR) return;
+                        SourceTypeRoute(
                           sourceId: sourceId,
-                          sourceType: SourceType.popular,
-                        ).pushReplacement(context);
+                          sourceType: SourceType.POPULAR,
+                        ).go(context);
                       },
                     ),
                     if ((data?.supportsLatest).ifNull())
                       SourceTypeSelectableChip(
-                        value: SourceType.latest,
+                        value: SourceType.LATEST,
                         groupValue: sourceType,
                         onSelected: (val) {
-                          if (sourceType == SourceType.latest) return;
-                          SourceMangaRoute(
+                          if (sourceType == SourceType.LATEST) return;
+                          SourceTypeRoute(
                             sourceId: sourceId,
-                            sourceType: SourceType.latest,
-                          ).pushReplacement(context);
+                            sourceType: SourceType.LATEST,
+                          ).go(context);
                         },
                       ),
                     Builder(
                       builder: (context) => SourceTypeSelectableChip(
-                        value: SourceType.filter,
+                        value: SourceType.SEARCH,
                         groupValue: sourceType,
-                        onSelected: (val) {
-                          context.isTablet
-                              ? Scaffold.of(context).openEndDrawer()
-                              : showModalBottomSheet(
-                                  context: context,
-                                  builder: (context) => filterWidget(
-                                    ref,
-                                    filtersProvider,
-                                    filterList.valueOrNull,
-                                    controller,
-                                    context,
-                                  ),
-                                );
-                        },
+                        onSelected: (val) => SourceTypeRoute(
+                          sourceId: sourceId,
+                          sourceType: SourceType.SEARCH,
+                        ).go(context),
                       ),
                     ),
                   ],
@@ -206,16 +165,16 @@ class SourceMangaListScreen extends HookConsumerWidget {
                       initialText: query.value,
                       onClose: () => showSearch.value = (false),
                       onSubmitted: (val) {
-                        if (sourceType == SourceType.filter) {
+                        if (sourceType == SourceType.SEARCH) {
                           query.value = (val);
                           controller.refresh();
                         } else {
                           if (val == null) return;
-                          SourceMangaRoute(
+                          SourceTypeRoute(
                             sourceId: sourceId,
-                            sourceType: SourceType.filter,
+                            sourceType: SourceType.SEARCH,
                             query: val,
-                          ).pushReplacement(context);
+                          ).go(context);
                         }
                       },
                     ),
@@ -224,28 +183,61 @@ class SourceMangaListScreen extends HookConsumerWidget {
             ),
           ),
         ),
-        endDrawer: Drawer(
-          width: kDrawerWidth,
-          shape: const RoundedRectangleBorder(),
-          child: Builder(
-            builder: (context) => filterWidget(
-              ref,
-              filtersProvider,
-              filterList.valueOrNull,
-              controller,
-              context,
-            ),
-          ),
-        ),
+        endDrawer: filterList.isNotBlank
+            ? Drawer(
+                width: kDrawerWidth,
+                shape: const RoundedRectangleBorder(),
+                child: Builder(
+                  builder: (context) => SourceMangaFilter(
+                    filters: filterList?.toList() ?? [],
+                    sourceId: sourceId,
+                    onReset: () => appliedFilter.value = [],
+                    onSubmitted: (value) {
+                      Navigator.pop(context);
+                      appliedFilter.value = value ?? [];
+                      controller.refresh();
+                    },
+                  ),
+                ),
+              )
+            : null,
         body: RefreshIndicator(
           onRefresh: () async => controller.refresh(),
-          child: SourceMangaDisplayView(controller: controller, source: data),
+          child: SourceMangaDisplayView(
+            sourceId: sourceId,
+            sourceType: sourceType,
+            controller: controller,
+            source: data,
+          ),
         ),
+        floatingActionButton:
+            sourceType == SourceType.SEARCH && filterList.isNotBlank
+                ? Builder(
+                    builder: (context) => FloatingActionButton.extended(
+                      onPressed: () => context.isTablet
+                          ? Scaffold.of(context).openEndDrawer()
+                          : showModalBottomSheet(
+                              context: context,
+                              builder: (context) => SourceMangaFilter(
+                                filters: filterList?.toList() ?? [],
+                                sourceId: sourceId,
+                                onReset: () => appliedFilter.value = [],
+                                onSubmitted: (value) {
+                                  Navigator.pop(context);
+                                  appliedFilter.value = value ?? [];
+                                  controller.refresh();
+                                },
+                              ),
+                            ),
+                      label: Text(context.l10n.filter),
+                    ),
+                  )
+                : null,
       ),
       refresh: () => ref.refresh(sourceProvider(sourceId)),
       wrapper: (body) => Scaffold(
         appBar: AppBar(
-          title: Text(context.l10n!.source),
+          title: Text(context.l10n.source),
         ),
         body: body,
       ),

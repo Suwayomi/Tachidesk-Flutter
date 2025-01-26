@@ -26,12 +26,12 @@ class CategoryCreateFab extends HookConsumerWidget {
               showDialog(
                 context: context,
                 builder: (context) => EditCategoryDialog(
-                  editCategory: (newCategory) async {
+                  createCategory: (newCategory) async {
                     try {
                       isLoading.value = (true);
                       await ref
                           .read(categoryControllerProvider.notifier)
-                          .editCategory(newCategory);
+                          .createCategory(newCategory);
                       isLoading.value = (false);
                     } catch (e) {
                       //
@@ -41,7 +41,7 @@ class CategoryCreateFab extends HookConsumerWidget {
               );
             },
       isExtended: context.isTablet && !isLoading.value,
-      label: Text(context.l10n!.addCategory),
+      label: Text(context.l10n.addCategory),
       icon: isLoading.value
           ? MiniCircularProgressIndicator(color: context.iconColor)
           : const Icon(Icons.add_rounded),

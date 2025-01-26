@@ -24,7 +24,7 @@ class EditCategoryScreen extends HookConsumerWidget {
 
     useEffect(() {
       categoryList.showToastOnError(
-        ref.read(toastProvider(context)),
+        ref.read(toastProvider),
         withMicrotask: true,
       );
       return;
@@ -32,7 +32,7 @@ class EditCategoryScreen extends HookConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.l10n!.editCategory),
+        title: Text(context.l10n.editCategory),
       ),
       floatingActionButton: categoryList.asError?.error != null
           ? null
@@ -43,30 +43,23 @@ class EditCategoryScreen extends HookConsumerWidget {
           if (data.isBlank ||
               (data.isSingletonList && data?.firstOrNull?.id == 0)) {
             return Emoticons(
-              text: context.l10n!.noCategoriesFound,
+              title: context.l10n.noCategoriesFound,
               button: TextButton(
                 onPressed: () => ref.refresh(categoryControllerProvider.future),
-                child: Text(context.l10n!.refresh),
+                child: Text(context.l10n.refresh),
               ),
             );
           } else {
-            final isDefaultInCategoryList = data!.first.id == 0;
             return RefreshIndicator(
               child: ListView.builder(
-                itemCount: data.length,
+                itemCount: data!.length,
                 itemBuilder: (context, index) {
                   final category = data[index];
-                  if (category.id == 0) {
-                    return const SizedBox.shrink();
-                  } else {
-                    return CategoryTile(
-                      key: ValueKey(category.id),
-                      maxOrderIndex: isDefaultInCategoryList
-                          ? data.length - 1
-                          : data.length,
-                      category: category,
-                    );
-                  }
+                  return CategoryTile(
+                    key: ValueKey(category.id),
+                    maxOrderIndex: data.length,
+                    category: category,
+                  );
                 },
               ),
               onRefresh: () => ref.refresh(categoryControllerProvider.future),

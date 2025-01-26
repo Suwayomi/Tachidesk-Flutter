@@ -25,3 +25,5 @@ const MagnifierDecoration kMagnifierDecoration = MagnifierDecoration(
 );
 
 const kDebounceDuration = Duration(milliseconds: 500);
+
+const kPositionPlaceholder = -1;

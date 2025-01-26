@@ -1,0 +1,6 @@
+
+fragment ServerUpdateDto on CheckForServerUpdatesPayload {
+  channel
+  tag
+  url
+}

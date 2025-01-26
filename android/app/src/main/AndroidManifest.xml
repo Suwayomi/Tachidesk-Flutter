@@ -2,7 +2,7 @@
     package="com.suwayomi.tachidesk_sorayomi">
      <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="Tachidesk Sorayomi"
+        android:label="Sorayomi"
         android:name="${applicationName}"
         android:usesCleartextTraffic="true"
         android:networkSecurityConfig="@xml/network_security_config"

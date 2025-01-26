@@ -4,6 +4,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import '../utils/extensions/custom_extensions.dart';
 import 'db_keys.dart';
 
 abstract class Endpoints {
@@ -13,10 +14,24 @@ abstract class Endpoints {
     int? port,
     bool addPort = true,
     bool appendApiToUrl = true,
-  }) =>
-      "${baseUrl ?? DBKeys.serverUrl.initial}"
-      "${port != null && addPort ? ":$port" : ''}"
-      "${appendApiToUrl ? '/api/v1' : ''}";
+    bool isGraphQl = false,
+    bool isWebsocket = false,
+  }) {
+    String primary = baseUrl ?? DBKeys.serverUrl.initial;
+    if (isWebsocket) {
+      primary = primary.toWebSocket!;
+    }
+    Uri url = Uri.tryParse(primary) ?? Uri.parse(DBKeys.serverUrl.initial);
+
+    if (port != null && addPort) {
+      url = url.replace(port: port);
+    }
+    if (appendApiToUrl) {
+      final api = ['api', isGraphQl ? 'graphql' : 'v1'];
+      url = url.replace(pathSegments: [...url.pathSegments, ...api]);
+    }
+    return url.toString();
+  }
 
   // receiveTimeout
   static const Duration receiveTimeout = Duration(minutes: 1);

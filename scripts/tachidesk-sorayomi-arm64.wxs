@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Product Id="*" UpgradeCode="$(var.UpgradeCode)" Version="$(var.Version)" Language="1033" Name="Sorayomi" Manufacturer="Suwayomi">
+        <Package InstallerVersion="300" Compressed="yes" />
+        <Media Id="1" Cabinet="Tachidesk_Sorayomi.cab" EmbedCab="yes" />
+
+        <Condition Message="This version of Windows does not support deploying 64-bit packages.">
+            VersionNT64
+        </Condition>
+
+        <!-- Directory -->
+        <Directory Id="TARGETDIR" Name="SourceDir">
+            <Directory Id="ProgramFiles64Folder">
+                <Directory Id="INSTALLDIR" Name="Tachidesk-Sorayomi">
+                    <Directory Id="data" />
+                </Directory>
+            </Directory>
+            <Directory Id="ProgramMenuFolder">
+                <Directory Id="ProgramMenuDir" Name="Tachidesk-Sorayomi">
+                    <Component Id="ProgramMenuDir" Guid="*">
+                        <RemoveFolder Id="ProgramMenuDir" On="uninstall" />
+                        <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]" Type="string" Value="" KeyPath="yes" />
+                    </Component>
+                </Directory>
+            </Directory>
+            <Directory Id="DesktopFolder" />
+        </Directory>
+
+        <!-- Component -->
+        <DirectoryRef Id="INSTALLDIR">
+            <Component Id="tachidesk_sorayomi.exe" Guid="*" Win64="yes">
+                <File Id="tachidesk_sorayomi.exe" Source="tachidesk_sorayomi.exe" KeyPath="yes">
+                    <Shortcut Id="tachidesk_sorayom_desktop.lnk" Name="Sorayomi" Directory="DesktopFolder" WorkingDirectory="INSTALLDIR" Icon="tachidesk_sorayomi.ico" IconIndex="0" Advertise="yes" />
+                    <Shortcut Id="tachidesk_sorayom_program_menu.lnk" Name="Sorayomi" Directory="ProgramMenuDir" WorkingDirectory="INSTALLDIR" Icon="tachidesk_sorayomi.ico" IconIndex="0" Advertise="yes" Description="A free and open source manga reader to read manga from a Suwayomi-Server instance." />
+                </File>
+            </Component>
+
+            <Component Id="vcruntime140_1.dll" Guid="*" Win64="yes">
+                <File Id="vcruntime140_1.dll" Source="vcruntime140_1.dll" KeyPath="yes" />
+            </Component>
+            <Component Id="vcruntime140.dll" Guid="*" Win64="yes">
+                <File Id="vcruntime140.dll" Source="vcruntime140.dll" KeyPath="yes" />
+            </Component>
+            <Component Id="msvcp140.dll" Guid="*" Win64="yes">
+                <File Id="msvcp140.dll" Source="msvcp140.dll" KeyPath="yes" />
+            </Component>
+            <Component Id="flutter_windows.dll" Guid="*" Win64="yes">
+                <File Id="flutter_windows.dll" Source="flutter_windows.dll" KeyPath="yes" />
+            </Component>
+            <Component Id="url_launcher_windows_plugin.dll" Guid="*" Win64="yes">
+                <File Id="url_launcher_windows_plugin.dll" Source="url_launcher_windows_plugin.dll" KeyPath="yes" />
+            </Component>
+            <Component Id="permission_handler_windows_plugin.dll" Guid="*" Win64="yes">
+                <File Id="permission_handler_windows_plugin.dll" Source="permission_handler_windows_plugin.dll" KeyPath="yes" />
+            </Component>
+        </DirectoryRef>
+
+        <!-- Feature -->
+        <Feature Id="TachideskSorayomi" Title="Tachidesk-Sorayomi" Level="1">
+            <ComponentGroupRef Id="data" />
+            <ComponentRef Id="tachidesk_sorayomi.exe" />
+            <ComponentRef Id="ProgramMenuDir" />
+            <ComponentRef Id="vcruntime140_1.dll" />
+            <ComponentRef Id="vcruntime140.dll" />
+            <ComponentRef Id="msvcp140.dll" />
+            <ComponentRef Id="flutter_windows.dll" />
+            <ComponentRef Id="url_launcher_windows_plugin.dll" />
+            <ComponentRef Id="permission_handler_windows_plugin.dll" />
+        </Feature>
+
+        <Icon Id="tachidesk_sorayomi.ico" SourceFile="$(var.Icon)" />
+        <!-- Icon in Add/Remove Programs -->
+        <Property Id="ARPPRODUCTICON" Value="tachidesk_sorayomi.ico" />
+    </Product>
+</Wix>

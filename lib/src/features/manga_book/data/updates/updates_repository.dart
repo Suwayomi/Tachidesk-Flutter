@@ -4,118 +4,102 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'dart:convert';
-
-import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
+import 'package:graphql/client.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:web_socket_channel/io.dart';
-import 'package:web_socket_channel/web_socket_channel.dart';
 
-import '../../../../constants/db_keys.dart';
-import '../../../../constants/endpoints.dart';
-import '../../../../constants/enum.dart';
 import '../../../../global_providers/global_providers.dart';
+import '../../../../graphql/__generated__/schema.graphql.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
-import '../../../../utils/storage/dio/dio_client.dart';
-import '../../../settings/presentation/server/widget/credential_popup/credentials_popup.dart';
 import '../../domain/chapter_page/chapter_page_model.dart';
 import '../../domain/update_status/update_status_model.dart';
+import './graphql/__generated__/query.graphql.dart';
 
 part 'updates_repository.g.dart';
 
 class UpdatesRepository {
-  const UpdatesRepository(this.dioClient);
+  const UpdatesRepository(this.client, this.subscriptionClient);
 
-  final DioClient dioClient;
+  final GraphQLClient client;
+  final GraphQLClient subscriptionClient;
   // Downloads
 
   // Updates
-  Future<ChapterPage?> getRecentChaptersPage({
+  Future<ChapterPageWithMangaDto?> getRecentChaptersPage({
     int pageNo = 0,
-    CancelToken? cancelToken,
-  }) async =>
-      (await dioClient.get<ChapterPage, ChapterPage?>(
-        UpdateUrl.recentChapters(pageNo),
-        decoder: (e) =>
-            e is Map<String, dynamic> ? ChapterPage.fromJson(e) : null,
-        cancelToken: cancelToken,
-      ))
-          .data;
+  }) =>
+      client
+          .query$GetChapterWithMangaPage(
+            Options$Query$GetChapterWithMangaPage(
+              variables: Variables$Query$GetChapterWithMangaPage(
+                filter: Input$ChapterFilterInput(
+                  inLibrary: Input$BooleanFilterInput(equalTo: true),
+                ),
+                first: 50,
+                offset: pageNo * 30,
+                order: [
+                  Input$ChapterOrderInput(
+                    by: Enum$ChapterOrderBy.FETCHED_AT,
+                    byType: Enum$SortOrder.DESC,
+                  ),
+                  Input$ChapterOrderInput(
+                    by: Enum$ChapterOrderBy.SOURCE_ORDER,
+                    byType: Enum$SortOrder.DESC,
+                  ),
+                ],
+              ),
+            ),
+          )
+          .getData((data) => data.chapters);
 
   Future<void> fetchUpdates({
     int? categoryId,
-    CancelToken? cancelToken,
-  }) =>
-      dioClient.post(
-        UpdateUrl.fetch,
-        cancelToken: cancelToken,
-        data: FormData.fromMap({
-          if (categoryId != null && categoryId != 0) "categoryId": categoryId,
-        }),
+  }) async {
+    if (categoryId != null) {
+      await client.mutate$UpdateCategoryMangas(
+        Options$Mutation$UpdateCategoryMangas(
+          variables: Variables$Mutation$UpdateCategoryMangas(
+            input: Input$UpdateCategoryMangaInput(categories: [categoryId]),
+          ),
+        ),
+      );
+    } else {
+      await client.mutate$UpdateLibraryMangas(
+        Options$Mutation$UpdateLibraryMangas(
+          variables: Variables$Mutation$UpdateLibraryMangas(
+            input: Input$UpdateLibraryMangaInput(),
+          ),
+        ),
+      );
+    }
+  }
+
+  Future<void> stopUpdates() => client.mutate$StopCategoryUpdate(
+        Options$Mutation$StopCategoryUpdate(
+          variables: Variables$Mutation$StopCategoryUpdate(
+            input: Input$UpdateStopInput(),
+          ),
+        ),
       );
 
-  Future<void> resetUpdates({
-    CancelToken? cancelToken,
-  }) =>
-      dioClient.post(UpdateUrl.reset, cancelToken: cancelToken);
+  Future<UpdateStatusDto?> summaryUpdates() async => client
+      .query$UpdateStatusDto(Options$Query$UpdateStatusDto())
+      .getData((data) => data.updateStatus);
 
-  Future<UpdateStatus?> summaryUpdates({
-    CancelToken? cancelToken,
-  }) async =>
-      (await dioClient.get<UpdateStatus, UpdateStatus?>(
-        UpdateUrl.summary,
-        cancelToken: cancelToken,
-        decoder: (e) => e is Map<String, dynamic>
-            ? UpdateStatus.fromJson(e["statusMap"])
-            : null,
-      ))
-          .data;
-
-  ({Stream<UpdateStatus> stream, AsyncCallback closeStream}) socketUpdates(
-      {required AuthType authType, String? credentials}) {
-    final url = (dioClient.dio.options.baseUrl.toWebSocket!);
-    final channel = kIsWeb
-        ? WebSocketChannel.connect(Uri.parse(url + UpdateUrl.update))
-        : IOWebSocketChannel.connect(
-            Uri.parse(url + UpdateUrl.update),
-            headers: {
-              if (authType == AuthType.basic) "Authorization": credentials
-            },
-          );
-    return (
-      stream: channel.stream.asyncMap<UpdateStatus>((event) =>
-          compute<String, UpdateStatus>(
-              (s) => UpdateStatus.fromJson({...?json.decode(s)["statusMap"]}),
-              event)),
-      closeStream: channel.sink.close,
-    );
-  }
+  Stream<UpdateStatusDto?> updateStatusSubscription() => subscriptionClient
+      .subscribe$UpdateStatusChange(Options$Subscription$UpdateStatusChange())
+      .getData((data) => data.updateStatusChanged);
 }
 
 @riverpod
-UpdatesRepository updatesRepository(UpdatesRepositoryRef ref) =>
-    UpdatesRepository(ref.watch(dioClientKeyProvider));
+UpdatesRepository updatesRepository(Ref ref) => UpdatesRepository(
+    ref.watch(graphQlClientProvider),
+    ref.watch(graphQlSubscriptionClientProvider));
 
 @riverpod
-Future<UpdateStatus?> updateSummary(UpdateSummaryRef ref) async {
-  final token = CancelToken();
-  ref.onDispose(token.cancel);
-  final result = await ref
-      .watch(updatesRepositoryProvider)
-      .summaryUpdates(cancelToken: token);
-  return result;
-}
+Future<UpdateStatusDto?> updateSummary(Ref ref) =>
+    ref.watch(updatesRepositoryProvider).summaryUpdates();
 
 @riverpod
-class UpdatesSocket extends _$UpdatesSocket {
-  @override
-  Stream<UpdateStatus> build() {
-    final stream = ref.watch(updatesRepositoryProvider).socketUpdates(
-          authType: ref.watch(authTypeKeyProvider) ?? DBKeys.authType.initial,
-          credentials: ref.watch(credentialsProvider),
-        );
-    ref.onDispose(stream.closeStream);
-    return stream.stream;
-  }
-}
+Stream<UpdateStatusDto?> updatesSocket(Ref ref) =>
+    ref.watch(updatesRepositoryProvider).updateStatusSubscription();

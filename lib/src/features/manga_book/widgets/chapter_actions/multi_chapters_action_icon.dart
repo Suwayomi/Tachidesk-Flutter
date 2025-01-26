@@ -10,20 +10,19 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/misc/toast/toast.dart';
-import '../../data/downloads/downloads_repository.dart';
-import '../../data/manga_book_repository.dart';
+import '../../data/manga_book/manga_book_repository.dart';
 import '../../domain/chapter_batch/chapter_batch_model.dart';
 
 class MultiChaptersActionIcon extends ConsumerWidget {
   const MultiChaptersActionIcon({
     required this.icon,
     required this.chapterList,
-    this.change,
+    required this.change,
     required this.refresh,
     super.key,
   });
   final List<int> chapterList;
-  final ChapterChange? change;
+  final ChapterChange change;
   final AsyncValueSetter<bool> refresh;
   final IconData icon;
   @override
@@ -32,21 +31,17 @@ class MultiChaptersActionIcon extends ConsumerWidget {
       icon: Icon(icon),
       onPressed: () async {
         final result = await AsyncValue.guard(
-          () => change == null
-              ? ref
-                  .read(downloadsRepositoryProvider)
-                  .addChaptersBatchToDownloadQueue(chapterList)
-              : ref.read(mangaBookRepositoryProvider).modifyBulkChapters(
-                    batch: ChapterBatch(
-                      chapterIds: chapterList,
-                      change: change,
-                    ),
-                  ),
+          () => ref.read(mangaBookRepositoryProvider).modifyBulkChapters(
+                ChapterBatch(
+                  ids: chapterList,
+                  patch: change,
+                ),
+              ),
         );
         if (context.mounted) {
-          result.showToastOnError(ref.read(toastProvider(context)));
+          result.showToastOnError(ref.read(toastProvider));
         }
-        await refresh(change != null);
+        await refresh(true);
       },
     );
   }

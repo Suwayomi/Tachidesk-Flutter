@@ -15,12 +15,12 @@ class AsyncTextButton extends HookWidget {
     super.key,
     required this.onPressed,
     required this.child,
-    required this.icon,
+    this.icon,
   });
 
   final AsyncCallback? onPressed;
   final Widget child;
-  final Widget icon;
+  final Widget? icon;
 
   @override
   Widget build(BuildContext context) {

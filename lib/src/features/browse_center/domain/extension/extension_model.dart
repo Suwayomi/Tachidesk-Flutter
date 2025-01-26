@@ -4,34 +4,12 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:freezed_annotation/freezed_annotation.dart';
-
 import '../../../../utils/freezed_converters/language_json_converter.dart';
 import '../language/language_model.dart';
+import 'graphql/__generated__/fragment.graphql.dart';
 
-part 'extension_model.freezed.dart';
-part 'extension_model.g.dart';
+typedef Extension = Fragment$ExtensionDto;
 
-@freezed
-class Extension with _$Extension {
-  factory Extension({
-    String? apkName,
-    bool? hasUpdate,
-    String? iconUrl,
-    bool? installed,
-    bool? isNsfw,
-    @JsonKey(
-      fromJson: LanguageJsonConverter.fromJson,
-      toJson: LanguageJsonConverter.toJson,
-    )
-    Language? lang,
-    String? name,
-    bool? obsolete,
-    String? pkgName,
-    int? versionCode,
-    String? versionName,
-  }) = _Extension;
-
-  factory Extension.fromJson(Map<String, dynamic> json) =>
-      _$ExtensionFromJson(json);
+extension ExtensionExtensions on Extension {
+  Language? get language => LanguageJsonConverter.fromJson(lang);
 }
