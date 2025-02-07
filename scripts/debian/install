@@ -1,7 +1,0 @@
-#!/usr/bin/dh-exec
-
-data                        opt/tachidesk-sorayomi/
-lib                         opt/tachidesk-sorayomi/
-tachidesk_sorayomi          opt/tachidesk-sorayomi/
-tachidesk-sorayomi.png      usr/share/pixmaps/
-tachidesk-sorayomi.desktop  usr/share/applications/

@@ -1,6 +1,0 @@
-fragment PageInfoDto on PageInfo {
-    endCursor
-    hasNextPage
-    hasPreviousPage
-    startCursor
-}

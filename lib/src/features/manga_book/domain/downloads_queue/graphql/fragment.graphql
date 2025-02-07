@@ -1,8 +1,0 @@
-
-
-fragment DownloadStatusDto on DownloadStatus {
-  state
-  queue {
-    ...DownloadDto
-  }
-}

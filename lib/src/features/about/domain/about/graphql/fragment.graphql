@@ -1,9 +1,0 @@
-fragment AboutDto on AboutServerPayload {
-  buildTime
-  buildType
-  discord
-  github
-  name
-  revision
-  version
-}

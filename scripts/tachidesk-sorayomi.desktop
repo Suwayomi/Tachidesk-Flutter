@@ -1,8 +1,0 @@
-[Desktop Entry]
-Name=Sorayomi
-Comment=Tachidesk UI flutter
-Exec=tachidesk-sorayomi
-Icon=tachidesk-sorayomi
-Terminal=false
-Type=Application
-Categories=Network;
