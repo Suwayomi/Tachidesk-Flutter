@@ -1,0 +1,596 @@
+{
+  "appTitle": "Tachidesk Sorayomi",
+  "@appTitle": {
+    "description": "Name of the app (Tachidesk Sorayomi in native script)"
+  },
+  "appearance": "Görünüş",
+  "@appearance": {
+    "description": "Screen title and Button text of Appearance screen"
+  },
+  "authType": "Kimlik Doğrulama Tipi",
+  "@authType": {
+    "description": "Popup title and Button text to change App Authentication"
+  },
+  "authTypeNone": "Hiçbiri",
+  "@authTypeNone": {
+    "description": "Radio button text for no Authentication"
+  },
+  "badges": "Rozetler",
+  "@badges": {
+    "description": "Checkbox Group title to enable Badges on manga Cover in Library Screen"
+  },
+  "bookmarked": "Yer imi eklendi",
+  "@bookmarked": {
+    "description": "Checkbox text to filter bookmarked manga chapters in Manga Details screen"
+  },
+  "browse": "Araştır",
+  "@browse": {
+    "description": "Screen title, Navigation Bar text and Button text of both Browse screen and Browse Settings Screen"
+  },
+  "buildTime": "Derleme zamanı",
+  "@buildTime": {
+    "description": "Text title to show build time of Server in About Screen"
+  },
+  "cancel": "İptal",
+  "@cancel": {
+    "description": "Text for Cancel button in a Popup"
+  },
+  "chapterSortSource": "Kaynağa göre",
+  "@chapterSortSource": {
+    "description": "Radio button text for sort by Source"
+  },
+  "chapterSortUploadDate": "Yüklenme tarihine göre",
+  "@chapterSortUploadDate": {
+    "description": "Radio button text for sort by Upload Date"
+  },
+  "client": "Client",
+  "@client": {
+    "description": "Text title for the name of the client in About screen"
+  },
+  "close": "Kapat",
+  "@close": {
+    "description": "Text for close button"
+  },
+  "completed": "Tamamlandı",
+  "@completed": {
+    "description": "Checkbox text to filter Completed mangas in Library screen and Manga Grouping text in Update Summary screen"
+  },
+  "createBackupTitle": "Yedek oluştur",
+  "@createBackupTitle": {
+    "description": "Button text to create backup"
+  },
+  "about": "Hakkında",
+  "@about": {
+    "description": "Screen title and Button text of About screen"
+  },
+  "obsolete": "Kullanım dışı",
+  "@obsolete": {
+    "description": "Text to show that the extension has become Obsolete"
+  },
+  "addToLibrary": "Kütüphaneye ekle",
+  "@addToLibrary": {
+    "description": "Button text to add Manga to Library in Manga Details Screen"
+  },
+  "channel": "Kanal",
+  "@channel": {
+    "description": "Text title to show Channel of the Server (Stable, preview) in About Screen"
+  },
+  "chapterNumber": "Bölüm {number}",
+  "@chapterNumber": {
+    "description": "Text title for Chapter name in chapter list",
+    "placeholders": {
+      "number": {
+        "example": "12.5",
+        "type": "double"
+      }
+    }
+  },
+  "categories": "Kategoriler",
+  "@categories": {
+    "description": "Button text of edit Categories screen in Library settings screen"
+  },
+  "addCategory": "Kategori ekle",
+  "@addCategory": {
+    "description": "Popup title and Button text to add new category in Edit Category Screen"
+  },
+  "allScanlators": "Tüm Scanlatorlar",
+  "@allScanlators": {
+    "description": "Text for all Scanlators in manga description screen chapter filter"
+  },
+  "authTypeBasic": "Basit yetki",
+  "@authTypeBasic": {
+    "description": "Radio button text for the Basic Authentication type"
+  },
+  "appLanguage": "Uygulama dili",
+  "@appLanguage": {
+    "description": "Popup title and Button text to change App Language"
+  },
+  "appTheme": "Uygulama teması",
+  "@appTheme": {
+    "description": "Popup title and Button text to change App Theme Mode"
+  },
+  "backup": "Yedekle & Yeniden yükle",
+  "@backup": {
+    "description": "Screen title and Button text of Backup & Restore screen"
+  },
+  "clientVersion": "Client sürümü",
+  "@clientVersion": {
+    "description": "Text title for the current version of the client in About screen"
+  },
+  "cacheCleared": "Önbellek temizlendi",
+  "@cacheCleared": {
+    "description": "Toast Text to show after clearing cache"
+  },
+  "categoryUpdate": "Kategori güncellemesi",
+  "@categoryUpdate": {
+    "description": "Button text to update the mangas in the Category"
+  },
+  "chapterSortFetchedDate": "Şu tarihte çekildi",
+  "@chapterSortFetchedDate": {
+    "description": "Radio button text for sort by Fetched Date"
+  },
+  "checkForServerUpdates": "Sunucu güncellemelerini kontrol edin",
+  "@checkForServerUpdates": {
+    "description": "Button text to check for Server updates"
+  },
+  "checkForUpdates": "Güncellemeleri kontrol edin",
+  "@checkForUpdates": {
+    "description": "Button text to check for App Updates"
+  },
+  "clearCache": "Önbelleği temizle",
+  "@clearCache": {
+    "description": "Button text for clear cache in General Settings screen"
+  },
+  "copyMsg": "'{msg}' kopyalandı!",
+  "@copyMsg": {
+    "description": "Toast text to show that the message has been copied",
+    "placeholders": {
+      "msg": {
+        "example": "Client : Tachidesk Sorayomi",
+        "type": "String"
+      }
+    }
+  },
+  "createBackupDescription": "Kütüphaneyi Tachidesk yedeği olarak yedekle",
+  "@createBackupDescription": {
+    "description": "Button text description to create backup"
+  },
+  "credentials": "Referanslar",
+  "@credentials": {
+    "description": "Popup title and Button text to enter Authentication credentials"
+  },
+  "current": "Güncel",
+  "@current": {
+    "description": "Text to show the currently reading chapter in Reader Screen"
+  },
+  "delete": "Sil",
+  "@delete": {
+    "description": "Text for delete button"
+  },
+  "deleteCategoryDescription": "Bu kategorideki bütün mangaları varsayılan haline getirilecek",
+  "@deleteCategoryDescription": {
+    "description": "Popup description when deleting Category"
+  },
+  "deleteCategoryTitle": "Emin misin?",
+  "@deleteCategoryTitle": {
+    "description": "Popup title when deleting Category"
+  },
+  "discord": "Discord",
+  "@discord": {
+    "description": "Discord app title"
+  },
+  "displayModeGrid": "Izgara",
+  "@displayModeGrid": {
+    "description": "Radio button text for Manga Cover display mode - Grid"
+  },
+  "displayModeList": "Liste",
+  "@displayModeList": {
+    "description": "Radio button text for Manga Cover display mode - List"
+  },
+  "downloaded": "İndirildi",
+  "@downloaded": {
+    "description": "Text to show downloaded chapters status in Filters  "
+  },
+  "downloads": "İndirmeler",
+  "@downloads": {
+    "description": "Screen title and Navigation text of Downloads screen"
+  },
+  "editCategory": "Kategoriyi düzenle",
+  "@editCategory": {
+    "description": "Screen title, Button text and  of Downloads screen"
+  },
+  "emptyCategory": "Kategori ismi boş olamaz",
+  "@emptyCategory": {
+    "description": "Description to show that category list is empty in Edit Category screen"
+  },
+  "errorExtension": "Seçilen eklenti bulunamıyor",
+  "@errorExtension": {
+    "description": "Error Description to show when user selected unknown extension from list"
+  },
+  "errorFilePick": "Dosya seçilmedi!",
+  "@errorFilePick": {
+    "description": "Error Description to show when user does not selected an file"
+  },
+  "errorFilePickUnknownExtension": "Lütfen dosyayı {extensionName} eklentisiyle seçin",
+  "@errorFilePickUnknownExtension": {
+    "description": "Error Description to show when user selected unknown extension file"
+  },
+  "errorLaunchURL": "Açılamadı\n\"{url}\" panoya kopyalanıyor",
+  "@errorLaunchURL": {
+    "description": "Error Description to show when App failed to launch an URL and copied the URL to clipboard",
+    "placeholders": {
+      "url": {
+        "example": "http://sorayomi.suwayomi.org",
+        "type": "String"
+      }
+    }
+  },
+  "errorPassword": "Şifre alanı boş olamaz",
+  "@errorPassword": {
+    "description": "Error Description to show that password cannot be empty"
+  },
+  "extensionInstalled": "Eklenti indirildi!",
+  "@extensionInstalled": {
+    "description": "Toast text to show that the Extension Installed successfully"
+  },
+  "extensionListEmpty": "Eklenti listesi boş",
+  "@extensionListEmpty": {
+    "description": "Description to show that Extension list is empty in Extension list tab of Browse screen"
+  },
+  "extensions": "Eklentiler",
+  "@extensions": {
+    "description": "Extension list Tab title in Browse Screen"
+  },
+  "failed": "Hata oluştu",
+  "@failed": {
+    "description": "Failed status Manga Group title in Update Summary Screen"
+  },
+  "filter": "Filtrele",
+  "@filter": {
+    "description": "title of filter Tab across the app"
+  },
+  "findServer": "Bul",
+  "@findServer": {
+    "description": "Button text of Find Server"
+  },
+  "finished": "Bitti",
+  "@finished": {
+    "description": "Text to show the Currently Finished reading chapter in Reader Screen"
+  },
+  "general": "Genel",
+  "@general": {
+    "description": "Screen title and Button text of General setting screen"
+  },
+  "globalSearch": "Global arama",
+  "@globalSearch": {
+    "description": "Screen title of Global Search screen"
+  },
+  "globalUpdate": "Global güncelleme",
+  "@globalUpdate": {
+    "description": "Button text of Global Manga Update"
+  },
+  "help": "Yardım",
+  "@help": {
+    "description": "Button text of help in about screen"
+  },
+  "inLibrary": "Kütüphanede",
+  "@inLibrary": {
+    "description": "Button and Chip text to show that the manga is in Library"
+  },
+  "install": "İndir",
+  "@install": {
+    "description": "Button text to install the extension"
+  },
+  "installing": "İndiriliyor",
+  "@installing": {
+    "description": "Button text to show that the extension is installing"
+  },
+  "installingExtension": "Eklenti indiriliyor",
+  "@installingExtension": {
+    "description": "Toast text to show that the extension is installing"
+  },
+  "isTrueBlack": "Gerçek siyah",
+  "@isTrueBlack": {
+    "description": "Switch title to enable {} black theme"
+  },
+  "languages": "Diller",
+  "@languages": {
+    "description": "Popup title to filter extensions based on language"
+  },
+  "latest": "Sonuncu",
+  "@latest": {
+    "description": "Button text to take user to the latest tab of Source manga screen"
+  },
+  "library": "Kütüphane",
+  "@library": {
+    "description": "Screen title and Button text of Library and Library Settings screen"
+  },
+  "manga": "Manga",
+  "@manga": {
+    "description": "Screen title and Button text of Manga details screen"
+  },
+  "mangaGridSize": "Manga ızgara boyutu",
+  "@mangaGridSize": {
+    "description": "Popup title and Button text to change Manga Grid size"
+  },
+  "mangaMissingSources": "Manga kayıp kaynaklar",
+  "@mangaMissingSources": {
+    "description": "Group title to show the Manga Missing Sources when restoring Backup"
+  },
+  "mangaSortAlphabetical": "Alfabetik",
+  "@mangaSortAlphabetical": {
+    "description": "Radio button text for Manga sort Type - Alphabetical"
+  },
+  "mangaSortDateAdded": "Tarihte eklendi",
+  "@mangaSortDateAdded": {
+    "description": "Radio button text for Manga sort Type - Date Added"
+  },
+  "mangaSortLastRead": "Son okunan",
+  "@mangaSortLastRead": {
+    "description": "Radio button text for Manga sort Type - Last Read"
+  },
+  "mangaSortUnread": "Okunmamış",
+  "@mangaSortUnread": {
+    "description": "Radio button text for Manga sort Type - Unread"
+  },
+  "mangaStatusOnHiatus": "Hiatus'ta",
+  "@mangaStatusOnHiatus": {
+    "description": "Text to show Manga Status On Hiatus in Manga details screen"
+  },
+  "mangaStatusOngoing": "Devam ediyor",
+  "@mangaStatusOngoing": {
+    "description": "Text to show Manga Status Ongoing in Manga details screen"
+  },
+  "mangaStatusCancelled": "İptal edildi",
+  "@mangaStatusCancelled": {
+    "description": "Text to show Manga Status Cancelled in Manga details screen"
+  },
+  "mangaStatusCompleted": "Tamamlandı",
+  "@mangaStatusCompleted": {
+    "description": "Text to show Manga Status Completed in Manga details screen"
+  },
+  "mangaStatusLicensed": "Lisanslı",
+  "@mangaStatusLicensed": {
+    "description": "Text to show Manga Status Licensed in Manga details screen"
+  },
+  "mangaStatusPublishingFinished": "Yayımlama tamamlandı",
+  "@mangaStatusPublishingFinished": {
+    "description": "Text to show Manga Status Publishing Finished in Manga details screen"
+  },
+  "mangaStatusUnknown": "Bilinmiyor",
+  "@mangaStatusUnknown": {
+    "description": "Text to show Manga Status Unknown in Manga details screen"
+  },
+  "missingExtension": "Kayıp eklentiler",
+  "@missingExtension": {
+    "description": "Group title to show the Missing Extensions when restoring Backup"
+  },
+  "missingTrackers": "Kayıp",
+  "@missingTrackers": {
+    "description": "Group title to show the Missing Trackers when restoring Backup"
+  },
+  "more": "Daha fazla",
+  "@more": {
+    "description": "Screen title and Navigation text of More screen"
+  },
+  "moveToBottom": "Aşağıya git",
+  "@moveToBottom": {
+    "description": "Button text to move download/category to the bottom of list"
+  },
+  "moveToTop": "Yukarıya çık",
+  "@moveToTop": {
+    "description": "Button text to move download/category to the top of list"
+  },
+  "nameCountDisplay": "{name}: {count}",
+  "@nameCountDisplay": {
+    "description": "Text pattern to display an name and count in a string",
+    "placeholders": {
+      "count": {
+        "example": "22",
+        "type": "int"
+      },
+      "name": {
+        "example": "Downloaded",
+        "type": "String"
+      }
+    }
+  },
+  "newUpdateAvailable": "Yeni güncelleme mevcut",
+  "@newUpdateAvailable": {
+    "description": "Popup title to show that the App/Server has and update"
+  },
+  "nextChapter": "Sonraki: {chapterTitle}",
+  "@nextChapter": {
+    "description": "Text for Next Chapter button in Manga Reader Screen"
+  },
+  "noCategoriesFound": "Kategorin yok\n(Tüyo: Kütüphaneyi organize etmek için artıya basarsanız yeni bir tane yaratabilirsiniz)",
+  "@noCategoriesFound": {
+    "description": "Hint text to add new Category when category list is empty"
+  },
+  "noCategoriesFoundAlt": "Kategorin yok\nKütüphanenizi organize etmek için ayarlardan bir tane yaratınız",
+  "@noCategoriesFoundAlt": {
+    "description": "Hint text to add new Category in Settings when category list is empty"
+  },
+  "noCategoryMangaFound": "Bu kategoride herhangi bir manga bulunamadı\n(Tüyo: Arama & Filtreleri kontrol et!)",
+  "@noCategoryMangaFound": {
+    "description": "Hint text to check filter when manga list is empty in Category tab in Library"
+  },
+  "noDownloads": "İndirilen bir şey yok",
+  "@noDownloads": {
+    "description": "Text to show that there is no active downloads in Downloads Screen"
+  },
+  "noServerFound": "Yerel internet ağında sunucu bulunamadı",
+  "@noServerFound": {
+    "description": "Text to show that no Server found in locale network"
+  },
+  "nsfw18": "18+",
+  "@nsfw18": {
+    "description": "18+ tag Text to show in extensions list"
+  },
+  "daysAgo": "{days} gün önce",
+  "@daysAgo": {
+    "description": "Days ago text to show the release date of manga"
+  },
+  "displayMode": "Görüntü modu",
+  "@displayMode": {
+    "description": "Radio Group title to change manga Cover display in Library and Source Screens"
+  },
+  "displayModeDescriptiveList": "Açıklayıcı liste",
+  "@displayModeDescriptiveList": {
+    "description": "Radio button text for Manga Cover display mode - Descriptive List"
+  },
+  "edit": "Düzenleme",
+  "@edit": {
+    "description": "Popup button text to edit Category in Edit category screen"
+  },
+  "defaultCategory": "Yeni mangayı kütüphaneye eklerken kullanılacak olan varsayılan kategori",
+  "@defaultCategory": {
+    "description": "Checkbox description when creating a Category to add manga to the Category by Default"
+  },
+  "noMangaFound": "Mangalar bulunamadı",
+  "@noMangaFound": {
+    "description": "Text to show that the Manga list is empty"
+  },
+  "noUpdatesAvailable": "En güncel versiyonu kullanıyorsunuz",
+  "@noUpdatesAvailable": {
+    "description": "Text to show that the user is using the latest version of the app"
+  },
+  "pinchToZoom": "Zoomlamak için kıstırın",
+  "@pinchToZoom": {
+    "description": "Switch title to enable pinch to zoom in reader screen"
+  },
+  "display": "Görüntü",
+  "@display": {
+    "description": "Text for Display tab in Library screen drawer"
+  },
+  "errorSomethingWentWrong": "Bir şeyler ters gitti!",
+  "@errorSomethingWentWrong": {
+    "description": "Error Description to show that Something went wrong!"
+  },
+  "gitHub": "GitHub",
+  "@gitHub": {
+    "description": "GitHub app title"
+  },
+  "errorUserName": "Kullanıcı ismi boş olamaz",
+  "@errorUserName": {
+    "description": "Error Description to show that UserName cannot be empty"
+  },
+  "pause": "Duraklat",
+  "@pause": {
+    "description": "Button text to pause downloads"
+  },
+  "noChaptersFound": "Bir bölüm bulunamadı",
+  "@noChaptersFound": {
+    "description": "Text to show that the Chapter list is empty in Manga details Screen"
+  },
+  "noOfChapters": "{count} bölüm",
+  "@noOfChapters": {
+    "description": "Title text to show the number of chapters in the Manga details screen",
+    "placeholders": {
+      "count": {
+        "example": "23",
+        "type": "int"
+      }
+    }
+  },
+  "noSourcesFound": "Kaynaklar bulunamadı",
+  "@noSourcesFound": {
+    "description": "Text to show that the Source list is empty"
+  },
+  "noUpdatesFound": "Güncelleme bulunamadı",
+  "@noUpdatesFound": {
+    "description": "Toast Text to show that there are no Updates available"
+  },
+  "nsfw": "NSFW eklentilerini ve kaynaklarını göster",
+  "@nsfw": {
+    "description": "Switch text to show/hide the nsfw extensions"
+  },
+  "nsfwInfo": "Bu, resmi olmayan veya muhtemelen yanlış işaretlenmiş uzantıların uygulama içinde NSFW(18+) içerik sunmasını engellemez",
+  "@nsfwInfo": {
+    "description": "Hint text to show that the nsfw switch cannot prevent incorrectly flagged extensions from surfacing"
+  },
+  "page": "Sayfa: {number}",
+  "@page": {
+    "description": "Text to show the last read Page number of the chapter in Manga details screen",
+    "placeholders": {
+      "number": {
+        "example": "23",
+        "type": "int"
+      }
+    }
+  },
+  "password": "Şifre",
+  "@password": {
+    "description": "Title text for password field"
+  },
+  "pending": "Askıda",
+  "@pending": {
+    "description": "Pending status Manga Group title in Update Summary Screen"
+  },
+  "noResultFound": "Bir sonuç bulunamadı",
+  "@noResultFound": {
+    "description": "Text to show that no results found for the given search query"
+  },
+  "numSelected": "{num} seçildi",
+  "@numSelected": {
+    "description": "Title text to show the number of chapters selected in the Manga details screen and Updates screen",
+    "placeholders": {
+      "num": {
+        "example": "23",
+        "type": "int"
+      }
+    }
+  },
+  "previousChapter": "Önceki: {chapterTitle}",
+  "@previousChapter": {
+    "description": "Text for Previous Chapter button in Manga Reader Screen"
+  },
+  "quickSearchContext": "X sorgusunu ara (Sonuçlar ekran bağlamına göre belirlenir)",
+  "@quickSearchContext": {
+    "description": "Quick Open Hint text for query X"
+  },
+  "quickSearchShowAllCommandTip": "İpucu: Tüm komutları görmek için '?' tuşuna basın",
+  "@quickSearchShowAllCommandTip": {
+    "description": "Quick Open Tip text for showing all commands by entering '?'"
+  },
+  "readerNavigationLayoutEdge": "Edge",
+  "@readerNavigationLayoutEdge": {
+    "description": "Radio button text for Reader Navigation Layout - Edge"
+  },
+  "quickSearch": "Hızlı Arama",
+  "@quickSearch": {
+    "description": "Screen title and Button text of Quick Search screen"
+  },
+  "quickSearchCategory": "'C' Kategorisine Git",
+  "@quickSearchCategory": {
+    "description": "Quick Open Hint text for Category C with prefill '#C'"
+  },
+  "quickSearchSource": "Kaynağa git 'S'",
+  "@quickSearchSource": {
+    "description": "Quick Open Hint text for Source S with prefill '@S'"
+  },
+  "readerMagnifierSize": "Büyüteç Boyutu",
+  "@readerMagnifierSize": {
+    "description": "Slider title text for Reader Magnifier Size"
+  },
+  "readerMode": "Okuma Modu",
+  "@readerMode": {
+    "description": "Popup title and Button text of Reader Mode popup"
+  },
+  "readerModeDefaultReader": "Varsayılan",
+  "@readerModeDefaultReader": {
+    "description": "Radio button text for Reader Mode Type - Default"
+  },
+  "readerModeWebtoon": "Webtoon",
+  "@readerModeWebtoon": {
+    "description": "Radio button text for Reader Mode Type - Webtoon"
+  },
+  "readerNavigationLayoutDefault": "Varsayılan",
+  "@readerNavigationLayoutDefault": {
+    "description": "Radio button text for Reader Navigation Layout - Default"
+  },
+  "readerNavigationLayoutDisabled": "Devre Dışı",
+  "@readerNavigationLayoutDisabled": {
+    "description": "Radio button text for Reader Navigation Layout - Disabled"
+  }
+}

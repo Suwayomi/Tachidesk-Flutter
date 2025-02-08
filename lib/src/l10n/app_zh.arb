@@ -904,5 +904,17 @@
   "remove": "删除",
   "@remove": {
     "description": "Remove Button text"
+  },
+  "isTrueBlack": "纯黑",
+  "@isTrueBlack": {
+    "description": "Switch title to enable {} black theme"
+  },
+  "pinchToZoom": "捏拉缩放",
+  "@pinchToZoom": {
+    "description": "Switch title to enable pinch to zoom in reader screen"
+  },
+  "quickSearch": "快速搜索",
+  "@quickSearch": {
+    "description": "Screen title and Button text of Quick Search screen"
   }
 }

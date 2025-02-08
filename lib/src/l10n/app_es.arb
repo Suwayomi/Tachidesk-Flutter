@@ -8,7 +8,7 @@
   "@addToLibrary": {},
   "appLanguage": "Idioma de la aplicación",
   "@appLanguage": {},
-  "appTheme": "Tema de la aplicación",
+  "appTheme": "Modo tema de la aplicación",
   "@appTheme": {},
   "appTitle": "Sorayomi",
   "@appTitle": {},
@@ -168,7 +168,7 @@
   "@mangaStatusCompleted": {},
   "mangaStatusLicensed": "Con licencia",
   "@mangaStatusLicensed": {},
-  "mangaStatusOnHiatus": "En receso",
+  "mangaStatusOnHiatus": "Pausado",
   "@mangaStatusOnHiatus": {},
   "mangaStatusOngoing": "En publicación",
   "@mangaStatusOngoing": {},
@@ -350,7 +350,7 @@
   "@userName": {},
   "versionAvailable": "¡¡La versión {version} está disponible para {app}!!",
   "@versionAvailable": {},
-  "webUI": "Abrir en el navegador",
+  "webUI": "Abrir en Internet",
   "@webUI": {},
   "webView": "WebView",
   "@webView": {},
@@ -505,5 +505,17 @@
   "remove": "Quitar",
   "@remove": {
     "description": "Remove Button text"
+  },
+  "pinchToZoom": "Pellizcar para hacer zoom",
+  "@pinchToZoom": {
+    "description": "Switch title to enable pinch to zoom in reader screen"
+  },
+  "quickSearch": "Búsqueda rápida",
+  "@quickSearch": {
+    "description": "Screen title and Button text of Quick Search screen"
+  },
+  "isTrueBlack": "Negro verdadero",
+  "@isTrueBlack": {
+    "description": "Switch title to enable {} black theme"
   }
 }

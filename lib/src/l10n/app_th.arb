@@ -1,0 +1,38 @@
+{
+  "appTheme": "โหมดธีมแอป",
+  "@appTheme": {
+    "description": "Popup title and Button text to change App Theme Mode"
+  },
+  "addToLibrary": "เพิ่มเข้าในไลบรารี",
+  "@addToLibrary": {
+    "description": "Button text to add Manga to Library in Manga Details Screen"
+  },
+  "about": "เกี่ยวกับ",
+  "@about": {
+    "description": "Screen title and Button text of About screen"
+  },
+  "addCategory": "เพิ่มหมวดหมู่",
+  "@addCategory": {
+    "description": "Popup title and Button text to add new category in Edit Category Screen"
+  },
+  "allScanlators": "ตัวสแกนแปลทั้งหมด",
+  "@allScanlators": {
+    "description": "Text for all Scanlators in manga description screen chapter filter"
+  },
+  "appTitle": "ทาจิเดสก์ โซราโยมิ",
+  "@appTitle": {
+    "description": "Name of the app (Tachidesk Sorayomi in native script)"
+  },
+  "appearance": "รูปร่าง",
+  "@appearance": {
+    "description": "Screen title and Button text of Appearance screen"
+  },
+  "authType": "ประเภทการรับรองความถูกต้อง",
+  "@authType": {
+    "description": "Popup title and Button text to change App Authentication"
+  },
+  "appLanguage": "ภาษาแอป",
+  "@appLanguage": {
+    "description": "Popup title and Button text to change App Language"
+  }
+}

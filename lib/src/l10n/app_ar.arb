@@ -15,7 +15,7 @@
   "@appLanguage": {
     "description": "Popup title and Button text to change App Language"
   },
-  "appTheme": "مظهر التطبيق",
+  "appTheme": "نمط سمة التطبيق",
   "@appTheme": {
     "description": "Popup title and Button text to change App Theme"
   },
@@ -77,7 +77,7 @@
       }
     }
   },
-  "chapterSortFetchedDate": "حسب الموقع",
+  "chapterSortFetchedDate": "حسب تاريخ جلبه",
   "@chapterSortFetchedDate": {
     "description": "Radio button text for sort by Fetched Date"
   },
@@ -151,7 +151,7 @@
   "@deleteCategoryTitle": {
     "description": "Popup title when deleting Category"
   },
-  "discord": "Discord",
+  "discord": "ديسكورد",
   "@discord": {
     "description": "Discord app title"
   },
@@ -850,5 +850,71 @@
   "readerSwipeChapterToggleDescription": "اسحب لتغير الفصل في القارئ",
   "@readerSwipeChapterToggleDescription": {
     "description": "Switch tile description for, toggle `swipe to change chapter` in reader screen"
+  },
+  "remove": "أزل",
+  "@remove": {
+    "description": "Remove Button text"
+  },
+  "removeFromLibrary": "إزالة من المكتبة؟",
+  "@removeFromLibrary": {
+    "description": "Remove From Library Popup text"
+  },
+  "nextChapter": "التالي: {chapterTitle}",
+  "@nextChapter": {
+    "description": "Text for Next Chapter button in Manga Reader Screen"
+  },
+  "previousChapter": "السابق: {chapterTitle}",
+  "@previousChapter": {
+    "description": "Text for Previous Chapter button in Manga Reader Screen"
+  },
+  "readerOverlay": "تراكب القارئ الأولي",
+  "@readerOverlay": {
+    "description": "Toggle subtile text for Initial Reader Overlay"
+  },
+  "reload": "إعادة تحميل",
+  "@reload": {
+    "description": "Reload button text"
+  },
+  "isTrueBlack": "أسود حقيقي",
+  "@isTrueBlack": {
+    "description": "Switch title to enable {} black theme"
+  },
+  "pinchToZoom": "قرص للتكبير",
+  "@pinchToZoom": {
+    "description": "Switch title to enable pinch to zoom in reader screen"
+  },
+  "quickSearch": "بحث سريع",
+  "@quickSearch": {
+    "description": "Screen title and Button text of Quick Search screen"
+  },
+  "quickSearchShowAllCommandTip": "نصيحة: أدخل علامة الاستفهام \"؟\" لرؤية كافة الأوامر",
+  "@quickSearchShowAllCommandTip": {
+    "description": "Quick Open Tip text for showing all commands by entering '?'"
+  },
+  "readerOverlaySubtitle": "يعرض العنوان والإعدادات السريعة عند فتح الفصل",
+  "@readerOverlaySubtitle": {},
+  "readerVolumeTap": "مفاتيح التحكم في مستوى الصوت",
+  "@readerVolumeTap": {
+    "description": "Switch button text for Reader Page Navigation with Volume Tap"
+  },
+  "readerVolumeTapInvert": "عكس مفاتيح مستوى الصوت",
+  "@readerVolumeTapInvert": {
+    "description": "Switch button text to invert Volume Tap "
+  },
+  "readerVolumeTapSubtitle": "التنقل باستخدام مفاتيح مستوى الصوت",
+  "@readerVolumeTapSubtitle": {
+    "description": "Switch button Subtitle text for Reader Page Navigation with Volume Tap"
+  },
+  "selectInBetween": "اختر ما بين",
+  "@selectInBetween": {
+    "description": "Toast Text for selecting chapters in between first and last Chapters"
+  },
+  "selectNext10": "حدد الـ 10 التالية",
+  "@selectNext10": {
+    "description": "Toast Text for selecting next 10 chapters"
+  },
+  "selectUnread": "حدد غير المقروءة",
+  "@selectUnread": {
+    "description": "Popup Text for selecting unread chapters"
   }
 }
